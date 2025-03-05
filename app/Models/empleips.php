@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class empleado extends Model
+class empleips extends Model
 {
     use HasFactory;
     // relacion uno a uno    Envia el dato a Reporteservicio

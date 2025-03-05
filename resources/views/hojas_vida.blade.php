@@ -31,7 +31,7 @@
                             <img src="IMG/img1.jpg" alt="Descripción de la imagen">
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
-                                <a class="tit-img1" href="ingreso_hoja_de_vida">
+                                <a class="tit-img1" href="hojadevida/create">
                                     <h1 style="font-size:larger; color:white">Agregar hoja de vida</h1>
                                 </a>
                             </div>

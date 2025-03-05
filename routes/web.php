@@ -7,12 +7,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\FlareClient\View;
 
 use App\Http\Controllers\HojadevidaController;
+use App\Http\Controllers\EmpleipsController;
+
 
 
 Route::resource('hojadevida',HojadevidaController::class);
 // acceder a show
 Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
 
+
+Route::resource('empleips', EmpleipsController::class);
 
 /*
 |--------------------------------------------------------------------------
