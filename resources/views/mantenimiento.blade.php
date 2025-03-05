@@ -72,7 +72,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <a href="reporte_de_servicio">
+                    <a href="inventario">
                         <img src="IMG/reparacion2.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Inventario fisico</h5>

@@ -38,6 +38,8 @@ Route::get('/menuing', function () {
 })->name('menu');
 
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});
+Route::get('/inventario', function ()  {return view('inventario');});
+
 Route::get('/manto_crono', function ()  {return view('manto_crono');});
 Route::get('/editar_HV', function ()  {return view('editar_HV');});
 Route::get('/descargar_hv', function ()  {return view('descargar_hv');});
