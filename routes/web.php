@@ -36,7 +36,7 @@ Route::get('/menuing', function () {
     // return View('admin.layouts.app');
     
 })->name('menu');
-
+Route::get('/alarma_calibracion', function ()  {return view('alarma_calibracion');});
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});
 Route::get('/inventario', function ()  {return view('inventario');});
 

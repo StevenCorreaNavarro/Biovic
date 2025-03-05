@@ -60,7 +60,7 @@
 
             <div class="col">
                 <div class="card h-100">
-                    <a href="reporte_de_servicio">
+                    <a href="alarma_calibracion">
                         <img src="IMG/reparacion2.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Alarmas</h5>
