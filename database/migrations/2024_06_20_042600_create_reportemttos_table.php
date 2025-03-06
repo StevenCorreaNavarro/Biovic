@@ -24,6 +24,7 @@ return new class extends Migration
             $table -> text('observaciones');
             $table -> string('fotofirmaentrega');
             $table -> string('fotofirmarecibe');
+            
             $table->unsignedBigInteger('reporteservicio_id')->nullable();
             $table->foreign('reporteservicio_id')->references('id')->on('reporteservicios')->onDelete('cascade');
             $table->unsignedBigInteger('empleado_id')->nullable();

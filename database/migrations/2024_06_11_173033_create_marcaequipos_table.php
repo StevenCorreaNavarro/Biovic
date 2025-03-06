@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('marcaequipos', function (Blueprint $table) {
             $table->id(); // entero grande sin signo 
-            $table->string('modeloequipo');
-            $table->string('marcaequipo');
+            $table->string('marca_equipo');
 
             $table->timestamps();
         });
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('marcaequipos');
     }
 };
