@@ -13,6 +13,7 @@ use App\Models\formaAdqui;
 use App\Models\propiedad;
 use App\Models\magFuenAlimen;
 use App\Models\magVol;
+use App\Models\equipos;
 
 use App\Models\hojadevida;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class HojadevidaController extends Controller
     {
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
+        $equipos = Equipos::all();
         $tecPredos = TecPredo::all();
         $codiecri = codEcri::all();
         $clariesgo = Clariesgo::all();
@@ -46,7 +48,7 @@ class HojadevidaController extends Controller
         $abreviacionvolumen = magVol::all(); //
 
 
-        return view ('hojadevida.create', compact('nombreEquipos', 'nombreservicios','tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso','formaadqui', 'nombreempresa', 'nombrealimentacion','abreviacionvolumen'));
+        return view ('hojadevida.create', compact('nombreEquipos', 'nombreservicios','tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso','formaadqui', 'equipos','nombreempresa', 'nombrealimentacion','abreviacionvolumen'));
     }
 
     /**

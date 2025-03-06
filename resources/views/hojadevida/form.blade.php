@@ -36,9 +36,34 @@
     </select>
 </div>
 <br>
-<br>
 
 <div class="form-group">
+    <label for="equipos">marca equipos</label>
+    <select name="equipos" id="equipos" class="form-control">
+        <option value="">Seleccione una opcion</option>
+        @foreach($equipos as $equipo)
+        <option value="{{ $equipo->id }}" {{ (isset($hojadevida) && $hojadevida->equipos == $equipo->id) ? 'selected' : '' }}>
+            {{ $equipo->marcaequipo }}
+            
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="equipos">modelo equipos</label>
+    <select name="equipos" id="equipos" class="form-control">
+        <option value="">Seleccione una opcion</option>
+        @foreach($equipos as $equipo)
+        <option value="{{ $equipo->id }}" {{ (isset($hojadevida) && $hojadevida->equipos == $equipo->id) ? 'selected' : '' }}>
+            {{ $equipo->marcaequipo }}
+            
+        @endforeach
+    </select>
+</div>
+
+<br>
+
+{{-- <div class="form-group">
     <label for=Marca> Marca </label>
     <input type="text" name="marca" value="{{isset($hojadevida->marca)?$hojadevida->marca:old('marca')}}" id="marca">
 </div>
@@ -48,7 +73,7 @@
 <div class="form-group">
     <label for=modelo> Modelo </label>
     <input type="text" name="modelo" value="{{isset($hojadevida->modelo)?$hojadevida->modelo:old('modelo')}}" id="modelo">
-</div>
+</div> --}}
 <br>
 <br>
 
