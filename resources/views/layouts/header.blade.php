@@ -103,16 +103,18 @@
                             <a class="nav-link disabled nav-link active" aria-disabled="true">Menú Principal</a>
                         </li> --}}
                     </ul>
-                    <ul style="margin: 0%;
-    padding: 0%;">
+                    <ul style="margin: 0%; padding: 0%; list-style: none;">
                         <!-- Authentication Links -->
                         @guest
 
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <button class="button"><a class="nav-link"
-                                            href="{{ route('login') }}">{{ __('Ingresar') }}</a></button>
+                                    
+                                        <a class="nav-link"
+                                            href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                                 </li>
+                           
+                                
                             @endif
 
                             {{-- @if (Route::has('register'))

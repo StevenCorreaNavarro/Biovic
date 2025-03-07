@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seleccionar Equipo, Modelo y Marca</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Title</title>
 </head>
-
 <body>
-    <div>
+    @extends('layouts.header')
+    
+
+
+    <div class="container pt-5">
+        <h1>seleccione  el equipo</h1>
         <label for="equipo">Selecciona un equipo:</label>
         <select id="equipo" name="equipo">
             <option value="">Selecciona un equipo</option>
@@ -89,6 +96,8 @@
             });
         });
     </script>
-</body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
 </html>

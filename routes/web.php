@@ -15,32 +15,39 @@ use App\Http\Controllers\EquiposController;
 // use App\Models\Modelo;
 use Illuminate\Http\Request;
 use App\Models\Marca;
-
 use App\Models\Modelo;
+
+
+Route::get('/main', function () {
+    // Alert::success(' Titulo de la alerta','mensaje de la alerta');
+    // toast('Ejemplo del toast')->success('ejemplo del tost');
+    return view('main');
+    // return View('admin.layouts.app');
+});
+
+Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo ingresar primero para navegar
+
+
+
+
+
+
+
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo esta parte es para llenar equipos->modelo->marca
 
-Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {
-    return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
-});
-Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {
-    return response()->json(Marca::where('equipo_id', $modelo_id)->get());
-});
+Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {return response()->json(Modelo::where('equipo_id', $equipo_id)->get());});
+Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {return response()->json(Marca::where('equipo_id', $modelo_id)->get());});
 Route::get('/get-modelo/{equipo_id}', [EquipoController::class, 'getModelos']);
 Route::get('/get-marca/{equipo_id}', [EquipoController::class, 'getMarcas']);
-
 // Obtener marcas según el modelo seleccionado
-Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {
-    return response()->json(Marca::where('modelo_id', $modelo_id)->get());
-});
-
+Route::get('/get-marcas/{modelo_id}', function ($modelo_id) { return response()->json(Marca::where('modelo_id', $modelo_id)->get());});
 Route::get('/equipos', [EquipoController::class, 'store']);
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
 
 Route::resource('hojadevida',HojadevidaController::class);
 // acceder a show
 Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
-
-
 Route::resource('empleips', EmpleipsController::class);
 
 /*
@@ -60,23 +67,17 @@ Route::get('/', function () {
     // return View('admin.layouts.app');
 });
 
-Route::get('/main', function () {
-    // Alert::success(' Titulo de la alerta','mensaje de la alerta');
-    // toast('Ejemplo del toast')->success('ejemplo del tost');
-    return view('main');
-    // return View('admin.layouts.app');
-});
+
 Route::get('/menuing', function () {
     Alert::success(' Bienvenido!','Ingreso exitoso');
     // toast('Ejemplo del toast')->success('ejemplo del tost');
     return view('menu');
     // return View('admin.layouts.app');
-    
 })->name('menu');
+
 Route::get('/alarma_calibracion', function ()  {return view('alarma_calibracion');});
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});
 Route::get('/inventario', function ()  {return view('inventario');});
-
 Route::get('/manto_crono', function ()  {return view('manto_crono');});
 Route::get('/editar_HV', function ()  {return view('editar_HV');});
 Route::get('/descargar_hv', function ()  {return view('descargar_hv');});
@@ -91,6 +92,7 @@ Route::get('/subir_soporte', function ()            {return view('subir_soporte'
 Route::get('/mantenimiento', function ()            {return view('mantenimiento');})->name('mantenimiento');
 Route::get('/soporte', function ()            {return view('soporte');})->name('soporte');
 
+
 Route::get('/dashboard', function () {
     return view('admin.layouts.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -98,7 +100,7 @@ Route::get('/dashboard', function () {
 Route::get('/usuario/registro', function () {
     return view('admin.users.registro');
 })->middleware(['auth', 'verified'])->name('users.create');
-
+});//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin ingresar primero para navegar
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -109,7 +111,7 @@ require __DIR__.'/auth.php';
 
 route::resource('usuarios',UsuarioWebController::class);
 
-
+// ->middleware('auth')
 //+++++++++++++++++++++++++++++++++++++++++++++++++
 // Route::get('curso/listar',[CursoController::class,'listar'])->name('curso.listar');
 // Route::get('curso/create',[CursoController::class,'create'])->name('curso.create');

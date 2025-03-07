@@ -100,7 +100,7 @@ ul .botone{
     margin: 0 6px 0 6px;
     color: #ffffff;
     
-    
+    list-style: none;
 }
 
 .po{
@@ -134,6 +134,7 @@ ul .botone{
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
+    list-style: none;
 }
 
 .titulo{
