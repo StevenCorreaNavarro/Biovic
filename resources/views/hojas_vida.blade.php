@@ -26,6 +26,17 @@
         <h1 style="margin-top: 0rem; text-align:center">Hojas de vida</h1>
             <div class="contenedor">
                 <div class="row">
+                <div class="col-md-4 mb-4">
+                        <div class="imagen-port">
+                            <img src="IMG/img1.jpg" alt="Descripción de la imagen">
+                            <div class="hover-galeria">
+                                <img src="IMG/icono1.png" alt="Icono">
+                                <a class="tit-img1" href="equipos">
+                                    <h1 style="font-size:larger; color:white">Equipos</h1>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img1.jpg" alt="Descripción de la imagen">
