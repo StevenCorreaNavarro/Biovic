@@ -8,8 +8,23 @@ use Spatie\FlareClient\View;
 
 use App\Http\Controllers\HojadevidaController;
 use App\Http\Controllers\EmpleipsController;
+// use App\Http\Controllers\EquipoController;
+
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\EquiposController;
+// use App\Models\Modelo;
+use Illuminate\Http\Request;
+
+use App\Models\Modelo;
+
+Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {
+    return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
+});
+Route::get('/get-modelo/{equipo_id}', [EquipoController::class, 'getModelos']);
 
 
+Route::get('/equipos
+', [EquipoController::class, 'store']);
 
 Route::resource('hojadevida',HojadevidaController::class);
 // acceder a show

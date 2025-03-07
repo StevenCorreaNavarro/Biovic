@@ -13,7 +13,7 @@ use App\Models\formaAdqui;
 use App\Models\propiedad;
 use App\Models\magFuenAlimen;
 use App\Models\magVol;
-use App\Models\equipos;
+use App\Models\equipo;
 
 use App\Models\hojadevida;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class HojadevidaController extends Controller
     {
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
-        $equipos = Equipos::all();
+        $equipos = Equipo::all();
         $tecPredos = TecPredo::all();
         $codiecri = codEcri::all();
         $clariesgo = Clariesgo::all();

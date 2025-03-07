@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('modelos', function (Blueprint $table) {
             $table->id(); // entero grande sin signo 
-            $table->string('nombre_equipo');
+            $table->string('nombre_modelo');
+            // $table->foreignId('equipo_id')->constrained()->onDelete('cascade'); // Asegurar que la columna sea 'equipo_id'
 
-            // $table->unsignedBigInteger('marcaequipos_id')->nullable();;
-            // $table->foreign('marcaequipos_id')
-            //     ->references('id')
-            //     ->on('marcaequipos')
-            //     ->onDelete('cascade')
-            //     ->unUpdate('cascade');
+            $table->unsignedBigInteger('equipo_id')->nullable();;
+            $table->foreign('equipo_id')
+                ->references('id')
+                ->on('equipos')
+                ->onDelete('cascade')
+                ->unUpdate('cascade');
 
             // $table->unsignedBigInteger('modeloequipos_id')->nullable();;
             // $table->foreign('modeloEquipos_id')
@@ -28,8 +29,6 @@ return new class extends Migration
             //     ->on('modeloequipos')
             //     ->onDelete('cascade')
             //     ->unUpdate('cascade');
-
-
 
             $table->timestamps();
         });
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('modelos');
     }
 };
