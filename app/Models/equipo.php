@@ -13,4 +13,7 @@ class Equipo extends Model {
     public function modelos() {
         return $this->hasMany(modelo::class);
     }
+    // public function marcas() {
+    //     return $this->hasMany(marca::class);
+    // }
 }

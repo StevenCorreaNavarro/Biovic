@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Equipo;
 use App\Models\Modelo;
+use App\Models\Marca;
 // use App\Models\Equipo;
 // use Illuminate\Http\Request;
 
@@ -14,14 +15,18 @@ class EquipoController extends Controller
     {
         return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
     }
+    public function getMarcas($equipo_id)
+    {
+        return response()->json(Marca::where('marca_id', $equipo_id)->get());
+    }
     public function store()
     {
         // Obtener todos los equipos con sus modelos
         $equipos = Equipo::with('modelos')->get();
-        $modelos = Modelo::with('equipo')->get();
+        // $modelos = Modelo::with('equipo')->get();
         // $equipos = Equipo::all();
 
-        return view('equipos.index', compact('equipos','modelos'));
+        return view('equipos.index', compact('equipos'));
     }
     // public function store()
     // {
