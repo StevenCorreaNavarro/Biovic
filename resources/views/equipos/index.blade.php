@@ -13,9 +13,6 @@
 </head>
 <body>
     @extends('layouts.header')
-    
-
-
     <div class="container pt-5">
         <h1>seleccione  el equipo</h1>
         <label for="equipo">Selecciona un equipo:</label>

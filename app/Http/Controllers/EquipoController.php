@@ -26,38 +26,9 @@ class EquipoController extends Controller
         // $modelos = Modelo::with('equipo')->get();
         // $equipos = Equipo::all();
 
-        return view('equipos.index', compact('equipos'));
+        return view('hojadevida.create', compact('equipos'));
     }
-    // public function store()
-    // {
-    //     // Crear un equipo
-    //     $equipoUno = Equipo::create([
-    //         'nombre_equipo' => 'Equipo Uno',
-    //     ]);
 
-    //     // Crear modelos para equipo uno
-    //     $equipoUno->modelos()->createMany([
-    //         ['nombre_modelo' => 'Modelo Uno'],
-    //         ['nombre_modelo' => 'Modelo Dos'],
-    //         ['nombre_modelo' => 'Modelo Tres'],
-    //     ]);
-
-    //     // Crear otro equipo
-    //     $equipoDos = Equipo::create(
-    //         [
-    //             'nombre_equipo' => 'Equipo Dos'
-    //         ],
-    //     );
-
-    //     // Crear modelos para equipo dos
-    //     $equipoDos->modelos()->createMany([
-    //         ['nombre_modelo' => 'Modelo Cuatro'],
-    //         ['nombre_modelo' => 'Modelo Cinco'],
-    //         ['nombre_modelo' => 'Modelo Seis'],
-    //     ]);
-
-    //     return "Equipos y modelos creados exitosamente.";
-    // }
     
 
 

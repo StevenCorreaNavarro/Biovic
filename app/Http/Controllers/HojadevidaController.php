@@ -46,16 +46,24 @@ class HojadevidaController extends Controller
         $nombreempresa = Propiedad::all();
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
-
-
         return view ('hojadevida.create', compact('nombreEquipos', 'nombreservicios','tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso','formaadqui', 'equipos','nombreempresa', 'nombrealimentacion','abreviacionvolumen'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    public function stores()
+    {
+        // Obtener todos los equipos con sus modelos
+        $equipos = Equipo::with('modelos')->get();
+        // $modelos = Modelo::with('equipo')->get();
+        // $equipos = Equipo::all();
+
+        return view('hojadevida.create', compact('equipos'));
+    }
     public function store(Request $request)
     {
+        
         $request->validate([
             'perioCali' => 'required|string',
             'fechaCali' => 'nullable|date',

@@ -159,7 +159,6 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
     }
 });
 </script>
-
 <br>
 <br>
 
@@ -237,7 +236,6 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
 <br>
 
 {{-- SCRIPT CAMPO PERIODO CALIBRACION --}}
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var perioCaliField = document.getElementById('perioCali');
@@ -260,8 +258,6 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
 </script>
 
 <h2>REGISTRO HISTORICO</h2>
-
-
 <div class="form-group">
     <label for=fechaAdquisicion> Fecha de Adquisicion </label>
     <input type="date" name="fechaAdquisicion" value="{{isset($hojadevida->fechaAdquisicion)?$hojadevida->fechaAdquisicion:old('fechaAdquisicion')}}" id="fechaAdquisicion">
@@ -330,9 +326,7 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
 <br>
 <br>
 
-
 <h2>REGISTRO TECNICO</h2>
-
 <div class="form-group">
     <label for="mag_fuen_alimen_id"> Fuente de Alimentacion</label>
     <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control">
@@ -365,16 +359,9 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
     </div>
     <br>
     <br>
-
-
 </div>
 <br>
 <br>
-
-
-
-
-
 
 
 {{-- ACCION DE GUARDAR  --}}
@@ -382,6 +369,5 @@ document.getElementById('search-codiecri').addEventListener('input', function() 
 <br>
 <input type="submit" Value="Guardar"> {{-- se pone value para eliminar el dato del envio name="Enviar" --}}
 <br>
-
 <a href="{{url('hojadevida')}}" class="btn btn-primary"> <h3> Regresar  </h3> </a>
 

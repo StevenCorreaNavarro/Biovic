@@ -18,13 +18,18 @@ use App\Models\Marca;
 use App\Models\Modelo;
 
 
-Route::get('/main', function () {
+Route::get('main', function () {
     // Alert::success(' Titulo de la alerta','mensaje de la alerta');
     // toast('Ejemplo del toast')->success('ejemplo del tost');
     return view('main');
     // return View('admin.layouts.app');
 });
-
+Route::get('/', function () {
+    Alert::success(' Titulo de la alerta','mensaje de la alerta');
+    // toast('Ejemplo del toast')->success('ejemplo del tost');
+    return view('main');
+    // return View('admin.layouts.app');
+});
 Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo ingresar primero para navegar
 
 
@@ -42,7 +47,7 @@ Route::get('/get-modelo/{equipo_id}', [EquipoController::class, 'getModelos']);
 Route::get('/get-marca/{equipo_id}', [EquipoController::class, 'getMarcas']);
 // Obtener marcas según el modelo seleccionado
 Route::get('/get-marcas/{modelo_id}', function ($modelo_id) { return response()->json(Marca::where('modelo_id', $modelo_id)->get());});
-Route::get('/equipos', [EquipoController::class, 'store']);
+Route::get('/equipos', [EquipoController::class, 'stores']);
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
 
 Route::resource('hojadevida',HojadevidaController::class);
@@ -60,13 +65,6 @@ Route::resource('empleips', EmpleipsController::class);
 | be assigned to the "web" middleware group. Make something great!
 |sopor_reporte_manto
 */
-Route::get('/', function () {
-    Alert::success(' Titulo de la alerta','mensaje de la alerta');
-    // toast('Ejemplo del toast')->success('ejemplo del tost');
-    return view('main');
-    // return View('admin.layouts.app');
-});
-
 
 Route::get('/menuing', function () {
     Alert::success(' Bienvenido!','Ingreso exitoso');
@@ -100,6 +98,7 @@ Route::get('/dashboard', function () {
 Route::get('/usuario/registro', function () {
     return view('admin.users.registro');
 })->middleware(['auth', 'verified'])->name('users.create');
+
 });//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin ingresar primero para navegar
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

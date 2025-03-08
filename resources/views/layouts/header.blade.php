@@ -10,7 +10,7 @@
     {{-- <title>{{ config('app.name','Laravel') }}</title> --}}
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net"> 
+    <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="css/header.css">
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<style>
-    .active {
-        color: #ffffff;
-    }
-</style>
+    <style>
+        .active {
+            color: #ffffff;
+        }
+    </style>
 
 </head>
 
@@ -56,12 +56,9 @@
             {{-- <a href="/HTML/menu.html" style="margin-left: 1%; margin-right:1%">
                 <i class="fa-solid fa-arrow-left" style="margin-left: 5%; color:white"></i>
             </a> --}}
-
-            <div class="container-fluid" >
-                <a class="navbar-brander d-flex" style="margin: 0%; padding: 0%;" href="main">
-                    <h1 style="font-weight: bold;">Biovic</h1>
-
-                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="VitalSoft" height="40">
+            <div class="container-fluid">
+                <a class="navbar-brander d-flex" style="margin: 0%; padding: 0%;" href="{{ asset('main ') }}"><h1 style="font-weight: bold;">Biovic</h1>
+                    <img src=" {{ asset('IMG/CutPaste_2024-08-02_10-48-31-556.png ') }}" alt="VitalSoft" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,11 +67,11 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"
                         style=" --bs-scroll-height: 100px; margin-left: 1%; margin-right:1%">
-                        <li><a class="nav-link"  href="main"><i class="bi bi-house"></i></a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="menu">Menu</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['hoja_vida']) ? 'po' : '' }}" href="hojas_vida">Hojas de Vida</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="mantenimiento">Gestión de Mantenimiento</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="soporte">Soporte Técnico</a></li>
+                        <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li>
+                        <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="{{ route('menu') }}">Menu</a></li>
+                        <li><a class="nav-link {{ request()->routeIs(['hoja_vida']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
+                        <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a></li>
+                        <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a></li>
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -109,12 +106,9 @@
 
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    
-                                        <a class="nav-link"
-                                            href="{{ route('login') }}">{{ __('Ingresar') }}</a>
+
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                                 </li>
-                           
-                                
                             @endif
 
                             {{-- @if (Route::has('register'))
@@ -127,7 +121,7 @@
                         @else
                             {{-- despliegue --}}
                             {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-                            <ul class="nav-item dropdown" >
+                            <ul class="nav-item dropdown">
                                 <a id="navbarDropdown"
                                     style=" justify-content: center; align-content:center; padding-right:2rem; "
                                     class="nav-link dropdown-toggle button" href="#" role="button"
@@ -135,7 +129,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end"   aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
 
                                     <div class="dropdown-divider"></div>
@@ -146,7 +140,7 @@
                                     {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item my-11"  href="#">Configuraciones de Cuenta </a>
+                                    <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
                                     <div class="dropdown-divider"></div>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
