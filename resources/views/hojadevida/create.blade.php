@@ -21,37 +21,38 @@
 <body>
     @extends('layouts.header')
     <main class="container  "><br><br><br>
-        <form action="{{ url('/hojadevida') }}" class="row g-3 needs-validation formu   p-5" style="background-color: rgba(226, 226, 226, 0.942)" novalidate>
+        <form action="{{ url('/hojadevida') }}" class="row g-3 needs-validation formu   p-5"
+            style="background-color: rgba(226, 226, 226, 0.942); border-radius:10px; " novalidate>
             @csrf {{-- LLave de seguridad obligatoria --}}
             <h1 style="margin-top: 0rem; text-align:center">Descripcion de quipo</h1>
-            <div  class="row g-0 needs-validation formu  py-3 " style="background-color: #c3c3c3;" >
-                  <div class="col-md-4 position-relative px-1">
-                <label for="equipo" class="form-label">Selecciona un equipo:</label>
-                <select id="equipo" name="equipo" class="form-control form-select">
-                    
-                    <option value="">Selecciona un equipo</option>
-                    @foreach ($equipos as $equipo)
-                        <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-4 position-relative px-3">
-                <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                <select id="modelo" name="modelo" class="form-control form-select" disabled>
-                    <option value="">Selecciona un modelo</option>
-                </select>
+            <div class="row g-0 needs-validation formu  py-3 " style="background-color: #c3c3c3; border-radius:10px;">
+                <div class="col-md-4 position-relative px-2">
+                    <label for="equipo" class="form-label">Selecciona un equipo:</label>
+                    <select id="equipo" name="equipo" class="form-control form-select">
+
+                        <option value="">Selecciona un equipo</option>
+                        @foreach ($equipos as $equipo)
+                            <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4 position-relative px-2">
+                    <label for="modelo" class="form-label">Selecciona un modelo:</label>
+                    <select id="modelo" name="modelo" class="form-control form-select" disabled>
+                        <option value="">Selecciona un modelo</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-4 position-relative px-2">
+                    <label for="marca" class="form-label">Selecciona una marca:</label>
+                    <select id="marca" name="marca" class="form-control form-select" disabled>
+                        <option value="">Selecciona una marca</option>
+                    </select>
+                </div>
             </div>
 
 
-            <div class="col-md-4 position-relative px-3">
-                <label for="marca" class="form-label">Selecciona una marca:</label>
-                <select id="marca" name="marca" class="form-control form-select" disabled>
-                    <option value="">Selecciona una marca</option>
-                </select>
-            </div>
-            </div>
-
-          
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger" role="alert">
@@ -66,7 +67,7 @@
             <div class="col-md-4 position-relative">
                 <label for="servicio_id">Servicio</label>
                 <select name="servicio_id" id="servicio_id" class="form-control form-select">
-                    <option value="" >Seleccione una opcion</option>
+                    <option value="">Seleccione una opcion</option>
                     @foreach ($nombreservicios as $servicio)
                         <option value="{{ $servicio->id }}"
                             {{ isset($hojadevida) && $hojadevida->servicio_id == $servicio->id ? 'selected' : '' }}>
@@ -76,8 +77,8 @@
             </div>
 
             <div class="col-md-4 position-relative">
-                <div class="form-group " >
-                    <label for="serie" > Serie </label>
+                <div class="form-group ">
+                    <label for="serie"> Serie </label>
                     <input type="text" name="marca" class="form-control"
                         value="{{ isset($hojadevida->serie) ? $hojadevida->serie : old('serie') }}" id="serie">
 
