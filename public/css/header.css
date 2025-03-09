@@ -27,6 +27,12 @@ h1{
     color: #404040;
 }
 
+h5{
+    color: #ffffff;
+    /* font-weight: bold; */
+    font-size: small;
+}
+
 /* .cajita{
     box-sizing: border-box;
     box-decoration-break: slice;

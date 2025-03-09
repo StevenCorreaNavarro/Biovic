@@ -19,12 +19,117 @@
 <body>
     @extends('layouts.header')
     <main>
-        <div class="image-hoja">
+        <!-- <div class="image-hoja">
             <img src="IMG/M2-5 - Cronograma de Mantenimiento.jpg" alt="">
+        </div> -->
+
+        <br><br>
+        <div>
+            <h1 class="text-center">Cronograma de Mantenimiento</h1>
+            <p class="text-center">El cronograma de mantenimiento es una herramienta que permite planificar y organizar las actividades de mantenimiento de una empresa o institución. En este documento se detallan las tareas de mantenimiento preventivo y correctivo que se deben realizar en un determinado periodo de tiempo.</p>
+            <p class="text-center">El objetivo del cronograma de mantenimiento es garantizar que los equipos, maquinarias e instalaciones de una empresa funcionen de manera óptima y segura. Para ello, se establecen las fechas en las que se deben realizar las tareas de mantenimiento, así como los recursos necesarios para llevarlas a cabo.</p>
+            <p class="text-center">El cronograma de mantenimiento es una herramienta fundamental para la gestión del mantenimiento de una empresa, ya que permite planificar las actividades de mantenimiento de forma eficiente y ordenada. Además, facilita la asignación de recursos y la programación de las tareas de mantenimiento, lo que contribuye a mejorar la eficiencia y la productividad de la empresa.</p>
+            <p class="text-center">En resumen, el cronograma de mantenimiento es una herramienta que permite planificar y organizar las actividades de mantenimiento de una empresa de manera eficiente y ordenada, lo que contribuye a mejorar la eficiencia y la productividad de la empresa.</p>
         </div>
 
+
+        <div>
+            <div class="row p-0 m-0">
+                <div class="w-25  bg-black border border-light "><img src="{{ asset('IMG/logotipohancho.png') }}" height="100px" alt=""></div>
+                <div class="w-25 p-3 bg-primary border border-light text-center text-white">CRONOGRAMA DE MANTENIMIENTO</div>
+                <div class="w-25 p-3 bg-primary border border-light text-center">
+                    <h5> version:</h5>
+                    <h5> codigo:</h5>
+                    <h5> proceso:</h5>
+                </div>
+                <div class="w-25 p-3 bg-primary border border-light text-center  text-white">1</div>
+            </div>
+            <table class="table  table-striped table-hover">
+
+                <thead>
+                    <tr>
+                        <th style="font-size: 11px">ITEM</th>
+                        <th style="font-size: 11px">UBICACACION</th>
+                        <th style="font-size: 11px">EQUIPO</th>
+                        <th style="font-size: 11px">MARCA</th>
+                        <th style="font-size: 11px">MODELO</th>
+                        <th style="font-size: 11px">SERIE</th>
+                        <th style="font-size: 11px;">ENERO</th>
+                        <th style="font-size: 11px">FEBRERO</th>
+                        <th style="font-size: 11px">MARZO</th>
+                        <th style="font-size: 11px">ABRIL</th>
+                        <th style="font-size: 11px">MAYO</th>
+                        <th style="font-size: 11px">JUNIO</th>
+                        <th style="font-size: 11px">JULIO</th>
+                        <th style="font-size: 11px">AGOSTO</th>
+                        <th style="font-size: 11px">SEPTIEMBRE</th>
+                        <th style="font-size: 11px">OCTUBRE</th>
+                        <th style="font-size: 11px">NOVIEMBRE</th>
+                        <th style="font-size: 11px">DICIEMBRE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="font-size: 8px">
+                            <h6>1</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6 style="white-space: nowrap ">AMBULANCIA-ORO 238</h6>
+                        </th>
+                        <th style="font-size:8px">
+                            <h6>equipo</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>item</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>Ubicacion</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>equipo</h6>
+                        </th>
+                        <th style="font-size: 8px ;  background-color:yellow ;">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px ;  background-color:yellow ;">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px ">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px ;  background-color:yellow ;">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                        <th style="font-size: 8px">
+                            <h6>x</h6>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
-        
+
     <footer class="bg-primary text-white text-center py-4">
         <div class="container">
             <h4>VitalSoft</h4>
@@ -42,14 +147,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script>
-      document.addEventListener('scroll', function() {
-          const navbar = document.querySelector('.navbar');
-          if (window.scrollY > 50) { // Ajusta el valor según sea necesario
-              navbar.classList.add('navbar-scrolled');
-          } else {
-              navbar.classList.remove('navbar-scrolled');
-          }
-      });
+        document.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Ajusta el valor según sea necesario
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
     </script>
 </body>
 

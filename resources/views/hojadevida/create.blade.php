@@ -23,7 +23,7 @@
     <main class=" p-2 " style="background-color: rgb(225, 225, 225);">
 
         <form action="{{ url('/hojadevida') }}" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " novalidate>
-            <div style="background-color: rgb(245, 245, 245);" class="row g-4 needs-validation formu p-5">
+            <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation formu p-5">
 
 
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">Descripcion de quipo</h1>
@@ -317,7 +317,7 @@
 
 
 
-            <div  style="background-color: rgb(245, 245, 245)" class="row g-4 needs-validation formu p-5">
+            <div  style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
 
 
 
@@ -413,7 +413,7 @@
                 <br><br><br>
             </div>
 
-            <div style="background-color: rgb(245, 245, 245)" class="row g-4 needs-validation formu p-5">
+            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
 
                 <h1  class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">Registro tecnico
                 </h1>
