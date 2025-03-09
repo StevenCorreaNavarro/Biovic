@@ -77,7 +77,6 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
-
         $hdv = new hojadevida();
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
@@ -85,6 +84,15 @@ class HojadevidaController extends Controller
         $hdv->servicio_id = $request->servicio_id;
         $hdv->serie = $request->serie;
         $hdv->tec_predo_id = $request->tec_predo_id;
+        $hdv->perioCali = $request->perioCali;
+        $hdv->fechaCali = $request->fechaCali;
+        // $hdv->cod_ecris = $request->cod_ecris;
+        $hdv->actFijo = $request->actFijo;
+        // $hdv->regInvimai = $request->regInvimai;
+        $hdv->Estado = $request->Estado;
+        // $hdv->cla_riesgos = $request->cla_riesgos;
+        // $hdv->cla_biomes = $request->cla_biomes;
+        $hdv->foto = $request->foto;
 
 
         $hdv->save();

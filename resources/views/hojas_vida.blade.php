@@ -23,10 +23,10 @@
     @extends('layouts.header')
     <main>
         <section class="portafolio mt-5">
-        <h1 style="margin-top: 0rem; text-align:center">Hojas de vida</h1>
+            <h1 style="margin-top: 0rem; text-align:center">Hojas de vida</h1>
             <div class="contenedor">
                 <div class="row">
-                <div class="col-md-4 mb-4">
+                    <!-- <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img1.jpg" alt="Descripción de la imagen">
                             <div class="hover-galeria">
@@ -36,7 +36,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img1.jpg" alt="Descripción de la imagen">
@@ -54,7 +54,7 @@
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
                                 <a href="subir_soporte">
-                                    <h1  style="font-size:larger; color:white">Subir Soportes</h1>
+                                    <h1 style="font-size:larger; color:white">Subir Soportes</h1>
                                 </a>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
                                 <a href="hoja_ver">
-                                    <h1  style="font-size:larger; color:white">Ver hoja de vida</h1>
+                                    <h1 style="font-size:larger; color:white">Ver hoja de vida</h1>
                                 </a>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
                                 <a href="descargar_hv">
-                                <h1  style="font-size:larger; color:white">Descargar</h1>
-                            </a>
+                                    <h1 style="font-size:larger; color:white">Descargar</h1>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             <img src="IMG/img5.jpg" alt="Descripción de la imagen">
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
-                                <h1  style="font-size:larger; color:white">Eliminar registros</h1>
+                                <h1 style="font-size:larger; color:white">Eliminar registros</h1>
                             </div>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-  
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>

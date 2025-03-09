@@ -71,7 +71,7 @@
                         style=" --bs-scroll-height: 100px; margin-left: 1%; margin-right:1%">
                         <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li>
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="{{ route('menu') }}">Menu</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['hoja_vida']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
+                        <li><a class="nav-link {{ request()->routeIs(['hoja_vida','hojadevida.*']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a></li>
                         {{-- <li class="nav-item dropdown">

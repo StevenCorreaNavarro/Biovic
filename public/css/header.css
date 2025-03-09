@@ -24,7 +24,7 @@ h4{
 }
 h1{
     font-weight: bold;
-    color: #404040;
+    color: #9c9898;
 }
 
 h5{
@@ -74,6 +74,13 @@ ul .botone{
 }
 
 
+option,.nnn,input,select,
+label{
+    
+    padding: 0%;
+    margin: 0%;
+    color: #0000009e;
+}
 /* Header */
 .navbar {
     height: 6%;

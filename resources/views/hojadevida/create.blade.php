@@ -22,14 +22,13 @@
     @extends('layouts.header')
     <main class=" p-2 " style="background-color: rgb(225, 225, 225);">
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
-        <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data">
-            novalidate>
+        <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; "   novalidate>
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Descripcion de quipo</h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
                 <div class="row g-0 needs-validation   py-3 " style="background-color: #a6a6a630; border-radius:10px;">
-                    <div class="col-md-4 position-relative px-2">
+                    <div class="col-md-4 position-relative nnn px-2">
                         <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                         <select id="equipo" name="equipo_id" class="form-control form-select">
                             <option value="">Selecciona un equipo</option>
@@ -78,7 +77,7 @@
                             >
                     </div>
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-4 ">
                     <div class="form-group">
                         <label for="tec_predo_id">Tecnologia Predominante</label>
                         <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
@@ -91,7 +90,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 position-relative">
+                {{-- <div class="col-md-4 position-relative">
                     <div class="form-group">
                         <label for="tec_predo_id">Tecnologia Predominante</label>
                         <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
@@ -103,7 +102,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-4 position-relative">
                     <label for="perioCali">PerioCali</label>
                     <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"

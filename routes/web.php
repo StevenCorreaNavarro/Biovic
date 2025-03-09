@@ -74,10 +74,10 @@ Route::get('/menuing', function () {
 })->name('menu');
 
 
-Route::get('hojadevida/creates',[HojadevidaController::class,'creates'])->name('hojadevida.creates');
-Route::get('hojadevida',[HojadevidaController::class,'create'])->name('hojadevida.create');
-Route::post('hojadevida/store',[HojadevidaController::class,'store'])->name('hojadevida.store');
-Route::post('hojadevida/stores',[HojadevidaController::class,'stores'])->name('hojadevida.stores');
+Route::get('/hojadevida/creates',[HojadevidaController::class,'creates'])->name('hojadevida.creates');
+Route::get('/hojadevida',[HojadevidaController::class,'create'])->name('hojadevida.create');
+Route::post('/hojadevida/store',[HojadevidaController::class,'store'])->name('hojadevida.store');
+Route::post('/hojadevida/stores',[HojadevidaController::class,'stores'])->name('hojadevida.stores');
 
 Route::get('/alarma_calibracion', function ()  {return view('alarma_calibracion');});
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});
