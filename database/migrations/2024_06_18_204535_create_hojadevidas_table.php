@@ -14,55 +14,72 @@ return new class extends Migration
         Schema::create('hojadevidas', function (Blueprint $table) {
             $table->id();
 
-            $table->string('marca');
-            $table->string('modelo');
-            $table->string('serie');
-            $table->string('perioCali');// si, solicita fecha
+            // $table->string('marca');
+            // $table->string('modelo');
+            $table->string('serie')->nullable();;
+            $table->string('perioCali')->nullable();;// si, solicita fecha
             $table->date('fechaCali')->nullable();
-            $table->string('actFijo');
-            $table->string('regInvima');
-            $table->string('Estado');
-            $table->string('foto');
+            $table->string('actFijo')->nullable();;
+            $table->string('regInvima')->nullable();;
+            $table->string('Estado')->nullable();;
+            $table->string('foto')->nullable();;
 
-            $table->date('fechaAdquisicion');
-            $table->date('fechaInstalacion');
-            $table->date('garantia');
-            $table->date('vidaUtil');
-            $table->integer('costo');
-            $table->string('factura');
+            $table->date('fechaAdquisicion')->nullable();;
+            $table->date('fechaInstalacion')->nullable();;
+            $table->date('garantia')->nullable();;
+            $table->date('vidaUtil')->nullable();;
+            $table->integer('costo')->nullable();;
+            $table->string('factura')->nullable();;
 
             // $table->integer('fuenteAlimentacion')->nullable();
-            $table->integer('volMax');
-            $table->integer('volMin');
-            $table->integer('presion');
-            $table->integer('peso');
-            $table->integer('frecuencia');
-            $table->integer('corrienteMax');
-            $table->integer('corrienteMin');
-            $table->integer('potencia');
-            $table->integer('dimLargo');
-            $table->integer('dimAncho');
-            $table->integer('dimAlto');
-            $table->integer('capacidad');
-            $table->integer('temperatura');
-            $table->integer('velocidad');
-            $table->integer('humedad');
-            $table->text('recomendaciones');
+            $table->integer('volMax')->nullable();;
+            $table->integer('volMin')->nullable();;
+            $table->integer('presion')->nullable();;
+            $table->integer('peso')->nullable();;
+            $table->integer('frecuencia')->nullable();;
+            $table->integer('corrienteMax')->nullable();;
+            $table->integer('corrienteMin')->nullable();;
+            $table->integer('potencia')->nullable();;
+            $table->integer('dimLargo')->nullable();;
+            $table->integer('dimAncho')->nullable();;
+            $table->integer('dimAlto')->nullable();;
+            $table->integer('capacidad')->nullable();;
+            $table->integer('temperatura')->nullable();;
+            $table->integer('velocidad')->nullable();;
+            $table->integer('humedad')->nullable();;
+            $table->text('recomendaciones')->nullable();;
+
+            $table->unsignedBigInteger('equipo_id')->nullable();	 
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
+            $table->unsignedBigInteger('modelo_id')->nullable();	 
+            $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
+            $table->unsignedBigInteger('marca_id')->nullable();	 
+            $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
+
+
+
 
             $table->unsignedBigInteger('servicio_id')->nullable();	 
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
+
             $table->unsignedBigInteger('nombre_equipo_id')->nullable();
             $table->foreign('nombre_equipo_id')->references('id')->on('nombre_equipos')->onDelete('cascade');
+
             $table->unsignedBigInteger('tec_predo_id')->nullable();	 
             $table->foreign('tec_predo_id')->references('id')->on('tec_predos')->onDelete('cascade');
+
             $table->unsignedBigInteger('cod_ecri_id')->nullable();	 
             $table->foreign('cod_ecri_id')->references('id')->on('cod_ecris')->onDelete('cascade');
+
             $table->unsignedBigInteger('ubi_fisica_id')->nullable();	 
             $table->foreign('ubi_fisica_id')->references('id')->on('ubi_fisicas')->onDelete('cascade');
+
             $table->unsignedBigInteger('cla_riesgo_id')->nullable();	 
             $table->foreign('cla_riesgo_id')->references('id')->on('cla_riesgos')->onDelete('cascade');
+
             $table->unsignedBigInteger('cla_biome_id')->nullable();	 
             $table->foreign('cla_biome_id')->references('id')->on('cla_biomes')->onDelete('cascade');
+
             $table->unsignedBigInteger('cla_uso_id')->nullable();	 
             $table->foreign('cla_uso_id')->references('id')->on('cla_usos')->onDelete('cascade');
 

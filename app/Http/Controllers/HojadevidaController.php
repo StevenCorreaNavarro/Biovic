@@ -23,6 +23,13 @@ class HojadevidaController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function listar()
+     {
+         $hdv = hojadevida::orderBy('id', 'desc')->get();
+         return view('hojadevida.create', compact('hdv'));
+     }
+
     public function index()
     {
         $datos['hojadevida']=Hojadevida::paginate(10);//
@@ -32,6 +39,11 @@ class HojadevidaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function creates(){
+        return view ('hojadevida.create');
+     }
+
     public function create()
     {
         $nombreservicios = Servicio::all();
@@ -61,24 +73,40 @@ class HojadevidaController extends Controller
 
         return view('hojadevida.create', compact('equipos'));
     }
+
+    //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'perioCali' => 'required|string',
-            'fechaCali' => 'nullable|date',
-            'foto'=>'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
-        ]);
 
-        $hojadevida = new Hojadevida();
-        $hojadevida->perioCali = $request->input('perioCali');
+        $hdv = new hojadevida();
+        $hdv->equipo_id = $request->equipo_id;
+        $hdv->modelo_id = $request->modelo_id;
+        $hdv->marca_id = $request->marca_id;
+        $hdv->servicio_id = $request->servicio_id;
+        $hdv->serie = $request->serie;
+        $hdv->tec_predo_id = $request->tec_predo_id;
+
+
+        $hdv->save();
+        // return $curso;
+        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar
         
-        // Solo establecer fechaCali si perioCali es 'anual'
-        if (strtolower($request->input('perioCali')) === 'Anual') {
-            $hojadevida->fechaCali = $request->input('fechaCali');
-        } else {
-            $hojadevida->fechaCali = null;
-        }
+        
+        // $request->validate([
+        //     'perioCali' => 'required|string',
+        //     'fechaCali' => 'nullable|date',
+        //     'foto'=>'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
+        // ]);
+
+        // $hojadevida = new Hojadevida();
+        // $hojadevida->perioCali = $request->input('perioCali');
+        
+        // // Solo establecer fechaCali si perioCali es 'anual'
+        // if (strtolower($request->input('perioCali')) === 'Anual') {
+        //     $hojadevida->fechaCali = $request->input('fechaCali');
+        // } else {
+        //     $hojadevida->fechaCali = null;
+        // }
 
     }
 

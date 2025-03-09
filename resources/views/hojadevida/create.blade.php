@@ -21,20 +21,17 @@
 <body>
     @extends('layouts.header')
     <main class=" p-2 " style="background-color: rgb(225, 225, 225);">
-
-        <form action="{{ url('/hojadevida') }}" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " novalidate>
+        {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
+        <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data">
+            novalidate>
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation formu p-5">
-
-
-                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">Descripcion de quipo</h1>
+                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                    Descripcion de quipo</h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
-
-                <div class="row g-0 needs-validation   py-3 "
-                    style="background-color: #a6a6a630; border-radius:10px;">
+                <div class="row g-0 needs-validation   py-3 " style="background-color: #a6a6a630; border-radius:10px;">
                     <div class="col-md-4 position-relative px-2">
-                        <label for="equipo" class="form-label">Selecciona un equipo:</label>
-                        <select id="equipo" name="equipo" class="form-control form-select">
-
+                        <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
+                        <select id="equipo" name="equipo_id" class="form-control form-select">
                             <option value="">Selecciona un equipo</option>
                             @foreach ($equipos as $equipo)
                                 <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
@@ -43,21 +40,18 @@
                     </div>
                     <div class="col-md-4 position-relative px-2">
                         <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                        <select id="modelo" name="modelo" class="form-control form-select" disabled>
+                        <select id="modelo" name="modelo_id" class="form-control form-select" disabled>
                             <option value="">Selecciona un modelo</option>
                         </select>
                     </div>
                     <div class="col-md-4 position-relative px-2">
-                        <label for="marca" class="form-label">Selecciona una marca:</label>
-                        <select id="marca" name="marca" class="form-control form-select" disabled>
+                        <label for="marca_id" class="form-label">Selecciona una marca:</label>
+                        <select id="marca" name="marca_id" class="form-control form-select" disabled>
                             <option value="">Selecciona una marca</option>
                         </select>
                     </div>
                 </div>
-
-
-
-                @if (count($errors) > 0)
+                {{-- @if (count($errors) > 0)
                     <div class="alert alert-danger" role="alert">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -65,8 +59,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
-
+                @endif --}}
                 <div class="col-md-4 position-relative">
                     <label for="servicio_id">Servicio</label>
                     <select name="servicio_id" id="servicio_id" class="form-control form-select">
@@ -78,33 +71,13 @@
                         @endforeach
                     </select>
                 </div>
-
                 <div class="col-md-4 position-relative">
                     <div class="form-group ">
                         <label for="serie"> Serie </label>
-                        <input type="text" name="marca" class="form-control"
-                            value="{{ isset($hojadevida->serie) ? $hojadevida->serie : old('serie') }}" id="serie">
-
-                    </div>
-
-
-
-                </div>
-                <div class="col-md-4 position-relative">
-
-                    <div class="form-group">
-                        <label for="tec_predo_id">Tecnologia Predominante</label>
-                        <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
-                            <option value="">Seleccione una opcion</option>
-                            @foreach ($tecPredos as $tecnopredominante)
-                                <option value="{{ $tecnopredominante->id }}"
-                                    {{ isset($hojadevida) && $hojadevida->tec_predo_id == $tecnopredominante->id ? 'selected' : '' }}>
-                                    {{ $tecnopredominante->tecpredo }}
-                            @endforeach
-                        </select>
+                        <input type="text" name="serie" class="form-control"
+                            >
                     </div>
                 </div>
-
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
                         <label for="tec_predo_id">Tecnologia Predominante</label>
@@ -118,14 +91,24 @@
                         </select>
                     </div>
                 </div>
-
+                <div class="col-md-4 position-relative">
+                    <div class="form-group">
+                        <label for="tec_predo_id">Tecnologia Predominante</label>
+                        <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
+                            <option value="">Seleccione una opcion</option>
+                            @foreach ($tecPredos as $tecnopredominante)
+                                <option value="{{ $tecnopredominante->id }}"
+                                    {{ isset($hojadevida) && $hojadevida->tec_predo_id == $tecnopredominante->id ? 'selected' : '' }}>
+                                    {{ $tecnopredominante->tecpredo }}
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-4 position-relative">
                     <label for="perioCali">PerioCali</label>
                     <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
                         class="form-control" oninput="toggleFechaCali(this.value)">
-
                 </div>
-
                 <div class="col-md-4 position-relative">
                     {{-- <div class="form-group" id="fechaCaliContainer" style="display: none;"> --}}
                     <label for="fechaCali">Fecha de Calibración</label>
@@ -133,7 +116,6 @@
                         value="{{ old('fechaCali') }}">
                     {{-- </div> --}}
                 </div>
-
                 <div class="col-md-4 position-relative">
                     {{-- <div class="form-group"> --}}
                     <label for="cod_ecris">Código Ecri</label>
@@ -312,16 +294,9 @@
                 </div>
             </div>
 
-
-
-
-
-
-            <div  style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-
-
-
-                <h1  class="text-white"  style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">Registro
+            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                    Registro
                     historico
                 </h1>
                 <div class="col-md-4 position-relative">
@@ -332,7 +307,6 @@
                             id="fechaAdquisicion">
                     </div>
                 </div>
-
 
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
@@ -351,8 +325,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
                         <label for=factura> Factura </label>
@@ -361,7 +333,6 @@
                             id="factura">
                     </div>
                 </div>
-
 
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
@@ -376,7 +347,6 @@
                         </select>
                     </div>
                 </div>
-
 
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
@@ -396,7 +366,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
                         <label for="propiedad_id">Propiedad</label>
@@ -414,8 +383,8 @@
             </div>
 
             <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-
-                <h1  class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">Registro tecnico
+                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                    Registro tecnico
                 </h1>
                 <div class="col-md-4 position-relative">
                     <div class="form-group">
@@ -436,11 +405,9 @@
                     <input type="text" name="volMax" class="form-control"
                         value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
                         id="volMax">
-
                 </div>
 
                 <div class="col-md-4 position-relative">
-
                     <label for=volMin> Voltaje Min </label>
                     <input type="text" name="volMin" class="form-control"
                         value="{{ isset($hojadevida->covolMinsto) ? $hojadevida->volMin : old('volMin') }}"
@@ -460,10 +427,8 @@
                                 @endforeach
                             </select>
                         </div>
-
                     </div>
                 </div>
-
                 <br>
                 <br>
 
