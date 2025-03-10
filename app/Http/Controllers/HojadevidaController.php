@@ -20,29 +20,23 @@ use Illuminate\Http\Request;
 
 class HojadevidaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     public function listar(Request $request)
     {
         // $hdvs = hojadevida::with('equipo')->get();
         $query = Hojadevida::with('equipo');
 
-    // Filtrar por el nombre del equipo si se ingresa un término en el buscador
-    if ($request->has('search')) {
-        $search = $request->input('search');
-        $query->whereHas('equipo', function ($q) use ($search) {
-            $q->where('nombre_equipo', 'LIKE', "%$search%");
-            
+        // Filtrar por el nombre del equipo si se ingresa un término en el buscador
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->whereHas('equipo', function ($q) use ($search) {
+                $q->where('nombre_equipo', 'LIKE', "%$search%");
+            });
+        }
 
-        });
-    }
+        $hdvs = $query->get();
+        return view('hojadevida.listar', compact('hdvs'));
 
-    $hdvs = $query->get();
-    return view('hojadevida.listar', compact('hdvs'));
-        
-        
+
         // $hdvs = Hojadevida::orderBy('id', 'desc')->get();
         // return view('hojadevida.listar', compact('hdvs'));
     }
@@ -121,7 +115,7 @@ class HojadevidaController extends Controller
         // $hdv->foto = $request->foto;
         // $hdv->foto = $request->file('foto')->store('public/fotos');
         if ($request->hasFile('foto')) {
-            $hdv->foto = $request->file('foto')->store('public/fotos'); 
+            $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
 
@@ -147,7 +141,7 @@ class HojadevidaController extends Controller
 
 
 
-      
+
 
 
         $hdv->save();
