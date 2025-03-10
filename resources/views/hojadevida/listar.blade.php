@@ -53,10 +53,11 @@
                     {{-- @foreach ($hdvs as $hdv) --}}
             
                     {{-- <td>{{ $hoja->id }}</td> --}}
-                    <td>{{ $hdv->equipo?->nombre_equipo ?? 'xxx' }}</td>
-                    <td>{{ $hdv->marca?->nombre_marca ?? 'xxx' }}</td>
-                    <td>{{ $hdv->modelo?->nombre_modelo ?? 'xxx' }}</td>
-                    <td>{{ $hdv->serie ?? 'xxx' }}</td>
+                    <td>{{ $hdv->equipo?->nombre_equipo ?? '---'  }}</td>
+                    <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
+                    <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
+                    <td>{{ $hdv->serie ?? '---' }}</td>
+                    <td>{{ $hdv->actFijo ?? '---' }}</td>
                     
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
