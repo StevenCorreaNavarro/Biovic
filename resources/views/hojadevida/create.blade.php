@@ -487,9 +487,9 @@
                 </button>
                 {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
                 <br>
-                {{-- <a href="{{ url('hojadevida') }}" class="btn btn-primary">
-                    <h3> Regresar </h3>
-                </a> --}}
+                 <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
+                    <h3> Lista </h3>
+                </a> 
             </div>
 
         </form>

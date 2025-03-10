@@ -140,10 +140,12 @@ class HojadevidaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(hojadevida $hojadevida)
+    public function show($hdvs)
     {
-        //
+        $hdvs = Hojadevida::findOrFail($hdvs);
+        return view('hojadevida.show', compact('hdvs'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

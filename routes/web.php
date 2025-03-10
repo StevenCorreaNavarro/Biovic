@@ -72,12 +72,16 @@ Route::get('/menuing', function () {
     return view('menu');
     // return View('admin.layouts.app');
 })->name('menu');
+// Route::get('curso/{curso}',[CursoController::class,'show'])->name('curso.show');
 
 Route::get('hojadevida/listar',[HojadevidaController::class,'listar'])->name('hojadevida.listar');
 Route::get('/hojadevida/creates',[HojadevidaController::class,'creates'])->name('hojadevida.creates');
 Route::get('/hojadevida/create',[HojadevidaController::class,'create'])->name('hojadevida.create');
 Route::post('/hojadevida/store',[HojadevidaController::class,'store'])->name('hojadevida.store');
 Route::post('/hojadevida/stores',[HojadevidaController::class,'stores'])->name('hojadevida.stores');
+Route::delete('/hojadevida/{dato}',[HojadevidaController::class,'destroy'])->name('hojadevida.stores');
+Route::get('hojadevida/{hdv}',[HojadevidaController::class,'show'])->name('hojadevida.show');
+
 
 Route::get('/alarma_calibracion', function ()  {return view('alarma_calibracion');});
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});

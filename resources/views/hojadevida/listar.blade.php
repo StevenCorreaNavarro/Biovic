@@ -50,19 +50,16 @@
                         <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $hdv->foto }}"
                             width="100" alt="">
                     </td>
-                    {{-- @foreach ($hdvs as $hdv) --}}
-            
-                    {{-- <td>{{ $hoja->id }}</td> --}}
-                    <td>{{ $hdv->equipo?->nombre_equipo ?? '---'  }}</td>
+                    <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
                     <td>{{ $hdv->serie ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
-                    
+
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
-            {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
-            {{-- <td>{{$hojadevida-> marca }}</td>
+                    {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
+                    {{-- <td>{{$hojadevida-> marca }}</td>
             <td>{{$hojadevida-> modelo}}</td>
             <td>{{$hojadevida-> serie}}</td>
             <td>{{$hojadevida-> actFijo}}</td>
@@ -70,27 +67,27 @@
             <td>{{$hojadevida-> nombreubicacio}}</td> --}}
 
 
-            {{-- // acciones  --}}
-            {{-- <td> --}}
-            {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
-            {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
+                    {{-- // acciones  --}}
+                    <td>
+                        {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
+                        {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
                 Editar 
                 </a> --}}
 
-            {{-- 19- ACCION ELIMINAR --}}
-            {{-- <form action="{{url('/hojadevida/'.$hojadevida->id)}}"  method="post" > } --}}
-            {{-- Envio los datos para ser borrados  --}}
-            {{-- @csrf
-                    {{method_field('DELETE')}} 
-                    <input type="submit" onclick="return confirm('¿Quieres Borrar?')" value="Borrar">
-                </form> --}}
+                        {{-- 19- ACCION ELIMINAR --}}
+                        {{-- <form action="{{ url('hojadevida/listar/' . $hdv->id) }}" method="post"> Envio los datos para ser
+                            borrados
+                            @csrf
+                            {{ method_field('DELETE') }}
+                            <input type="submit" onclick="return confirm('¿Quieres Borrar?')" value="Borrar">
+                        </form> --}}
 
-            {{-- Mostrar hojadevida --}}
-            {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/show')}}"> --}}
-            {{-- Mostrar --}}
-            {{-- </a> --}}
-            {{-- </td> --}}
-            </tr>
+                        {{-- Mostrar hojadevida --}}
+                        <a href="{{url('hojadevida' .'/'.$hdv->id.'/show')}}" class="btn btn-primary">Ver lista
+                        {{-- Mostrar --}}
+                        </a>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
