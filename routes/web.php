@@ -50,7 +50,7 @@ Route::get('/get-marcas/{modelo_id}', function ($modelo_id) { return response()-
 Route::get('/equipos', [EquipoController::class, 'stores']);
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
 
-Route::resource('hojadevida',HojadevidaController::class);
+// Route::resource('hojadevida',HojadevidaController::class);
 // acceder a show
 Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
 Route::resource('empleips', EmpleipsController::class);
@@ -73,9 +73,9 @@ Route::get('/menuing', function () {
     // return View('admin.layouts.app');
 })->name('menu');
 
-
+Route::get('hojadevida/listar',[HojadevidaController::class,'listar'])->name('hojadevida.listar');
 Route::get('/hojadevida/creates',[HojadevidaController::class,'creates'])->name('hojadevida.creates');
-Route::get('/hojadevida',[HojadevidaController::class,'create'])->name('hojadevida.create');
+Route::get('/hojadevida/create',[HojadevidaController::class,'create'])->name('hojadevida.create');
 Route::post('/hojadevida/store',[HojadevidaController::class,'store'])->name('hojadevida.store');
 Route::post('/hojadevida/stores',[HojadevidaController::class,'stores'])->name('hojadevida.stores');
 

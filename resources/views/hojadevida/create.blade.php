@@ -27,30 +27,34 @@
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
         <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data"
             class="row g-2  p-5 needs-validation" style=" border-radius:10px; " novalidate>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             los datos se guardaran permanentemente
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
-                                class="btn btn-primary">
+                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button" class="btn btn-primary"  >
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation formu p-5">
+
+
+
+            <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Descripcion de quipo</h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
 
-                @if (count($errors) > 0)
+                {{-- @if (count($errors) > 0)
                     <div class="alert alert-danger" role="alert">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -58,7 +62,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
                 <div class="row g-0 needs-validation   py-3 " style="background-color: #a6a6a630; border-radius:10px;">
                     <div class="col-md-4 position-relative nnn px-2">
                         <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
@@ -84,7 +88,7 @@
                 </div>
 
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <label for="servicio_id">Servicio</label>
                     <select name="servicio_id" id="servicio_id" class="form-control form-select">
                         <option value="">Seleccione una opcion</option>
@@ -95,13 +99,13 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group ">
                         <label for="serie"> Serie </label>
                         <input type="text" name="serie" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-4 ">
+                <div class="col-md-3 ">
                     <div class="form-group">
                         <label for="tec_predo_id">Tecnologia Predominante</label>
                         <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
@@ -127,20 +131,20 @@
                         </select>
                     </div>
                 </div> --}}
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <label for="perioCali">PerioCali</label>
                     <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
                         class="form-control @error('perioCali') is-invalid @enderror"
                         oninput="toggleFechaCali(this.value)">
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     {{-- <div class="form-group" id="fechaCaliContainer" style="display: none;"> --}}
                     <label for="fechaCali">Fecha de Calibración</label>
                     <input type="date" name="fechaCali" id="fechaCali" class="form-control"
                         value="{{ old('fechaCali') }}">
                     {{-- </div> --}}
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     {{-- <div class="form-group"> --}}
                     <label for="cod_ecris">Código Ecri</label>
                     <div style="display: flex; align-items: center;">
@@ -191,7 +195,7 @@
                     });
                 </script>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=actFijo> Activo Fijo </label>
                         <input type="text" name="actFijo" class="form-control"
@@ -200,7 +204,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=regInvima> Registro Invima </label>
                         <input type="text" name="regInvima" class="form-control"
@@ -210,7 +214,7 @@
 
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=Estado> Estado Funcionamiento </label>
                         <input type="text" name="Estado" class="form-control"
@@ -219,7 +223,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="cla_riesgos">Clasificacion de Riesgo</label>
                         <select name="cla_riesgos" id="cla_riesgos" class="form-select form-control">
@@ -234,7 +238,7 @@
 
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="cla_biomes">Clasificacion de Biomedica</label>
                         <select name="cla_biomes" id="cla_biomes" class="form-control form-select">
@@ -248,7 +252,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
 
                     <div class="form-group">
                         <label for="cla_usos">Clasificacion por Uso</label>
@@ -263,24 +267,23 @@
                     </div>
 
                 </div>
+                <center>
+                    <div class="col-md-6 ">
+                        <div class="form-group mb-0">
+                            <label for="foto"> </label>
+                            {{-- {{$equipo->foto}}     Muestra ruta de la imagen  --}}
+                            @if (isset($hojadevida->foto))
+                            <img class="img-thumbnail img-fluid"  src="{{ asset('storage').'/'.$hojadevida->foto}}" width="100" alt=""> 
+                            @endif
+                            <input type="file" name="foto" value="" id="foto"  class="form-control @error('foto') is-invalid @enderror">
+                            @error('foto')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
 
-                <div class="col-md-4 position-relative">
-                    <div class="form-group mb-3">
-                        <label for="foto"> </label>
-                        {{-- {{$equipo->foto}}     Muestra ruta de la imagen  --}}
-                        @if (isset($hojadevida->foto))
-                            <img class="img-thumbnail img-fluid"
-                                src="{{ asset('storage') . '/' . $hojadevida->foto }}" width="100"
-                                alt="">
-                        @endif
-                        <input type="file" name="foto" value="" id="foto"
-                            class="form-control @error('foto') is-invalid @enderror">
-                        @error('foto')
-                            <div class="invalid-feedback">El campo es obligatorio</div>
-                        @enderror
-
+                        </div>
                     </div>
-                </div>
+                </center>
+
 
 
 
@@ -477,15 +480,16 @@
                 {{-- ACCION DE GUARDAR  --}}
                 <br>
                 <br>
+                
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                    Guarda
+                    Guardar
                 </button>
                 {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
                 <br>
-                <a href="{{ url('hojadevida') }}" class="btn btn-primary">
+                {{-- <a href="{{ url('hojadevida') }}" class="btn btn-primary">
                     <h3> Regresar </h3>
-                </a>
+                </a> --}}
             </div>
 
         </form>

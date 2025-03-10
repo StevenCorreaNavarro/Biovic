@@ -19,8 +19,8 @@
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- styles tw --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/header.css') }}"> --}}
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    {{-- <link rel="stylesheet" href="css/header.css"> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>

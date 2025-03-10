@@ -24,25 +24,26 @@ class HojadevidaController extends Controller
      * Display a listing of the resource.
      */
 
-     public function listar()
-     {
-         $hdv = hojadevida::orderBy('id', 'desc')->get();
-         return view('hojadevida.create', compact('hdv'));
-     }
+    public function listar()
+    {
+        $hdvs = Hojadevida::orderBy('id', 'desc')->get();
+        return view('hojadevida.listar', compact('hdvs'));
+    }
 
     public function index()
     {
-        $datos['hojadevida']=Hojadevida::paginate(10);//
-        return view ('hojadevida.index', $datos);
+        $datos['hojadevida'] = Hojadevida::paginate(10); //
+        return view('hojadevida.index', $datos);
     }
 
     /**
      * Show the form for creating a new resource.
      */
 
-    public function creates(){
-        return view ('hojadevida.create');
-     }
+    public function creates()
+    {
+        return view('hojadevida.create');
+    }
 
     public function create()
     {
@@ -54,11 +55,11 @@ class HojadevidaController extends Controller
         $clariesgo = Clariesgo::all();
         $clabiomedica = ClaBiome::all();
         $clauso = ClaUso::all();
-        $formaadqui= Formaadqui::all();
+        $formaadqui = Formaadqui::all();
         $nombreempresa = Propiedad::all();
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
-        return view ('hojadevida.create', compact('nombreEquipos', 'nombreservicios','tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso','formaadqui', 'equipos','nombreempresa', 'nombrealimentacion','abreviacionvolumen'));
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen'));
     }
 
     /**
@@ -77,13 +78,13 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
-        
+
         $hdv = new Hojadevida();
 
         $request->validate([
             'perioCali' => 'required|string',
             'fechaCali' => 'nullable|date',
-            'foto'=>'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
+            'foto' => 'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $hdv->equipo_id = $request->equipo_id;
@@ -100,25 +101,37 @@ class HojadevidaController extends Controller
         $hdv->Estado = $request->Estado;
         // $hdv->cla_riesgos = $request->cla_riesgos;
         // $hdv->cla_biomes = $request->cla_biomes;
-        $hdv->foto = $request->foto;
+        // $hdv->foto = $request->foto;
+        // $hdv->foto = $request->file('foto')->store('public/fotos');
+        if ($request->hasFile('foto')) {
+            $hdv->foto = $request->file('foto')->store('public/fotos'); 
+            $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
+        }
 
-        
-       
+        // Hojadevida::create([
+        //     // 'nombre' => $request->nombre,
+        //     'foto' => $nombreImagen ?? null
+        // ]);
+
+
+
+
         // $hojadevida = new Hojadevida();
         $hdv->perioCali = $request->input('perioCali');
-        
+
         // Solo establecer fechaCali si perioCali es 'anual'
         if (strtolower($request->input('perioCali')) === 'Anual') {
             $hdv->fechaCali = $request->input('fechaCali');
         } else {
             $hdv->fechaCali = null;
         }
-        
+
 
         $hdv->save();
         // return $curso;
-        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar
-        
+        return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
+        // return view('hojadevida.listar');
+
 
     }
 

@@ -88,7 +88,7 @@ class hojadevida extends Model
         return $this->hasMany('App\Models\Reporteservicio');
     }
     
-
+    protected $fillable = ['foto']; // Agregamos 'foto' para que se pueda asignar masivamente
         //     $request->validate([
         //     'perioCali' => 'required|string',
         //     'fechaCali' => 'nullable|date',
