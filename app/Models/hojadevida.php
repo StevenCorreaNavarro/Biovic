@@ -87,4 +87,11 @@ class hojadevida extends Model
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }
+    
+
+        //     $request->validate([
+        //     'perioCali' => 'required|string',
+        //     'fechaCali' => 'nullable|date',
+        //     'foto'=>'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
+        // ]);
 }
