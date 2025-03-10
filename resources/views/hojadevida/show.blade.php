@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <a href="{{ url('presidente') }}" class="btn btn-primary">
+    <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
         <h3> Regresar </h3>
     </a>
 
