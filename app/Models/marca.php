@@ -19,4 +19,8 @@ class Marca extends Model {
     public function modelo() {
         return $this->belongsTo(Modelo::class);
     }
+    public function marca()
+    {
+        return $this->hasMany(marca::class, 'marca_id'); 
+    }
 }

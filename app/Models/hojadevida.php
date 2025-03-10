@@ -87,7 +87,21 @@ class hojadevida extends Model
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }
-    
+
+
+//  para que aparezca el nombre dela tabla foranea
+    public function equipo()
+    {
+        return $this->belongsTo(Equipo::class, 'equipo_id'); 
+    }
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class, 'marca_id'); 
+    }
+    public function modelo()
+    {
+        return $this->belongsTo(Modelo::class, 'modelo_id'); 
+    }
     protected $fillable = ['foto']; // Agregamos 'foto' para que se pueda asignar masivamente
         //     $request->validate([
         //     'perioCali' => 'required|string',

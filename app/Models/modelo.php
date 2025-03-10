@@ -15,5 +15,10 @@ class Modelo extends Model {
     public function equipo() {
         return $this->belongsTo(Equipo::class);
     }
+
+    public function modelo()
+    {
+        return $this->hasMany(hojadevida::class, 'modelo_id'); 
+    }
     
 }

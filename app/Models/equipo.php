@@ -13,7 +13,15 @@ class Equipo extends Model {
     public function modelos() {
         return $this->hasMany(modelo::class);
     }
+    public function equipo()
+    {
+        return $this->belongsTo(Equipo::class);
+    }
     // public function marcas() {
     //     return $this->hasMany(marca::class);
     // }
+    public function hojadevida()
+    {
+        return $this->hasMany(hojadevida::class, 'equipo_id'); 
+    }
 }

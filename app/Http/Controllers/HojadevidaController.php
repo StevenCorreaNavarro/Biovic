@@ -26,6 +26,8 @@ class HojadevidaController extends Controller
 
     public function listar()
     {
+        // $hdvs = hojadevida::with('equipo')->get();
+        
         $hdvs = Hojadevida::orderBy('id', 'desc')->get();
         return view('hojadevida.listar', compact('hdvs'));
     }

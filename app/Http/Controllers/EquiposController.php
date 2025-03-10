@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Equipo;
 use App\Models\Modelo;
+use App\Models\hojadevida;
 
 class EquiposController extends Controller
 {
+
+    // public function listar()
+    // {
+    //     $hdvs = Hojadevida::orderBy('id', 'desc')->get();
+    //     // $hdvs = Hojadevida::with('equipo')->get();
+    //     return view('hojadevida.listar', ['hdvs'=> $hdvs],compact('hdvs'));
+    // }
+    
     // public function store()
     // {
     //     // Crear un equipo
