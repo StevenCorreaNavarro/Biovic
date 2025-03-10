@@ -8,7 +8,8 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    {{ asset('css/header.css') }}
+    
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <title>Title</title>
 </head>
 
@@ -17,13 +18,37 @@
     <br><br><br>
     {{-- 10-   VISTA hojadevida/INDEX --}}
 
-    <a href="{{ url('hojadevida/create') }}" class="btn btn-primary">
-        <h3> Registrar Nueva hoja de vida </h3>
+    <a href="{{ url('hojadevida/create') }}" class="">
+        <h1> Registrar Nueva hoja de vida </h1>
     </a>
     <br>
     <br>
+    <form method="GET" action="{{ route('hojadevida.listar') }}">
+        <input type="text" name="search" placeholder="Buscar por nombre de equipo..." 
+               value="{{ request('search') }} ">
+        <button class="btn btn-primary "  type="submit">Buscar</button> <a href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary"></a>
+    </form>
 
-    <h1> LISTADO DE HOJA DE VIDAS </h1>
+    {{-- <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre del Equipo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($hdvs as $hoja)
+            <tr>
+                <td>{{ $hoja->id }}</td>
+                <td>{{ $hoja->equipo?->nombre_equipo ?? '---' }}</td>
+                <td>{{ $hoja->descripcion }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table> --}}
+    
+    
 
     <table class="table table-light">
         <thead class="thead-light">{{-- Cabezera de la consulta --}}
@@ -83,7 +108,7 @@
                         </form> --}}
 
                         {{-- Mostrar hojadevida --}}
-                        <a href="{{url('hojadevida' .'/'.$hdv->id.'/show')}}" class="btn btn-primary">Ver lista
+                        <a href="{{url('hojadevida' .'/'.$hdv->id.'/show')}}" class="btn btn-primary">Ver 
                         {{-- Mostrar --}}
                         </a>
                     </td>

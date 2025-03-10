@@ -24,12 +24,27 @@ class HojadevidaController extends Controller
      * Display a listing of the resource.
      */
 
-    public function listar()
+    public function listar(Request $request)
     {
         // $hdvs = hojadevida::with('equipo')->get();
+        $query = Hojadevida::with('equipo');
+
+    // Filtrar por el nombre del equipo si se ingresa un término en el buscador
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->whereHas('equipo', function ($q) use ($search) {
+            $q->where('nombre_equipo', 'LIKE', "%$search%");
+            
+
+        });
+    }
+
+    $hdvs = $query->get();
+    return view('hojadevida.listar', compact('hdvs'));
         
-        $hdvs = Hojadevida::orderBy('id', 'desc')->get();
-        return view('hojadevida.listar', compact('hdvs'));
+        
+        // $hdvs = Hojadevida::orderBy('id', 'desc')->get();
+        // return view('hojadevida.listar', compact('hdvs'));
     }
 
     public function index()
@@ -127,6 +142,12 @@ class HojadevidaController extends Controller
         } else {
             $hdv->fechaCali = null;
         }
+
+
+
+
+
+      
 
 
         $hdv->save();
