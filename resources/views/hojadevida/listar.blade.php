@@ -122,7 +122,9 @@
                         </a>
                     </td>
                     <td>
-                        
+                        <a href="{{ url('descargar-pdf'. '/' . $hdv->id) }}" class="btn btn-primary" target="_blank">
+                            Descargar PDF
+                        </a>
                     </td>
                 </tr>
             @endforeach

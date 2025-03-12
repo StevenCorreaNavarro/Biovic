@@ -46,11 +46,11 @@
             </tbody>
         </table>
     </div>
-    <a href="{{ route('descargar.pdf', $hdvs->id) }}" class="btn btn-primary" target="_blank">
+    {{-- <a href="{{ route('descargar.pdf', $hdvs->id) }}" class="btn btn-primary" target="_blank">
         Descargar PDF
     </a>
     <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
         <h3> Regresar </h3>
-    </a>
+    </a> --}}
 </body>
 </html>
