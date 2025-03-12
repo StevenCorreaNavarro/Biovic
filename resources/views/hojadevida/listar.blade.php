@@ -121,6 +121,11 @@
                             {{-- Mostrar --}}
                         </a>
                     </td>
+                    <td>
+                        <a href="{{ route('descargar.pdf', $hdvs->id) }}" class="btn btn-primary" target="_blank">
+                            Descargar PDF
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
