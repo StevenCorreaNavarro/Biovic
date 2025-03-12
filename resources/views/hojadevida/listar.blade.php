@@ -79,8 +79,9 @@
                 <tr>
                     <td>{{ $hdv->id }}</td>
                     <td>
-                        <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $hdv->foto }}"
+                        <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '' . $hdv->foto }}"
                             width="100" alt="">
+                            <img src="{{ asset('storage/' . $hdv->foto) }}" width="100">
                     </td>
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
@@ -89,7 +90,7 @@
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
-
+{{-- //mk si tenes sueño me decis jsjajjajaja --}}
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
                     {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
