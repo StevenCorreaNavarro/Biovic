@@ -31,11 +31,10 @@
 
 
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="    margin: 0%;   padding: 0%;">
+        <nav class="navbar navbar-expand-lg  fixed-top" style="    margin: 0%;   padding: 0%;">
             <div class="container-fluid" style="margin: 0%;    padding: 0%;">
                 <a class="navbar-brander d-flex" href="main" style="text-decoration: none;margin: 0%;    padding: 0%;">
                     <h1 style="text-decoration: none; font-size:400%">Biovic</h1>
-
                     <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="biovic" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,8 +46,6 @@
                             <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
                         </li> -->
                     </ul>
-
-
                 </div>
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
@@ -126,12 +123,12 @@
                 <div class="flex-container">
                     <div class="text-content">
                         <h2 class="h2-sub">
-                            <span class="fil" style="color:white;">Realiza tus ordenes de trabajo</span>
+                            <span class="fil text-black " style="color:white;">Realiza tus ordenes de trabajo</span>
                         </h2>
-                        <p style="color: white;">Obtén un mayor control sobre tus operaciones, aplica el mantenimiento y
+                        <p style="color: white; " class=" text-black  ">Obtén un mayor control sobre tus operaciones, aplica el mantenimiento y
                             toma decisiones inteligentes con las capacidades y pronósticos sugeridos
                         </p>
-                        <a href="/HTML/orden_trabajo.html" class="btn cta-btn">Saber más</a>
+                        <a href="orden_trabajo" class="btn cta-btn">Saber más</a>
                     </div>
                     <div class="image-content">
                         <img src="IMG/orden de trabajo.png" alt="">

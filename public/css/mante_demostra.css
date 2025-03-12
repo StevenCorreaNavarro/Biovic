@@ -35,7 +35,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/IMG/mantenimiento-predictivo.webp');
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%),url("http://localhost/biovic/public/IMG/mantenimiento-predictivo.webp");
     background-size: cover;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%);
     z-index: -1;
@@ -50,8 +50,8 @@ body {
 
 .navbar {
     background: #7169dd;
-    background: -webkit-linear-gradient(to right, hsla(236, 63%, 75%, 0.459), hsla(239, 65%, 36%, 0.664)), url(../IMG/fondo2.1.jpg);
-    background: linear-gradient(to right, hsla(234, 32%, 69%, 0.459), hsla(226, 53%, 48%, 0.664)), url(../IMG/fondo2.1.jpg);
+    background: -webkit-linear-gradient(to right, hsla(236, 63%, 75%, 0.459), hsla(239, 65%, 36%, 0.664)),url("http://localhost/biovic/public/IMG/fondo2.1.jpg");/* url(..IMG/fondo2.1.jpg);*/
+    background: linear-gradient(to right, hsla(234, 32%, 69%, 0.459), hsla(226, 53%, 48%, 0.664)),url("http://localhost/biovic/public/IMG/fondo2.1.jpg");
     background-size: cover;
     background-attachment: fixed;
     position: fixed;

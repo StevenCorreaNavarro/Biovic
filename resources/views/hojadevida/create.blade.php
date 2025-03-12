@@ -41,7 +41,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button" class="btn btn-primary"  >
+                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
+                                class="btn btn-primary">
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,8 @@
                         </ul>
                     </div>
                 @endif --}}
-                <div class="row g-0 needs-validation   py-3 " style="background-color: #a6a6a630; border-radius:10px;">
+                <div class="row g-0 needs-validation border border-dark-subtle py-3 "
+                    style="background-color: #a6a6a630; border-radius:10px;">
                     <div class="col-md-4 position-relative nnn px-2">
                         <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                         <select id="equipo" name="equipo_id" class="form-control form-select">
@@ -273,9 +275,12 @@
                             <label for="foto"> </label>
                             {{-- {{$equipo->foto}}     Muestra ruta de la imagen  --}}
                             @if (isset($hojadevida->foto))
-                            <img class="img-thumbnail img-fluid"  src="{{ asset('storage').'/'.$hojadevida->foto}}" width="100" alt=""> 
+                                <img class="img-thumbnail img-fluid"
+                                    src="{{ asset('storage') . '/' . $hojadevida->foto }}" width="100"
+                                    alt="">
                             @endif
-                            <input type="file" name="foto" value="" id="foto"  class="form-control @error('foto') is-invalid @enderror">
+                            <input type="file" name="foto" value="" id="foto"
+                                class="form-control @error('foto') is-invalid @enderror">
                             @error('foto')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -342,7 +347,7 @@
                     Registro
                     historico
                 </h1>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=fechaAdquisicion> Fecha de Adquisicion </label>
                         <input type="date" name="fechaAdquisicion" class="form-control"
@@ -351,7 +356,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=fechaInstalacion> Fecha de Instalacion </label>
                         <input type="date" name="fechaInstalacion" class="form-control"
@@ -359,7 +364,7 @@
                             id="fechaInstalacion">
                     </div>
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=garantia> Garantía </label>
                         <input type="date" name="garantia" class="form-control"
@@ -368,7 +373,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=factura> Factura </label>
                         <input type="text" name="factura" class="form-control"
@@ -377,7 +382,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="forma_adqui_id">Forma de Adquisicion</label>
                         <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
@@ -391,7 +396,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=vidaUtil> Vida Util </label>
                         <input type="text" name="vidaUtil" class="form-control"
@@ -400,7 +405,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=costo> Costo </label>
                         <input type="text" name="costo" class="form-control"
@@ -409,7 +414,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="propiedad_id">Propiedad</label>
                         <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
@@ -429,7 +434,7 @@
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Registro tecnico
                 </h1>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="mag_fuen_alimen_id"> Fuente de Alimentacion</label>
                         <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control form-select">
@@ -443,21 +448,21 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <label for=volMax> Voltaje Max </label>
                     <input type="text" name="volMax" class="form-control"
                         value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
                         id="volMax">
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <label for=volMin> Voltaje Min </label>
                     <input type="text" name="volMin" class="form-control"
                         value="{{ isset($hojadevida->covolMinsto) ? $hojadevida->volMin : old('volMin') }}"
                         id="volMin">
                 </div>
 
-                <div class="col-md-4 position-relative">
+                <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <div class="form-group">
                             <label for="mag_vol_id"> Fuente de Alimentacion</label>
@@ -478,19 +483,22 @@
 
 
                 {{-- ACCION DE GUARDAR  --}}
-                <br>
-                <br>
-                
+
+
+
+            </div>
+            <div class="d-grid gap-0 col-4 mx-auto">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Guardar
                 </button>
                 {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
                 <br>
-                 <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
-                    <h3> Lista </h3>
-                </a> 
+                <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
+                    <h6> Lista </h6>
+                </a>
             </div>
+
 
         </form>
 

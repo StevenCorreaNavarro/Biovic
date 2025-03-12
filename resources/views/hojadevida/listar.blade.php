@@ -8,7 +8,7 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <title>Title</title>
 </head>
@@ -17,17 +17,24 @@
     @extends('layouts.header')
     <br><br><br>
     {{-- 10-   VISTA hojadevida/INDEX --}}
+    <div class="hero d-flex flex-column justify-content-center align-items-center text-center p-4">
+        <h1>Lista hoja de vida</h1>
+        <br>
+        <br>
+        <form method="GET" action="{{ route('hojadevida.listar') }}">
+            <input type="text" name="search" placeholder="Buscar por nombre de equipo..."
+                value="{{ request('search') }}"  class="form-label w-10" >
+            <button class="btn btn-primary " type="submit">Buscar</button> <a href="{{ route('hojadevida.listar') }}"
+                class="bi bi-arrow-repeat btn btn-primary"></a>
+                
+            <a href="{{ url('hojadevida/create') }}" class="btn btn-primary ">
+                Registrar Nueva hoja de vida
+            </a>
+        </form>
+    </div>
 
-    <a href="{{ url('hojadevida/create') }}" class="">
-        <h1> Registrar Nueva hoja de vida </h1>
-    </a>
-    <br>
-    <br>
-    <form method="GET" action="{{ route('hojadevida.listar') }}">
-        <input type="text" name="search" placeholder="Buscar por nombre de equipo..." 
-               value="{{ request('search') }} ">
-        <button class="btn btn-primary "  type="submit">Buscar</button> <a href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary"></a>
-    </form>
+
+
 
     {{-- <table>
         <thead>
@@ -47,8 +54,8 @@
             @endforeach
         </tbody>
     </table> --}}
-    
-    
+
+
 
     <table class="table table-light">
         <thead class="thead-light">{{-- Cabezera de la consulta --}}
@@ -80,6 +87,8 @@
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
                     <td>{{ $hdv->serie ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
+                    <td>{{ $hdv->ubica ?? '---' }}</td>
+                    <td>{{ $hdv->ubica ?? '---' }}</td>
 
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
@@ -108,8 +117,8 @@
                         </form> --}}
 
                         {{-- Mostrar hojadevida --}}
-                        <a href="{{url('hojadevida' .'/'.$hdv->id.'/show')}}" class="btn btn-primary">Ver 
-                        {{-- Mostrar --}}
+                        <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
+                            {{-- Mostrar --}}
                         </a>
                     </td>
                 </tr>

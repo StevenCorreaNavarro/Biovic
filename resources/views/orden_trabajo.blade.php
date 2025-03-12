@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mantenimiento_demostracion</title>
     <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/CSS/mante_demostra.css">
+    {{-- <link rel="stylesheet" href="{{ asset('css/header.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/mante_demostra.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
         <meta charset="UTF-8">
@@ -30,11 +31,11 @@
 
     <header class="hero">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <a href="/HTML/hojas_vida.html" style="margin-left: 3%; margin-right:3%; color:white"><i class="fa-solid fa-arrow-left" style="margin-left: 8%;" ></i></a> 
+            <a href="HTML/hojas_vida.html" style="margin-left: 3%; margin-right:3%; color:white"><i class="fa-solid fa-arrow-left" style="margin-left: 8%;" ></i></a> 
 
             <div class="container-fluid">
                 <a class="navbar-brand" href="/HTML/main.html">VitalSoft
-                    <img src="/IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="VitalSoft" height="40">
+                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="VitalSoft" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -86,19 +87,19 @@
 
             <div class="about__main">
                 <article class="about__icons1">
-                    <img src="/IMG/centraliza_la_informacion2.png" class="about__icon">
+                    <img src="IMG/centraliza_la_informacion2.png" class="about__icon">
                     <h3 class="about__title">Programación Preventiva </h3>
                     <p class="about__paragrah">Desarrollamos planes de mantenimiento preventivo adaptados a las necesidades específicas de cada cliente</p>
                 </article>
 
                 <article class="about__icons2">
-                    <img src="/IMG/img13.jpg" class="about__icon">
+                    <img src="IMG/img13.jpg" class="about__icon">
                     <h3 class="about__title">Servicio Técnico Especializado</h3>
                     <p class="about__paragrah">Contamos con un equipo de técnicos altamente capacitados y certificados en el mantenimiento de equipos biomédicos</p>
                 </article>
 
                 <article class="about__icons3">
-                    <img src="/IMG/solicitudes.webp" class="about__icon">
+                    <img src="IMG/solicitudes.webp" class="about__icon">
                     <h3 class="about__title">Cumplimiento Normativo</h3>
                     <p class="about__paragrah">Nos comprometemos a cumplir con los estándares de calidad más rigurosos y las regulaciones de seguridad en el cuidado de la salud?</p>
                 </article>

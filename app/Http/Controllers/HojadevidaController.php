@@ -17,9 +17,44 @@ use App\Models\equipo;
 
 use App\Models\hojadevida;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class HojadevidaController extends Controller
 {
+
+
+    public function downloadPDF($id)
+    {
+        // Buscar los datos de la tabla Hdvs usando el ID
+        $hdvs = Hojadevida::findOrFail($id);
+
+        // // Pasar la variable a la vista
+        // $data = ['hdvs' => $hdvs];
+
+        // // Configurar DomPDF
+        // $options = new Options();
+        // $options->set('defaultFont', 'Arial', 'isRemoteEnabled', true);
+
+        // $pdf = new Dompdf($options);
+        // $pdf->loadHtml(view('hojadevida.show', $data)->render());
+
+        // $pdf->render();
+
+        // // Descargar el PDF
+        // return $pdf->stream('hdvs_' . $hdvs->id . '.pdf');
+
+
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
+
+        $pdf = new Dompdf($options);
+        $pdf->loadHtml(view('hojadevida.show', compact('hdvs'))->render());
+        $pdf->render();
+        return $pdf->stream('documento.pdf');
+    }
+
     public function listar(Request $request)
     {
         // $hdvs = hojadevida::with('equipo')->get();
