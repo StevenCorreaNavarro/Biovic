@@ -9,24 +9,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/header.css') }}"> --}}
     <title>Title</title>
 </head>
 
 <body>
     @extends('layouts.header')
-    <br><br><br>
+    <br><br>
     {{-- 10-   VISTA hojadevida/INDEX --}}
-    <div class="hero d-flex flex-column justify-content-center align-items-center text-center p-4">
+    <div  class=" d-flex flex-column justify-content-center align-items-center text-center p-1">
         <h1>Lista hoja de vida</h1>
         <br>
-        <br>
-        <form method="GET" action="{{ route('hojadevida.listar') }}">
-            <input type="text" name="search" placeholder="Buscar por nombre de equipo..."
-                value="{{ request('search') }}"  class="form-label w-10" >
-            <button class="btn btn-primary " type="submit">Buscar</button> <a href="{{ route('hojadevida.listar') }}"
+    
+        <form  style="background-color: rgb(239, 239, 239); width: 100%"  method="GET" action="{{ route('hojadevida.listar') }}">
+
+            <input class="" style="width: 400px" type="text" name="search" placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}" >
+
+            <button class="btn btn-primary " type="submit"><i class="bi bi-search"></i></button> <a href="{{ route('hojadevida.listar') }}"
                 class="bi bi-arrow-repeat btn btn-primary"></a>
-                
+
             <a href="{{ url('hojadevida/create') }}" class="btn btn-primary ">
                 Registrar Nueva hoja de vida
             </a>
@@ -57,8 +58,8 @@
 
 
 
-    <table class="table table-light">
-        <thead class="thead-light">{{-- Cabezera de la consulta --}}
+    <table class="table">
+        <thead class="table-dark">{{-- Cabezera de la consulta --}}
             <tr>
                 <th>ID</th>
                 <th>FOTO</th>
@@ -69,6 +70,8 @@
                 <th>ACTIVO FIJO</th>
                 <th>SERVICIO</th>
                 <th>UBICACION FISICA</th>
+                <th></th>
+                
 
             </tr>
         </thead>
@@ -78,19 +81,23 @@
             @foreach ($hdvs as $hdv)
                 <tr>
                     <td>{{ $hdv->id }}</td>
+
                     <td>
-                        <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '' . $hdv->foto }}"
-                            width="100" alt="">
-                            <img src="{{ asset('storage/' . $hdv->foto) }}" width="100">
+                        @if ($hdv->foto)
+                        <img src="{{ asset('storage/' . $hdv->foto) }}" width="100">
+                    @else
+                        No hay imagen
+                    @endif
                     </td>
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                    <td>{{ $hdv->serie ?? '---' }}</td>
+                    <td>{{ $hdv->serie?? '---' }}</td>
+                    <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
-                    <td>{{ $hdv->ubica ?? '---' }}</td>
-{{-- //mk si tenes sueño me decis jsjajjajaja --}}
+                    {{-- <td>{{ $hdv->ubica ?? '---' }}</td> --}}
+
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
                     {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
@@ -103,7 +110,7 @@
 
 
                     {{-- // acciones  --}}
-                    <td>
+                    {{-- <td> --}}
                         {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
                         {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
                 Editar 
@@ -118,15 +125,28 @@
                         </form> --}}
 
                         {{-- Mostrar hojadevida --}}
-                        <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
-                            {{-- Mostrar --}}
-                        </a>
-                    </td>
+                        {{-- <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
+                           
+                        </a> --}}
+                    {{-- </td> --}}
                     <td>
-                        <a href="{{ url('descargar-pdf'. '/' . $hdv->id) }}" class="btn btn-primary" target="_blank">
+                        {{-- <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-primary" target="_blank">
                             Descargar PDF
-                        </a>
+                        </a> --}}
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary"><i class="bi bi-eye"></i>            
+                            </a>
+                            <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-warning" target="_blank">
+                                <i class="bi bi-download"></i>
+                            </a>
+                            {{-- <button type="button" class="btn btn-danger">Left</button>
+                            
+
+                            <button type="button" class="btn btn-warning">Middle</button>
+                            <button type="button" class="btn btn-success">Right</button> --}}
+                          </div>
                     </td>
+                 
                 </tr>
             @endforeach
         </tbody>

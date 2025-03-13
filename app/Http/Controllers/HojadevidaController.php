@@ -47,10 +47,12 @@ class HojadevidaController extends Controller
 
 
         $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
         $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
 
         $pdf = new Dompdf($options);
         $pdf->loadHtml(view('hojadevida.show', compact('hdvs'))->render());
+        $pdf->setPaper('A4', 'portrait'); // Tamaño A4 vertical
         $pdf->render();
         return $pdf->stream('documento.pdf');
     }
@@ -58,7 +60,7 @@ class HojadevidaController extends Controller
     public function listar(Request $request)
     {
         // $hdvs = hojadevida::with('equipo')->get();
-        $query = Hojadevida::with('equipo');
+        $query = Hojadevida::with('equipo','servicio');
 
         // Filtrar por el nombre del equipo si se ingresa un término en el buscador
         if ($request->has('search')) {
@@ -192,7 +194,9 @@ class HojadevidaController extends Controller
      */
     public function show($hdvs)
     {
+        // $query = Hojadevida::with('equipo','servicio');
         $hdvs = Hojadevida::findOrFail($hdvs);
+        
         return view('hojadevida.show', compact('hdvs'));
     }
 

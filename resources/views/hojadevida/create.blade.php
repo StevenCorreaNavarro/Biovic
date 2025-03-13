@@ -534,8 +534,8 @@
 
                 if (equipoId) {
                     $.ajax({
-                        url: '{{ url("get-modelos") }}/' +
-                            equipoId, // Ruta en Laravel para obtener los modelos
+                        url: '/biovic/public/get-modelos/' + 
+                            equipoId, // Ruta en Laravel para obtener los modelos         url: '{{ url("get-modelos") }}/'
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
@@ -570,7 +570,7 @@
 
                 if (modeloId) {
                     $.ajax({
-                        url: '{{ url("get-marcas") }}/' +
+                        url: '/biovic/public/get-marcas/' +
                             modeloId, // Ruta en Laravel para obtener las marcas
                         type: 'GET',
                         dataType: 'json',
