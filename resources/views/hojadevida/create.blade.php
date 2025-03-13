@@ -76,17 +76,18 @@
                         </select>
                     </div>
                     <div class="col-md-4 position-relative px-2">
-                        <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                        <select id="modelo" name="modelo_id" class="form-control form-select" disabled>
-                            <option value="">Selecciona un modelo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 position-relative px-2">
                         <label for="marca_id" class="form-label">Selecciona una marca:</label>
                         <select id="marca" name="marca_id" class="form-control form-select" disabled>
                             <option value="">Selecciona una marca</option>
                         </select>
                     </div>
+                    <div class="col-md-4 position-relative px-2">
+                        <label for="modelo" class="form-label">Selecciona un modelo:</label>
+                        <select id="modelo" name="modelo_id" class="form-control form-select" disabled>
+                            <option value="">Selecciona un modelo</option>
+                        </select>
+                    </div>
+                   
                 </div>
 
 
@@ -534,8 +535,45 @@
 
                 if (equipoId) {
                     $.ajax({
-                        url: '/biovic/public/get-modelos/' + 
+                        url: '/biovic/public/get-marcas/' + 
                             equipoId, // Ruta en Laravel para obtener los modelos         url: '{{ url("get-modelos") }}/'
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#marca').empty().append(
+                                '<option value="">Selecciona un marca</option>');
+
+                            $.each(data, function(index, marca) {
+                                $('#marca').append('<option value="' + marca.id +
+                                    '">' + marca.nombre_marca + '</option>');
+                            });
+
+                            $('#marca').prop('disabled', false);
+                            $('#modelo').empty().append(
+                                '<option value="">Selecciona una modelo</option>').prop(
+                                'disabled', true);
+                        },
+                        error: function() {
+                            alert('Error al obtener marcas.');
+                        }
+                    });
+                } else {
+                   
+                    $('#modelo').empty().append('<option value="">Selecciona una modelo</option>').prop(
+                        'disabled', true);
+                        $('#marca').empty().append('<option value="">Selecciona un marca</option>').prop(
+                            'disabled', true);
+                }
+            });
+
+            // Evento cuando cambia el select de modelo
+            $('#marca').change(function() {
+                var modeloId = $(this).val(); // Obtener el ID del modelo seleccionado
+
+                if (modeloId) {
+                    $.ajax({
+                        url: '/biovic/public/get-modelos/' +
+                            modeloId, // Ruta en Laravel para obtener las marcas
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
@@ -543,50 +581,14 @@
                                 '<option value="">Selecciona un modelo</option>');
 
                             $.each(data, function(index, modelo) {
-                                $('#modelo').append('<option value="' + modelo.id +
-                                    '">' + modelo.nombre_modelo + '</option>');
+                                $('#modelo').append('<option value="' + modelo.id + '">' +
+                                    modelo.nombre_modelo + '</option>');
                             });
 
                             $('#modelo').prop('disabled', false);
-                            $('#marca').empty().append(
-                                '<option value="">Selecciona una marca</option>').prop(
-                                'disabled', true);
                         },
                         error: function() {
-                            alert('Error al obtener modelos.');
-                        }
-                    });
-                } else {
-                    $('#modelo').empty().append('<option value="">Selecciona un modelo</option>').prop(
-                        'disabled', true);
-                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop(
-                        'disabled', true);
-                }
-            });
-
-            // Evento cuando cambia el select de modelo
-            $('#modelo').change(function() {
-                var modeloId = $(this).val(); // Obtener el ID del modelo seleccionado
-
-                if (modeloId) {
-                    $.ajax({
-                        url: '/biovic/public/get-marcas/' +
-                            modeloId, // Ruta en Laravel para obtener las marcas
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#marca').empty().append(
-                                '<option value="">Selecciona una marca</option>');
-
-                            $.each(data, function(index, marca) {
-                                $('#marca').append('<option value="' + marca.id + '">' +
-                                    marca.nombre_marca + '</option>');
-                            });
-
-                            $('#marca').prop('disabled', false);
-                        },
-                        error: function() {
-                            alert('Error al obtener marcas.');
+                            alert('Error al obtener modelo.');
                         }
                     });
                 } else {
