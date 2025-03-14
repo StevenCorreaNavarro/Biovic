@@ -117,7 +117,6 @@
                 </div>
             </div>
         </section>
-
         <section class="taste bt">
             <div class="container">
                 <div class="flex-container">
