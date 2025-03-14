@@ -104,7 +104,11 @@ Route::get('/subir_soporte', function ()            {return view('subir_soporte'
 Route::get('/mantenimiento', function ()            {return view('mantenimiento');})->name('mantenimiento');
 Route::get('/soporte', function ()            {return view('soporte');})->name('soporte');
 
-
+//LISTOOO PA  AHI EL PROBLEMA ERA EL NOMBRE DEL PROYECT0 POR QUE EN ENV. ESTABA DIFERENYE
+//LA OTRA UNA LIBERIA DE PDF
+//  Y LA RUTA STORAGE ESTABA BIEN SOLO QUE NECESITABA PERMISOS Y YA.. AHORA SI PA CONEJAS YA ESTA IGUAL AL MIO
+// ESA LISTA ES PARA EL USUARIO HAY QUE HACER EL DE ADMINISTRADOR PARA HACER EL CRUD DE ADMINISTRADOR.
+//AHI LA BAINA ES QUE ES FUNCIONAL MAS ADELANTE PONEMOS MAS CHIMBITA PA QUE SE VEA MAS PROFESIONAL EL SITIO WEB
 Route::get('/dashboard', function () {
     return view('admin.layouts.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
