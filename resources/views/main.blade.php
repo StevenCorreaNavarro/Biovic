@@ -103,11 +103,8 @@
                     </div>
                     <div class="res-des pad-rig">
                         <div class="global">
-
                             <h1 class="head hea-dark">Solicitudes de mantenimiento en la palma de tu mano</h1>
-
                         </div>
-
                         <p>
                             Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos de
                             mantenimiento a sus equipos biomedicos a través del portal de solicitudes
@@ -135,18 +132,14 @@
                 </div>
             </div>
         </section>
-
         <section class="disco">
             <div class="container">
                 <div class="res-info">
                     <div class="res-des">
                         <div class="global">
-
                             <h1 class="head hea-dark">Creación, Ingreso y edicion de hojas de vida </h1>
-
                         </div>
                         <p>
-
                             El ingreso de hojas de vida de equipos biomédicos implica registrar la información esencial de
                             los dispositivos para un mantenimiento eficiente y seguro.
                         </p>
@@ -154,36 +147,27 @@
                     </div>
                     <div class="image-group pad-rig">
                         <img src="IMG/img4.jpg" alt="">
-
-
                     </div>
                 </div>
             </div>
         </section>
-
-
         </div>
         </section>
-
         <section>
             <div class="container">
                 <div class="res-info">
                     <div class="imagen-4">
                         <img src="IMG/Planificador.webp" alt="">
-
                     </div>
                     <div class="res-des pad-rig">
                         <div class="global">
-
                             <h1 class="head hea-dark">Planificadores de mantenimiento </h1>
-
                         </div>
                         <p>
                             Con la ayuda de VITALTECH, las operaciones de mantenimiento biomedico pasaran a ser mas
                             sencillas, potenciando los planes para mejorar la eficiencia y la precisión
                         </p>
                         <a href="/catalogo.html" class="btn cta-btn">saber más</a>
-
                     </div>
                 </div>
             </div>
@@ -193,7 +177,6 @@
         <div class="container">
             <h4>Vitalsoft</h4>
             <p>&copy; Soluciones biomedicas a la medida</p>
-
             <div class="my-3 footer-social-icons">
                 <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
@@ -202,7 +185,6 @@
             </div>
         </div>
     </footer>
-
     <script>
         document.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -216,8 +198,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
