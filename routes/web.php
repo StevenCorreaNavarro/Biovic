@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo esta parte es para llenar equipos->modelo->marca
 
-Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {return response()->json(Modelo::where('equipo_id', $equipo_id)->get());});
-Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {return response()->json(Marca::where('equipo_id', $modelo_id)->get());});
-Route::get('/get-modelo/{equipo_id}', [EquipoController::class, 'getModelos']);
-Route::get('/get-marca/{equipo_id}', [EquipoController::class, 'getMarcas']);
+// Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {return response()->json(Modelo::where('equipo_id', $equipo_id)->get());});
+// Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {return response()->json(Marca::where('equipo_id', $modelo_id)->get());});
+Route::get('/marcas/{equipo_id}', [EquipoController::class, 'getMarcas']);
+Route::get('/modelos/{marca_id}', [EquipoController::class, 'getModelos']);
 // Obtener marcas según el modelo seleccionado
 Route::get('/get-marcas/{modelo_id}', function ($modelo_id) { return response()->json(Marca::where('modelo_id', $modelo_id)->get());});
 Route::get('/equipos', [EquipoController::class, 'stores']);

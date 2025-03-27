@@ -48,8 +48,6 @@
                 </div>
             </div>
 
-
-
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Descripcion de quipo</h1>
@@ -529,71 +527,35 @@
     {{-- este script es para las opciones equipo modelo marca --}}
     <script>
         $(document).ready(function() {
-            // Evento cuando cambia el select de equipo
             $('#equipo').change(function() {
-                var equipoId = $(this).val(); // Obtener el ID del equipo seleccionado
+                var equipoID = $(this).val();
+                $('#marca').empty().append('<option value="">Seleccione una marca</option>');
+                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop(
+                    'disabled', true);
 
-                if (equipoId) {
-                    $.ajax({
-                        url: '/biovic/public/get-marcas/' + 
-                            equipoId, // Ruta en Laravel para obtener los modelos         url: '{{ url("get-modelos") }}/'
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#marca').empty().append(
-                                '<option value="">Selecciona un marca</option>');
-
-                            $.each(data, function(index, marca) {
-                                $('#marca').append('<option value="' + marca.id +
-                                    '">' + marca.nombre_marca + '</option>');
-                            });
-
-                            $('#marca').prop('disabled', false);
-                            $('#modelo').empty().append(
-                                '<option value="">Selecciona una modelo</option>').prop(
-                                'disabled', true);
-                        },
-                        error: function() {
-                            alert('Error al obtener marcas.');
-                        }
+                if (equipoID) {
+                    $.get('/marcas/' + equipoID, function(data) {
+                        $.each(data, function(index, marca) {
+                            $('#marca').append('<option value="' + marca.id + '">' + marca
+                                .nombre_marca + '</option>');
+                        });
+                        $('#marca').prop('disabled', false);
                     });
-                } else {
-                   
-                    $('#modelo').empty().append('<option value="">Selecciona una modelo</option>').prop(
-                        'disabled', true);
-                        $('#marca').empty().append('<option value="">Selecciona un marca</option>').prop(
-                            'disabled', true);
                 }
             });
 
-            // Evento cuando cambia el select de modelo
             $('#marca').change(function() {
-                var modeloId = $(this).val(); // Obtener el ID del modelo seleccionado
+                var marcaID = $(this).val();
+                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>');
 
-                if (modeloId) {
-                    $.ajax({
-                        url: '/biovic/public/get-modelos/' +
-                            modeloId, // Ruta en Laravel para obtener las marcas
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#modelo').empty().append(
-                                '<option value="">Selecciona un modelo</option>');
-
-                            $.each(data, function(index, modelo) {
-                                $('#modelo').append('<option value="' + modelo.id + '">' +
-                                    modelo.nombre_modelo + '</option>');
-                            });
-
-                            $('#modelo').prop('disabled', false);
-                        },
-                        error: function() {
-                            alert('Error al obtener modelo.');
-                        }
+                if (marcaID) {
+                    $.get('/modelos/' + marcaID, function(data) {
+                        $.each(data, function(index, modelo) {
+                            $('#modelo').append('<option value="' + modelo.id + '">' +
+                                modelo.nombre_modelo + '</option>');
+                        });
+                        $('#modelo').prop('disabled', false);
                     });
-                } else {
-                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop(
-                        'disabled', true);
                 }
             });
         });

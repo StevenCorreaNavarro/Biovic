@@ -17,11 +17,17 @@ class Equipo extends Model {
     {
         return $this->belongsTo(Equipo::class);
     }
-    // public function marcas() {
-    //     return $this->hasMany(marca::class);
-    // }
+
     public function hojadevida()
     {
         return $this->hasMany(hojadevida::class, 'equipo_id'); 
+    }
+
+
+ 
+    
+    public function marca()
+    {
+        return $this->hasMany(Marca::class);
     }
 }

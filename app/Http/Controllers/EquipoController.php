@@ -12,14 +12,18 @@ use App\Models\hojadevida;
 
 class EquipoController extends Controller
 {
-    public function getModelos($equipo_id)
-    {
-        return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
-    }
     public function getMarcas($equipo_id)
     {
-        return response()->json(Marca::where('marca_id', $equipo_id)->get());
-    // }
+        $marcas = Marca::where('equipo_id', $equipo_id)->get();
+        return response()->json($marcas);
+    }
+
+    public function getModelos($marca_id)
+    {
+        $modelos = Modelo::where('marca_id', $marca_id)->get();
+        return response()->json($modelos);
+    }
+     // }
     // public function store()
     // {
     //     // Obtener todos los equipos con sus modelos
@@ -28,7 +32,7 @@ class EquipoController extends Controller
     //     // $equipos = Equipo::all();
 
     //     return view('hojadevida.create', compact('equipos'));
-    }
+    
     // public function listar()
     // {
     //     // $hdvs = Hojadevida::orderBy('id', 'desc')->get();

@@ -20,5 +20,9 @@ class Modelo extends Model {
     {
         return $this->hasMany(hojadevida::class, 'modelo_id'); 
     }
-    
+     
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class);
+    }
 }
