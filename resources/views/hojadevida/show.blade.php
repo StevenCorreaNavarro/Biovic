@@ -11,9 +11,9 @@
     <!-- <link rel="stylesheet" href="{{ asset('css/descargarpdf.css') }}"> -->
     <style>
         * {
-            margin: 0%;
+            /* margin: 0%; */
             /* width: 100vw; */
-            padding: 0%;
+            /* padding: 0%; */
             /* box-sizing: border-box; */
 
         }
@@ -23,6 +23,7 @@
             /* font-family: Arial, sans-serif; */
             box-sizing: border-box;
             font-size: 10px;
+            padding: 0%;
 
 
 
@@ -133,9 +134,9 @@
         </table>
 
 
-        <table style=" text-align: center;">
+        <table style=" text-align: center; ">
             <tr>
-                <th style="text-align: center;   background-color:rgb(0, 64, 255)">
+                <th style="text-align: center;   background-color:rgb(0, 64, 255); height:10px;">
                     <h4 style="color: rgb(255, 255, 255)">DESCRIPCION DEL EQUIPO</h4>
                 </th>
             </tr>

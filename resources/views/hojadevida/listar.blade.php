@@ -11,22 +11,62 @@
 
     {{-- <link rel="stylesheet" href="{{ asset('css/header.css') }}"> --}}
     <title>Title</title>
+    <style>
+        table {
+            padding: 0px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            font-size: small;
+            border: 1px solid rgba(0, 0, 0, 0.062);
+        }
+
+        th,
+        td {
+            padding: 0px;
+            text-align: left;
+        }
+
+        th {
+            
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+
+
+   
+
+    </style>
 </head>
 
 <body>
     @extends('layouts.header')
     <br><br>
     {{-- 10-   VISTA hojadevida/INDEX --}}
-    <div  class=" d-flex flex-column justify-content-center align-items-center text-center p-1">
+    <div class=" d-flex flex-column justify-content-center align-items-center text-center p-1">
         <h1>Lista hoja de vida</h1>
         <br>
-    
-        <form  style="background-color: rgb(239, 239, 239); width: 100%"  method="GET" action="{{ route('hojadevida.listar') }}">
 
-            <input class="" style="width: 400px" type="text" name="search" placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}" >
+        <form style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
+            action="{{ route('hojadevida.listar') }}">
 
-            <button class="btn btn-primary " type="submit"><i class="bi bi-search"></i></button> <a href="{{ route('hojadevida.listar') }}"
-                class="bi bi-arrow-repeat btn btn-primary"></a>
+            <input class="" style="width: 400px" type="text" name="search"
+                placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
+
+            <button class="btn btn-primary " type="submit"><i class="bi bi-search"></i></button> <a
+                href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary"></a>
 
             <a href="{{ url('hojadevida/create') }}" class="btn btn-primary ">
                 Registrar Nueva hoja de vida
@@ -71,7 +111,7 @@
                 <th>SERVICIO</th>
                 <th>UBICACION FISICA</th>
                 <th></th>
-                
+
 
             </tr>
         </thead>
@@ -82,17 +122,23 @@
                 <tr>
                     <td>{{ $hdv->id }}</td>
 
-                    <td>
+                    <td class="dropend" style="padding: 0%" width="50"   >
                         @if ($hdv->foto)
-                        <img src="{{ asset('storage/' . $hdv->foto) }}" width="100">
-                    @else
-                        No hay imagen
-                    @endif
+                            <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"  height="50"
+                                type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <ul class="dropdown-menu"   style="padding: 0%"    >
+                                <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh" >
+
+                            </ul>
+                        @else
+                            No hay imagen
+                        @endif
                     </td>
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                    <td>{{ $hdv->serie?? '---' }}</td>
+                    <td>{{ $hdv->serie ?? '---' }}</td>
                     <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
@@ -111,21 +157,21 @@
 
                     {{-- // acciones  --}}
                     {{-- <td> --}}
-                        {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
-                        {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
+                    {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
+                    {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
                 Editar 
                 </a> --}}
 
-                        {{-- 19- ACCION ELIMINAR --}}
-                        {{-- <form action="{{ url('hojadevida/listar/' . $hdv->id) }}" method="post"> Envio los datos para ser
+                    {{-- 19- ACCION ELIMINAR --}}
+                    {{-- <form action="{{ url('hojadevida/listar/' . $hdv->id) }}" method="post"> Envio los datos para ser
                             borrados
                             @csrf
                             {{ method_field('DELETE') }}
                             <input type="submit" onclick="return confirm('¿Quieres Borrar?')" value="Borrar">
                         </form> --}}
 
-                        {{-- Mostrar hojadevida --}}
-                        {{-- <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
+                    {{-- Mostrar hojadevida --}}
+                    {{-- <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
                            
                         </a> --}}
                     {{-- </td> --}}
@@ -134,9 +180,11 @@
                             Descargar PDF
                         </a> --}}
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary"><i class="bi bi-eye"></i>            
+                            <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary"><i
+                                    class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-warning" target="_blank">
+                            <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-warning"
+                                target="_blank">
                                 <i class="bi bi-download"></i>
                             </a>
                             {{-- <button type="button" class="btn btn-danger">Left</button>
@@ -144,9 +192,9 @@
 
                             <button type="button" class="btn btn-warning">Middle</button>
                             <button type="button" class="btn btn-success">Right</button> --}}
-                          </div>
+                        </div>
                     </td>
-                 
+
                 </tr>
             @endforeach
         </tbody>

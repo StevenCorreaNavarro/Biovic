@@ -10,6 +10,7 @@ use App\Http\Controllers\HojadevidaController;
 use App\Http\Controllers\EmpleipsController;
 // use App\Http\Controllers\EquipoController;
 
+use App\Http\Controllers\MantoCronoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EquiposController;
 // use App\Models\Modelo;
@@ -86,11 +87,16 @@ Route::post('/hojadevida/stores',[HojadevidaController::class,'stores'])->name('
 Route::delete('/hojadevida/{dato}',[HojadevidaController::class,'destroy'])->name('hojadevida.stores');
 Route::get('hojadevida/{hdv}',[HojadevidaController::class,'show'])->name('hojadevida.show');
 
+
+Route::get('manto_crono/listar',[MantoCronoController::class,'listar'])->name('mantocrono.listar');
+Route::get('manto_crono/create',[MantoCronoController::class,'create'])->name('mantocrono.create');
+// Route::get('/manto_crono', function ()  {return view('manto_crono');});
+
 Route::get('/orden_trabajo', function ()  {return view('orden_trabajo');});
 Route::get('/alarma_calibracion', function ()  {return view('alarma_calibracion');});
 Route::get('/mantenimiento_demosta', function ()  {return view('mantenimiento_demosta');});
 Route::get('/inventario', function ()  {return view('inventario');});
-Route::get('/manto_crono', function ()  {return view('manto_crono');});
+
 Route::get('/editar_HV', function ()  {return view('editar_HV');});
 Route::get('/descargar_hv', function ()  {return view('descargar_hv');});
 Route::get('/hoja_ver', function ()  {return view('hoja_ver');});
