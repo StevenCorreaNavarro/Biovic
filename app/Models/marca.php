@@ -36,4 +36,6 @@ class Marca extends Model {
     {
         return $this->hasMany(Modelo::class);
     }
+
+    
 }

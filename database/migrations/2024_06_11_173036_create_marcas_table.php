@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nombre_marca');
             // $table->foreignId('equipo_id')->constrained()->onDelete('cascade'); // Asegurar que la columna sea 'equipo_id'
 
-            $table->unsignedBigInteger('modelo_id')->nullable();;
-            $table->foreign('modelo_id')
+            $table->unsignedBigInteger('equipo_id')->nullable();;
+            $table->foreign('equipo_id')
                 ->references('id')
-                ->on('modelos')
+                ->on('equipos')
                 ->onDelete('cascade')
                 ->unUpdate('cascade');
 

@@ -24,4 +24,8 @@ class Equipo extends Model {
     {
         return $this->hasMany(hojadevida::class, 'equipo_id'); 
     }
+    public function marcas()
+    {
+        return $this->hasMany(Marca::class);
+    }
 }
