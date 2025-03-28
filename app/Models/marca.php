@@ -24,9 +24,4 @@ class Marca extends Model {
         return $this->hasMany(marca::class, 'marca_id'); 
     }
 
-// recien agregado solucion 
-    public function getMarcas($equipoId) {
-        $marcas = Marca::where('equipo_id', $equipoId)->get(); // Devolver TODAS las marcas del equipo
-        return response()->json($marcas);
-    }
 }
