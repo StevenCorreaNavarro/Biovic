@@ -527,7 +527,7 @@
 
 
     {{-- este script es para las opciones equipo modelo marca --}}
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             // Evento cuando cambia el select de equipo
             $('#equipo').change(function() {
@@ -597,8 +597,75 @@
                 }
             });
         });
+    </script> --}}
+
+    <script> 
+        $(document).ready(function() {
+            // Evento cuando cambia el select de equipo
+            $('#equipo').change(function() {
+                var equipoId = $(this).val(); // Obtener el ID del equipo seleccionado
+    
+                // Reiniciar los selects de marcas y modelos
+                $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
+                $('#modelo').empty().append('<option value="">Selecciona un modelo</option>').prop('disabled', true);
+    
+                if (equipoId) {
+                    $.ajax({
+                        url: '/biovic/public/get-marcas/' + equipoId, // Ruta en Laravel para obtener marcas
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.length > 0) {
+                                $.each(data, function(index, marca) {
+                                    $('#marca').append('<option value="' + marca.id + '">' + marca.nombre_marca + '</option>');
+                                });
+    
+                                $('#marca').prop('disabled', false); // Habilitar marcas
+                            } else {
+                                $('#marca').prop('disabled', true);
+                            }
+                        },
+                        error: function() {
+                            alert('Error al obtener marcas.');
+                        }
+                    });
+                }
+            });
+    
+            // Evento cuando cambia el select de marca
+            $('#marca').change(function() {
+                var marcaId = $(this).val(); // Obtener el ID de la marca seleccionada
+    
+                // Reiniciar el select de modelos
+                $('#modelo').empty().append('<option value="">Selecciona un modelo</option>').prop('disabled', true);
+    
+                if (marcaId) {
+                    $.ajax({
+                        url: '/biovic/public/get-modelos/' + marcaId, // Ruta en Laravel para obtener modelos
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.length > 0) {
+                                $.each(data, function(index, modelo) {
+                                    $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre_modelo + '</option>');
+                                });
+    
+                                $('#modelo').prop('disabled', false); // Habilitar modelos
+                            } else {
+                                $('#modelo').prop('disabled', true);
+                            }
+                        },
+                        error: function() {
+                            alert('Error al obtener modelos.');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
+
+    
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
