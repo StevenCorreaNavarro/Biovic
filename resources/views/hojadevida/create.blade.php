@@ -75,6 +75,7 @@
                             @endforeach
                         </select>
                     </div>
+                    
                     <div class="col-md-4 position-relative px-2">
                         <label for="marca_id" class="form-label">Selecciona una marca:</label>
                         <select id="marca" name="marca_id" class="form-control form-select" disabled>
