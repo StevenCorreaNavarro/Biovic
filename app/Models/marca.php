@@ -24,4 +24,16 @@ class Marca extends Model {
         return $this->hasMany(marca::class, 'marca_id'); 
     }
 
+
+    use HasFactory;
+    
+    public function equipo()
+    {
+        return $this->belongsTo(Equipo::class);
+    }
+
+    public function modelos()
+    {
+        return $this->hasMany(Modelo::class);
+    }
 }
