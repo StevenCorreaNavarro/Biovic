@@ -110,7 +110,7 @@
                 <th>ACTIVO FIJO</th>
                 <th>SERVICIO</th>
                 <th>UBICACION FISICA</th>
-                <th></th>
+                <th>PDF</th>
 
 
             </tr>

@@ -31,9 +31,25 @@ Route::get('/', function () {
     return view('main');
     // return View('admin.layouts.app');
 });
+
+
+
+// Route::get('/admin', function () {
+//     return view('admin.admin.layouts.app');
+// })->middleware(['auth', 'verified']);
+
+
+
+//solo administrador
+// Route::middleware('/admin')->group(function () {
+//     return view('admin.admin.layouts.app');
+// });
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', function (){return view('admin.admin.layouts.app');})->name('admin.dashboard');
+   
+});
 Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo ingresar primero para navegar
-
-
 
 
 

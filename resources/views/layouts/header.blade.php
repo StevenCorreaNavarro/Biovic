@@ -40,15 +40,15 @@
                 <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
-                    </div>
-                </header>
-            @endif
+    </div>
+    </header>
+    @endif
 
-            <!-- Page Content -->
-            {{-- <main>
+    <!-- Page Content -->
+    {{-- <main>
                 {{ $slot }}
-            </main>
-        </div> --}}
+    </main>
+    </div> --}}
 
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style=" margin: 0%;
@@ -74,6 +74,11 @@
                         <li><a class="nav-link {{ request()->routeIs(['hoja_vida','hojadevida.*']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a></li>
+                        @if(Auth::check() && Auth::user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Panel de Administración</a>
+                        </li>
+                        @endif
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -105,53 +110,53 @@
                     <ul style="margin: 0%; padding: 0%; list-style: none;">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
-                                </li>
-                            @endif
-                            {{-- @if (Route::has('register'))
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
+                        </li>
+                        @endif
+                        {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <button class="button">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
-                            </button>
+                        </button>
                         </li>
-                    @endif --}}
+                        @endif --}}
                         @else
-                            {{-- despliegue --}}
-                            {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-                            <ul class="nav-item dropdown">
-                                <a id="navbarDropdown"
-                                    style=" justify-content: center; align-content:center; padding-right:2rem; "
-                                    class="nav-link dropdown-toggle button" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                        {{-- despliegue --}}
+                        {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
+                        <ul class="nav-item dropdown">
+                            <a id="navbarDropdown"
+                                style=" justify-content: center; align-content:center; padding-right:2rem; "
+                                class="nav-link dropdown-toggle button" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
 
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item " href="#">Mi Perfil</a>
-                                    <a class="dropdown-item" href="#">Notificaciones</a>
-                                    <a class="dropdown-item" href="#">Favoritos</a>
-                                    <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
-                                    {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item " href="#">Mi Perfil</a>
+                                <a class="dropdown-item" href="#">Notificaciones</a>
+                                <a class="dropdown-item" href="#">Favoritos</a>
+                                <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
+                                {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
 
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
-                                    <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
+                                <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                        Cerrar sesión
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf</form>
-                            </ul>
-                    </div>
+                                    Cerrar sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf</form>
+                        </ul>
+                </div>
 
 
                 @endguest

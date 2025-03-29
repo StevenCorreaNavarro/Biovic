@@ -14,23 +14,6 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id(); // entero grande sin signo 
             $table->string('nombre_equipo');
-
-            // $table->unsignedBigInteger('marcaequipos_id')->nullable();;
-            // $table->foreign('marcaequipos_id')
-            //     ->references('id')
-            //     ->on('marcaequipos')
-            //     ->onDelete('cascade')
-            //     ->unUpdate('cascade');
-
-            // $table->unsignedBigInteger('modeloequipos_id')->nullable();;
-            // $table->foreign('modeloEquipos_id')
-            //     ->references('id')
-            //     ->on('modeloequipos')
-            //     ->onDelete('cascade')
-            //     ->unUpdate('cascade');
-
-
-
             $table->timestamps();
         });
     }
