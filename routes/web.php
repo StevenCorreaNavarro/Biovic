@@ -56,9 +56,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Route::get('marcas/{equipo_id}', [PanelAdminController::class, 'getMarcas']);
     // Route::get('modelos/{marca_id}', [PanelAdminController::class, 'getModelos']);
-    Route::get('/admin', function () {
-        return view('admin.admin.layouts.app');
-    })->name('adminad.dashboard');
+    Route::get('/admin', function () {return view('admin.admin.layouts.app');})->name('adminad.dashboard');
     // Route::get('/admin/create', function () {return view('admin.admin.layouts.app');})->name('admin.dashboard');
 
 

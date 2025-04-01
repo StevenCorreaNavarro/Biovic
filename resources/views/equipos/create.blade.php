@@ -18,16 +18,15 @@
     @extends('admin.admin.layouts.app')
 
     @section('content')
-        <div class="py-5 px-4">
+        <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-0">
             <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
-                <div class="col-md-4 position-relative">
+                <div >
                     <label for="nombre_equipo" class="form-label">Selecciona o escribe un equipo:</label>
-                    <input type="text" id="equipo" name="nombre_equipo" class="form-control" list="equipos-list"
-                        value="{{ old('nombre') }}" required>
-                    <datalist id="equipos-list">
+                    <input type="text" id="equipo" name="nombre_equipo" class="form-control" list="equipos-list" value="{{ old('nombre') }}"  required>
+                    <datalist id="equipos-list" >
                         @foreach ($equipos as $equipo)
-                            <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }}"></option>
+                            <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }} " ></option>
                         @endforeach
                     </datalist>
                 </div>

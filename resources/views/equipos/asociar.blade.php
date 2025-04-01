@@ -12,7 +12,8 @@
     <title>Registrar Profesor</title>
 </head>
 
-<body>
+<body>    @extends('admin.admin.layouts.app')
+@section('content')
     <div class="box-2">
         <div class="container">
             <br>
@@ -24,7 +25,7 @@
                     <br>
                     <div >
                         <h1>Equipo:</h1>
-                        <select name="equipo_id"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
+                        <select name="equipo_id"  class="form-control form-select"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
                             @foreach ($datoe as $user)
                                 <option class="px-20 mx-100" value="{{ $user->id}}"> {{ $user->nombre_equipo }}
                                 </option>
@@ -35,7 +36,7 @@
                     <br><br>
                     <div >
                         <h1>Marca</h1>
-                        <select  name="nombre_marca"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
+                        <select  name="nombre_marca"  class="form-control form-select"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
                             @foreach ($datom as $rol)
                                 <option value="{{ $rol->nombre_marca }}"> {{ $rol->nombre_marca }}
                                 </option>
@@ -54,6 +55,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+@endsection
 </body>
 
 </html>

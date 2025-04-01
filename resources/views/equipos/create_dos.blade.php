@@ -14,11 +14,11 @@
 <body>
     @extends('admin.admin.layouts.app')
     @section('content')
-        <div class="py-5 px-4">
+        <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-0">
             <h1>Hola desde create dos</h1>
             <form action="{{ route('admin.store_dos') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
-                <div class="col-md-4 position-relative">
+                <div >
 
                     <label for="nombre_equipo" class="form-label">Selecciona o escribe un equipo: quipos dos</label>
                     <input type="text" id="marca" name="nombre_marca" class="form-control" list="equipos-list"

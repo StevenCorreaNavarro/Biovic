@@ -50,12 +50,14 @@
 
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                    Descripcion de quipo</h1>
+                    Descripcion de quipo
+                </h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
-                <div class="row g-0 needs-validation border border-dark-subtle py-3 "
-                    style="background-color: #a6a6a630; border-radius:10px;">
+                
+                <div class="row g-0 needs-validation border border-dark-subtle py-3" style="background-color: #a6a6a630; border-radius:10px;">
                     <div class="col-md-4 position-relative nnn px-2">
                         <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
+
                         <select id="equipo" name="equipo_id" class="form-control form-select">
                             <option value="">Selecciona un equipo</option>
                             @foreach ($equipos as $equipo)
