@@ -36,16 +36,20 @@
     </head>
 
     <body>
-        <div class="wrapper">
-            <div class="main-header">
+        <div>
+            <div style="position: fixed";>
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="blue">
                     {{-- <img src=" http://localhost/biovic/public/IMG/CutPaste_2024-08-02_10-48-31-556.png " alt="VitalSoft" height="40"> --}}
 
-                    <a href="{{ route('menu') }}" class="logo">
-                        <img src=" {{ asset('IMG/CutPaste_2024-08-02_10-48-31-556.png') }}" style="height: 100%"
+                    <a href="{{ route('menu') }}" class="logo d-flex align-items-center justify-content-center">
+                        {{-- <img src=" {{ asset('atlantis/assets/img/logo.png') }}" alt="Atlantis Logo" class="navbar-brand"> --}}
+                        <img src=" {{ asset('IMG/CutPaste_2024-08-02_10-48-31-556.png') }}" alt="VitalSoft" height="40"
                             alt="navbar brand" class="navbar-brand">
+                        <h1 class="logo align-items-center justify-content-center"
+                            style="font-weight: bold; color:white; padding:4%;">Biovic</h1>
                     </a>
+
                     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
@@ -60,87 +64,7 @@
                     </div>
                 </div>
                 <!-- End Logo Header -->
-
                 <!-- Navbar Header -->
-                <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-
-                    <div class="container-fluid">
-                        <div class="collapse" id="search-nav">
-                            <form class="navbar-left navbar-form nav-search mr-md-3">
-
-                            </form>
-                        </div>
-                        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-
-                            <li class="nav-item dropdown hidden-caret">
-
-
-                            </li>
-                            <li class="nav-item dropdown hidden-caret">
-
-                                <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-
-
-                                    <li>
-                                        <a class="see-all" href="javascript:void(0);">See all notifications<i
-                                                class="fa fa-angle-right"></i> </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown hidden-caret">
-
-                                <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
-
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown hidden-caret">
-                                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
-                                    aria-expanded="false">
-                                    <div class="avatar-sm">
-                                        <img src="{{ asset('atlantis/assets/img/perfil.png') }}"alt="..."
-                                            class="avatar-img rounded-circle">
-                                    </div>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                    <div class="dropdown-user-scroll scrollbar-outer">
-                                        <li>
-                                            <div class="user-box">
-                                                <div class="avatar-lg">
-                                                    {{-- <i class="fa fa-user-circle"></i> --}}
-                                                    <img
-                                                        src="{{ asset('atlantis/assets/img/perfil.png') }}"
-                                                        alt="image profile" class="avatar-img rounded">
-                                                </div>
-                                                <div class="u-text">
-                                                    <h4>{{ Auth::user()->name }}</h4>
-                                                    <p class="text-muted">{{ Auth::user()->email }}</p><a
-                                                        {{-- href="{{ route('profile.home') }}" --}} class="btn btn-xs btn-secondary btn-sm">ver
-                                                        perfil</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">My Profile</a>
-                                            <a class="dropdown-item" href="#">My Balance</a>
-                                            <a class="dropdown-item" href="#">Inbox</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Account Setting</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                                Cerrar sesión
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">@csrf</form>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
                 <!-- End Navbar -->
             </div>
 
@@ -157,7 +81,7 @@
                                 <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                                     <span>
                                         {{ Auth::user()->name }}
-                                        <span class="user-level">Administrador</span>
+                                        <span class="user-level">{{ Auth::user()->email }}</span>
                                         <span class="caret"></span>
                                     </span>
                                 </a>
@@ -166,11 +90,11 @@
                                 <div class="collapse in" id="collapseExample">
                                     <ul class="nav">
                                         <li>
-                                            {{-- <a href="{{ route('profile.home') }}">
+                                            <a href="">
                                                 <span class="link-collapse">Perfil</span>
-                                            </a> --}}
+                                            </a>
                                         </li>
-                                        {{-- <li>
+                                        <li>
                                             <a href="#edit">
                                                 <span class="link-collapse">Edit Profile</span>
                                             </a>
@@ -179,32 +103,39 @@
                                             <a href="#settings">
                                                 <span class="link-collapse">Settings</span>
                                             </a>
-                                        </li> --}}
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><span
+                                                    class="link-collapse">Cerrar Sesion</span>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    style="display: none;">@csrf</form>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <ul class="nav nav-primary">
-                            <li class="nav-item active">
-                                {{-- <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                            <li class="nav-item {{ request()->routeIs('adminad.dashboard') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                                     <i class="fas fa-home"></i>
                                     <p>Dashboard</p>
                                     <span class="caret"></span>
-                                </a> --}}
-                                {{-- <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="{{asset('atlantis/demo1/index.html')}}">
-                                            <span class="sub-item">Dashboard 1</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{asset('atlantis/demo2/index.html')}}">
-                                            <span class="sub-item">Dashboard 2</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div> --}}
+                                </a>
+                                <div class="collapse" id="dashboard">
+                                    <ul class="nav nav-collapse">
+                                        <li>
+                                            <a href="{{ asset('atlantis/demo1/index.html') }}">
+                                                <span class="sub-item">Dashboard 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ asset('atlantis/demo2/index.html') }}">
+                                                <span class="sub-item">Dashboard 2</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                             <li class="nav-section">
                                 <span class="sidebar-mini-icon">
@@ -213,7 +144,7 @@
                                 <h4 class="text-section">Componentes</h4>
                             </li>
 
-                            {{--                             
+                                                        
 
                             <li class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#usuarios">
@@ -233,14 +164,14 @@
                                     </ul>
                                 </div>
                             </li>
- --}}
+
 
 
 
 
                             <li class="nav-item {{ request()->routeIs('admin.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#post">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-pen-square"></i>
                                     <p>Registrar equipo</p>
                                     <span class="caret"></span>
                                 </a>
@@ -271,14 +202,15 @@
 
                             <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#slider">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-table"></i>
                                     <p>Listas equipos</p>
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('adminlista.*') ? 'show' : '' }}" id="slider">
+                                <div class="collapse {{ request()->routeIs('adminlista.*') ? 'show' : '' }}"
+                                    id="slider">
                                     <ul class="nav nav-collapse">
-                                    
+
                                         <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
                                             <a href="{{ route('adminlista.listar') }}">
                                                 <span class="sub-item">Lista equipos</span>
@@ -308,6 +240,31 @@
                                     </ul>
                                 </div>
                             </li>
+                            
+                            <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#aso">
+                                    <i class="fas fa-table"></i>
+                                    <p>Asociar equipo</p>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
+                                    id="aso">
+                                    <ul class="nav nav-collapse">
+
+                                        <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
+                                            <a href="{{ route('adminaso.asociar') }}">
+                                                <span class="sub-item">Asociar marca</span>
+                                            </a>
+                                            {{-- <a href="">
+                                                <span class="sub-item">lista</span>
+                                            </a> --}}
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
 
 
                             <li class="nav-item {{ request()->routeIs('adminlistaR.*') ? 'active' : '' }}">
@@ -317,20 +274,21 @@
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('adminlistaR.*') ? 'show' : '' }}" id="unit">
+                                <div class="collapse {{ request()->routeIs('adminlistaR.*') ? 'show' : '' }}"
+                                    id="unit">
                                     <ul class="nav nav-collapse">
-                                        <li class="{{ request()->routeIs(['adminlistaR.lista_registrada']) ? 'active' : '' }}">
+                                        <li
+                                            class="{{ request()->routeIs(['adminlistaR.lista_registrada']) ? 'active' : '' }}">
                                             <a href="{{ route('adminlistaR.lista_registrada') }}">
                                                 <span class="sub-item">Lista General </span>
                                             </a>
                                         </li>
 
-                                        <li></li>
-                                        {{-- class="{{ request()->routeIs(['unit.create', 'unit.store']) ? 'active' : '' }}">
-                                            <a href="{{ route('unit.create') }}">
-                                                <span class="sub-item">Crear </span>
-                                            </a> --}}
+                                
+                                    </ul>
+                                </div>
                             </li>
+                       
                             <li class="{{ request()->routeIs(['unit.listar']) ? 'active' : '' }}">
                                 {{-- <a href="{{ route('unit.listar') }}">
                                                 <span class="sub-item">Lista en web</span>
@@ -469,7 +427,7 @@
         <!-- End Sidebar -->
 
         <div class="main-panel">
-            <div style="margin-top: 5%;background: rgb(235, 235, 235); ">
+            <div style="margin-top: 0%;background: rgb(246, 247, 249); ">
 
 
 

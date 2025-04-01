@@ -26,10 +26,15 @@ class Equipo extends Model {
     }
     public function marcas()
     {
-        return $this->hasMany(Marca::class);
+        return $this->hasMany(Marca::class, 'equipo_id', 'id');
     }
 
 
+    //Relacion Uno a Muchos (Inversa) 
+    public function marca()
+    {
+        return $this->belongsTo('App\Models\Marca');
+    }
 
 
     

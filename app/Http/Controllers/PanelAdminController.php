@@ -19,7 +19,9 @@ use App\Models\marca;
 use App\Models\modelo;
 use App\Models\hojadevida;
 use App\Models\PanelAdmin;
+use App\Models\equipoMarca;
 use Dompdf\Dompdf;
+
 use Dompdf\Options;
 
 
@@ -96,7 +98,7 @@ class PanelAdminController extends Controller
         $hdvs = Equipo::orderBy('id', 'desc')->get();
         return view('equipos.listar', compact('hdvs'));
     }
- 
+
     public function listar_marca()
     {
         $hdvs = Marca::orderBy('id', 'desc')->get();
@@ -107,10 +109,11 @@ class PanelAdminController extends Controller
         $hdvs = Modelo::orderBy('id', 'desc')->get();
         return view('equipos.listar_tres', compact('hdvs'));
     }
-    public  function lista_Registrada(){
+    public  function lista_Registrada()
+    {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $hdvs = hojadevida::with('equipo')->get();
-        $query = Hojadevida::with('equipo','servicio');
+        $query = Hojadevida::with('equipo', 'servicio');
 
         // Filtrar por el nombre del equipo si se ingresa un término en el buscador
         // if ($request->has('search')) {
@@ -173,6 +176,29 @@ class PanelAdminController extends Controller
         // $abreviacionvolumen = magVol::all(); //
         // return view('equipos.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen'));
         return view('equipos.create_tres', compact('modelos'));
+    }
+
+
+
+    public function asociar(Request $request)
+    {
+        // $teacher=Teacher::pluck('id');
+
+        $datom = Marca::all();
+        $datoe = Equipo::all();
+        return view('equipos.asociar', compact('datoe', 'datom'));
+    }
+
+    public function storeaso(Request $request)
+    {
+
+
+        // $datom = new Equipo();
+        $datom = new Marca();
+        $datom->nombre_marca = $request->nombre_marca;
+        $datom->equipo_id = $request->equipo_id;
+        $datom->save();
+        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar ruta 
     }
 
     public function store_tres(Request $request)

@@ -10,7 +10,7 @@ class Marca extends Model {
     use HasFactory;
 
     
-    protected $fillable = ['nombre_marca', 'modelo_id']; // Asegurar que sea "equipo_id"
+    protected $fillable = ['nombre_marca', 'modelo_id','equipo_id']; // Asegurar que sea "equipo_id"
 
     // public function equipo() {
     //     return $this->belongsTo(Equipo::class);
@@ -29,7 +29,7 @@ class Marca extends Model {
     
     public function equipo()
     {
-        return $this->belongsTo(Equipo::class);
+        return $this->belongsTo(Equipo::class, 'equipo_id', 'id');
     }
 
     public function modelos()
@@ -37,5 +37,8 @@ class Marca extends Model {
         return $this->hasMany(Modelo::class);
     }
 
-    
 }
+
+
+
+    

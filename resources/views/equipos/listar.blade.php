@@ -17,11 +17,11 @@
     @section('content')
 
 
-    <div class="container mt-5">
+    <div class="container ">
         <h1 class="text-center">Listado de Equipos</h1>
         <div class="d-flex justify-content-end mb-3">
             <table class="table table-bordered table-striped mt-4">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre del Equipo</th>

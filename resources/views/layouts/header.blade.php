@@ -76,7 +76,7 @@
                         <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a></li>
                         @if(Auth::check() && Auth::user()->role === 'admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Panel de Administración</a>
+                            <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
                         </li>
                         @endif
                         {{-- <li class="nav-item dropdown">

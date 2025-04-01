@@ -18,7 +18,7 @@ use App\Http\Controllers\EquiposController;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
-
+use App\Models\PanelAdmin;
 
 Route::get('main', function () {
     // Alert::success(' Titulo de la alerta','mensaje de la alerta');
@@ -58,13 +58,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Route::get('modelos/{marca_id}', [PanelAdminController::class, 'getModelos']);
     Route::get('/admin', function () {
         return view('admin.admin.layouts.app');
-    })->name('admin.dashboard');
+    })->name('adminad.dashboard');
     // Route::get('/admin/create', function () {return view('admin.admin.layouts.app');})->name('admin.dashboard');
 
+
+    Route::get('/equipos/{id}/seleccionar-marcas', [PanelAdminController::class, 'mostrarFormulario'])->name('equipos.mostrarFormulario');
+    Route::post('/equipos/{id}/asignar-marcas', [PaneladminController::class, 'asignarMarcas'])->name('equipos.asignarMarcas');
+    Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
     Route::get('/admin/listar_marca', [PanelAdminController::class, 'listar_marca'])->name('adminlista.listar_dos');
     Route::get('/admin/listar_modelo', [PanelAdminController::class, 'listar_modelo'])->name('adminlista.listar_tres');
     Route::get('/admin/listar', [PanelAdminController::class, 'listar'])->name('adminlista.listar');
-    
+    Route::get('/admin/asociar', [PanelAdminController::class, 'asociar'])->name('adminaso.asociar');
+
+
+
     Route::get('/admin/lista_registrada', [PanelAdminController::class, 'lista_Registrada'])->name('adminlistaR.lista_registrada');
     Route::get('/admin/create', [PanelAdminController::class, 'create'])->name('admin.create');
     Route::get('/admin/create_dos', [PanelAdminController::class, 'create_dos'])->name('admin.create_dos');
@@ -74,7 +81,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/store_dos', [PanelAdminController::class, 'store_dos'])->name('admin.store_dos');
     Route::post('/admin/store_tres', [PanelAdminController::class, 'store_tres'])->name('admin.store_tres');
     Route::post('/admin/stores', [PanelAdminController::class, 'stores'])->name('admin.stores');
-
+    Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
     Route::get('/marcas/{equipo_id}', [EquipoController::class, 'getMarcas']);
     Route::get('/modelos/{marca_id}', [EquipoController::class, 'getModelos']);
 

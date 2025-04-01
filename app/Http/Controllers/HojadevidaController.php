@@ -152,24 +152,13 @@ class HojadevidaController extends Controller
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
-
-
         $hdv->perioCali = $request->input('perioCali');
-
         // Solo establecer fechaCali si perioCali es 'anual'
         if (strtolower($request->input('perioCali')) === 'Anual') {
             $hdv->fechaCali = $request->input('fechaCali');
         } else {
             $hdv->fechaCali = null;
         }
-
-
-
-
-
-
-
-
         $hdv->save();
         // return $curso;
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar

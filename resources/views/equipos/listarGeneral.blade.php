@@ -21,13 +21,14 @@
         <h1 class="text-center">Listado de Equipos</h1>
         <div class="d-flex justify-content-end mb-3">
             <table class="table table-bordered table-striped mt-4">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>foto</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Nombre del Equipo</th>
+                        <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
