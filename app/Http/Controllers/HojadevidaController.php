@@ -59,6 +59,7 @@ class HojadevidaController extends Controller
 
     public function listar(Request $request)
     {
+        $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $hdvs = hojadevida::with('equipo')->get();
         $query = Hojadevida::with('equipo','servicio');
 
@@ -145,26 +146,14 @@ class HojadevidaController extends Controller
         // $hdv->fechaCali = $request->fechaCali;
         // $hdv->cod_ecris = $request->cod_ecris;
         $hdv->actFijo = $request->actFijo;
-        // $hdv->regInvimai = $request->regInvimai;
         $hdv->Estado = $request->Estado;
-        // $hdv->cla_riesgos = $request->cla_riesgos;
-        // $hdv->cla_biomes = $request->cla_biomes;
-        // $hdv->foto = $request->foto;
-        // $hdv->foto = $request->file('foto')->store('public/fotos');
+
         if ($request->hasFile('foto')) {
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
 
-        // Hojadevida::create([
-        //     // 'nombre' => $request->nombre,
-        //     'foto' => $nombreImagen ?? null
-        // ]);
 
-
-
-
-        // $hojadevida = new Hojadevida();
         $hdv->perioCali = $request->input('perioCali');
 
         // Solo establecer fechaCali si perioCali es 'anual'

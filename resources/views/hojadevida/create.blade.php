@@ -20,8 +20,6 @@
 
 <body>
     <!-- Modal -->
-
-
     @extends('layouts.header')
     <main class=" p-2 " style="background-color: rgb(225, 225, 225);">
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
@@ -54,16 +52,6 @@
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Descripcion de quipo</h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
-
-                {{-- @if (count($errors) > 0)
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>Ingrese los valores requeridos </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif --}}
                 <div class="row g-0 needs-validation border border-dark-subtle py-3 "
                     style="background-color: #a6a6a630; border-radius:10px;">
                     <div class="col-md-4 position-relative nnn px-2">
@@ -528,7 +516,7 @@
 
 
     {{-- este script es para las opciones equipo modelo marca --}}
-    <script>
+     <script>
         $(document).ready(function() {
             $('#equipo').change(function() {
                 var equipoID = $(this).val();
@@ -536,7 +524,7 @@
                 $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop('disabled', true);
     
                 if (equipoID) {
-                    $.get('/marcas/' + equipoID, function(data) {
+                    $.get('/biovic/public/marcas/' + equipoID, function(data) {
                         $.each(data, function(index, marca) {
                             $('#marca').append('<option value="' + marca.id + '">' + marca.nombre_marca + '</option>');
                         });
@@ -550,7 +538,7 @@
                 $('#modelo').empty().append('<option value="">Seleccione un modelo</option>');
     
                 if (marcaID) {
-                    $.get('/modelos/' + marcaID, function(data) {
+                    $.get('/biovic/public/modelos/' + marcaID, function(data) {
                         $.each(data, function(index, modelo) {
                             $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre_modelo + '</option>');
                         });
@@ -560,6 +548,65 @@
             });
         });
     </script>
+    {{-- <script>
+        $(document).ready(function() {
+            // Evento cuando cambia el select de equipo
+            $('#equipo').change(function() {
+                var equipoId = $(this).val(); // Obtener el ID del equipo seleccionado
+
+                if (equipoId) {
+                    $.ajax({
+                        url: '/biovic/public/modelos/' + equipoId, // Ruta en Laravel para obtener los modelos
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#modelo').empty().append('<option value="">Selecciona un modelo</option>');
+
+                            $.each(data, function(index, modelo) {
+                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre_modelo + '</option>');
+                            });
+
+                            $('#modelo').prop('disabled', false);
+                            $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
+                        },
+                        error: function() {
+                            alert('Error al obtener modelos.');
+                        }
+                    });
+                } else {
+                    $('#modelo').empty().append('<option value="">Selecciona un modelo</option>').prop('disabled', true);
+                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
+                }
+            });
+
+            // Evento cuando cambia el select de modelo
+            $('#modelo').change(function() {
+                var modeloId = $(this).val(); // Obtener el ID del modelo seleccionado
+
+                if (modeloId) {
+                    $.ajax({
+                        url: '{{ url("get-modelos") }}/'+ modeloId, // Ruta en Laravel para obtener las marcas
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#marca').empty().append('<option value="">Selecciona una marca</option>');
+
+                            $.each(data, function(index, marca) {
+                                $('#marca').append('<option value="' + marca.id + '">' + marca.nombre_marca + '</option>');
+                            });
+
+                            $('#marca').prop('disabled', false);
+                        },
+                        error: function() {
+                            alert('Error al obtener marcas.');
+                        }
+                    });
+                } else {
+                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
+                }
+            });
+        });
+    </script> --}}
 
     
 

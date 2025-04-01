@@ -19,7 +19,7 @@
                     "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
                         "simple-line-icons"
                     ],
-                    urls: ['{{ asset('atlantis/assets/css/fonts.min.css')}}']
+                    urls: ['{{ asset('atlantis/assets/css/fonts.min.css') }}']
                 },
                 active: function() {
                     sessionStorage.fonts = true;
@@ -40,11 +40,12 @@
             <div class="main-header">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="blue">
+                    {{-- <img src=" http://localhost/biovic/public/IMG/CutPaste_2024-08-02_10-48-31-556.png " alt="VitalSoft" height="40"> --}}
 
-                    {{-- <a href="{{ route('home.home') }}" class="logo">
-                        <img src=" {{ asset('img/IMG HOME/IMG HEADER - SUBMENU HEADER/LOGOS/blanco.png') }}"
-                            style="height: 100%" alt="navbar brand" class="navbar-brand">
-                    </a> --}}
+                    <a href="{{ route('menu') }}" class="logo">
+                        <img src=" {{ asset('IMG/CutPaste_2024-08-02_10-48-31-556.png') }}" style="height: 100%"
+                            alt="navbar brand" class="navbar-brand">
+                    </a>
                     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
@@ -66,7 +67,7 @@
                     <div class="container-fluid">
                         <div class="collapse" id="search-nav">
                             <form class="navbar-left navbar-form nav-search mr-md-3">
-                                
+
                             </form>
                         </div>
                         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
@@ -107,12 +108,12 @@
                                                 <div class="avatar-lg"><img
                                                         src="{{ asset('atlantis/assets/img/perfil.jpg') }}"
                                                         alt="image profile" class="avatar-img rounded">
-                                                    </div>
+                                                </div>
                                                 <div class="u-text">
                                                     <h4>{{ Auth::user()->name }}</h4>
                                                     <p class="text-muted">{{ Auth::user()->email }}</p><a
-                                                        {{-- href="{{ route('profile.home') }}" --}}
-                                                        class="btn btn-xs btn-secondary btn-sm">ver perfil</a>
+                                                        {{-- href="{{ route('profile.home') }}" --}} class="btn btn-xs btn-secondary btn-sm">ver
+                                                        perfil</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -235,66 +236,69 @@
 
 
 
-                            <li class="nav-item {{ request()->routeIs('post.*') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->routeIs('admin.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#post">
                                     <i class="fas fa-layer-group"></i>
-                                    <p>Posters</p>
+                                    <p>Registrar equipo</p>
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('post.*') ? 'show' : '' }}" id="post">
+                                <div class="collapse {{ request()->routeIs('admin.*') ? 'show' : '' }}" id="post">
                                     <ul class="nav nav-collapse">
-                                        <li class="{{ request()->routeIs(['post.listardos']) ? 'active' : '' }}">
-                                            {{-- <a href="{{ route('post.listardos') }}">
-                                                <span class="sub-item">Lista</span>
-                                            </a> --}}
-                                        </li>
                                         <li
-                                            class="{{ request()->routeIs(['post.create', 'post.store']) ? 'active' : '' }}">
-                                            {{-- <a href="{{ route('post.create') }}">
-                                                <span class="sub-item">Crear post</span>
-                                            </a> --}}
+                                            class="{{ request()->routeIs(['admin.create', 'admin.store']) ? 'active' : '' }}">
+                                            <a href="{{ route('admin.create') }}">
+                                                <span class="sub-item">Crear equipo</span>
+                                            </a>
                                         </li>
-                                        <li>
-                                            {{-- <a href="{{ route('post.listar') }}">
-                                                <span class="sub-item">Ir a sitio web</span>
-                                            </a> --}}
+                                        <li class="{{ request()->routeIs(['admin.create_dos']) ? 'active' : '' }}">
+                                            <a href="{{ route('admin.create_dos') }}">
+                                                <span class="sub-item">Crear marca</span>
+                                            </a>
                                         </li>
-                                        <li>
-                                            {{-- <a href="{{ route('home.home') }}">
-                                                <span class="sub-item">Ir a home</span>
-                                            </a> --}}
+                                        <li class="{{ request()->routeIs(['admin.create_tres']) ? 'active' : '' }}">
+                                            <a href="{{ route('admin.create_tres') }}">
+                                                <span class="sub-item">Crear modelo</span>
+                                            </a>
                                         </li>
+
 
                                     </ul>
                                 </div>
                             </li>
 
-                            <li class="nav-item {{ request()->routeIs('slider.*') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#slider">
                                     <i class="fas fa-layer-group"></i>
-                                    <p>Foto sliders</p>
+                                    <p>Listas equipos</p>
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('slider.*') ? 'show' : '' }}" id="slider">
+                                <div class="collapse {{ request()->routeIs('adminlista.*') ? 'show' : '' }}" id="slider">
                                     <ul class="nav nav-collapse">
-                                        {{-- <li class="{{ request()->routeIs(['slider.listar']) ? 'active' : '' }}">
-                                            <a href="{{ route('slider.listar') }}">
-                                                <span class="sub-item">Lista y cambiar</span>
+                                    
+                                        <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
+                                            <a href="{{ route('adminlista.listar') }}">
+                                                <span class="sub-item">Lista equipos</span>
                                             </a>
-                                        </li> --}}
-                                        <li
-                                            {{-- class="{{ request()->routeIs(['listar.create', 'listar.store']) ? 'active' : '' }}" --}}
-                                            >
-                                            {{-- <a href="{{ route('slider.create') }}">
-                                                <span class="sub-item">Crear </span>
+                                            {{-- <a href="">
+                                                <span class="sub-item">lista</span>
                                             </a> --}}
                                         </li>
-                                        <li
-                                           >
-                                            {{-- <a href="{{ route('home.home') }}">
-                                                <span class="sub-item">Ir a home </span>
+                                        <li class="{{ request()->routeIs(['adminlista.listar_dos']) ? 'active' : '' }}">
+                                            <a href="{{ route('adminlista.listar_dos') }}">
+                                                <span class="sub-item">Lista marcas</span>
+                                            </a>
+                                            {{-- <a href="">
+                                                <span class="sub-item">lista</span>
+                                            </a> --}}
+                                        </li>
+                                        <li class="{{ request()->routeIs(['adminlista.listar_tres']) ? 'active' : '' }}">
+                                            <a href="{{ route('adminlista.listar_tres') }}">
+                                                <span class="sub-item">Lista modelos</span>
+                                            </a>
+                                            {{-- <a href="">
+                                                <span class="sub-item">lista</span>
                                             </a> --}}
                                         </li>
 
@@ -304,42 +308,42 @@
                             </li>
 
 
-                            <li class="nav-item {{ request()->routeIs('unit.*') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->routeIs('adminlistaR.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#unit">
                                     <i class="fas fa-layer-group"></i>
-                                    <p>Tiendas aliadas</p>
+                                    <p>Lista registrada</p>
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('unit.*') ? 'show' : '' }}" id="unit">
+                                <div class="collapse {{ request()->routeIs('adminlistaR.*') ? 'show' : '' }}" id="unit">
                                     <ul class="nav nav-collapse">
-                                        <li class="{{ request()->routeIs(['unit.listardos']) ? 'active' : '' }}">
-                                            {{-- <a href="{{ route('unit.listardos') }}">
-                                                <span class="sub-item">Lista </span>
-                                            </a> --}}
+                                        <li class="{{ request()->routeIs(['adminlistaR.lista_registrada']) ? 'active' : '' }}">
+                                            <a href="{{ route('adminlistaR.lista_registrada') }}">
+                                                <span class="sub-item">Lista General </span>
+                                            </a>
                                         </li>
 
                                         <li></li>
-                                            {{-- class="{{ request()->routeIs(['unit.create', 'unit.store']) ? 'active' : '' }}">
+                                        {{-- class="{{ request()->routeIs(['unit.create', 'unit.store']) ? 'active' : '' }}">
                                             <a href="{{ route('unit.create') }}">
                                                 <span class="sub-item">Crear </span>
                                             </a> --}}
-                                        </li>
-                                        <li class="{{ request()->routeIs(['unit.listar']) ? 'active' : '' }}">
-                                            {{-- <a href="{{ route('unit.listar') }}">
+                            </li>
+                            <li class="{{ request()->routeIs(['unit.listar']) ? 'active' : '' }}">
+                                {{-- <a href="{{ route('unit.listar') }}">
                                                 <span class="sub-item">Lista en web</span>
                                             </a> --}}
-                                        </li>
-
-
-
-                                    </ul>
-                                </div>
                             </li>
 
 
 
-                            {{-- 
+                        </ul>
+                    </div>
+                    </li>
+
+
+
+                    {{-- 
                         <li class="nav-item">
                             <a data-toggle="collapse" href="#tables">
                                 <i class="fas fa-table"></i>
@@ -456,22 +460,22 @@
                                 </ul>
                             </div>
                         </li> --}}
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <!-- End Sidebar -->
+        </div>
+        <!-- End Sidebar -->
 
-            <div class="main-panel">
-                <div style="margin-top: 5%;background: rgb(235, 235, 235); ">
+        <div class="main-panel">
+            <div style="margin-top: 5%;background: rgb(235, 235, 235); ">
 
 
 
-                    {{-- @include('sweetalert::alert') --}}
-                    @yield('content')
-                    {{-- @extends('post.listardos')  --}}
+                {{-- @include('sweetalert::alert') --}}
+                @yield('content')
+                {{-- @extends('post.listardos')  --}}
 
-                    {{-- <div class="page-inner">
+                {{-- <div class="page-inner">
                     <div class="page-header">
                         <h4 class="page-title">Dashboard</h4>
                         <ul class="breadcrumbs">
@@ -496,12 +500,12 @@
                     </div>
                     <div class="page-category">Inner page content goes here</div>
                 </div> --}}
-                </div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul class="nav">
-                                {{-- <li class="nav-item">
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="https://www.themekita.com">
                                     ThemeKita
                                 </a>
@@ -517,14 +521,14 @@
                                 </a>
                             </li>
                         </ul> --}}
-                        </nav>
-                        <div class="copyright ml-auto">
-                            {{ now()->day }}, {{ now()->year }}, made with <i
-                                class="fa fa-heart heart text-danger"></i> by <a href="#">Jack Steven</a>
-                        </div>
+                    </nav>
+                    <div class="copyright ml-auto">
+                        {{ now()->day }}, {{ now()->year }}, made with <i class="fa fa-heart heart text-danger"></i>
+                        by <a href="#">Jack Steven</a>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
+        </div>
 
         </div>
         <!--   Core JS Files   -->

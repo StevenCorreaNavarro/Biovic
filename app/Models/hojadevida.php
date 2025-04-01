@@ -81,8 +81,6 @@ class hojadevida extends Model
     public function ubiFisica (){
         return $this->belongsTo('App\Models\UbiFisica');
     }
-    
-
     //Relacion uno  a muchos envio - un equipo tiene muchos reportes
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');

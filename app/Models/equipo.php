@@ -28,4 +28,9 @@ class Equipo extends Model {
     {
         return $this->hasMany(Marca::class);
     }
+
+
+
+
+    
 }

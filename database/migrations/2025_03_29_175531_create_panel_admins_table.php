@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
-            $table->id(); // entero grande sin signo 
-            $table->string('nombre_equipo')->unique();
-            
+        Schema::create('panel_admins', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('panel_admins');
     }
 };
