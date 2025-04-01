@@ -7,7 +7,7 @@
         <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
         <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
         <link rel="icon" href="{{ asset('atlantis/assets/img/icon.ico') }}" type="image/x-icon" />
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <!-- Fonts and icons -->
         <script src="{{ asset('atlantis/assets/js/plugin/webfont/webfont.min.js') }}"></script>
         <script>
@@ -97,7 +97,7 @@
                                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                     aria-expanded="false">
                                     <div class="avatar-sm">
-                                        <img src="{{ asset('atlantis/assets/img/perfil.jpg') }}" alt="..."
+                                        <img src="{{ asset('atlantis/assets/img/perfil.png') }}"alt="..."
                                             class="avatar-img rounded-circle">
                                     </div>
                                 </a>
@@ -105,8 +105,10 @@
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
                                             <div class="user-box">
-                                                <div class="avatar-lg"><img
-                                                        src="{{ asset('atlantis/assets/img/perfil.jpg') }}"
+                                                <div class="avatar-lg">
+                                                    {{-- <i class="fa fa-user-circle"></i> --}}
+                                                    <img
+                                                        src="{{ asset('atlantis/assets/img/perfil.png') }}"
                                                         alt="image profile" class="avatar-img rounded">
                                                 </div>
                                                 <div class="u-text">
@@ -148,7 +150,7 @@
                     <div class="sidebar-content">
                         <div class="user">
                             <div class="avatar-sm float-left mr-2">
-                                <img src="{{ asset('atlantis/assets/img/perfil.jpg') }}" alt="..."
+                                <img src="{{ asset('atlantis/assets/img/perfil.png') }}"alt="..."
                                     class="avatar-img rounded-circle">
                             </div>
                             <div class="info">
