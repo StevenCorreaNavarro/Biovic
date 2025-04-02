@@ -17,31 +17,43 @@
     <div class="box-2">
         <div class="container">
             <br>
-            <center>
+            <center>`
                 <h1>Asignar Modulo</h1>
                 <br>
                 <form action="{{ route('adminaso.storeaso') }}" method="POST" enctype="multipart/form-data">
                     @csrf {{-- token o seguridad  --}}
                     <br>
-                    <div >
+
+                    <div>
+                        <h1>Equipo</h1>
+                        <label for="equipo_id" class="form-label">Selecciona o escribe un equipo:</label>
+                        <input type="text" id="equipo" name="equipo_id" class="form-control" list="equipos-list" value="{{ old('nombre_equipo') }}"  required>
+                        <datalist id="equipos-list" >
+                            @foreach ($datoe as $equipo)
+                                <option value="{{ $equipo->id }}" data-id="{{ $equipo->equipo_id }} " > {{ $equipo->nombre_equipo }}</option>
+                            @endforeach
+                        </datalist>
+                    </div>
+                    {{-- <div>
                         <h1>Equipo:</h1>
-                        <select name="equipo_id"  class="form-control form-select"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
+                        <select name="equipo_id"  class="form-control form-select"> OJO CUIDAR ESTE NAME COMO IDENTIFICADOR 
                             @foreach ($datoe as $user)
                                 <option class="px-20 mx-100" value="{{ $user->id}}"> {{ $user->nombre_equipo }}
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                     <br>
                     <br><br>
-                    <div >
+                    <div>
                         <h1>Marca</h1>
-                        <select  name="nombre_marca"  class="form-control form-select"> {{-- OJO CUIDAR ESTE NAME COMO IDENTIFICADOR --}}
-                            @foreach ($datom as $rol)
-                                <option value="{{ $rol->nombre_marca }}"> {{ $rol->nombre_marca }}
-                                </option>
+                        <label for="nombre_marca" class="form-label">Selecciona o escribe una marca:</label>
+                        <input type="text" id="marca" name="nombre_marca" class="form-control" list="marca-list" value="{{ old('nombre_marca') }}"  required>
+                        <datalist id="marca-list" >
+                            @foreach ($datom as $marca)
+                                <option value="{{ $marca->nombre_marca }}" data-id="{{ $marca->id }} " >{{ $equipo->nombre_marca }}</option>
                             @endforeach
-                        </select>
+                        </datalist>
                     </div>
                     <br>
                     <br>

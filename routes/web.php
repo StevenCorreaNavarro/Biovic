@@ -68,7 +68,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/listar', [PanelAdminController::class, 'listar'])->name('adminlista.listar');
     Route::get('/admin/asociar', [PanelAdminController::class, 'asociar'])->name('adminaso.asociar');
 
-
+    Route::get('/admin/asociar/mod', [PanelAdminController::class, 'asociarmod'])->name('adminaso.asociarmod');
+    Route::post('/admin/store_aso/mod', [PanelAdminController::class, 'storeasomod'])->name('adminasomod.storeasomod');
 
     Route::get('/admin/lista_registrada', [PanelAdminController::class, 'lista_Registrada'])->name('adminlistaR.lista_registrada');
     Route::get('/admin/create', [PanelAdminController::class, 'create'])->name('admin.create');

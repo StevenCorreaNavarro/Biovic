@@ -19,6 +19,8 @@
 
     @section('content')
         <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-0">
+            <h1 style="margin-top: 4rem; text-align:center">Registrar nombre de equipo</h1>
+     
             <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
                 <div >

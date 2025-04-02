@@ -179,11 +179,26 @@ class PanelAdminController extends Controller
     }
 
 
+    public function asociarmod(Request $request)
+    {
+        $datoma = Marca::all();
+        $datomo = Modelo::all();
+        return view('equipos.asociardos', compact('datoma', 'datomo'));
+    }
+    public function storeasomod(Request $request)
+    {
+        $datos = new Modelo();
+        $datos->nombre_modelo = $request->nombre_modelo;
+        $datos->marca_id = $request->marca_id;
+        $datos->save();
+        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar ruta 
+    }
 
+
+
+    
     public function asociar(Request $request)
     {
-        // $teacher=Teacher::pluck('id');
-
         $datom = Marca::all();
         $datoe = Equipo::all();
         return view('equipos.asociar', compact('datoe', 'datom'));
@@ -191,14 +206,11 @@ class PanelAdminController extends Controller
 
     public function storeaso(Request $request)
     {
-
-
-        // $datom = new Equipo();
         $datom = new Marca();
         $datom->nombre_marca = $request->nombre_marca;
         $datom->equipo_id = $request->equipo_id;
         $datom->save();
-        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar ruta 
+        return redirect()->route('adminaso.asociarmod');        // para llevar al la lista o direccionar ruta 
     }
 
     public function store_tres(Request $request)
@@ -237,7 +249,7 @@ class PanelAdminController extends Controller
         Equipo::create([
             'nombre_equipo' => $request->nombre_equipo,
         ]);
-        return redirect()->route('admin.create_dos')->with('success', 'Registro guardado correctamente.');
+        return redirect()->route('adminaso.asociar')->with('success', 'Registro guardado correctamente.');
 
 
 

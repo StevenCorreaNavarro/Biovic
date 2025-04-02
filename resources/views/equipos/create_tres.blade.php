@@ -15,7 +15,7 @@
     @extends('admin.admin.layouts.app')
     @section('content')
         <div  style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-0">
-            <h1>Hola desde create tres modelos</h1>
+        <h1 style="margin-top: 4rem; text-align:center">Registrar modelo de equipo</h1>
             <form action="{{ route('admin.store_tres') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
                 <div >
@@ -25,7 +25,7 @@
                         value="{{ old('nombre_modelo') }}" required>
                     <datalist id="equipos-list">
                         @foreach ($modelos as $modelo)
-                            <option value="{{ $modelo->nombre_modelo }}" data-id="{{ $modelo  ->id }}"></option>
+                            <option value="{{ $modelo->nombre_modelo }}" data-id="{{ $modelo->id }}"></option>
                         @endforeach
                     </datalist>
 

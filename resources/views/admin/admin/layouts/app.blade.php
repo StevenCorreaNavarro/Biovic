@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,15 +35,15 @@
 </head>
 
 <body>
-    <div class="wrapper" >
-        <div style="position: fixed";>
+    <div class="wrapper">
+        <div style="position: fixed"  >
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="blue">
 
                 <a href="{{ route('menu') }}" class="logo d-flex align-items-center justify-content-center">
                     <img src=" {{ asset('IMG/logocircular.png') }}" alt="VitalSoft" height="40"
                         alt="navbar brand" class="navbar-brand">
-                    <h1 class="logo "  
+                    <h1 class="logo "
                         style="font-weight: bold; color:white; padding:12%;">Biovic</h1>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
@@ -65,7 +64,7 @@
 
 
             <!-- Navbar Header -->
-           
+
             <!-- End Navbar -->
         </div>
 
@@ -87,7 +86,7 @@
                 <div class="sidebar-content">
                     <div class="user">
                         <div class="avatar-sm float-left mr-2">
-                            <img src="{{ asset('atlantis/assets/img/perfil.png') }}"alt="..."
+                            <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
                                 class="avatar-img rounded-circle">
                         </div>
                         <div class="info">
@@ -118,7 +117,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"><span
@@ -142,27 +141,27 @@
 
 
                     <ul class="nav nav-primary">
-                                     <li class="nav-item {{ request()->routeIs('adminad.dashboard') ? 'active' : '' }}">
-                                <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                                    <i class="fas fa-home"></i>
-                                    <p>Dashboard</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="dashboard">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href="{{ asset('atlantis/demo1/index.html') }}">
-                                                <span class="sub-item">Dashboard 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('atlantis/demo2/index.html') }}">
-                                                <span class="sub-item">Dashboard 2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                        <li class="nav-item {{ request()->routeIs('adminad.dashboard') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="dashboard">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a href="{{ asset('atlantis/demo1/index.html') }}">
+                                            <span class="sub-item">Dashboard 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ asset('atlantis/demo2/index.html') }}">
+                                            <span class="sub-item">Dashboard 2</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -187,22 +186,24 @@
 
                             <div class="collapse {{ request()->routeIs('admin.*') ? 'show' : '' }}" id="post">
                                 <ul class="nav nav-collapse">
-                                    <li
-                                        class="{{ request()->routeIs(['admin.create', 'admin.store']) ? 'active' : '' }}">
-                                        <a href="{{ route('admin.create') }}">
-                                            <span class="sub-item">Crear equipo</span>
+                                    {{-- <li class="{{ request()->routeIs(['admin.create_tres']) ? 'active' : '' }}">
+                                        <a href="{{ route('admin.create_tres') }}">
+                                            <span class="sub-item">Crear modelo</span>
                                         </a>
                                     </li>
                                     <li class="{{ request()->routeIs(['admin.create_dos']) ? 'active' : '' }}">
                                         <a href="{{ route('admin.create_dos') }}">
                                             <span class="sub-item">Crear marca</span>
                                         </a>
-                                    </li>
-                                    <li class="{{ request()->routeIs(['admin.create_tres']) ? 'active' : '' }}">
-                                        <a href="{{ route('admin.create_tres') }}">
-                                            <span class="sub-item">Crear modelo</span>
+                                    </li> --}}
+                                    <li
+                                        class="{{ request()->routeIs(['admin.create', 'admin.store']) ? 'active' : '' }}">
+                                        <a href="{{ route('admin.create') }}">
+                                            <span class="sub-item">Crear equipo</span>
                                         </a>
                                     </li>
+                           
+
 
 
                                 </ul>
@@ -219,14 +220,15 @@
                                 id="slider">
                                 <ul class="nav nav-collapse">
 
-                                    <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminlista.listar') }}">
-                                            <span class="sub-item">Lista equipos</span>
+                                    <li class="{{ request()->routeIs(['adminlista.listar_tres']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlista.listar_tres') }}">
+                                            <span class="sub-item">Lista modelos</span>
                                         </a>
                                         {{-- <a href="">
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
+                                    
                                     <li class="{{ request()->routeIs(['adminlista.listar_dos']) ? 'active' : '' }}">
                                         <a href="{{ route('adminlista.listar_dos') }}">
                                             <span class="sub-item">Lista marcas</span>
@@ -235,9 +237,10 @@
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
-                                    <li class="{{ request()->routeIs(['adminlista.listar_tres']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminlista.listar_tres') }}">
-                                            <span class="sub-item">Lista modelos</span>
+                                    
+                                    <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlista.listar') }}">
+                                            <span class="sub-item">Lista equipos</span>
                                         </a>
                                         {{-- <a href="">
                                             <span class="sub-item">lista</span>
@@ -248,7 +251,8 @@
                                 </ul>
                             </div>
                         </li>
-                        
+
+          
                         <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#aso">
                                 <i class="fas fa-table"></i>
@@ -259,17 +263,18 @@
                             <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
                                 id="aso">
                                 <ul class="nav nav-collapse">
+                                    <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociarmod') }}">
+                                            <span class="sub-item">Asociar Modelo</span>
+                                        </a>
+                                    </li>
 
                                     <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
                                         <a href="{{ route('adminaso.asociar') }}">
                                             <span class="sub-item">Asociar marca</span>
                                         </a>
-                                        {{-- <a href="">
-                                            <span class="sub-item">lista</span>
-                                        </a> --}}
                                     </li>
-
-
+                                    
                                 </ul>
                             </div>
                         </li>
@@ -290,7 +295,7 @@
                                         </a>
                                     </li>
 
-                            
+
                                 </ul>
                             </div>
                         </li>
@@ -332,7 +337,7 @@
                             </span>
                             <h4 class="text-section">Componentes</h4>
                         </li>
-                     
+
                         <li class="nav-item">
                             <a data-toggle="collapse" href="#base">
                                 <i class="fas fa-layer-group"></i>
@@ -573,75 +578,75 @@
                 <div class="page-inner">
                     <div class="">
                         @yield('content')
-                  
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright ml-auto">
-                        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+
                     </div>
                 </div>
-            </footer>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.themekita.com">
+                                        ThemeKita
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        Help
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        Licenses
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright ml-auto">
+                            2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
         </div>
+        <!--   Core JS Files   -->
+        <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/popper.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js')}}"></script>
 
-    </div>
-    <!--   Core JS Files   -->
-    <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js')}}"></script>
-    <script src="{{ asset('atlantis/assets/js/core/popper.min.js')}}"></script>
-    <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js')}}"></script>
+        <!-- jQuery UI -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
 
-    <!-- jQuery UI -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
-
-    <!-- jQuery Scrollbar -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 
 
-    <!-- Chart JS -->
-    <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js')}}"></script>
+        <!-- Chart JS -->
+        <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js')}}"></script>
 
-    <!-- jQuery Sparkline -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
+        <!-- jQuery Sparkline -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
 
-    <!-- Chart Circle -->
-    <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
+        <!-- Chart Circle -->
+        <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
 
-    <!-- Datatables -->
-    <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js')}}"></script>
+        <!-- Datatables -->
+        <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js')}}"></script>
 
-    <!-- Bootstrap Notify -->
-    <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+        <!-- Bootstrap Notify -->
+        <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <!-- jQuery Vector Maps -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js')}}"></script>
-    <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js')}}"></script>
+        <!-- jQuery Vector Maps -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js')}}"></script>
 
-    <!-- Sweet Alert -->
-    <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
+        <!-- Sweet Alert -->
+        <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
 
-    <!-- Atlantis JS -->
-    <script src="{{ asset('atlantis/assets/js/atlantis.min.js')}}"></script>
+        <!-- Atlantis JS -->
+        <script src="{{ asset('atlantis/assets/js/atlantis.min.js')}}"></script>
 </body>
 
 </html>
