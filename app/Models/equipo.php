@@ -26,7 +26,7 @@ class Equipo extends Model {
     }
     public function marcas()
     {
-        return $this->hasMany(Marca::class, 'equipo_id', 'id');
+        return $this->hasMany(Marca::class, 'equipo_id', 'id','nombre_equipo');
     }
 
 

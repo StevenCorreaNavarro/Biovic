@@ -30,9 +30,10 @@
                                 value="{{ old('nombre_marca') }}" required>
                             <datalist id="marca-list">
                                 @foreach ($datoma as $marca)
-                                    <option value="{{ $marca->id }}" data-id="{{ $marca->marca_id }} ">
-                                        {{ $marca->nombre_marca }}</option>
-                                @endforeach
+                                <option value="{{ $marca->id }}" data-id="{{ $marca->marca_id }} {{ $marca->equipo }}">
+                                    {{ $marca->nombre_marca }} -> {{ $marca->equipo->nombre_equipo ?? 'Sin equipo' }}
+                                </option>
+                            @endforeach
                             </datalist>
                         </div>
                         <br>

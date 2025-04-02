@@ -181,8 +181,11 @@ class PanelAdminController extends Controller
 
     public function asociarmod(Request $request)
     {
-        $datoma = Marca::all();
+        // $datoma = Equipo::with('marcas')->get();
+        // $datoma = Equipo::all();
+        $datoma = Marca::with('equipo')->get();
         $datomo = Modelo::all();
+        
         return view('equipos.asociardos', compact('datoma', 'datomo'));
     }
     public function storeasomod(Request $request)

@@ -98,7 +98,7 @@ class HojadevidaController extends Controller
     {
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
-        $equipos = Equipo::all();
+        $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
         $tecPredos = TecPredo::all();
         $codiecri = codEcri::all();
         $clariesgo = Clariesgo::all();

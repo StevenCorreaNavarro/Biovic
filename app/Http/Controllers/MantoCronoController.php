@@ -45,7 +45,7 @@ class MantoCronoController extends BaseController
     {
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
-        $equipos = Equipo::all();
+        $equipos = Equipo::orderBy('nombre_equipo', 'asc');
         $tecPredos = TecPredo::all();
         $codiecri = codEcri::all();
         $clariesgo = Clariesgo::all();

@@ -18,7 +18,7 @@
         <div class="container">
             <br>
             <center>`
-                <h1>Asignar Modulo</h1>
+                <h1>Asignar marca a equipo</h1>
                 <br>
                 <form action="{{ route('adminaso.storeaso') }}" method="POST" enctype="multipart/form-data">
                     @csrf {{-- token o seguridad  --}}
@@ -53,7 +53,7 @@
                         <input type="text" id="marca" name="nombre_marca" class="form-control" list="marca-list" value="{{ old('nombre_marca') }}"  required>
                         <datalist id="marca-list" >
                             @foreach ($datom as $marca)
-                                <option value="{{ $marca->nombre_marca }}" data-id="{{ $marca->id }} " >{{ $equipo->nombre_equipo }}</option>
+                                <option value="{{ $marca->nombre_marca }}" data-id="{{ $marca->id }} " >{{ $equipo->nombre_marca }}</option>
                             @endforeach
                         </datalist>
                     </div>

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 // Modelo Modelo
 class Marca extends Model {
     use HasFactory;
-
+    // public function equipos() {
+    //     return $this->hasMany(modelo::class);
+    // }
     
     protected $fillable = ['nombre_marca', 'modelo_id','equipo_id']; // Asegurar que sea "equipo_id"
 
@@ -26,10 +28,14 @@ class Marca extends Model {
 
 
     use HasFactory;
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class, 'equipo_id', 'id');
+    }
     
     public function equipo()
     {
-        return $this->belongsTo(Equipo::class, 'equipo_id', 'id');
+        return $this->belongsTo(Equipo::class, 'equipo_id', 'id','nombre_equipo');
     }
 
     public function modelos()
