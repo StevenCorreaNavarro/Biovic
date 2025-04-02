@@ -278,12 +278,7 @@
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
-            <tr>
-                <th style="width: 25%;"></th>
-                <th style=" width: 15%;"></th>
-                <th style=" width: 25%;"></th>
-                <th style=" width: 15%;"></th>
-            </tr>
+ 
        
             <tr>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
