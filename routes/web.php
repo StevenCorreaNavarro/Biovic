@@ -167,6 +167,15 @@ Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++
     Route::get('/alarma_calibracion', function () {
         return view('alarma_calibracion');
     });
+
+
+
+    Route::get('/mantenimiento_demosta', function () {
+        return view('mantenimiento_demosta');
+    });
+    Route::get('/inventario', function () {
+        return view('inventario');
+    });
     Route::get('/mantenimiento_demosta', function () {
         return view('mantenimiento_demosta');
     });
