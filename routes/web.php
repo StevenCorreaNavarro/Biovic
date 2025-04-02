@@ -46,13 +46,17 @@ Route::get('/', function () {
 //     return view('admin.admin.layouts.app');
 // });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+
+Route::middleware(['auth', 'admin'])->group(function () {//++++++++++++++++++++++++++++++++++++++++++++++++ GRUPOS RUTAS ADMINISTRADOR COMIENZO
     // Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {
     //     return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
     // });
     // Route::get('/get-marcas/{modelo_id}', function ($modelo_id) {
     //     return response()->json(Marca::where('equipo_id', $modelo_id)->get());
     // });
+
+
+
 
     // Route::get('marcas/{equipo_id}', [PanelAdminController::class, 'getMarcas']);
     // Route::get('modelos/{marca_id}', [PanelAdminController::class, 'getModelos']);
@@ -89,12 +93,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
     // Route::delete('/hojadevida/{dato}', [HojadevidaController::class, 'destroy'])->name('hojadevida.stores');
     // Route::get('hojadevida/{hdv}', [HojadevidaController::class, 'show'])->name('hojadevida.show');
-});
+});//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ GRUPOS RUTAS ADMINISTRADOR FIN
 
 
 
 
-Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo ingresar primero para navegar
+Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo ingresar primero para navegar USUARIO NORMAL
 
 
 
@@ -223,7 +227,7 @@ Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++
     Route::get('/usuario/registro', function () {
         return view('admin.users.registro');
     })->middleware(['auth', 'verified'])->name('users.create');
-}); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin ingresar primero para navegar
+}); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin ingresar primero para navegar FIN USUARIO NORMAL
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
