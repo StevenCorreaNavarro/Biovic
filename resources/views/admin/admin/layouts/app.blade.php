@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="{{ asset('atlantis/assets/img/icon.ico')}}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('atlantis/assets/img/icon.ico') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
-    <script src="{{ asset('atlantis/assets/js/plugin/webfont/webfont.min.js')}}"></script>
+    <script src="{{ asset('atlantis/assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
             google: {
@@ -18,7 +18,7 @@
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
                     "simple-line-icons"
                 ],
-                urls: ["{{ asset('atlantis/assets/css/fonts.min.css')}}"]
+                urls: ["{{ asset('atlantis/assets/css/fonts.min.css') }}"]
             },
             active: function() {
                 sessionStorage.fonts = true;
@@ -27,24 +27,23 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/atlantis.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/atlantis.min.css') }}">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/demo.css')}}">
+    <link rel="stylesheet" href="{{ asset('atlantis/assets/css/demo.css') }}">
 </head>
 
 <body>
     <div class="wrapper">
-        <div style="position: fixed"  >
+        <div style="position: fixed">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="blue">
 
                 <a href="{{ route('menu') }}" class="logo d-flex align-items-center justify-content-center">
-                    <img src=" {{ asset('IMG/logocircular.png') }}" alt="VitalSoft" height="40"
-                        alt="navbar brand" class="navbar-brand">
-                    <h1 class="logo "
-                        style="font-weight: bold; color:white; padding:12%;">Biovic</h1>
+                    <img src=" {{ asset('IMG/logocircular.png') }}" alt="VitalSoft" height="40" alt="navbar brand"
+                        class="navbar-brand">
+                    <h1 class="logo " style="font-weight: bold; color:white; padding:12%;">Biovic</h1>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,7 +201,7 @@
                                             <span class="sub-item">Crear equipo</span>
                                         </a>
                                     </li>
-                           
+
 
 
 
@@ -211,7 +210,7 @@
                         </li>
                         <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#slider">
-                                <i class="fas fa-table"></i>
+                                <i class="fas fa-th-list"></i>
                                 <p>Listas equipos</p>
                                 <span class="caret"></span>
                             </a>
@@ -228,7 +227,7 @@
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
-                                    
+
                                     <li class="{{ request()->routeIs(['adminlista.listar_dos']) ? 'active' : '' }}">
                                         <a href="{{ route('adminlista.listar_dos') }}">
                                             <span class="sub-item">Lista marcas</span>
@@ -237,7 +236,7 @@
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
-                                    
+
                                     <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
                                         <a href="{{ route('adminlista.listar') }}">
                                             <span class="sub-item">Lista equipos</span>
@@ -252,7 +251,7 @@
                             </div>
                         </li>
 
-          
+
                         <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#aso">
                                 <i class="fas fa-table"></i>
@@ -263,18 +262,19 @@
                             <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
                                 id="aso">
                                 <ul class="nav nav-collapse">
+                                <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociar') }}">
+                                            <span class="sub-item">Asociar marca</span>
+                                        </a>
+                                    </li>
                                     <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
                                         <a href="{{ route('adminaso.asociarmod') }}">
                                             <span class="sub-item">Asociar Modelo</span>
                                         </a>
                                     </li>
 
-                                    <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminaso.asociar') }}">
-                                            <span class="sub-item">Asociar marca</span>
-                                        </a>
-                                    </li>
-                                    
+                                 
+
                                 </ul>
                             </div>
                         </li>
@@ -326,7 +326,7 @@
 
 
 
-
+{{-- 
 
 
 
@@ -566,7 +566,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -603,7 +603,8 @@
                             </ul>
                         </nav>
                         <div class="copyright ml-auto">
-                            2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+                            2018, made with <i class="fa fa-heart heart text-danger"></i> by <a
+                                href="https://www.themekita.com">ThemeKita</a>
                         </div>
                     </div>
                 </footer>
@@ -611,42 +612,42 @@
 
         </div>
         <!--   Core JS Files   -->
-        <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js')}}"></script>
-        <script src="{{ asset('atlantis/assets/js/core/popper.min.js')}}"></script>
-        <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
 
         <!-- jQuery UI -->
-        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
-        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
 
         <!-- jQuery Scrollbar -->
-        <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 
         <!-- Chart JS -->
-        <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js') }}"></script>
 
         <!-- jQuery Sparkline -->
-        <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
         <!-- Chart Circle -->
-        <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js') }}"></script>
 
         <!-- Datatables -->
-        <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
         <!-- Bootstrap Notify -->
-        <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
         <!-- jQuery Vector Maps -->
-        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js')}}"></script>
-        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}"></script>
 
         <!-- Sweet Alert -->
-        <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
         <!-- Atlantis JS -->
-        <script src="{{ asset('atlantis/assets/js/atlantis.min.js')}}"></script>
+        <script src="{{ asset('atlantis/assets/js/atlantis.min.js') }}"></script>
 </body>
 
 </html>

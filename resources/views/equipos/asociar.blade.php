@@ -34,6 +34,8 @@
                             @endforeach
                         </datalist>
                     </div>
+                    
+                    
                     {{-- <div>
                         <h1>Equipo:</h1>
                         <select name="equipo_id"  class="form-control form-select"> OJO CUIDAR ESTE NAME COMO IDENTIFICADOR 
@@ -51,7 +53,7 @@
                         <input type="text" id="marca" name="nombre_marca" class="form-control" list="marca-list" value="{{ old('nombre_marca') }}"  required>
                         <datalist id="marca-list" >
                             @foreach ($datom as $marca)
-                                <option value="{{ $marca->nombre_marca }}" data-id="{{ $marca->id }} " >{{ $equipo->nombre_marca }}</option>
+                                <option value="{{ $marca->nombre_marca }}" data-id="{{ $marca->id }} " >{{ $equipo->nombre_equipo }}</option>
                             @endforeach
                         </datalist>
                     </div>
@@ -63,6 +65,9 @@
                     <br>
                 </form>
             </center>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>

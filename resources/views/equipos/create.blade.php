@@ -24,9 +24,10 @@
             <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
                 <div >
-                    <label for="nombre_equipo" class="form-label">Selecciona o escribe un equipo:</label>
+                    <label for="nombre_equipo" class="form-label">Escribe un equipo:</label>
                     <input type="text" id="equipo" name="nombre_equipo" class="form-control" list="equipos-list" value="{{ old('nombre') }}"  required>
                     <datalist id="equipos-list" >
+                       
                         @foreach ($equipos as $equipo)
                             <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }} " ></option>
                         @endforeach
