@@ -17,7 +17,6 @@
 
         body {
             width: 100vw;
-            /* font-family: Arial, sans-serif; */
             box-sizing: border-box;
             font-size: 10px;
             padding: 0%;
@@ -28,19 +27,8 @@
 
         }
 
-        .container {
-            /* padding: 0; */
-            /* margin: 0; */
-            /* position: relative; */
-            /* width: 100%; */
-            /* margin: auto; */
-            /* text-align: center;  */
-            /* border: 2px solid rgb(255, 255, 255); */
-        }
-
         .ln {
             border: 1px solid rgb(235, 235, 235);
-            /* width: 100%; */
             padding: 0;
             margin: 0;
 
@@ -48,56 +36,19 @@
 
         table {
             width: 100%;
-            /* border: 1px solid rgb(0, 0, 0); */
-            /* border-collapse: collapse; */
-            /* margin-top: 20px; */
         }
 
         .h {
-            /* height: 33.6%; */
+
             width: 100%;
             padding: 0;
             margin: 0;
 
         }
-
-        /* .centers {
-            justify-content: center;
-            align-items: center;
-        } */
-
-
         td {
-
-            /* font-size: 80%; */
-
-            /* padding: 8px; */
             text-align: left;
         }
 
-        body {
-            /* font-family:'Gill Sans', 'Gill Sans MT' */
-            /* font-family:'Arial', sans-serif */
-
-        }
-
-        /* .container {
-            width: 100%;
-            padding: 20px;
-            border: 1px solid black;
-        } */
-
-
-        /* div, */
-        .tabla th,
-        .tabla td {
-
-            /* align-items: center; */
-            /* border: 1px solid rgb(59, 37, 37); */
-            /* margin: 0%;
-            padding: 0px; */
-
-        }
     </style>
 
     <title>Title</title>
@@ -133,15 +84,12 @@
             </tr>
         </table>
 
-
-
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);  background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">DESCRIPCION DEL EQUIPO</h4>
                 </th>
             </tr>
-
         </table>
 
 
@@ -266,7 +214,6 @@
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MAX</td>
@@ -275,7 +222,6 @@
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TEMPERATURA</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 °C</td>
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MIN</td>
@@ -284,7 +230,6 @@
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VELOCIDAD</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PRESION</td>
@@ -293,7 +238,6 @@
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 W</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">HUMEDAD</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 %</td>
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PESO</td>
@@ -302,10 +246,7 @@
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">MANUAL</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-
             </tr>
-
-
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
@@ -320,53 +261,49 @@
                 <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">MARCA</th>
                 <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">MODELO</th>
                 <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">SERIE</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">COSTO</th>
-                
+                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">COSTO</th>         
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
-               
-
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MAX</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 VAC</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CORRIENTE MAX</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TEMPERATURA</td>
-               
-
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MIN</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 VAC</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CORRIENTE MIN</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VELOCIDAD</td>
-            
-
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PRESION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">POTENCIA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 W</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">HUMEDAD</td>
-   
-
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PESO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 KG</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIMENSIONES</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">MANUAL</td>
-          
-
+                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
 
 
