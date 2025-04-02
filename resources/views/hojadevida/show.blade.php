@@ -109,10 +109,10 @@
     <title>Title</title>
 </head>
 
-<body>
+<body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
     {{-- <div> --}}
 
-    <div style="position: absolute; top: 0px; left: 0px; width:794px; background-color: rgb(236, 236, 236);">
+    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(236, 236, 236);">
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <td rowspan="3"
