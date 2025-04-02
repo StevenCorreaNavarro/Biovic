@@ -50,7 +50,7 @@
 
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                    Descripcion de quipo
+                    Descripcion de equipo
                 </h1>
                 @csrf {{-- LLave de seguridad obligatoria --}}
                 

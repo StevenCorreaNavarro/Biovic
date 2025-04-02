@@ -27,6 +27,7 @@
             border: 1px solid rgb(235, 235, 235);
             padding: 0;
             margin: 0;
+           
         }
 
         table {
@@ -38,11 +39,13 @@
             padding: 0;
             margin: 0;
         }
+
         td {
            
             text-align: left;
             padding: 1px;
             /* margin: 1px; */
+            
         }
     </style>
     <title>PDF hoja de vida</title>
@@ -82,15 +85,15 @@
                 </th>
             </tr>
         </table>
-        <table style=" text-align: center; border:0px solid rgb(255, 255, 255);">
+        <table  style=" text-align: center; border:0px solid rgb(255, 255, 255);">
             <!-- 7 Filas en las primeras 2 columnas -->
             <tr >
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">SERVICIO: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td rowspan="7" style="width: 20%; border: 1px solid rgb(196, 196, 196); ">
-                    <img src="{{ asset('storage') . '/' . $hdvs->foto }}" width="" height="120px"alt="">
+                <td rowspan="7" style=" align-items: center; align-content: center;  border: 1px solid rgb(196, 196, 196); ">
+                    <img style=""   src="{{ asset('storage') . '/' . $hdvs->foto }}" height="145px" alt="">
                 </td>
             </tr>
             <tr class="f">
