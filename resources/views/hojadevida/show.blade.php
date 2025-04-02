@@ -39,9 +39,10 @@
             margin: 0;
         }
         td {
+           
             text-align: left;
             padding: 1px;
-            margin: 1px;
+            /* margin: 1px; */
         }
     </style>
     <title>PDF hoja de vida</title>
@@ -68,11 +69,12 @@
                 </td>
             </tr>
             <tr style=" background-color:rgb(0, 64, 255) ">
-                <td style="text-align: center; border: 1px solid rgb(0, 0, 255);">
+                <td style="text-align: center; border: 1px solid rgb(0, 0, 0);">
                     <h4 style="padding:0%;margin:0; color:white">DATO 3</h4>
                 </td>
             </tr>
         </table>
+        <br>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);  background-color:rgb(0, 64, 255) ">
