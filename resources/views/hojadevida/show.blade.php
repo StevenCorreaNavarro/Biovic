@@ -286,7 +286,7 @@
             <tr>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="fwidth: 25%;ont-weight: bold;border: 1px solid rgb(255, 255, 255);">FABRICANTE</td>
+                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FABRICANTE</td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
             </tr>
             <tr>
