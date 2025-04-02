@@ -36,14 +36,14 @@
 
 <body>
     <div class="wrapper">
-        <div style="position: fixed">
-            <!-- Logo Header -->
-            <div class="logo-header" data-background-color="blue">
+        <div  style="position: fixed; width: 100%; z-index: 1;">
+            <!-- Logo Header class="main-header"-->
+            <div class="logo-header scrollbar" data-background-color="blue">
 
                 <a href="{{ route('menu') }}" class="logo d-flex align-items-center justify-content-center">
                     <img src=" {{ asset('IMG/logocircular.png') }}" alt="VitalSoft" height="40" alt="navbar brand"
                         class="navbar-brand">
-                    <h1 class="logo " style="font-weight: bold; color:white; padding:12%;">Biovic</h1>
+                    <h1 class="logo  " style="font-weight: bold; color:white; padding:12%;">Biovic</h1>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,6 +208,34 @@
                                 </ul>
                             </div>
                         </li>
+ 
+
+                        <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#aso">
+                                <i class="fas fa-table"></i>
+                                <p>Asociar equipo</p>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
+                                id="aso">
+                                <ul class="nav nav-collapse">
+                                <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociar') }}">
+                                            <span class="sub-item">Asociar marca</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociarmod') }}">
+                                            <span class="sub-item">Asociar Modelo</span>
+                                        </a>
+                                    </li>
+
+                                 
+
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#slider">
                                 <i class="fas fa-th-list"></i>
@@ -251,33 +279,6 @@
                             </div>
                         </li>
 
-
-                        <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#aso">
-                                <i class="fas fa-table"></i>
-                                <p>Asociar equipo</p>
-                                <span class="caret"></span>
-                            </a>
-
-                            <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
-                                id="aso">
-                                <ul class="nav nav-collapse">
-                                <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminaso.asociar') }}">
-                                            <span class="sub-item">Asociar marca</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminaso.asociarmod') }}">
-                                            <span class="sub-item">Asociar Modelo</span>
-                                        </a>
-                                    </li>
-
-                                 
-
-                                </ul>
-                            </div>
-                        </li>
                         <li class="nav-item {{ request()->routeIs('adminlistaR.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#unit">
                                 <i class="fas fa-layer-group"></i>
