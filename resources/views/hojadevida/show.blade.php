@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="{{ asset('css/descargarpdf.css') }}">
     <style>
         * {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
         }
 
         body {
             width: 100vw;
             box-sizing: border-box;
-            font-size: 10px;
+            font-size: 11px;
             padding: 0%;
         }
 
@@ -36,12 +37,12 @@
 
         .h {
             width: 100%;
-            padding: 0;
-            margin: 0;
+            padding: 0px;
+            margin: 0px;
         }
 
         td {
-           
+            font-size: 8px;
             text-align: left;
             padding: 1px;
             /* margin: 1px; */
@@ -92,8 +93,11 @@
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td rowspan="7" style=" align-items: center; align-content: center;  border: 1px solid rgb(196, 196, 196); ">
-                    <img style=""   src="{{ asset('storage') . '/' . $hdvs->foto }}" height="145px" alt="">
+                <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); " >
+                    <center>
+                        <img style=""   src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px" alt="145px">
+                    </center>
+                    
                 </td>
             </tr>
             <tr class="f">
