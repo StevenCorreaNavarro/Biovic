@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
-
-
-
     <link rel="stylesheet" href="{{ asset('css/descargarpdf.css') }}">
     <style>
         * {
@@ -24,40 +21,33 @@
 
         .f {
             background-color: rgb(242, 242, 242);
-
         }
 
         .ln {
             border: 1px solid rgb(235, 235, 235);
             padding: 0;
             margin: 0;
-
         }
 
         table {
-            width: 100%;
+            width: 100%;            
         }
 
         .h {
-
             width: 100%;
             padding: 0;
             margin: 0;
-
         }
         td {
             text-align: left;
+            padding: 1px;
+            margin: 1px;
         }
-
     </style>
-
-    <title>Title</title>
+    <title>PDF hoja de vida</title>
 </head>
 
 <body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
-    
-    {{-- <div> --}}
-
     <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);  bold;"   >
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr style=" background-color:rgb(0, 64, 255) ">
@@ -83,7 +73,6 @@
                 </td>
             </tr>
         </table>
-
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);  background-color:rgb(0, 64, 255) ">
@@ -91,26 +80,15 @@
                 </th>
             </tr>
         </table>
-
-
-
-
-        <table class="table table-striped" style=" text-align: center; border:2px solid rgb(255, 255, 255);">
-            <tr>
-                <th style="width: 25%;"></th>
-                <th style=" width: 15%;"></th>
-                <th style=" width: 25%;"></th>
-                <th style=" width: 15%;"></th>
-                <th style=" width: 20%;"></th>
-            </tr>
+        <table style=" text-align: center; border:0px solid rgb(255, 255, 255);">
             <!-- 7 Filas en las primeras 2 columnas -->
             <tr >
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">SERVICIO: </td>
-                <td style="border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td rowspan="7" style="border: 1px solid rgb(255, 255, 255); "> <img
-                        src="{{ asset('storage') . '/' . $hdvs->foto }}" width="" height="120px"alt="">
+                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">SERVICIO: </td>
+                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
+                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
+                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td rowspan="7" style="width: 20%; border: 1px solid rgb(196, 196, 196); ">
+                    <img src="{{ asset('storage') . '/' . $hdvs->foto }}" width="" height="120px"alt="">
                 </td>
             </tr>
             <tr class="f">
@@ -159,20 +137,12 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style=" border: 1px solid rgb(255, 255, 255);width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-            </tr>
-            <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FECHA DE ADQUISICION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FACTURA / CONTRATO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">COSTO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FECHA DE ADQUISICION</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FACTURA / CONTRATO</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">COSTO</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FECHA DE INSTALACICON</td>
@@ -200,20 +170,12 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style=" border: 1px solid rgb(255, 255, 255);width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-                <th style="border: 1px solid rgb(255, 255, 255); width: 16%;"></th>
-            </tr>
-            <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
+                <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MAX</td>
@@ -264,49 +226,47 @@
                 <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">COSTO</th>         
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);;">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid rgb(199, 199, 199);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
             </tr>
-
-
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
@@ -321,57 +281,40 @@
                 <th style=" width: 15%;"></th>
                 <th style=" width: 25%;"></th>
                 <th style=" width: 15%;"></th>
-                
             </tr>
        
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FABRICANTE</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
-               
-               
-
+                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
+                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="fwidth: 25%;ont-weight: bold;border: 1px solid rgb(255, 255, 255);">FABRICANTE</td>
+                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIRECCION</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIRECCION</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-               
-               
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TELEFONO</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TELEFONO</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
-               
-            
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CIUDAD/PAIS</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CIUDAD/PAIS</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
-
-   
-
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">EMAILY/O WEB</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">EMAILY/O WEB</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-   
-          
-
             </tr>
-
-
         </table>
+
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
