@@ -16,6 +16,7 @@ use App\Models\magFuenAlimen;
 use App\Models\magVol;
 use App\Models\equipo;
 use App\Models\marca;
+use App\Models\user;
 use App\Models\modelo;
 use App\Models\hojadevida;
 use App\Models\PanelAdmin;
@@ -23,7 +24,6 @@ use App\Models\equipoMarca;
 use Dompdf\Dompdf;
 
 use Dompdf\Options;
-
 
 class PanelAdminController extends Controller
 {
@@ -66,27 +66,60 @@ class PanelAdminController extends Controller
     //     return view('equipos.index', compact('equipos'));
     // }
 
+    // $hdvs = hojadevida::orderBy('id', 'desc')->get();
+    //     // $hdvs = hojadevida::with('equipo')->get();
+    //     $query = Hojadevida::with('equipo','servicio');
+
+    //     // Filtrar por el nombre del equipo si se ingresa un término en el buscador
+    //     if ($request->has('search')) {
+    //         $search = $request->input('search');
+    //         $query->whereHas('equipo', function ($q) use ($search) {
+    //             $q->where('nombre_equipo', 'LIKE', "%$search%");
+    //         });
+    //     }
+
+    //     $hdvs = $query->get();
+
+    public function listausers(Request $request)
+    {
+        $query = User::query(); // Consulta base sin relaciones innecesarias
+
+        // Filtrar por el nombre si hay un término de búsqueda
+        if ($request->has('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%$search%")
+                    ->orWhere('email', 'LIKE', "%$search%")
+                    ->orWhere('contact', 'LIKE', "%$search%")
+                    ->orWhere('role', 'LIKE', "%$search%")
+                    ->orWhere('identity', 'LIKE', "%$search%");
+            });
+        }
+
+        $users = $query->orderBy('id', 'desc')->get();
+
+        return view('users.lista', compact('users'));
+    }
+    public function listauseronly()
+    {
+        $users = User::whereNotIn('role', ['admin', 'empleado'])->orderBy('id', 'desc')->get();
+
+        return view('users.lista', compact('users'));
+    }
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function listausersempleados()
+    {
+        $users = User::whereIn('role', ['admin', 'empleado'])
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('users.lista', compact('users'));
+    }
 
     public function index()
     {
@@ -109,7 +142,7 @@ class PanelAdminController extends Controller
         $hdvs = Modelo::orderBy('id', 'desc')->get();
         return view('equipos.listar_tres', compact('hdvs'));
     }
-    public  function lista_Registrada()
+    public function lista_Registrada()
     {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $hdvs = hojadevida::with('equipo')->get();
@@ -178,14 +211,13 @@ class PanelAdminController extends Controller
         return view('equipos.create_tres', compact('modelos'));
     }
 
-
     public function asociarmod(Request $request)
     {
         // $datoma = Equipo::with('marcas')->get();
         // $datoma = Equipo::all();
         $datoma = Marca::with('equipo')->get();
         $datomo = Modelo::all();
-        
+
         return view('equipos.asociardos', compact('datoma', 'datomo'));
     }
     public function storeasomod(Request $request)
@@ -194,12 +226,9 @@ class PanelAdminController extends Controller
         $datos->nombre_modelo = $request->nombre_modelo;
         $datos->marca_id = $request->marca_id;
         $datos->save();
-        return redirect()->route('hojadevida.create');        // para llevar al la lista o direccionar ruta 
+        return redirect()->route('hojadevida.create'); // para llevar al la lista o direccionar ruta
     }
 
-
-
-    
     public function asociar(Request $request)
     {
         $datom = Marca::all();
@@ -213,16 +242,19 @@ class PanelAdminController extends Controller
         $datom->nombre_marca = $request->nombre_marca;
         $datom->equipo_id = $request->equipo_id;
         $datom->save();
-        return redirect()->route('adminaso.asociarmod');        // para llevar al la lista o direccionar ruta 
+        return redirect()->route('adminaso.asociarmod'); // para llevar al la lista o direccionar ruta
     }
 
     public function store_tres(Request $request)
     {
-        $request->validate([
-            'nombre_modelo' => 'required|string|unique:modelos,nombre_modelo', // Cambia 'usuarios' por tu tabla
-        ], [
-            'nombre_modelo.unique' => 'Solo se admite registro unico.',
-        ]);
+        $request->validate(
+            [
+                'nombre_modelo' => 'required|string|unique:modelos,nombre_modelo', // Cambia 'usuarios' por tu tabla
+            ],
+            [
+                'nombre_modelo.unique' => 'Solo se admite registro unico.',
+            ],
+        );
         Modelo::create([
             'nombre_modelo' => $request->nombre_modelo,
         ]);
@@ -230,11 +262,14 @@ class PanelAdminController extends Controller
     }
     public function store_dos(Request $request)
     {
-        $request->validate([
-            'nombre_marca' => 'required|string|unique:marcas,nombre_marca', // Cambia 'usuarios' por tu tabla
-        ], [
-            'nombre_marca.unique' => 'Solo se admite registro unico.',
-        ]);
+        $request->validate(
+            [
+                'nombre_marca' => 'required|string|unique:marcas,nombre_marca', // Cambia 'usuarios' por tu tabla
+            ],
+            [
+                'nombre_marca.unique' => 'Solo se admite registro unico.',
+            ],
+        );
         Marca::create([
             'nombre_marca' => $request->nombre_marca,
         ]);
@@ -243,19 +278,19 @@ class PanelAdminController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre_equipo' => 'required|string|unique:equipos,nombre_equipo', // Cambia 'usuarios' por tu tabla
-        ], [
-            'nombre_equipo.unique' => 'Solo se admite registro unico.',
-        ]);
+        $request->validate(
+            [
+                'nombre_equipo' => 'required|string|unique:equipos,nombre_equipo', // Cambia 'usuarios' por tu tabla
+            ],
+            [
+                'nombre_equipo.unique' => 'Solo se admite registro unico.',
+            ],
+        );
         // Si pasa la validación, guardar el registro
         Equipo::create([
             'nombre_equipo' => $request->nombre_equipo,
         ]);
         return redirect()->route('adminaso.asociar')->with('success', 'Registro guardado correctamente.');
-
-
-
 
         // $hdv = new Equipo(); //modelo  de la tabla donde se va a guardar los datos
         // $request->validate([

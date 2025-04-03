@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('role')->default('user')->nullable(); // Puede ser 'admin' o 'user'
             $table->string('name');
+            $table->string('identity')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('adress')->nullable();
+            $table->string('profession')->nullable();
+            $table->string('post')->nullable();
+
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

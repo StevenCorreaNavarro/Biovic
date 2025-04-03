@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/tablas.css') }}"> --}}
     <title>Title</title>
     <style>
 
@@ -20,20 +20,19 @@
     @extends('layouts.header')
     <br><br>
     {{-- 10-   VISTA hojadevida/INDEX --}}
-    <div class=" d-flex flex-column justify-content-center align-items-center text-center p-1">
+    <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
         <h1>Lista hoja de vida</h1>
         <br>
 
-        <form style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
+        <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
             action="{{ route('hojadevida.listar') }}">
 
-            <input class="" style="width: 400px" type="text" name="search"
-                placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
+            <input class="form-control m-2" class="form-control"  style="width: 400px" type="text" name="search" placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
 
-            <button class="btn btn-primary " type="submit"><i class="bi bi-search"></i></button> <a
-                href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary"></a>
+            <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
+                href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
-            <a href="{{ url('hojadevida/create') }}" class="btn btn-primary ">
+            <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                 Registrar Nueva hoja de vida
             </a>
         </form>
@@ -63,9 +62,9 @@
 
 
 
-    <table >
-        <thead >{{-- Cabezera de la consulta --}}
-            <tr >
+    <table class="w-100 table fs-7 table-striped  text table-hover">
+        <thead class="table-dark">
+            <tr>
                 <th>ID</th>
                 <th>FOTO</th>
                 <th>NOMBRE EQUIPO</th>
@@ -74,21 +73,11 @@
                 <th>SERIE</th>
                 <th>SERVICIO</th>
                 <th>ACTIVO FIJO</th>
-                
+
                 <th>UBICACION FISICA</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
-                <th>columna</th>
+
                 <th>FECHA</th>
- <th>PDF</th>
+                <th>PDF</th>
 
             </tr>
         </thead>
@@ -115,7 +104,7 @@
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                    <td>{{ $hdv->serie?->nombre?? '---' }}</td>
+                    <td>{{ $hdv->serie?->nombre ?? '---' }}</td>
                     <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
@@ -123,19 +112,8 @@
 
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
-                    {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
-                    <td>{{ $hdv->marca?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->modelo?->nombre?? '---'  }}</td>
-                    <td>{{ $hdv->serie?->nombre?? '---'  }}</td>
-                    <td>{{ $hdv->actFijo?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->servicio?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->nombreubicacio?->nombre ??'---' }}</td>
-                    <td>{{ $hdv->marca?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->modelo?->nombre?? '---'  }}</td>
-                    <td>{{ $hdv->serie?->nombre?? '---'  }}</td>
-                    <td>{{ $hdv->actFijo?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->servicio?->nombre ??'---'  }}</td>
-                    <td>{{ $hdv->created_at ??'---' }}</td>
+
+                    <td>{{ $hdv->created_at ?? '---' }}</td>
 
 
                     {{-- // acciones  --}}
