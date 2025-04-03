@@ -149,12 +149,12 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="{{ asset('atlantis/demo1/index.html') }}">
+                                        <a href="{{ asset('admin') }}">
                                             <span class="sub-item">Dashboard 1</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ asset('atlantis/demo2/index.html') }}">
+                                        <a href="{{ asset('admin') }}">
                                             <span class="sub-item">Dashboard 2</span>
                                         </a>
                                     </li>
