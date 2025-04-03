@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class hojadevida extends Model
 {
     use HasFactory;
-    // Relacion uno a uno
+    // Relacion uno a uno 
+    
+    public function estadoequipo (){
+        return $this->belongsTo('App\Models\estadoequipo');
+    }
+
     public function accesorio (){
         return $this->belongsTo('App\Models\Accesorio');
     }
@@ -78,9 +83,11 @@ class hojadevida extends Model
     public function tecPredo (){
         return $this->belongsTo('App\Models\TecPredo');
     }
-    public function ubiFisica (){
-        return $this->belongsTo('App\Models\UbiFisica');
+    public function ubifisica (){
+        return $this->belongsTo('App\Models\Ubifisica');
     }
+
+
     //Relacion uno  a muchos envio - un equipo tiene muchos reportes
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
@@ -100,7 +107,8 @@ class hojadevida extends Model
     {
         return $this->belongsTo(Modelo::class, 'modelo_id'); 
     }
-    protected $fillable = ['foto']; // Agregamos 'foto' para que se pueda asignar masivamente
+    protected $fillable = ['foto', 'codecris']; // Agregamos 'foto' para que se pueda asignar masivamente
+    
         //     $request->validate([
         //     'perioCali' => 'required|string',
         //     'fechaCali' => 'nullable|date',

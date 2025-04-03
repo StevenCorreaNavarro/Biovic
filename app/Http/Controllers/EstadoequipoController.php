@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ubifisica;
+use App\Models\estadoequipo;
 use Illuminate\Http\Request;
 
-class UbifisicaController extends Controller
+class EstadoequipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class UbifisicaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ubifisica $ubifisica)
+    public function show(estadoequipo $estadoequipo)
     {
         //
     }
@@ -42,7 +42,7 @@ class UbifisicaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ubifisica $ubifisica)
+    public function edit(estadoequipo $estadoequipo)
     {
         //
     }
@@ -50,7 +50,7 @@ class UbifisicaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ubifisica $ubifisica)
+    public function update(Request $request, estadoequipo $estadoequipo)
     {
         //
     }
@@ -58,7 +58,7 @@ class UbifisicaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ubifisica $ubifisica)
+    public function destroy(estadoequipo $estadoequipo)
     {
         //
     }

@@ -47,7 +47,7 @@
             </div>
 
 
-
+{{-- Inicio descripcion --}}
             <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-5">
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Descripcion de equipo
@@ -78,27 +78,84 @@
                             <option value="">Selecciona un modelo</option>
                         </select>
                     </div>
-                   
-                </div>
+
+                    <div class="col-md-4 position-relative px-2">
+                        <div class="form-group ">
+                            <label for="serie"> Serie </label>
+                            <input type="text" name="serie" class="form-control"
+                            value="{{ isset($hojadevida->serie) ? $hojadevida->serie : old('serie') }}"
+                            id="serie">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative px-2">
+                        <div class="form-group">
+                            <label for=actFijo> Activo Fijo </label>
+                            <input type="text" name="actFijo" class="form-control"
+                                value="{{ isset($hojadevida->actFijo) ? $hojadevida->actFijo : old('actFijo') }}"
+                                id="actFijo">
+                        </div>
+                    </div>
+
+                                    {{-- ESTADO --}}
+                    <div class="col-md-4 position-relative px-2">
+                        <label for="estadoequipo_id">Estado del Equipo</label>
+                            
+                        {{--  Mostrar valores de `$estadoequipo` para depuración     
+                        <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}} 
+                                    
+                        <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($estadoequipo as $estadoequi)
+                                <option value="{{ $estadoequi->id }}"
+                                    {{ isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id ? 'selected' : '' }}>
+                                    {{ $estadoequi->estadoequipo}}   {{-- Aqui recibi las opciones para mostrar  --}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>{{-- Fin  segundo DIV --}}
 
 
+                {{-- Ubicacion Fisica --}}
                 <div class="col-md-3 position-relative">
-                    <label for="servicio_id">Servicio</label>
-                    <select name="servicio_id" id="servicio_id" class="form-control form-select">
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($nombreservicios as $servicio)
-                            <option value="{{ $servicio->id }}"
-                                {{ isset($hojadevida) && $hojadevida->servicio_id == $servicio->id ? 'selected' : '' }}>
-                                {{ $servicio->nombreservicio }}
+                    <label for="ubifisica_id">Ubicación Física</label>
+                
+                    {{--  Mostrar valores de `$ubifisicas` para depuración  
+                    <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}  
+                
+                    <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($ubifisicas as $ubicacion)
+                            <option value="{{ $ubicacion->id }}"
+                                {{ isset($hojadevida) && $hojadevida->ubifisica_id == $ubicacion->id ? 'selected' : '' }}>
+                                {{ $ubicacion->ubicacionfisica }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+
+                {{-- SERVICIO --}}
                 <div class="col-md-3 position-relative">
-                    <div class="form-group ">
-                        <label for="serie"> Serie </label>
-                        <input type="text" name="serie" class="form-control">
-                    </div>
+                    <label for="servicio_id">Servicio</label>
+                        
+                    {{--  Mostrar valores de `$servicios` para depuración     
+                    <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}} 
+                                
+                    <select name="servicio_id" id="servicio_id" class="form-control form-select">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($nombreservicios as $servicio)
+                            <option value="{{ $servicio->id }}"
+                                {{ isset($hojadevida) && $hojadevida->servicio_id == $servicio->id ? 'selected' : '' }}>
+                                {{ $servicio->nombreservicio}}   {{-- Aqui recibi las opciones para mostrar  --}}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
+
+
+
                 <div class="col-md-3 ">
                     <div class="form-group">
                         <label for="tec_predo_id">Tecnologia Predominante</label>
@@ -112,92 +169,7 @@
                         </select>
                     </div>
                 </div>
-                {{-- <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="tec_predo_id">Tecnologia Predominante</label>
-                        <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
-                            <option value="">Seleccione una opcion</option>
-                            @foreach ($tecPredos as $tecnopredominante)
-                                <option value="{{ $tecnopredominante->id }}"
-                                    {{ isset($hojadevida) && $hojadevida->tec_predo_id == $tecnopredominante->id ? 'selected' : '' }}>
-                                    {{ $tecnopredominante->tecpredo }}
-                            @endforeach
-                        </select>
-                    </div>
-                </div> --}}
-                <div class="col-md-3 position-relative">
-                    <label for="perioCali">PerioCali</label>
-                    <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
-                        class="form-control @error('perioCali') is-invalid @enderror"
-                        oninput="toggleFechaCali(this.value)">
-                </div>
-                <div class="col-md-3 position-relative">
-                    {{-- <div class="form-group" id="fechaCaliContainer" style="display: none;"> --}}
-                    <label for="fechaCali">Fecha de Calibración</label>
-                    <input type="date" name="fechaCali" id="fechaCali" class="form-control"
-                        value="{{ old('fechaCali') }}">
-                    {{-- </div> --}}
-                </div>
-                <div class="col-md-3 position-relative">
-                    {{-- <div class="form-group"> --}}
-                    <label for="cod_ecris">Código Ecri</label>
-                    <div style="display: flex; align-items: center;">
-                        <input type="text" id="search-codiecri" class="form-control" placeholder="Buscar"
-                            style="margin-right: 10px;" />
-                        <select name="cod_ecris" id="cod_ecris" class="form-control">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($codiecri as $codigoecri)
-                                <option value="{{ $codigoecri->id }}"
-                                    data-codiecri="{{ strtolower($codigoecri->codiecri) }}"
-                                    {{ isset($hojadevida) && $hojadevida->cod_ecris == $codigoecri->id ? 'selected' : '' }}>
-                                    {{ $codigoecri->codiecri }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    {{-- </div> --}}
-                </div>
-                {{-- Script para realizar busqueda en codigo ecri --}}
-                <script>
-                    document.getElementById('search-codiecri').addEventListener('input', function() {
-                        const searchValue = this.value.toLowerCase();
-                        const select = document.getElementById('cod_ecris');
-                        const options = select.querySelectorAll('option');
 
-                        let matchingOption = null;
-                        let matchCount = 0;
-
-                        options.forEach(option => {
-                            if (option.value === "") return; // Skip the default "Seleccione una opción"
-                            const text = option.dataset.codiecri;
-
-                            if (text.includes(searchValue)) {
-                                option.style.display = '';
-                                matchingOption = option;
-                                matchCount++;
-                            } else {
-                                option.style.display = 'none';
-                            }
-                        });
-
-                        // If exactly one option matches, select it
-                        if (matchCount === 1 && matchingOption) {
-                            select.value = matchingOption.value;
-                        } else {
-                            select.value = ""; // Reset to "Seleccione una opción" if there are multiple matches or none
-                        }
-                    });
-                </script>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=actFijo> Activo Fijo </label>
-                        <input type="text" name="actFijo" class="form-control"
-                            value="{{ isset($hojadevida->actFijo) ? $hojadevida->actFijo : old('actFijo') }}"
-                            id="actFijo">
-                    </div>
-
-                </div>
                 <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for=regInvima> Registro Invima </label>
@@ -205,18 +177,8 @@
                             value="{{ isset($hojadevida->regInvima) ? $hojadevida->regInvima : old('regInvima') }}"
                             id="regInvima">
                     </div>
-
                 </div>
 
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=Estado> Estado Funcionamiento </label>
-                        <input type="text" name="Estado" class="form-control"
-                            value="{{ isset($hojadevida->Estado) ? $hojadevida->Estado : old('Estado') }}"
-                            id="Estado">
-                    </div>
-
-                </div>
                 <div class="col-md-3 position-relative">
                     <div class="form-group">
                         <label for="cla_riesgos">Clasificacion de Riesgo</label>
@@ -261,80 +223,154 @@
                     </div>
 
                 </div>
-                <center>
-                    <div class="col-md-6 ">
-                        <div class="form-group mb-0">
-                            <label for="foto"> </label>
-                            {{-- {{$equipo->foto}}     Muestra ruta de la imagen  --}}
-                            @if (isset($hojadevida->foto))
-                                <img class="img-thumbnail img-fluid"
-                                    src="{{ asset('storage') . '/' . $hojadevida->foto }}" width="100"
-                                    alt="">
-                            @endif
-                            <input type="file" name="foto" value="" id="foto"
-                                class="form-control @error('foto') is-invalid @enderror">
-                            @error('foto')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
 
+                <div class="col-md-3 position-relative">
+                    <div class="form-group">
+                        <label for="perioMto"> Periodo Mantenimiento </label>
+                        <input type="text" name="perioMto" class="form-control"
+                            value="{{ isset($hojadevida->perioMto) ? $hojadevida->perioMto : old('perioMto') }}"
+                            id="perioMto">
+                    </div>
+                </div>
+
+
+                 {{--  Código Ecri --}}
+                <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data"
+                @csrf
+                <div class="col-md-3 position-relative">
+                    <label for="search-codiecri">Código Ecri</label>
+                    <div style="display: flex; align-items: center;">
+                        <!-- Input para buscar -->
+                        <input type="text" id="search-codiecri" class="form-control" placeholder="Buscar código"
+                            style="margin-right: 10px;" />
+            
+                        <!-- Select con opciones de la tabla -->
+                        <select name="codecris" id="codecris" class="form-control">
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($codiecri as $codigoecri)
+                                <option value="{{ $codigoecri->id }}" 
+                                        data-codiecri="{{ strtolower($codigoecri->codiecri) }}">
+                                    {{ $codigoecri->codiecri }} - {{ $codigoecri->nombrecodiecri }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
+            
+            {{-- Script para realizar búsqueda en Código Ecri --}}
+            <script>
+                document.getElementById('search-codiecri').addEventListener('input', function() {
+                    const searchValue = this.value.toLowerCase();
+                    const select = document.getElementById('codecris');
+                    const options = select.querySelectorAll('option');
+            
+                    let matchingOption = null;
+                    let matchCount = 0;
+            
+                    options.forEach(option => {
+                        if (option.value === "") return; // Omitir opción por defecto
+                        const text = option.dataset.codiecri;
+            
+                        if (text.includes(searchValue)) {
+                            option.style.display = ''; // Mostrar coincidencias
+                            matchingOption = option;
+                            matchCount++;
+                        } else {
+                            option.style.display = 'none'; // Ocultar las no coincidentes
+                        }
+                    });
+            
+                    // Si solo hay una coincidencia, seleccionarla automáticamente
+                    if (matchCount === 1 && matchingOption) {
+                        select.value = matchingOption.value;
+                    } else {
+                        select.value = ""; // Resetear selección si hay múltiples coincidencias o ninguna
+                    }
+                });
+            </script>
+            {{-- Fin Script --}}
+                
+                
+                            {{-- INICIO CALIBRACION --}}
+                <div class="col-md-3 position-relative">
+                    <label for="perioCali">Periodo de Calibracion</label>
+                    <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
+                        class="form-control @error('perioCali') is-invalid @enderror">
+                </div>
+
+                <!-- Campo FechaCali (Oculto por defecto) -->
+                <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
+                    <label for="fechaCali">Fecha Cali</label>
+                    <input type="date" name="fechaCali" id="fechaCali" class="form-control">
+                </div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        let perioCaliInput = document.getElementById("perioCali");
+                        let fechaCaliDiv = document.getElementById("fechaCaliDiv");
+
+                        function toggleFechaCali(value) {
+                            console.log("Valor ingresado:", value); // Debugging
+                            if (value.toLowerCase().trim() === "anual") { 
+                                fechaCaliDiv.style.display = "block"; // Mostrar el campo si el valor es "anual"
+                            } else {
+                                fechaCaliDiv.style.display = "none"; // Ocultarlo en cualquier otro caso
+                            }
+                        }
+
+                        // Detectar cambios en el input
+                        perioCaliInput.addEventListener("input", function () {
+                            toggleFechaCali(this.value);
+                        });
+
+                        // Ejecutar la función al cargar la página si hay un valor predefinido
+                        toggleFechaCali(perioCaliInput.value);
+                    });
+                </script>
+                {{-- FIN CALIBRACION --}}
+
+                
+
+
+                        {{--  Imagen --}}
+                <center>
+                    <div class="col-md-6">
+                        <div class="form-group mb-0 d-flex align-items-center">
+                            {{-- Vista previa de la imagen --}}
+                            <img id="preview" class="img-thumbnail img-fluid me-3" src="" width="100" style="display: none;" alt="Vista previa">
+                
+                            <div>
+                                <label for="foto">Selecciona una imagen:</label>
+                                <input type="file" name="foto" id="foto"
+                                    class="form-control @error('foto') is-invalid @enderror"
+                                    accept="image/*" onchange="previewImage(event)">
+                                
+                                @error('foto')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </center>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {{-- SCRIPT CAMPO PERIODO CALIBRACION --}}
+                
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var perioCaliField = document.getElementById('perioCali');
-                        toggleFechaCali(perioCaliField.value); // Ensure correct state on page load
-
-                        perioCaliField.addEventListener('input', function() {
-                            toggleFechaCali(this.value);
-                        });
-                    });
-
-                    function toggleFechaCali(value) {
-                        var fechaCaliContainer = document.getElementById('fechaCaliContainer');
-                        if (value.toLowerCase() === 'anual') {
-                            fechaCaliContainer.style.display = 'block';
-                        } else {
-                            fechaCaliContainer.style.display = 'none';
-                            document.getElementById('fechaCali').value = ''; // Clear the date field if not 'anual'
+                    function previewImage(event) {
+                        let reader = new FileReader();
+                        reader.onload = function() {
+                            let preview = document.getElementById('preview');
+                            preview.src = reader.result;
+                            preview.style.display = 'block';
                         }
+                        reader.readAsDataURL(event.target.files[0]);
                     }
                 </script>
 
-                <div class="col-md-4 position-relative">
+            </div>  {{-- FIN DESCRIPCION DE EQUIPO  --}}
 
-                </div>
 
-                <div class="col-md-4 position-relative">
-
-                </div>
-
-                <div class="col-md-4 position-relative">
-
-                </div>
-
-                <div class="col-md-4 position-relative">
-
-                </div>
-            </div>
-
-            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+            {{-- INICIO REGISTRO HISTORICO --}}
+            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">   {{--  Seleccion Fondo Blan--}}
                 <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                     Registro
                     historico
