@@ -304,8 +304,9 @@ class PanelAdminController extends Controller
         return view('admin.admin.layouts.app');
     }
 
-    public function destroy($id)
+    public function destroy(hojadevida $hdv)
     {
-        // Lógica para eliminar datos
+        $hdv->delete();
+        return redirect()->route('adminlistaR.lista_registrada');
     }
 }

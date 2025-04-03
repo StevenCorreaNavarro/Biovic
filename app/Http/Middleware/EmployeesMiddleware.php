@@ -6,11 +6,12 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class EmployeesMiddleware
 {
-    public function handle($request, Closure $next)
+    
+    public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->role !== 'admin' ) {
+        if ($request->user() && $request->user()->role !== 'empleado'&& $request->user()->role !== 'admin') {
             return redirect('/'); // Redireccionar a la página principal o a una página de acceso denegado
         }
     

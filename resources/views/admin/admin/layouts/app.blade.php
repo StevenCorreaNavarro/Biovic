@@ -36,7 +36,7 @@
 
 <body>
     <div class="wrapper">
-        <div  style="position: fixed; width: 100%; z-index: 1;">
+        <div style="position: fixed; width: 100%; z-index: 1;">
             <!-- Logo Header class="main-header"-->
             <div class="logo-header scrollbar" data-background-color="blue">
 
@@ -170,6 +170,30 @@
 
 
 
+                        <li class="nav-item {{ request()->routeIs('adminlistaR.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#unit">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Lista Hojas de vida</p>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="collapse {{ request()->routeIs('adminlistaR.*') ? 'show' : '' }}"
+                                id="unit">
+                                <ul class="nav nav-collapse">
+                                    <li
+                                        class="{{ request()->routeIs(['adminlistaR.lista_registrada']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlistaR.lista_registrada') }}">
+                                            <span class="sub-item">Lista General </span>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+
 
 
 
@@ -202,13 +226,10 @@
                                         </a>
                                     </li>
 
-
-
-
                                 </ul>
                             </div>
                         </li>
- 
+
 
                         <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#aso">
@@ -220,7 +241,7 @@
                             <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
                                 id="aso">
                                 <ul class="nav nav-collapse">
-                                <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
+                                    <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
                                         <a href="{{ route('adminaso.asociar') }}">
                                             <span class="sub-item">Asociar marca</span>
                                         </a>
@@ -231,7 +252,7 @@
                                         </a>
                                     </li>
 
-                                 
+
 
                                 </ul>
                             </div>
@@ -239,7 +260,7 @@
                         <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#slider">
                                 <i class="fas fa-th-list"></i>
-                                <p>Listas equipos</p>
+                                <p>Listas</p>
                                 <span class="caret"></span>
                             </a>
 
@@ -273,26 +294,9 @@
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
-
-
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="nav-item {{ request()->routeIs('adminlistaR.*') ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#unit">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Lista registrada</p>
-                                <span class="caret"></span>
-                            </a>
-
-                            <div class="collapse {{ request()->routeIs('adminlistaR.*') ? 'show' : '' }}"
-                                id="unit">
-                                <ul class="nav nav-collapse">
-                                    <li
-                                        class="{{ request()->routeIs(['adminlistaR.lista_registrada']) ? 'active' : '' }}">
-                                        <a href="{{ route('adminlistaR.lista_registrada') }}">
-                                            <span class="sub-item">Lista General </span>
+                                       <li>
+                                        <a href="components/buttons.html">
+                                            <span class="sub-item">Lista usuarios</span>
                                         </a>
                                     </li>
 
@@ -303,6 +307,68 @@
 
 
 
+                        <li class="nav-item">
+                            <a data-toggle="collapse" href="#base">
+                                <i class="
+fas fa-clipboard-list"></i>
+                                <p>Parametros</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="base">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a href="components/avatars.html">
+                                            <span class="sub-item">Usuarios</span>
+                                        </a>
+                                    </li>
+                                    {{-- <li>
+                                        <a href="components/buttons.html">
+                                            <span class="sub-item"></span>
+                                        </a>
+                                    </li> --}}
+                                    <li>
+                                        <a href="components/gridsystem.html">
+                                            <span class="sub-item">Grid System</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/panels.html">
+                                            <span class="sub-item">Panels</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/notifications.html">
+                                            <span class="sub-item">Notifications</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/sweetalert.html">
+                                            <span class="sub-item">Sweet Alert</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/font-awesome-icons.html">
+                                            <span class="sub-item">Font Awesome Icons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/simple-line-icons.html">
+                                            <span class="sub-item">Simple Line Icons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/flaticons.html">
+                                            <span class="sub-item">Flaticons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/typography.html">
+                                            <span class="sub-item">Typography</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
 
 
@@ -327,11 +393,14 @@
 
 
 
-{{-- 
 
 
 
 
+
+
+
+                        {{-- 
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -567,8 +636,8 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li> --}}
-                    </ul>
+                        </li> 
+                    </ul> --}}
                 </div>
             </div>
         </div>

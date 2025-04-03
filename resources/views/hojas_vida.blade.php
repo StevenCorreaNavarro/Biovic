@@ -37,6 +37,7 @@
                             </div>
                         </div>
                     </div> -->
+                    @if(Auth::check() && Auth::user()->role === 'admin'|| Auth::user()->role === 'empleado')
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img1.jpg" alt="Descripción de la imagen">
@@ -48,6 +49,8 @@
                             </div>
                         </div>
                     </div>
+                    
+
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img3.jpg" alt="Descripción de la imagen">
@@ -59,6 +62,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img8.jpg" alt="Descripción de la imagen">
@@ -70,17 +74,20 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img4.jpg" alt="Descripción de la imagen">
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
-                                <a href="descargar_hv">
+                                <a href="hojadevida/listar">
                                     <h1 style="font-size:larger; color:white">Descargar</h1>
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div>     
+                @if(Auth::check() && Auth::user()->role === 'admin'|| Auth::user()->role === 'empleado')
+               
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/portatil_con_kpis.webp" alt="Descripción de la imagen">
@@ -101,7 +108,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
+                   @endif
             </div>
         </section>
     </main>

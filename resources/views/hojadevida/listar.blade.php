@@ -9,44 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    {{-- <link rel="stylesheet" href="{{ asset('css/header.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
     <title>Title</title>
     <style>
-        table {
-            padding: 0px;
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            font-size: small;
-            border: 1px solid rgba(0, 0, 0, 0.062);
-        }
-
-        th,
-        td {
-            padding: 0px;
-            text-align: left;
-        }
-
-        th {
-            
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-
-
-
-   
 
     </style>
 </head>
@@ -98,20 +63,32 @@
 
 
 
-    <table class="table">
-        <thead class="table-dark">{{-- Cabezera de la consulta --}}
-            <tr>
+    <table >
+        <thead >{{-- Cabezera de la consulta --}}
+            <tr >
                 <th>ID</th>
                 <th>FOTO</th>
                 <th>NOMBRE EQUIPO</th>
                 <th>MARCA</th>
                 <th>MODELO</th>
                 <th>SERIE</th>
-                <th>ACTIVO FIJO</th>
                 <th>SERVICIO</th>
+                <th>ACTIVO FIJO</th>
+                
                 <th>UBICACION FISICA</th>
-                <th>PDF</th>
-
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>columna</th>
+                <th>FECHA</th>
+ <th>PDF</th>
 
             </tr>
         </thead>
@@ -122,13 +99,13 @@
                 <tr>
                     <td>{{ $hdv->id }}</td>
 
-                    <td class="dropend" style="padding: 0%" width="50"   >
+                    <td class="dropend" style="padding: 0%" width="50">
                         @if ($hdv->foto)
-                            <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"  height="50"
-                                type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            <ul class="dropdown-menu"   style="padding: 0%"    >
-                                <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh" >
+                            <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
+                                height="50" type="button" class="btn btn-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu" style="padding: 0%">
+                                <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh">
 
                             </ul>
                         @else
@@ -138,7 +115,7 @@
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                     <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                     <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                    <td>{{ $hdv->serie ?? '---' }}</td>
+                    <td>{{ $hdv->serie?->nombre?? '---' }}</td>
                     <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
                     <td>{{ $hdv->ubica ?? '---' }}</td>
@@ -147,12 +124,18 @@
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}
                     {{-- @endforeach --}}
                     {{--  ? $hojadevida->nombreequipo->nombreequipo : 'Sin Nombre' }}</td>  --}}
-                    {{-- <td>{{$hojadevida-> marca }}</td>
-            <td>{{$hojadevida-> modelo}}</td>
-            <td>{{$hojadevida-> serie}}</td>
-            <td>{{$hojadevida-> actFijo}}</td>
-            <td>{{$hojadevida-> servicio}}</td>
-            <td>{{$hojadevida-> nombreubicacio}}</td> --}}
+                    <td>{{ $hdv->marca?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->modelo?->nombre?? '---'  }}</td>
+                    <td>{{ $hdv->serie?->nombre?? '---'  }}</td>
+                    <td>{{ $hdv->actFijo?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->servicio?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->nombreubicacio?->nombre ??'---' }}</td>
+                    <td>{{ $hdv->marca?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->modelo?->nombre?? '---'  }}</td>
+                    <td>{{ $hdv->serie?->nombre?? '---'  }}</td>
+                    <td>{{ $hdv->actFijo?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->servicio?->nombre ??'---'  }}</td>
+                    <td>{{ $hdv->created_at ??'---' }}</td>
 
 
                     {{-- // acciones  --}}

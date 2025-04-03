@@ -16,4 +16,5 @@ class ubiFisica extends Model
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }
+    
 }
