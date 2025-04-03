@@ -294,13 +294,44 @@
                                             <span class="sub-item">lista</span>
                                         </a> --}}
                                     </li>
-                                       <li>
+                                    <li>
                                         <a href="components/buttons.html">
                                             <span class="sub-item">Lista usuarios</span>
                                         </a>
                                     </li>
 
 
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#usuarios">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Usuarios</p>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}" id="usuarios">
+                                <ul class="nav nav-collapse">
+                                    <li
+                                        class="{{ request()->routeIs(['user.listausers', 'user.listausers']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listausers') }}">
+                                            <span class="sub-item">Lista usuarios general</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="{{ request()->routeIs(['user.listaempleados', 'user.listaempleados']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listaempleados') }}">
+                                            <span class="sub-item">Lista empleados</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li
+                                        class="{{ request()->routeIs(['user.listauseronly', 'user.listauseronly']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listauseronly') }}">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -316,11 +347,23 @@ fas fa-clipboard-list"></i>
                             </a>
                             <div class="collapse" id="base">
                                 <ul class="nav nav-collapse">
-                                    <li>
+                                    {{-- <li>
                                         <a href="components/avatars.html">
                                             <span class="sub-item">Usuarios</span>
                                         </a>
+                                    </li> --}}
+                                    <li
+                                        class="{{ request()->routeIs(['user.listausers', 'user.*']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listausers') }}">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
                                     </li>
+                                    {{-- <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}"
+                                        id="usuarios">
+                                        <ul class="nav nav-collapse">
+
+                                        </ul>
+                                    </div> --}}
                                     {{-- <li>
                                         <a href="components/buttons.html">
                                             <span class="sub-item"></span>

@@ -16,6 +16,7 @@ use App\Models\magFuenAlimen;
 use App\Models\magVol;
 use App\Models\equipo;
 use App\Models\marca;
+use App\Models\user;
 use App\Models\modelo;
 use App\Models\hojadevida;
 use App\Models\PanelAdmin;
@@ -86,6 +87,22 @@ class PanelAdminController extends Controller
 
 
 
+    public function listausers()
+    {
+        $users = User::orderBy('id', 'desc')->get();
+        return view('users.lista', compact('users'));
+    }
+    public function listauseronly()
+    {
+        $users = User::whereNotIn('role', ['admin', 'empleado'])->orderBy('id', 'desc')->get();
+        return view('users.lista', compact('users'));
+    }
+    public function listausersempleados()
+    {
+        $users = User::whereIn('role', ['admin', 'empleado'])->orderBy('id', 'desc')->get();
+        return view('users.lista', compact('users'));
+    }
+    
 
 
     public function index()

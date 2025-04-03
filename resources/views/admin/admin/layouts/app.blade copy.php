@@ -155,14 +155,14 @@
 
                             
 
-                            <li class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#usuarios">
                                     <i class="fas fa-layer-group"></i>
                                     <p>Usuarios</p>
                                     <span class="caret"></span>
                                 </a>
 
-                                <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}"
+                                <div class="collapse {{ request()->routeIs('admin.*') ? 'show' : '' }}"
                                     id="usuarios">
                                     <ul class="nav nav-collapse">
                                         <li class="{{ request()->routeIs(['usuarios.create', 'usuarios.store']) ? 'active' : ''}}">

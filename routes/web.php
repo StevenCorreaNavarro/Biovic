@@ -34,7 +34,9 @@ Route::get('/', function () {
 });
 
 
-
+Route::get('/empleados', function () {
+    return view('empleips.form');
+})->name('empleados');
 // Route::get('/admin', function () {
 //     return view('admin.admin.layouts.app');
 // })->middleware(['auth', 'verified']);
@@ -53,6 +55,15 @@ Route::middleware(['auth','role:admin,empleado'])->group(function () {
 
 Route::middleware(['auth','admin'])->group(function () {//++++++++++++++++++++++++++++++++++++++++++++++++ GRUPOS RUTAS ADMINISTRADOR COMIENZO
     Route::get('/admin', function () {return view('admin.admin.layouts.app');})->name('adminad.dashboard');
+
+    Route::get('/admin/usuarios', [PanelAdminController::class, 'listausers'])->name('user.listausers');
+    Route::get('/admin/empleados', [PanelAdminController::class, 'listausersempleados'])->name('user.listaempleados');
+    Route::get('/admin/usuariosuni', [PanelAdminController::class, 'listauseronly'])->name('user.listauseronly');
+
+
+
+
+
     // Route::get('/admin/create', function () {return view('admin.admin.layouts.app');})->name('admin.dashboard');
     Route::get('/equipos/{id}/seleccionar-marcas', [PanelAdminController::class, 'mostrarFormulario'])->name('equipos.mostrarFormulario');
     Route::post('/equipos/{id}/asignar-marcas', [PaneladminController::class, 'asignarMarcas'])->name('equipos.asignarMarcas');
