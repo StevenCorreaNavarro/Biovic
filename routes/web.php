@@ -122,6 +122,9 @@ Route::middleware('auth')->group(function () { //+++++++++++++++++++++++++++++++
     Route::get('/equipos', [EquipoController::class, 'stores']);
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
     Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
+
+
+
     Route::resource('empleips', EmpleipsController::class);
 
     Route::get('/menuing', function () {

@@ -51,7 +51,7 @@ class HojadevidaController extends Controller
         $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
 
         $pdf = new Dompdf($options);
-        $pdf->loadHtml(view('hojadevida.show', compact('hdvs'))->render());
+        $pdf->loadHtml(view('hojadevida.showpdf', compact('hdvs'))->render());
         $pdf->setPaper('A4', 'portrait'); // Tamaño A4 vertical
         $pdf->render();
         return $pdf->stream('documento.pdf');
