@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estadoequipo;
 use App\Models\servicio;
 use App\Models\nombreEquipo;
+use App\Models\Ubifisica;
 use App\Models\tecPredo;
 use App\Models\codEcri;
 use App\Models\claRiesgo;
@@ -89,26 +91,32 @@ class HojadevidaController extends Controller
      * Show the form for creating a new resource.
      */
 
-    public function creates()
+    public function creates() // por que hay dos create ?
     {
         return view('hojadevida.create');
     }
 
     public function create()
     {
-        $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
         $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
+
+        $estadoequipo = estadoequipo::all(); // usar el modelo estadoequipo Obtiene todos los estados de equipo. $estadoequipo, copiar en compact
+        $ubifisicas = Ubifisica::all(); // Obtiene todas las ubicaciones físicas
+        $nombreservicios = Servicio::all();
+
         $tecPredos = TecPredo::all();
-        $codiecri = codEcri::all();
         $clariesgo = Clariesgo::all();
         $clabiomedica = ClaBiome::all();
         $clauso = ClaUso::all();
+        $codiecri = codEcri::all();
+
+
         $formaadqui = Formaadqui::all();
         $nombreempresa = Propiedad::all();
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen'));
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen','ubifisicas','estadoequipo'));// pasar las variables  a la vista
     }
 
     /**
@@ -128,26 +136,35 @@ class HojadevidaController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());  Agregar esta línea para ver los datos recibidos, luego eliminar  despues de la prueba
+
         $hdv = new Hojadevida();
 
         $request->validate([
+            'perioMto' => 'required|string|max:255', // agregado para periodo de mantenimiento
             'perioCali' => 'required|string',
             'fechaCali' => 'nullable|date',
             'foto' => 'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
-        $hdv->equipo_id = $request->equipo_id;
+        // se hace uno por uno de los datos para que sean guardados
+        $hdv->equipo_id = $request->equipo_id; 
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
-        $hdv->servicio_id = $request->servicio_id;
         $hdv->serie = $request->serie;
-        $hdv->tec_predo_id = $request->tec_predo_id;
-        // $hdv->perioCali = $request->perioCali;
-        // $hdv->fechaCali = $request->fechaCali;
-        // $hdv->cod_ecris = $request->cod_ecris;
         $hdv->actFijo = $request->actFijo;
-        $hdv->Estado = $request->Estado;
+        $hdv->estadoequipo_id = $request->estadoequipo_id; // para estado poder guardar  original $hdv->estadoequipo = $request->estadoequipo; 
 
+        $hdv->ubifisica_id = $request->ubifisica_id;       
+        $hdv->servicio_id = $request->servicio_id;
+        $hdv->tec_predo_id = $request->tec_predo_id;
+        $hdv->regInvima = $request->regInvima;
+        $hdv->cla_riesgo_id = $request->cla_riesgo_id;
+        $hdv->cla_biome_id = $request->cla_biome_id;
+        $hdv->cla_uso_id = $request->cla_uso_id;   
+        $hdv->perioMto = $request->perioMto; // agregado para periodo de mantenimiento
+
+        $hdv->cod_ecri_id = $request->cod_ecri_id;
+  
         if ($request->hasFile('foto')) {
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD

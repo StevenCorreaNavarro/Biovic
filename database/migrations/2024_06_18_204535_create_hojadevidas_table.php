@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('hojadevidas', function (Blueprint $table) {
             $table->id();
 
-            // $table->string('marca');
-            // $table->string('modelo');
             $table->string('serie')->nullable();;
+            $table->string('perioMto')->nullable();;
             $table->string('perioCali')->nullable();;// si, solicita fecha
             $table->date('fechaCali')->nullable();
             $table->string('actFijo')->nullable();;
@@ -49,7 +48,7 @@ return new class extends Migration
             $table->integer('humedad')->nullable();;
             $table->text('recomendaciones')->nullable();;
 
-            $table->unsignedBigInteger('equipo_id')->nullable();	 
+            $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
             $table->unsignedBigInteger('modelo_id')->nullable();	 
             $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
@@ -57,7 +56,8 @@ return new class extends Migration
             $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
 
 
-
+            $table->unsignedBigInteger('estadoequipo_id')->nullable();	 
+            $table->foreign('estadoequipo_id')->references('id')->on('estadoequipos')->onDelete('cascade');
 
             $table->unsignedBigInteger('servicio_id')->nullable();	 
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
@@ -71,8 +71,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cod_ecri_id')->nullable();	 
             $table->foreign('cod_ecri_id')->references('id')->on('cod_ecris')->onDelete('cascade');
 
-            $table->unsignedBigInteger('ubi_fisica_id')->nullable();	 
-            $table->foreign('ubi_fisica_id')->references('id')->on('ubi_fisicas')->onDelete('cascade');
+            $table->unsignedBigInteger('ubifisica_id')->nullable();	 // Ingreso Ubicación Física
+            $table->foreign('ubifisica_id')->references('id')->on('ubifisicas')->onDelete('cascade');
 
             $table->unsignedBigInteger('cla_riesgo_id')->nullable();	 
             $table->foreign('cla_riesgo_id')->references('id')->on('cla_riesgos')->onDelete('cascade');
@@ -83,8 +83,10 @@ return new class extends Migration
             $table->unsignedBigInteger('cla_uso_id')->nullable();	 
             $table->foreign('cla_uso_id')->references('id')->on('cla_usos')->onDelete('cascade');
 
+            
             $table->unsignedBigInteger('forma_adqui_id')->nullable();	 
             $table->foreign('forma_adqui_id')->references('id')->on('forma_adquis')->onDelete('cascade');
+
             $table->unsignedBigInteger('propiedad_id')->nullable();	 
             $table->foreign('propiedad_id')->references('id')->on('propiedads')->onDelete('cascade'); 
 
@@ -111,10 +113,13 @@ return new class extends Migration
             $table->foreign('mag_temp_id')->references('id')->on('mag_temps')->onDelete('cascade');
             $table->unsignedBigInteger('mag_vel_id')->nullable();	 
             $table->foreign('mag_vel_id')->references('id')->on('mag_vels')->onDelete('cascade');
+
             $table->unsignedBigInteger('accesorio_id')->nullable();	 
             $table->foreign('accesorio_id')->references('id')->on('accesorios')->onDelete('cascade');
+
             $table->unsignedBigInteger('proveedor_id')->nullable();	 
             $table->foreign('proveedor_id')->references('id')->on('proveedors')->onDelete('cascade');
+
             $table->unsignedBigInteger('fabricante_id')->nullable();	 
             $table->foreign('fabricante_id')->references('id')->on('fabricantes')->onDelete('cascade');
 

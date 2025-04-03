@@ -14,6 +14,11 @@ use App\Http\Controllers\PanelAdminController;
 use App\Http\Controllers\MantoCronoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EquiposController;
+
+
+use App\Http\Controllers\CodEcriController;// agregado para enviar codigo ecri
+
+
 // use App\Models\Modelo;
 use Illuminate\Http\Request;
 use App\Models\Marca;

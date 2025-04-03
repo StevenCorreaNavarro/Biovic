@@ -9,6 +9,9 @@ class ubiFisica extends Model
 {
     use HasFactory;
 
+    
+    protected $table = 'ubifisicas'; // Nombre correcto de la tabla
+
     public function hojadevidas(){
         return $this->hasMany('App\Models\Hojadevida');
     }

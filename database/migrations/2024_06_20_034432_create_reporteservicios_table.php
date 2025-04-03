@@ -38,8 +38,8 @@ return new class extends Migration
             $table->unsignedBigInteger('servicio_id')->nullable();
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
 
-            $table->unsignedBigInteger('ubi_fisica_id')->nullable();
-            $table->foreign('ubi_fisica_id')->references('id')->on('ubi_fisicas')->onDelete('cascade');
+            $table->unsignedBigInteger('ubifisica_id')->nullable();
+            $table->foreign('ubifisica_id')->references('id')->on('ubifisicas')->onDelete('cascade');
             
             $table->unsignedBigInteger('hojadevida_id')->nullable();
             $table->foreign('hojadevida_id')->references('id')->on('hojadevidas')->onDelete('cascade');
