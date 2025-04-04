@@ -38,6 +38,7 @@ Route::get('/empleados', function () {
 Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create', [HojadevidaController::class, 'create'])->name('hojadevida.create');
+    Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
 });
 
 
@@ -115,7 +116,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
     Route::get('hojadevida/listar', [HojadevidaController::class, 'listar'])->name('hojadevida.listar');
-    Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
+   
     Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
     Route::delete('/hojadevida/{dato}', [HojadevidaController::class, 'destroy'])->name('hojadevida.stores');
     Route::get('hojadevida/{hdv}', [HojadevidaController::class, 'show'])->name('hojadevida.show');

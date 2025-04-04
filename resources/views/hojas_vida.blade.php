@@ -110,7 +110,7 @@
                 <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
             </div>
-        </div>
+        </div>8U
     </footer>
 
     <script>

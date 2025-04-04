@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('hojadevidas', function (Blueprint $table) {
             $table->id();
 
+            // $table->string('fechaMtto');
             $table->string('serie')->nullable();;
             $table->string('perioMto')->nullable();;
             $table->string('perioCali')->nullable();;// si, solicita fecha

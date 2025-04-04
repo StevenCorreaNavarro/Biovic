@@ -24,31 +24,30 @@
     <main class=" p-1 " style="background-color: rgb(255, 255, 255);">
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
 
-     
-
-
-
-
         <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf {{-- LLave de seguridad obligatoria --}}
-               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        los datos se guardaran permanentemente
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
-                            class="btn btn-primary">
+            
+            {{--  ESTE MODAL SIEMPRE DEBE ESTAR DENTRO DEL FORMULARIO --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            los datos se guardaran permanentemente
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
+                                class="btn btn-primary">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             {{-- Inicio descripcion --}}
             <div style="background-color: rgb(255, 255, 255)" class="row g-2 needs-validation formu p-5">
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
@@ -57,12 +56,13 @@
                     </h1>
                     <div class="row g-0 needs-validation border border-dark-subtle py-3"
                         style="background-color: #a6a6a630; border-radius:10px;">
+                        
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                             <select id="equipo" name="equipo_id" class="form-control form-select border border-3">
                                 <option value="">Selecciona un equipo</option>
                                 @foreach ($equipos as $equipo)
-                                    <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
+                                    <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo}}</option>
                                 @endforeach
                             </select>
                         </div>
