@@ -110,7 +110,7 @@
                     <td>{{ $hdv->serie }}</td>
                     <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                     <td>{{ $hdv->actFijo ?? '---' }}</td>
-                    <td>{{ $hdv->ubica ?? '---' }}</td>
+                    <td>{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</td>
                     {{-- <td>{{ $hdv->ubica ?? '---' }}</td> --}}
 
                     {{-- <td>{{ $hoja->descripcion }}</td> --}}

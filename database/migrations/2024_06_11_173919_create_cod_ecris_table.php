@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('cod_ecris', function (Blueprint $table) {
             $table->id();
             $table->string('nombrecodiecri');
-            $table->string('codiecri');
+            $table->string('codiecri')->unique();
             $table->timestamps();
+
         });
     }
 

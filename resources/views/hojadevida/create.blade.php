@@ -173,13 +173,28 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for="cla_riesgos">Clasificacion de Riesgo</label>
-                            <select name="cla_riesgos" id="cla_riesgos" class="form-select form-control">
+                            <label for="cla_riesgo_id">Clasificacion de Riesgo</label>
+                            <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clariesgo as $clasiriesgo)
                                     <option value="{{ $clasiriesgo->id }}"
-                                        {{ isset($hojadevida) && $hojadevida->cla_riesgos == $clasiriesgo->id ? 'selected' : '' }}>
+                                        {{ isset($hojadevida) && $hojadevida->cla_riesgo_id == $clasiriesgo->id ? 'selected' : '' }}>
                                         {{ $clasiriesgo->clariesgo }}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative"> 
+                        <div class="form-group">
+                            <label for="cla_biome_id">Clasificación Biomedica</label>
+                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($clabiomedica as $clasibiomedica)
+                                    <option value="{{ $clasibiomedica->id }}"
+                                        {{ isset($hojadevida) && $hojadevida->cla_biome_id == $clasibiomedica->id ? 'selected' : '' }}>
+                                        {{ $clasibiomedica->clabiomedica }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -187,25 +202,12 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for="cla_biomes">Clasificacion de Biomedica</label>
-                            <select name="cla_biomes" id="cla_biomes" class="form-control form-select ">
-                                <option value="">Seleccione una opcion</option>
-                                @foreach ($clabiomedica as $clasibiomedica)
-                                    <option value="{{ $clasibiomedica->id }}"
-                                        {{ isset($hojadevida) && $hojadevida->cla_biomes == $clasibiomedica->id ? 'selected' : '' }}>
-                                        {{ $clasibiomedica->clabiomedica }}
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3 position-relative">
-                        <div class="form-group">
-                            <label for="cla_usos">Clasificacion por Uso</label>
-                            <select name="cla_usos" id="cla_usos" class="form-control form-select">
+                            <label for="cla_uso_id">Clasificacion por Uso</label>
+                            <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clauso as $clasiuso)
                                     <option value="{{ $clasiuso->id }}"
-                                        {{ isset($hojadevida) && $hojadevida->cla_usos == $clasiuso->id ? 'selected' : '' }}>
+                                        {{ isset($hojadevida) && $hojadevida->cla_uso_id == $clasiuso->id ? 'selected' : '' }}>
                                         {{ $clasiuso->clauso }}
                                 @endforeach
                             </select>
@@ -221,28 +223,66 @@
                         </div>
                     </div>
 
+
                     {{--  Código Ecri --}}
                     <div class="col-md-3 position-relative">
                         <label for="search-codiecri">Código Ecri</label>
                         <div style="display: flex; align-items: center;">
                             <!-- Input para buscar -->
-                            <input type="text" id="search-codiecri" class="form-control"
-                                placeholder="Buscar código" style="margin-right: 10px;" />
-
+                            <input type="text" id="search-codiecri" class="form-control" placeholder="Buscar código" style="margin-right: 10px;" />
+                    
                             <!-- Select con opciones de la tabla -->
-                            <select name="codecris" id="codecris" class="form-control">
+                            <select name="cod_ecri_id" id="codecris" class="form-control">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($codiecri as $codigoecri)
                                     <option value="{{ $codigoecri->id }}"
-                                        data-codiecri="{{ strtolower($codigoecri->codiecri) }}">
+                                            data-codiecri="{{ strtolower($codigoecri->codiecri) }}"
+                                            data-nombrecodiecri="{{ strtolower($codigoecri->nombrecodiecri) }}">
                                         {{ $codigoecri->codiecri }} - {{ $codigoecri->nombrecodiecri }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-
-
+                    
+                    <!-- Script mejorado -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const searchInput = document.getElementById('search-codiecri');
+                            const select = document.getElementById('codecris');
+                    
+                            searchInput.addEventListener('input', function () {
+                                const searchValue = this.value.toLowerCase().trim();
+                                const options = select.querySelectorAll('option');
+                    
+                                let matchingOption = null;
+                                let matchCount = 0;
+                    
+                                options.forEach(option => {
+                                    if (option.value === "") return;
+                    
+                                    const codigo = option.dataset.codiecri;
+                                    const nombre = option.dataset.nombrecodiecri;
+                    
+                                    const matches = codigo.includes(searchValue) || nombre.includes(searchValue);
+                    
+                                    option.style.display = matches ? '' : 'none';
+                    
+                                    if (matches) {
+                                        matchingOption = option;
+                                        matchCount++;
+                                    }
+                                });
+                    
+                                // Autoselección si solo hay una coincidencia
+                                if (matchCount === 1 && matchingOption) {
+                                    select.value = matchingOption.value;
+                                } else {
+                                    select.value = "";
+                                }
+                            });
+                        });
+                    </script>
 
 
 
@@ -259,37 +299,6 @@
                         <input type="date" name="fechaCali" id="fechaCali" class="form-control">
                     </div>
 
-
-                    {{-- Script para realizar búsqueda en Código Ecri --}}
-                    <script>
-                        document.getElementById('search-codiecri').addEventListener('input', function() {
-                            const searchValue = this.value.toLowerCase();
-                            const select = document.getElementById('codecris');
-                            const options = select.querySelectorAll('option');
-                            let matchingOption = null;
-                            let matchCount = 0;
-                            options.forEach(option => {
-                                if (option.value === "") return; // Omitir opción por defecto
-                                const text = option.dataset.codiecri;
-
-                                if (text.includes(searchValue)) {
-                                    option.style.display = ''; // Mostrar coincidencias
-                                    matchingOption = option;
-                                    matchCount++;
-                                } else {
-                                    option.style.display = 'none'; // Ocultar las no coincidentes
-                                }
-                            });
-
-                            // Si solo hay una coincidencia, seleccionarla automáticamente
-                            if (matchCount === 1 && matchingOption) {
-                                select.value = matchingOption.value;
-                            } else {
-                                select.value = ""; // Resetear selección si hay múltiples coincidencias o ninguna
-                            }
-                        });
-                    </script>
-                    {{-- Fin Script --}}
 
                     <script>
                         document.addEventListener("DOMContentLoaded", function() {
@@ -315,6 +324,10 @@
                         });
                     </script>
                     {{-- FIN CALIBRACION --}}
+
+
+
+
 
                     {{--  Imagen --}}
                     <div class="col-md-6 ">
