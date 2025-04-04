@@ -27,7 +27,8 @@
         <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
             action="{{ route('hojadevida.listar') }}">
 
-            <input class="form-control m-2" class="form-control"  style="width: 400px" type="text" name="search" placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
+            <input class="form-control m-2" class="form-control" style="width: 400px" type="text" name="search"
+                placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
 
             <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
                 href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
@@ -89,16 +90,18 @@
                     <td>{{ $hdv->id }}</td>
 
                     <td class="dropend" style="padding: 0%" width="50">
-                        @if ($hdv->foto)
+                        @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
                             <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
                                 height="50" type="button" class="btn btn-secondary dropdown-toggle"
                                 data-bs-toggle="dropdown" aria-expanded="false">
+                    
                             <ul class="dropdown-menu" style="padding: 0%">
                                 <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh">
-
                             </ul>
                         @else
-                            No hay imagen
+                            <span>No hay imagen</span>
+                            {{-- Opcional: Mostrar una imagen por defecto --}}
+                            {{-- <img src="{{ asset('images/default.png') }}" width="50" height="50" alt="Sin imagen"> --}}
                         @endif
                     </td>
                     <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>

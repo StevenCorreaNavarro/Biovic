@@ -10,7 +10,7 @@
     <style>
         * {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            
+
         }
 
         body {
@@ -28,11 +28,11 @@
             border: 1px solid rgb(235, 235, 235);
             padding: 0;
             margin: 0;
-           
+
         }
 
         table {
-            width: 100%;            
+            width: 100%;
         }
 
         .h {
@@ -46,14 +46,14 @@
             text-align: left;
             padding: 1px;
             /* margin: 1px; */
-            
+
         }
     </style>
     <title>PDF hoja de vida</title>
 </head>
 
 <body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
-    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);  bold;"   >
+    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);  bold;">
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr style=" background-color:rgb(0, 64, 255) ">
                 <td rowspan="3"
@@ -86,19 +86,28 @@
                 </th>
             </tr>
         </table>
-        <table  style=" text-align: center; border:0px solid rgb(255, 255, 255);">
+        <table style=" text-align: center; border:0px solid rgb(255, 255, 255);">
             <!-- 7 Filas en las primeras 2 columnas -->
-            <tr >
+            <tr>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">SERVICIO: </td>
-                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
+                <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">
+                    {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); " >
-                    <center>
-                        <img style=""   src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px" alt="145px">
-                    </center>
-                    
+                <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); ">
+                    @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
+                        <center>
+                            <img style="" src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px"
+                                alt="145px">
+                        </center>
+                    @else
+                        <center>
+                            <span>No se registro imagen</span>
+                        </center>
+                    @endif
                 </td>
+
+
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">NOMBRE: </td>
@@ -179,7 +188,8 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION</td>
+                <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION
+                </td>
                 <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
                 <td style="width: 16%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
                 <td style="width: 16%;border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
@@ -221,18 +231,24 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border-top: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th
+                    style="text-align: center; border-top: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255);">ACCESORIOS</h4>
                 </th>
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style=" border:1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255);width: 20%; color:white;">NOMBRE</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">MARCA</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">MODELO</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">SERIE</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">COSTO</th>         
+                <th style=" border:1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255);width: 20%; color:white;">
+                    NOMBRE</th>
+                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                    MARCA</th>
+                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                    MODELO</th>
+                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                    SERIE</th>
+                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                    COSTO</th>
             </tr>
             <tr>
                 <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
@@ -285,8 +301,8 @@
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
- 
-       
+
+
             <tr>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
@@ -331,16 +347,24 @@
                 <th style="width: 100%;"></th>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(255, 255, 255);">ECRIC. Managing Service Contracts- 2th Health Tecnology, 1989. Vol. III. Pág.21 organismo Internacional que identifica los equipos médicos segun su prioridad de riesgo</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">ECRIC. Managing Service Contracts- 2th Health
+                    Tecnology, 1989. Vol. III. Pág.21 organismo Internacional que identifica los equipos médicos segun
+                    su prioridad de riesgo</td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(255, 255, 255);">Todos los dispositivos mmédicos que se importen y/o comercialicen a partir del primero de enero de 2009, deben tener registro sanitario y/o permiso de comercialización, segun el caso, con el fin de garantizar la seguridad y la calidad de estos productos. Comunicado Invima 013-09. </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">Todos los dispositivos mmédicos que se importen y/o
+                    comercialicen a partir del primero de enero de 2009, deben tener registro sanitario y/o permiso de
+                    comercialización, segun el caso, con el fin de garantizar la seguridad y la calidad de estos
+                    productos. Comunicado Invima 013-09. </td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(255, 255, 255);">Decreto 4725 de 2005.permite identificar los equipos de acuerdo con el nivel de riesgo implicito en la atención de los papcientes o el manejo de los mismos por parte de los operadores. </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">Decreto 4725 de 2005.permite identificar los equipos
+                    de acuerdo con el nivel de riesgo implicito en la atención de los papcientes o el manejo de los
+                    mismos por parte de los operadores. </td>
             </tr>
             <tr>
-                <td style="border: 1px solid rgb(255, 255, 255);">Es el costo del equipo unitario. más elcosto  de sus componentes y accesorios.Si apalica</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">Es el costo del equipo unitario. más elcosto de sus
+                    componentes y accesorios.Si apalica</td>
             </tr>
         </table>
     </div>
