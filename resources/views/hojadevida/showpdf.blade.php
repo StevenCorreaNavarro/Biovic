@@ -106,8 +106,6 @@
                         </center>
                     @endif
                 </td>
-
-
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">NOMBRE: </td>
