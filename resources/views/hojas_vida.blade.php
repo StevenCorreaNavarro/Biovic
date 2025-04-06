@@ -36,8 +36,6 @@
                             </div>
                         </div>
                     </div>
-                    
-
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img3.jpg" alt="Descripción de la imagen">
@@ -61,20 +59,21 @@
                             </div>
                         </div>
                     </div>
-                    
+                    @if(Auth::check() && Auth::user()->role === 'admin'|| Auth::user()->role === 'empleado')
+
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/img4.jpg" alt="Descripción de la imagen">
                             <div class="hover-galeria">
                                 <img src="IMG/icono1.png" alt="Icono">
                                 <a href="hojadevida/listar">
-                                    <h1 style="font-size:larger; color:white">Descargar</h1>
+                                    <h1 style="font-size:larger; color:white">Lista Hoja de vida</h1>
                                 </a>
                             </div>
                         </div>
-                    </div>     
-                @if(Auth::check() && Auth::user()->role === 'admin'|| Auth::user()->role === 'empleado')
-               
+                    </div>
+
+
                     <div class="col-md-4 mb-4">
                         <div class="imagen-port">
                             <img src="IMG/portatil_con_kpis.webp" alt="Descripción de la imagen">
@@ -95,8 +94,8 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-                   @endif
+                </div>
+                @endif
             </div>
         </section>
     </main>

@@ -8,7 +8,7 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <title>Title</title>
 </head>
 
@@ -17,8 +17,8 @@
     @section('content')
 
 
-    <div class="container  bg-white">
-        <h1 class="text-center">Listado de Equipos</h1>
+    <div class=" form-container  bg-white">
+        <h1 class="text-center">Listado de Modelos</h1>
         <div class="d-flex justify-content-end mb-3">
             <table class="table table-bordered table-striped mt-4">
                 <thead class="table-dark">

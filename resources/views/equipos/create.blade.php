@@ -8,55 +8,39 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
     <title>Registro equipos</title>
 </head>
 
 <body>
     @extends('admin.admin.layouts.app')
-
     @section('content')
-        <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation  formu p-0">
-            <h1 style="margin-top: 4rem; text-align:center">Registrar nombre de equipo</h1>
-     
-            <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-container " style=" height: 85vh">
+            <h1>Registrar nombre de equipo</h1>
+            <form class="cajon " action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
-                <div >
+                <div>
                     <label for="nombre_equipo" class="form-label">Escribe un equipo:</label>
-                    <input type="text" id="equipo" name="nombre_equipo" class="form-control" list="equipos-list" value="{{ old('nombre') }}"  required>
-                    <datalist id="equipos-list" >
+                    <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"
+                        value="{{ old('nombre') }}" required>
+                    <datalist id="equipos-list">
                         @foreach ($equipos as $equipo)
-                            <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }} " ></option>
+                            <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }} "></option>
                         @endforeach
                     </datalist>
                 </div>
+                <br>
                 @if ($errors->has('nombre_equipo'))
                     <div class="alert alert-danger">
                         {{ $errors->first('nombre_equipo') }}
                     </div>
                 @endif
-                {{-- <label class="form-label">
-                    <h4>Nombre equipo</h4>
-                    <input class="form-control" type="text" style="width: 300px" name="nombre_equipo" class="form-control">
-                </label> --}}
-
-
-
-                <div class="d-flex gap-0 col-4 mx-auto">
+                <div>
                     <input type="submit" class="btn btn-primary" Value="Guardar" type="button" class="btn btn-primary">
                 </div>
             </form>
-
         </div>
-
-
-
-
-
-
-
 
 
 

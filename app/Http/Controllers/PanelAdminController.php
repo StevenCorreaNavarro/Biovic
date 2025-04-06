@@ -101,6 +101,9 @@ class PanelAdminController extends Controller
 
         return view('users.lista', compact('users'));
     }
+
+
+    
     public function listauseronly()
     {
         $users = User::whereNotIn('role', ['admin', 'empleado'])->orderBy('id', 'desc')->get();

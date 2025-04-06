@@ -12,6 +12,7 @@ use App\Http\Controllers\MantoCronoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\CodEcriController; // agregado para enviar codigo ecri
+use App\Models\hojadevida;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
@@ -36,7 +37,7 @@ Route::get('/', function () {
 Route::get('/empleados', function () {
     return view('empleips.form');
 })->name('empleados');
-
+Route::get('/hojadevida/resultado_lista', [HojadevidaController::class, 'busqueda'])->name('busqueda');
 //###################################################################################################### GRUPO RUTAS PARA ADMIN Y EMPLEADOS
 Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');

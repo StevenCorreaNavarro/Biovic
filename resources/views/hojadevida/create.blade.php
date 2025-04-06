@@ -19,36 +19,34 @@
 </head>
 
 <body>
-    <!-- Modal -->
+
     @extends('layouts.header')
     <main class=" p-1 " style="background-color: rgb(255, 255, 255);">
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
-
-     
-
-
-
-
         <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf {{-- LLave de seguridad obligatoria --}}
-               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        los datos se guardaran permanentemente
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
-                            class="btn btn-primary">
+
+            {{-- MDAL PARA ASEGURAR QUE GUARDA DATOS --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            los datos se guardaran permanentemente
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
+                                class="btn btn-primary">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             {{-- Inicio descripcion --}}
             <div style="background-color: rgb(255, 255, 255)" class="row g-2 needs-validation formu p-5">
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
@@ -185,7 +183,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative"> 
+                    <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="cla_biome_id">Clasificación Biomedica</label>
                             <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
@@ -229,51 +227,52 @@
                         <label for="search-codiecri">Código Ecri</label>
                         <div style="display: flex; align-items: center;">
                             <!-- Input para buscar -->
-                            <input type="text" id="search-codiecri" class="form-control" placeholder="Buscar código" style="margin-right: 10px;" />
-                    
+                            <input type="text" id="search-codiecri" class="form-control"
+                                placeholder="Buscar código" style="margin-right: 10px;" />
+
                             <!-- Select con opciones de la tabla -->
                             <select name="cod_ecri_id" id="codecris" class="form-control">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($codiecri as $codigoecri)
                                     <option value="{{ $codigoecri->id }}"
-                                            data-codiecri="{{ strtolower($codigoecri->codiecri) }}"
-                                            data-nombrecodiecri="{{ strtolower($codigoecri->nombrecodiecri) }}">
+                                        data-codiecri="{{ strtolower($codigoecri->codiecri) }}"
+                                        data-nombrecodiecri="{{ strtolower($codigoecri->nombrecodiecri) }}">
                                         {{ $codigoecri->codiecri }} - {{ $codigoecri->nombrecodiecri }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    
+
                     <!-- Script mejorado -->
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
+                        document.addEventListener('DOMContentLoaded', function() {
                             const searchInput = document.getElementById('search-codiecri');
                             const select = document.getElementById('codecris');
-                    
-                            searchInput.addEventListener('input', function () {
+
+                            searchInput.addEventListener('input', function() {
                                 const searchValue = this.value.toLowerCase().trim();
                                 const options = select.querySelectorAll('option');
-                    
+
                                 let matchingOption = null;
                                 let matchCount = 0;
-                    
+
                                 options.forEach(option => {
                                     if (option.value === "") return;
-                    
+
                                     const codigo = option.dataset.codiecri;
                                     const nombre = option.dataset.nombrecodiecri;
-                    
+
                                     const matches = codigo.includes(searchValue) || nombre.includes(searchValue);
-                    
+
                                     option.style.display = matches ? '' : 'none';
-                    
+
                                     if (matches) {
                                         matchingOption = option;
                                         matchCount++;
                                     }
                                 });
-                    
+
                                 // Autoselección si solo hay una coincidencia
                                 if (matchCount === 1 && matchingOption) {
                                     select.value = matchingOption.value;
@@ -330,16 +329,16 @@
 
 
                     {{--  Imagen --}}
-                    <div class="col-md-6 ">
-                        <div class="form-group mb-0 d-flex align-items-center">
+                    <div class="col-md-6 position-relative">
+                        <div class="form-group  d-flex align-items-center">
                             {{-- Vista previa de la imagen --}}
                             <img id="preview" class="img-thumbnail img-fluid me-3" src="" width="100"
                                 style="display: none;" alt="Vista previa">
 
-                            <div>
+                            <div class="w-100 ">
                                 <label for="foto">Selecciona una imagen:</label>
                                 <input type="file" name="foto" id="foto"
-                                    class="form-control   @error('foto') is-invalid @enderror" accept="image/*"
+                                    class="form-control  @error('foto') is-invalid @enderror" accept="image/*"
                                     onchange="previewImage(event)">
                                 @error('foto')
                                     <div class="invalid-feedback">El campo es obligatorio</div>
@@ -360,7 +359,7 @@
                     </script>
                 </div>
 
-
+                {{-- //######################################################################################################################################################### --}}
 
                 {{-- FIN DESCRIPCION DE EQUIPO  --}}
 

@@ -24,6 +24,33 @@ use Dompdf\Options;
 
 class HojadevidaController extends Controller
 {
+    
+
+    // return view('users.lista', compact('users'));
+
+    public function busqueda(Request $request)
+    {
+        $query = Equipo::query(); // Consulta base sin relaciones innecesarias
+
+        // Filtrar por el nombre si hay un término de búsqueda
+        if ($request->has('search')) {
+            $search = $request->input('search');
+    
+            $query->where(function ($q) use ($search) {
+                $q->where('nombre_equipo', 'LIKE', "%$search%");
+                    // ->orWhere('email', 'LIKE', "%$search%")
+                    // ->orWhere('contact', 'LIKE', "%$search%")
+                    // ->orWhere('role', 'LIKE', "%$search%")
+                    // ->orWhere('identity', 'LIKE', "%$search%");
+            });
+        }
+    
+        $hdvs = $query->orderBy('id', 'desc')->get();
+            
+        return view('hojadevida.listar', compact('hdvs'));
+    }
+
+
 
 
     public function downloadPDF($id)
@@ -163,10 +190,10 @@ class HojadevidaController extends Controller
         // dd($request->all());  Agregar esta línea para ver los datos recibidos, luego eliminar  despues de la prueba
         $hdv = new Hojadevida();
         $request->validate([
-            'perioMto' => 'required|string|max:255', // agregado para periodo de mantenimiento
-            'perioCali' => 'required|string',
+            'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
+            'perioCali' => 'nullable|string',
             'fechaCali' => 'nullable|date',
-            'foto' => 'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
+            'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
