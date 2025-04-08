@@ -49,6 +49,21 @@ return new class extends Migration
             $table->integer('humedad')->nullable();;
             $table->text('recomendaciones')->nullable();;
 
+            $table->string('enero')->nullable();
+            $table->string('febrero')->nullable();
+            $table->string('marzo')->nullable();
+            $table->string('abril')->nullable();
+            $table->string('mayo')->nullable();
+            $table->string('junio')->nullable();
+            $table->string('julio')->nullable();
+            $table->string('agosto')->nullable();
+            $table->string('septiembre')->nullable();
+            $table->string('octubre')->nullable();
+            $table->string('noviembre')->nullable();
+            $table->string('diciembre')->nullable();
+
+            
+
             $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
             $table->unsignedBigInteger('modelo_id')->nullable();	 

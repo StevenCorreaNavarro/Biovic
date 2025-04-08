@@ -38,6 +38,9 @@ class MantoCronoController extends BaseController
 
     public function listar()
     {
+
+
+        
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $empleips = new Empleips();
         return view('manto_crono', compact('hdvs'));

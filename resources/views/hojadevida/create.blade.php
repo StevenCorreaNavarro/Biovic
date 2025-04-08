@@ -286,17 +286,40 @@
 
 
                     {{-- INICIO CALIBRACION --}}
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
                         <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
                             class="form-control @error('perioCali') is-invalid @enderror">
-                    </div>
+                    </div> --}}
 
                     <!-- Campo FechaCali (Oculto por defecto) -->
-                    <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
+                    {{-- <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
                         <label for="fechaCali">Fecha Cali</label>
                         <input type="date" name="fechaCali" id="fechaCali" class="form-control">
+                    </div> --}}
+
+
+
+
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <label for="fechaCali">Fecha Cali</label>
+                        <input type="date" name="fechaCali" id="fechaCali" class="form-control" required>
                     </div>
+
+                    <div class="col-md-3 position-relative">
+                        <label for="perioCali">Periodo</label>
+                        <select name="perioCali" id="perioCali" class="form-control form-select" required>
+                            <option value="">Seleccione una opcion</option>
+                            <option value="cuatrimestre">Cuatrimestral</option>
+                            {{-- <option value="semestre">Semestral</option> --}}
+                            <option value="anual">Anual</option>
+                        </select>
+                    </div>
+
+
 
 
                     <script>
