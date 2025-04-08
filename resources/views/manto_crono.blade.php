@@ -20,7 +20,9 @@
             border-collapse: collapse;
             font-size: small;
         }
-        tr,th {
+
+        tr,
+        th {
             /* border: 1px solid black; */
             font-size: smaller;
         }
@@ -79,25 +81,25 @@
                         <th>DICIEMBRE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> @foreach ($hdvs as $hdv)
                     <tr>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->id }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6 style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
+                        </td>
+                        <td style="font-size:8px">
+                            <h6>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->marca?->nombre_marca ?? '---' }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->modelo?->nombre_modelo?? '---' }}</h6>
+                        </td>
                         <th style="font-size: 8px">
-                            <h6>1</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6 style="white-space: nowrap ">AMBULANCIA-ORO 238</h6>
-                        </th>
-                        <th style="font-size:8px">
-                            <h6>equipo</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>item</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>Ubicacion</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>equipo</h6>
+                            <h6>{{ $hdv->serie ?? '---' }}</h6>
                         </th>
                         <th style="font-size: 8px ;  background-color:yellow ;">
                             <h6>x</h6>
@@ -136,9 +138,12 @@
                             <h6>x</h6>
                         </th>
                     </tr>
+                    @endforeach
                 </tbody>
+
             </table>
         </div>
+
     </main>
 
     <footer class="bg-primary text-white text-center py-4">

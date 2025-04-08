@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
+    <title>Administrador-Biovic</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="{{ asset('atlantis/assets/img/icon.ico') }}" type="image/x-icon" />
+    {{-- <link rel="icon" href="{{ asset('atlantis/assets/img/icon.ico') }}" type="image/x-icon" /> --}}
 
     <!-- Fonts and icons -->
     <script src="{{ asset('atlantis/assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -36,7 +36,7 @@
 
 <body>
     <div class="wrapper">
-        <div style="position: fixed; width: 100%; z-index: 1;">
+        <div class="main-header">
             <!-- Logo Header class="main-header"-->
             <div class="logo-header scrollbar" data-background-color="blue">
 
@@ -63,6 +63,103 @@
 
 
             <!-- Navbar Header -->
+            <nav class="navbar navbar-header navbar-expand-lg -10" data-background-color="blue2">
+
+                <div class="container-fluid">
+                    <div class="collapse" id="search-nav">
+                        <form class="navbar-left navbar-form nav-search mr-md-3">
+
+                        </form>
+                    </div>
+                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                        <li class="nav-item dropdown hidden-caret">
+
+
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+
+
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="{{ route('menu') }}">Menu</a>
+
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+
+                            <a class="nav-link {{ request()->routeIs(['hoja_vida','hojadevida.*']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a>
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+
+                            <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a>
+                        </li>
+
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a>
+
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+
+                            <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+
+
+                                <li>
+                                    <a class="see-all" href="javascript:void(0);">See all notifications<i
+                                            class="fa fa-angle-right"></i> </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+
+                            <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
+                                aria-expanded="false">
+                                <div class="avatar-sm">
+                                    <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                                        class="avatar-img rounded-circle">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <div class="user-box">
+                                            <div class="avatar-lg"><img
+                                                    src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                                                    class="avatar-img rounded-circle">
+                                            </div>
+                                            <div class="u-text">
+                                                <h4>{{ Auth::user()->name }}</h4>
+                                                <p class="text-muted">{{ Auth::user()->email }}</p><a
+                                                    {{-- href="{{ route('profile.home') }}"  --}} class="btn btn-xs btn-secondary btn-sm">ver
+                                                    perfil</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">My Profile</a>
+                                        <a class="dropdown-item" href="#">My Balance</a>
+                                        <a class="dropdown-item" href="#">Inbox</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Account Setting</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            Cerrar sesión
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">@csrf</form>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
             <!-- End Navbar -->
         </div>
@@ -219,199 +316,199 @@
                                 <span class="sub-item">Crear marca</span>
                             </a>
                         </li> --}}
-                        <li
-                            class="{{ request()->routeIs(['admin.create', 'admin.store']) ? 'active' : '' }}">
-                            <a href="{{ route('admin.create') }}">
-                                <span class="sub-item">Crear equipo</span>
-                            </a>
+                                    <li
+                                        class="{{ request()->routeIs(['admin.create', 'admin.store']) ? 'active' : '' }}">
+                                        <a href="{{ route('admin.create') }}">
+                                            <span class="sub-item">Crear equipo</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </li>
 
-                    </ul>
-                </div>
-                </li>
 
+                        <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#aso">
+                                <i class="fas fa-table"></i>
+                                <p>Asociar equipo</p>
+                                <span class="caret"></span>
+                            </a>
 
-                <li class="nav-item {{ request()->routeIs('adminaso.*') ? 'active' : '' }}">
-                    <a data-toggle="collapse" href="#aso">
-                        <i class="fas fa-table"></i>
-                        <p>Asociar equipo</p>
-                        <span class="caret"></span>
-                    </a>
-
-                    <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
-                        id="aso">
-                        <ul class="nav nav-collapse">
-                            <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
-                                <a href="{{ route('adminaso.asociar') }}">
-                                    <span class="sub-item">Asociar marca</span>
-                                </a>
-                            </li>
-                            <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
-                                <a href="{{ route('adminaso.asociarmod') }}">
-                                    <span class="sub-item">Asociar Modelo</span>
-                                </a>
-                            </li>
+                            <div class="collapse {{ request()->routeIs('adminaso.*') ? 'show' : '' }}"
+                                id="aso">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ request()->routeIs(['adminaso.asociar']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociar') }}">
+                                            <span class="sub-item">Asociar marca</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{ request()->routeIs(['adminaso.asociarmod']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminaso.asociarmod') }}">
+                                            <span class="sub-item">Asociar Modelo</span>
+                                        </a>
+                                    </li>
 
 
 
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
-                    <a data-toggle="collapse" href="#slider">
-                        <i class="fas fa-th-list"></i>
-                        <p>Listas</p>
-                        <span class="caret"></span>
-                    </a>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item {{ request()->routeIs('adminlista.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#slider">
+                                <i class="fas fa-th-list"></i>
+                                <p>Listas</p>
+                                <span class="caret"></span>
+                            </a>
 
-                    <div class="collapse {{ request()->routeIs('adminlista.*') ? 'show' : '' }}"
-                        id="slider">
-                        <ul class="nav nav-collapse">
+                            <div class="collapse {{ request()->routeIs('adminlista.*') ? 'show' : '' }}"
+                                id="slider">
+                                <ul class="nav nav-collapse">
 
-                            <li class="{{ request()->routeIs(['adminlista.listar_tres']) ? 'active' : '' }}">
-                                <a href="{{ route('adminlista.listar_tres') }}">
-                                    <span class="sub-item">Lista modelos</span>
-                                </a>
-                                {{-- <a href="">
+                                    <li class="{{ request()->routeIs(['adminlista.listar_tres']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlista.listar_tres') }}">
+                                            <span class="sub-item">Lista modelos</span>
+                                        </a>
+                                        {{-- <a href="">
                                             <span class="sub-item">lista</span>
                                         </a> --}}
-                            </li>
+                                    </li>
 
-                            <li class="{{ request()->routeIs(['adminlista.listar_dos']) ? 'active' : '' }}">
-                                <a href="{{ route('adminlista.listar_dos') }}">
-                                    <span class="sub-item">Lista marcas</span>
-                                </a>
-                                {{-- <a href="">
+                                    <li class="{{ request()->routeIs(['adminlista.listar_dos']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlista.listar_dos') }}">
+                                            <span class="sub-item">Lista marcas</span>
+                                        </a>
+                                        {{-- <a href="">
                                             <span class="sub-item">lista</span>
                                         </a> --}}
-                            </li>
+                                    </li>
 
-                            <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
-                                <a href="{{ route('adminlista.listar') }}">
-                                    <span class="sub-item">Lista equipos</span>
-                                </a>
-                                {{-- <a href="">
+                                    <li class="{{ request()->routeIs(['adminlista.listar']) ? 'active' : '' }}">
+                                        <a href="{{ route('adminlista.listar') }}">
+                                            <span class="sub-item">Lista equipos</span>
+                                        </a>
+                                        {{-- <a href="">
                                             <span class="sub-item">lista</span>
                                         </a> --}}
-                            </li>
-                            <li>
-                                <a href="components/buttons.html">
-                                    <span class="sub-item">Lista usuarios</span>
-                                </a>
-                            </li>
+                                    </li>
+                                    <li>
+                                        <a href="components/buttons.html">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
+                                    </li>
 
 
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
-                    <a data-toggle="collapse" href="#usuarios">
-                        <i class="fas fa-layer-group"></i>
-                        <p>Usuarios</p>
-                        <span class="caret"></span>
-                    </a>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item {{ request()->routeIs('user.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#usuarios">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Usuarios</p>
+                                <span class="caret"></span>
+                            </a>
 
-                    <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}" id="usuarios">
-                        <ul class="nav nav-collapse">
-                            <li
-                                class="{{ request()->routeIs(['user.listausers', 'user.listausers']) ? 'active' : '' }}">
-                                <a href="{{ route('user.listausers') }}">
-                                    <span class="sub-item">Lista usuarios general</span>
-                                </a>
-                            </li>
-                            <li
-                                class="{{ request()->routeIs(['user.listaempleados', 'user.listaempleados']) ? 'active' : '' }}">
-                                <a href="{{ route('user.listaempleados') }}">
-                                    <span class="sub-item">Lista empleados</span>
-                                </a>
-                            </li>
+                            <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}" id="usuarios">
+                                <ul class="nav nav-collapse">
+                                    <li
+                                        class="{{ request()->routeIs(['user.listausers', 'user.listausers']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listausers') }}">
+                                            <span class="sub-item">Lista usuarios general</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="{{ request()->routeIs(['user.listaempleados', 'user.listaempleados']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listaempleados') }}">
+                                            <span class="sub-item">Lista empleados</span>
+                                        </a>
+                                    </li>
 
-                            <li
-                                class="{{ request()->routeIs(['user.listauseronly', 'user.listauseronly']) ? 'active' : '' }}">
-                                <a href="{{ route('user.listauseronly') }}">
-                                    <span class="sub-item">Lista usuarios</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                    <li
+                                        class="{{ request()->routeIs(['user.listauseronly', 'user.listauseronly']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listauseronly') }}">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
 
 
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
-                        <i class="
+                        <li class="nav-item">
+                            <a data-toggle="collapse" href="#base">
+                                <i class="
 fas fa-clipboard-list"></i>
-                        <p>Parametros</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="base">
-                        <ul class="nav nav-collapse">
-                            {{-- <li>
+                                <p>Parametros</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="base">
+                                <ul class="nav nav-collapse">
+                                    {{-- <li>
                                         <a href="components/avatars.html">
                                             <span class="sub-item">Usuarios</span>
                                         </a>
                                     </li> --}}
-                            <li
-                                class="{{ request()->routeIs(['user.listausers', 'user.*']) ? 'active' : '' }}">
-                                <a href="{{ route('user.listausers') }}">
-                                    <span class="sub-item">Lista usuarios</span>
-                                </a>
-                            </li>
-                            {{-- <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}"
+                                    <li
+                                        class="{{ request()->routeIs(['user.listausers', 'user.*']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listausers') }}">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
+                                    </li>
+                                    {{-- <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}"
                             id="usuarios">
                             <ul class="nav nav-collapse">
 
                             </ul>
                     </div> --}}
-                    {{-- <li>
+                                    {{-- <li>
                                         <a href="components/buttons.html">
                                             <span class="sub-item"></span>
                                         </a>
                                     </li> --}}
-                <li>
-                    <a href="components/gridsystem.html">
-                        <span class="sub-item">Grid System</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/panels.html">
-                        <span class="sub-item">Panels</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/notifications.html">
-                        <span class="sub-item">Notifications</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/sweetalert.html">
-                        <span class="sub-item">Sweet Alert</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/font-awesome-icons.html">
-                        <span class="sub-item">Font Awesome Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/simple-line-icons.html">
-                        <span class="sub-item">Simple Line Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/flaticons.html">
-                        <span class="sub-item">Flaticons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components/typography.html">
-                        <span class="sub-item">Typography</span>
-                    </a>
-                </li>
-                </ul>
-            </div>
-            </li>
+                                    <li>
+                                        <a href="components/gridsystem.html">
+                                            <span class="sub-item">Grid System</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/panels.html">
+                                            <span class="sub-item">Panels</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/notifications.html">
+                                            <span class="sub-item">Notifications</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/sweetalert.html">
+                                            <span class="sub-item">Sweet Alert</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/font-awesome-icons.html">
+                                            <span class="sub-item">Font Awesome Icons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/simple-line-icons.html">
+                                            <span class="sub-item">Simple Line Icons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/flaticons.html">
+                                            <span class="sub-item">Flaticons</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="components/typography.html">
+                                            <span class="sub-item">Typography</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
 
 
@@ -443,7 +540,7 @@ fas fa-clipboard-list"></i>
 
 
 
-            {{--
+                        {{--
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -681,20 +778,20 @@ fas fa-clipboard-list"></i>
                             </div>
                         </li> 
                     </ul> --}}
-        </div>
-    </div>
-    </div>
-    <!-- End Sidebar -->
-
-    <div class="main-panel " style="background-color: rgb(245, 245, 245); " >
-        <div class="" >
-            <div class="page-inner">
-                <div class="" >
-                    @yield('content')
-
                 </div>
             </div>
-            <!-- <footer class="footer" >
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-panel " style="background-color: rgb(245, 245, 245); ">
+            <div class="">
+                <div class="page-inner">
+                    <div style="margin-top: 70px">
+                        @yield('content')
+
+                    </div>
+                </div>
+                <!-- <footer class="footer" >
                 <div class="container-fluid">
                     <nav class="pull-left">
                         <ul class="nav">
@@ -721,46 +818,46 @@ fas fa-clipboard-list"></i>
                     </div>
                 </div>
             </footer> -->
+            </div>
+
         </div>
+        <!--   Core JS Files   -->
+        <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
 
-    </div>
-    <!--   Core JS Files   -->
-    <script src="{{ asset('atlantis/assets/js/core/jquery.3.2.1.min.js') }}"></script>
-    <script src="{{ asset('atlantis/assets/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('atlantis/assets/js/core/bootstrap.min.js') }}"></script>
+        <!-- jQuery UI -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
 
-    <!-- jQuery UI -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
-
-    <!-- jQuery Scrollbar -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 
-    <!-- Chart JS -->
-    <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js') }}"></script>
+        <!-- Chart JS -->
+        <script src="{{ asset('atlantis/assets/js/plugin/chart.js/chart.min.js') }}"></script>
 
-    <!-- jQuery Sparkline -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
+        <!-- jQuery Sparkline -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
-    <!-- Chart Circle -->
-    <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js') }}"></script>
+        <!-- Chart Circle -->
+        <script src="{{ asset('atlantis/assets/js/plugin/chart-circle/circles.min.js') }}"></script>
 
-    <!-- Datatables -->
-    <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js') }}"></script>
+        <!-- Datatables -->
+        <script src="{{ asset('atlantis/assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
-    <!-- Bootstrap Notify -->
-    <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+        <!-- Bootstrap Notify -->
+        <script src="{{ asset('atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
-    <!-- jQuery Vector Maps -->
-    <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}"></script>
+        <!-- jQuery Vector Maps -->
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js') }}"></script>
+        <script src="{{ asset('atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}"></script>
 
-    <!-- Sweet Alert -->
-    <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+        <!-- Sweet Alert -->
+        <script src="{{ asset('atlantis/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
-    <!-- Atlantis JS -->
-    <script src="{{ asset('atlantis/assets/js/atlantis.min.js') }}"></script>
+        <!-- Atlantis JS -->
+        <script src="{{ asset('atlantis/assets/js/atlantis.min.js') }}"></script>
 </body>
 
 </html>

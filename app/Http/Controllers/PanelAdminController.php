@@ -96,9 +96,7 @@ class PanelAdminController extends Controller
                     ->orWhere('identity', 'LIKE', "%$search%");
             });
         }
-
         $users = $query->orderBy('id', 'desc')->get();
-
         return view('users.lista', compact('users'));
     }
 

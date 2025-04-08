@@ -28,27 +28,27 @@ class HojadevidaController extends Controller
 
     // return view('users.lista', compact('users'));
 
-    public function busqueda(Request $request)
-    {
-        $query = Equipo::query(); // Consulta base sin relaciones innecesarias
+    // public function busqueda(Request $request)
+    // {
+    //     $query = Equipo::query(); // Consulta base sin relaciones innecesarias
 
-        // Filtrar por el nombre si hay un término de búsqueda
-        if ($request->has('search')) {
-            $search = $request->input('search');
+    //     // Filtrar por el nombre si hay un término de búsqueda
+    //     if ($request->has('search')) {
+    //         $search = $request->input('search');
     
-            $query->where(function ($q) use ($search) {
-                $q->where('nombre_equipo', 'LIKE', "%$search%");
-                    // ->orWhere('email', 'LIKE', "%$search%")
-                    // ->orWhere('contact', 'LIKE', "%$search%")
-                    // ->orWhere('role', 'LIKE', "%$search%")
-                    // ->orWhere('identity', 'LIKE', "%$search%");
-            });
-        }
+    //         $query->where(function ($q) use ($search) {
+    //             $q->where('nombre_equipo', 'LIKE', "%$search%");
+    //                 // ->orWhere('email', 'LIKE', "%$search%")
+    //                 // ->orWhere('contact', 'LIKE', "%$search%")
+    //                 // ->orWhere('role', 'LIKE', "%$search%")
+    //                 // ->orWhere('identity', 'LIKE', "%$search%");
+    //         });
+    //     }
     
-        $hdvs = $query->orderBy('id', 'desc')->get();
+    //     $hdvs = $query->orderBy('id', 'desc')->get();
             
-        return view('hojadevida.listar', compact('hdvs'));
-    }
+    //     return view('hojadevida.listar', compact('hdvs'));
+    // }
 
 
 
@@ -57,24 +57,6 @@ class HojadevidaController extends Controller
     {
         // Buscar los datos de la tabla Hdvs usando el ID
         $hdvs = Hojadevida::findOrFail($id);
-
-        // // Pasar la variable a la vista
-        // $data = ['hdvs' => $hdvs];
-
-        // // Configurar DomPDF
-        // $options = new Options();
-        // $options->set('defaultFont', 'Arial', 'isRemoteEnabled', true);
-
-        // $pdf = new Dompdf($options);
-        // $pdf->loadHtml(view('hojadevida.show', $data)->render());
-
-        // $pdf->render();
-
-        // // Descargar el PDF
-        // return $pdf->stream('hdvs_' . $hdvs->id . '.pdf');
-
-
-
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
@@ -96,7 +78,9 @@ class HojadevidaController extends Controller
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->whereHas('equipo', function ($q) use ($search) {
-                $q->where('nombre_equipo', 'LIKE', "%$search%");
+                $q->where('nombre_equipo', 'LIKE', "%$search%")
+                ->orWhere('serie', 'LIKE', "%$search%")
+                ->orWhere('actFijo', 'LIKE', "%$search%");
             });
         }
 
