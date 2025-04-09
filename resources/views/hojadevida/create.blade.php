@@ -221,15 +221,15 @@
                         </div>
                     </div> --}}
 
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Mantenimiento</label>
                         <select name="perioCali" id="perioCali" class="form-control form-select" required>
                             <option value="">Seleccione una opcion</option>
                             <option value="semestre">Trimestral</option>
                             <option value="cuatrimestre">Cuatrimestral</option>
-                            {{-- <option value="anual">Anual</option> --}}
+                            {{-- <option value="anual">Anual</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{--  Código Ecri --}}
                     <div class="col-md-3 position-relative">
@@ -294,16 +294,7 @@
                     {{-- Fin Codigo ecri --}}
 
                     {{-- INICIO CALIBRACION --}}
-                    {{-- <div class="col-md-3 position-relative">
-                        <label for="perioCali">Periodo de Calibracion</label>
-                        <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
-                            class="form-control @error('perioCali') is-invalid @enderror">
-
-                            
-                    </div>  
-
-                    <!-- Campo FechaCali (Oculto por defecto) -->
-                    <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
+                    <div class="col-md-3 position-relative" id="fechaCaliContainer" style="display: none;">
                         <label for="fechaCali">Fecha Cali</label>
                         <input type="date" name="fechaCali" id="fechaCali" class="form-control">
                     </div>
@@ -335,28 +326,26 @@
                             // Ejecutar al cargar por si ya tiene valor
                             mostrarFecha();
                         });
-                    </script> --}}
+                    </script>
                   
                     
                     <div class="col-md-3 position-relative">
-                        <label for="periodo">Periodo de Calibracion</label>
-                        <select name="periodo" id="periodo" class="form-control" required onchange="mostrarFechaCali()">
+                        <label for="perioCali">Periodo de Calibracion</label>
+                        <select name="perioCali" id="perioCali" class="form-control" required onchange="mostrarFechaCali()">
                             <option value="">Selecciona...</option>
                             <option value="cuatrimestre">No Aplica</option>
                             <option value="anual">Anual</option>
                         </select>
                     </div>
-                    <div class="col-md-3 position-relative" id="fechaCaliContainer" style="display: none;">
-                        <label for="fechaCali">Fecha Cali</label>
-                        <input type="date" name="fechaCali" id="fechaCali" class="form-control">
-                    </div>
                     
                     <script>
                     function mostrarFechaCali() {
-                        const periodo = document.getElementById('periodo').value;
+                        const periodo = document.getElementById('perioCali').value;
                         const fechaCaliDiv = document.getElementById('fechaCaliContainer');
                     
                         if (periodo === 'anual') {
+                            fechaCaliDiv.style.display = 'block';
+                        } else if (periodo === 'cuatrimestre') {
                             fechaCaliDiv.style.display = 'block';
                         } else {
                             fechaCaliDiv.style.display = 'none';
@@ -364,6 +353,7 @@
                         }
                     }
                     </script>
+                    
  
 
                     {{-- Imagen --}}

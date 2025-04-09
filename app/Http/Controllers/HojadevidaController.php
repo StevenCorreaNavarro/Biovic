@@ -228,7 +228,7 @@ class HojadevidaController extends Controller
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
      
-        // $hdv->perioCali = $request->input('perioCali');
+        $hdv->perioCali = $request->input('perioCali');
         // // Solo establecer fechaCali si perioCali es 'anual'
         // if (strtolower($request->input('perioCali')) === 'Anual') {
         //     $hdv->fechaCaliDiv = $request->input('fechaCaliDiv');
