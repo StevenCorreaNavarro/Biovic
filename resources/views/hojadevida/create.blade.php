@@ -300,7 +300,7 @@
                     </div>
                     
                     <!-- SCRIPT FUNCIONAL -->
-                    <script>
+                    {{-- <script>
                         document.addEventListener("DOMContentLoaded", function () {
                             const select = document.getElementById("perioCali");
                             const fechaDiv = document.getElementById("fechaCaliDiv");
@@ -327,14 +327,14 @@
                             mostrarFecha();
                         });
                     </script>
-                  
+                   --}}
                     
                     <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
                         <select name="perioCali" id="perioCali" class="form-control" required onchange="mostrarFechaCali()">
                             <option value="">Selecciona...</option>
                             <option value="cuatrimestre">Cuatrimestral</option>
-                            {{-- <option value="semestre">Semestral</option> --}}
+                            {{-- <option value="semestre">Semestral</option> --}}  
                             <option value="anual">Anual</option>
                         </select>
                     </div>
