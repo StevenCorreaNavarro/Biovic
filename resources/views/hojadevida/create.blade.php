@@ -342,8 +342,7 @@
                         <label for="periodo">Periodo de Calibracion</label>
                         <select name="periodo" id="periodo" class="form-control" required onchange="mostrarFechaCali()">
                             <option value="">Selecciona...</option>
-                            <option value="cuatrimestre">Cuatrimestral</option>
-                            {{-- <option value="semestre">Semestral</option> --}}
+                            <option value="cuatrimestre">No Aplica</option>
                             <option value="anual">Anual</option>
                         </select>
                     </div>
@@ -365,33 +364,29 @@
                         }
                     }
                     </script>
-<<<<<<< HEAD
-=======
-                    
->>>>>>> 667f6adfbdffb553ca779ea8f38f77734886e495
+ 
 
-                    {{--  Imagen --}}
+                    {{-- Imagen --}}
                     <div class="col-md-6 position-relative">
-                        <div class="form-group  d-flex align-items-center">
-                            {{-- Vista previa de la imagen --}}
-                            <img id="preview" class="img-thumbnail img-fluid me-3" src="" width="100"
-                                style="display: none;" alt="Vista previa">
+                        <div class="form-group">
+                            <label for="foto">Selecciona una imagen:</label>
+                            <input type="file" name="foto" id="foto"
+                                class="form-control @error('foto') is-invalid @enderror" accept="image/*"
+                                onchange="previewImage(event)">
+                            @error('foto')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
 
-                            <div class="w-100 ">
-                                <label for="foto">Selecciona una imagen:</label>
-                                <input type="file" name="foto" id="foto"
-                                    class="form-control  @error('foto') is-invalid @enderror" accept="image/*"
-                                    onchange="previewImage(event)">
-                                @error('foto')
-                                    <div class="invalid-feedback">El campo es obligatorio</div>
-                                @enderror
-                            </div>
+                            {{-- Vista previa de la imagen --}}
+                            <img id="preview" class="img-thumbnail img-fluid mt-3" src="" width="100"
+                                style="display: none;" alt="Vista previa">
                         </div>
                     </div>
+
                     <script>
                         function previewImage(event) {
                             let reader = new FileReader();
-                            reader.onload = function() {
+                            reader.onload = function () {
                                 let preview = document.getElementById('preview');
                                 preview.src = reader.result;
                                 preview.style.display = 'block';
@@ -399,7 +394,6 @@
                             reader.readAsDataURL(event.target.files[0]);
                         }
                     </script>
-                </div>
 
                 {{-- //######################################################################################################################################################### --}}
 

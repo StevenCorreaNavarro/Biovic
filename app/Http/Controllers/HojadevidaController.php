@@ -21,7 +21,7 @@ use App\Models\hojadevida;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Carbon\Carbon;
+use Carbon\Carbon; // para calcular fecha futura 
 
 
 class HojadevidaController extends Controller
@@ -127,6 +127,8 @@ class HojadevidaController extends Controller
 
         $formaadqui = Formaadqui::all();
         $nombreempresa = Propiedad::all();
+
+
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
         // return view('hojadevida.create', compact( 'nombreservicios','nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
@@ -184,9 +186,10 @@ class HojadevidaController extends Controller
         $fecha = Carbon::parse($request->fechaCali);
         $tipoPeriodo = $request->perioCali;
         $mesesASumar = match ($tipoPeriodo) {
+            'trimestre' => 3,    // 6to mes (inicio + 5), agregada ahora
             'cuatrimestre' => 4,   // 3er mes (inicio + 2)
-            // 'semestre' => 6,    // 6to mes (inicio + 5)
-            'anual' => 12       // 12avo mes (inicio + 11)
+            'anual' => 12,       // 12avo mes (inicio + 11)
+            default => 0, // Si no es ninguno de los anteriores, no sumar meses
         };
 
         // Calcular el mes final
@@ -202,7 +205,7 @@ class HojadevidaController extends Controller
 
 
 
-
+        // DESCRIPCION DE EQUIPO
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
@@ -233,6 +236,23 @@ class HojadevidaController extends Controller
         //     $hdv->fechaCali = null;
         // }
         // $equipo->save();
+
+
+        // REGISTRO HISTORICO
+        $hdv->fechafechaAdquisicion = $request->fechaAdquisicion;
+        $hdv->fechaInstalacion = $request->fechaInstalacion;
+        $hdv->garantia = $request->garantia;
+
+        $hdv->factura = $request->factura;
+        $hdv->forma_adquis_id = $request->forma_adquis_id;
+        $hdv->vidaUtil = $request->vidaUtil;
+
+        $hdv->costo = $request->costo;
+        $hdv->propiedad_id = $request->propiedad_id;
+        
+
+
+
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
         // return view('hojadevida.listar');
@@ -314,6 +334,8 @@ class HojadevidaController extends Controller
     /**
      * Display the specified resource.
      */
+
+
     public function show($hdvs)
     {
         // $query = Hojadevida::with('equipo','servicio');
