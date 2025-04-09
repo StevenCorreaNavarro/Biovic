@@ -299,6 +299,36 @@
                         <input type="date" name="fechaCali" id="fechaCali" class="form-control">
                     </div>
                     
+                    <!-- SCRIPT FUNCIONAL -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const select = document.getElementById("perioCali");
+                            const fechaDiv = document.getElementById("fechaCaliDiv");
+                            const fechaInput = document.getElementById("fechaCali");
+                    
+                            if (!select || !fechaDiv || !fechaInput) {
+                                console.warn("Uno de los elementos no fue encontrado.");
+                                return;
+                            }
+                    
+                            function mostrarFecha() {
+                                const valor = select.value.trim().toUpperCase();
+                                if (valor === "ANUAL") {
+                                    fechaDiv.style.display = "block";
+                                } else {
+                                    fechaDiv.style.display = "none";
+                                    fechaInput.value = "";
+                                }
+                            }
+                    
+                            select.addEventListener("change", mostrarFecha);
+                    
+                            // Ejecutar al cargar por si ya tiene valor
+                            mostrarFecha();
+                        });
+                    </script> --}}
+                  
+                    
                     <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
                         <select name="perioCali" id="perioCali" class="form-control" required onchange="mostrarFechaCali()">
@@ -324,7 +354,10 @@
                         }
                     }
                     </script>
+<<<<<<< HEAD
+=======
                     
+>>>>>>> 667f6adfbdffb553ca779ea8f38f77734886e495
 
                     {{--  Imagen --}}
                     <div class="col-md-6 position-relative">
