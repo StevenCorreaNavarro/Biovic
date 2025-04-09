@@ -20,7 +20,9 @@
             border-collapse: collapse;
             font-size: small;
         }
-        tr,th {
+
+        tr,
+        th {
             /* border: 1px solid black; */
             font-size: smaller;
         }
@@ -79,66 +81,83 @@
                         <th>DICIEMBRE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> @foreach ($hdvs as $hdv)
                     <tr>
-                        <th style="font-size: 8px">
-                            <h6>1</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6 style="white-space: nowrap ">AMBULANCIA-ORO 238</h6>
-                        </th>
-                        <th style="font-size:8px">
-                            <h6>equipo</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>item</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>Ubicacion</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>equipo</h6>
-                        </th>
-                        <th style="font-size: 8px ;  background-color:yellow ;">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px ;  background-color:yellow ;">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px ">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px ;  background-color:yellow ;">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
-                        <th style="font-size: 8px">
-                            <h6>x</h6>
-                        </th>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->id }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6 style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
+                        </td>
+                        <td style="font-size:8px">
+                            <h6>{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->modelo?->nombre_modelo?? 'NO REGISTRA' }}</h6>
+                        </td>
+
+                        <td style="font-size: 8px; ">
+                            <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
+                        </td>
+                        <td style="font-size: 8px ; ">
+                            <h6>{{ $hdv->enero }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->febrero }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->marzo }}</h6>
+                        </td>
+                        <td style="font-size: 8px; background-color:yellow ;">
+                            <h6>{{ $hdv->abril }}</h6>
+                        </td>
+                        <td style="font-size: 8px;">
+                            <h6>{{ $hdv->mayo }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->junio }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->julio }}</h6>
+                        </td>
+                        <td style="font-size: 8px; background-color:yellow ;">
+                            <h6>{{ $hdv->agosto }}</h6>
+                        </td>
+                        <td style="font-size: 8px;">
+                            <h6>{{ $hdv->septiembre }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->octubre }}</h6>
+                        </td>
+                        <td style="font-size: 8px">
+                            <h6>{{ $hdv->noviembre }}</h6>
+                        </td>
+                        <td style="font-size: 8px;  background-color:yellow ;">
+                            <h6>{{ $hdv->diciembre }}</h6>
+                        </td>
+                        
+                        <!-- <td>{{ $hdv->enero }}</td>
+                        <td>{{ $hdv->febrero }}</td>
+                        <td>{{ $hdv->marzo }}</td>
+                        <td>{{ $hdv->abril }}</td>
+                        <td>{{ $hdv->mayo }}</td>
+                        <td>{{ $hdv->junio }}</td>
+                        <td>{{ $hdv->julio }}</td>
+                        <td>{{ $hdv->agosto }}</td>
+                        <td>{{ $hdv->septiembre }}</td>
+                        <td>{{ $hdv->octubre }}</td>
+                        <td>{{ $hdv->noviembre }}</td>
+                        <td>{{ $hdv->diciembre }}</td> -->
                     </tr>
+                    @endforeach
                 </tbody>
+
             </table>
         </div>
+
     </main>
 
     <footer class="bg-primary text-white text-center py-4">

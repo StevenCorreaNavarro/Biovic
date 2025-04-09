@@ -21,34 +21,36 @@ use App\Models\hojadevida;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Carbon\Carbon;
+
 
 class HojadevidaController extends Controller
 {
-    
+
 
     // return view('users.lista', compact('users'));
 
-    public function busqueda(Request $request)
-    {
-        $query = Equipo::query(); // Consulta base sin relaciones innecesarias
+    // public function busqueda(Request $request)
+    // {
+    //     $query = Equipo::query(); // Consulta base sin relaciones innecesarias
 
-        // Filtrar por el nombre si hay un término de búsqueda
-        if ($request->has('search')) {
-            $search = $request->input('search');
-    
-            $query->where(function ($q) use ($search) {
-                $q->where('nombre_equipo', 'LIKE', "%$search%");
-                    // ->orWhere('email', 'LIKE', "%$search%")
-                    // ->orWhere('contact', 'LIKE', "%$search%")
-                    // ->orWhere('role', 'LIKE', "%$search%")
-                    // ->orWhere('identity', 'LIKE', "%$search%");
-            });
-        }
-    
-        $hdvs = $query->orderBy('id', 'desc')->get();
-            
-        return view('hojadevida.listar', compact('hdvs'));
-    }
+    //     // Filtrar por el nombre si hay un término de búsqueda
+    //     if ($request->has('search')) {
+    //         $search = $request->input('search');
+
+    //         $query->where(function ($q) use ($search) {
+    //             $q->where('nombre_equipo', 'LIKE', "%$search%");
+    //                 // ->orWhere('email', 'LIKE', "%$search%")
+    //                 // ->orWhere('contact', 'LIKE', "%$search%")
+    //                 // ->orWhere('role', 'LIKE', "%$search%")
+    //                 // ->orWhere('identity', 'LIKE', "%$search%");
+    //         });
+    //     }
+
+    //     $hdvs = $query->orderBy('id', 'desc')->get();
+
+    //     return view('hojadevida.listar', compact('hdvs'));
+    // }
 
 
 
@@ -57,28 +59,9 @@ class HojadevidaController extends Controller
     {
         // Buscar los datos de la tabla Hdvs usando el ID
         $hdvs = Hojadevida::findOrFail($id);
-
-        // // Pasar la variable a la vista
-        // $data = ['hdvs' => $hdvs];
-
-        // // Configurar DomPDF
-        // $options = new Options();
-        // $options->set('defaultFont', 'Arial', 'isRemoteEnabled', true);
-
-        // $pdf = new Dompdf($options);
-        // $pdf->loadHtml(view('hojadevida.show', $data)->render());
-
-        // $pdf->render();
-
-        // // Descargar el PDF
-        // return $pdf->stream('hdvs_' . $hdvs->id . '.pdf');
-
-
-
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
-
         $pdf = new Dompdf($options);
         $pdf->loadHtml(view('hojadevida.showpdf', compact('hdvs'))->render());
         $pdf->setPaper('A4', 'portrait'); // Tamaño A4 vertical
@@ -96,7 +79,9 @@ class HojadevidaController extends Controller
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->whereHas('equipo', function ($q) use ($search) {
-                $q->where('nombre_equipo', 'LIKE', "%$search%");
+                $q->where('nombre_equipo', 'LIKE', "%$search%")
+                    ->orWhere('serie', 'LIKE', "%$search%")
+                    ->orWhere('actFijo', 'LIKE', "%$search%");
             });
         }
 
@@ -145,15 +130,14 @@ class HojadevidaController extends Controller
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
         // return view('hojadevida.create', compact( 'nombreservicios','nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
-        return view('hojadevida.create', compact(                   'nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen','ubifisicas', 'estadoequipo'));
- 
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo'));
     }
     // public function create()
     // {
 
     //     $estadoequipo = estadoequipo::all(); // usar el modelo estadoequipo Obtiene todos los estados de equipo. $estadoequipo, copiar en compact
     //     $ubifisicas = Ubifisica::all(); // Obtiene todas las ubicaciones físicas
-      
+
 
     //     $nombreservicios = Servicio::all();
     //     $nombreEquipos = NombreEquipo::all();
@@ -187,14 +171,39 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
+
         // dd($request->all());  Agregar esta línea para ver los datos recibidos, luego eliminar  despues de la prueba
         $hdv = new Hojadevida();
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
             'perioCali' => 'nullable|string',
-            'fechaCali' => 'nullable|date',
+            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',// validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
+  
+
+        // $fecha = Carbon::parse($request->fechaCali);
+        // $tipoPeriodo = $request->perioCali;
+        // $mesesASumar = match ($tipoPeriodo) {
+        //     'cuatrimestre' => 4,   // 3er mes (inicio + 2)
+        //     // 'semestre' => 6,    // 6to mes (inicio + 5)
+        //     'anual' => 12       // 12avo mes (inicio + 11)
+        // };
+
+        // // Calcular el mes final
+        // $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
+        // $mesTraducido = $this->traducirMes(strtolower($mesFinal));
+        // // $equipo = new Hojadevida();
+        // // $equipo = new Equipo();
+        // $hdv->fechaCali = $request->fechaCali;
+        // $hdv->perioCali = $tipoPeriodo;
+
+        // // Solo marcar una X en el mes correspondiente
+        // $hdv->$mesTraducido = 'X';
+
+
+
+
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
@@ -216,6 +225,7 @@ class HojadevidaController extends Controller
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
+     
         $hdv->perioCali = $request->input('perioCali');
         // Solo establecer fechaCali si perioCali es 'anual'
         if (strtolower($request->input('perioCali')) === 'Anual') {
@@ -223,12 +233,32 @@ class HojadevidaController extends Controller
         } else {
             $hdv->fechaCali = null;
         }
+        // $equipo->save();
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
         // return view('hojadevida.listar');
     }
 
 
+    private function traducirMes($mesIngles)
+    {
+        $traducciones = [
+            'january' => 'enero',
+            'february' => 'febrero',
+            'march' => 'marzo',
+            'april' => 'abril',
+            'may' => 'mayo',
+            'june' => 'junio',
+            'july' => 'julio',
+            'august' => 'agosto',
+            'september' => 'septiembre',
+            'october' => 'octubre',
+            'november' => 'noviembre',
+            'december' => 'diciembre',
+        ];
+
+        return $traducciones[$mesIngles] ?? null;
+    }
     // public function store(Request $request)
     // {
     //     $hdv = new Hojadevida();

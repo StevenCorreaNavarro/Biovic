@@ -212,15 +212,24 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative"> NO USAR 
                         <div class="form-group">
                             <label for="perioMto"> Periodo Mantenimiento </label>
                             <input type="text" name="perioMto" class="form-control"
                                 value="{{ isset($hojadevida->perioMto) ? $hojadevida->perioMto : old('perioMto') }}"
                                 id="perioMto">
                         </div>
-                    </div>
+                    </div> --}}
 
+                    <div class="col-md-3 position-relative">
+                        <label for="perioCali">Periodo de Mantenimiento</label>
+                        <select name="perioCali" id="perioCali" class="form-control form-select" required>
+                            <option value="">Seleccione una opcion</option>
+                            <option value="semestre">Trimestral</option>
+                            <option value="cuatrimestre">Cuatrimestral</option>
+                            {{-- <option value="anual">Anual</option> --}}
+                        </select>
+                    </div>
 
                     {{--  Código Ecri --}}
                     <div class="col-md-3 position-relative">
@@ -244,7 +253,7 @@
                         </div>
                     </div>
 
-                    <!-- Script mejorado -->
+                    <!-- Script Codigo Ecri -->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             const searchInput = document.getElementById('search-codiecri');
@@ -282,15 +291,16 @@
                             });
                         });
                     </script>
-
-
+                    {{-- Fin Codigo ecri --}}
 
                     {{-- INICIO CALIBRACION --}}
                     <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
                         <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
                             class="form-control @error('perioCali') is-invalid @enderror">
-                    </div>
+
+                            
+                    </div>  
 
                     <!-- Campo FechaCali (Oculto por defecto) -->
                     <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
@@ -322,11 +332,6 @@
                             toggleFechaCali(perioCaliInput.value);
                         });
                     </script>
-                    {{-- FIN CALIBRACION --}}
-
-
-
-
 
                     {{--  Imagen --}}
                     <div class="col-md-6 position-relative">

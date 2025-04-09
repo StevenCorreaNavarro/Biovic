@@ -51,12 +51,12 @@
                         @endforeach
                     </datalist>
                 </div>
-                <br>
+     
                 <br>
                 <button class="btn btn-primary" type="submit">Enviar Formulario:</button>
                 <br>
                 <br>
-                <br>
+     
             </form>
         </div>
 

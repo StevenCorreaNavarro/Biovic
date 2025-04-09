@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mantenimiento_demostracion</title>
     <!-- <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"> -->
-    <link rel="stylesheet" href="{{ asset('/CSS/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- <meta charset="UTF-8"> -->
@@ -31,7 +31,7 @@
 
 
     <header>
-        <nav class="navbar navbar-expand-lg  fixed-top" style="    margin: 0%;   padding: 0%;">
+        <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 10%;">
             <div class="container-fluid" style="margin: 0%;    padding: 0%;">
                 <a class="navbar-brander d-flex" href="main" style="text-decoration: none;margin: 0%;    padding: 0%;">
                     <h1 style="text-decoration: none; font-size:400%">Biovic</h1>
@@ -51,19 +51,21 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
                     </li>
-                </ul>-
+                </ul>
             </div>
         </nav>
 
 
         <!-- Sección Hero -->
-        <div class="hero d-flex flex-column justify-content-center align-items-center text-center p-4">
-            <section class=" container">
+        <div class="hero d-flex flex-column ">
+            <section class="">
                 <h1 class="hero__title">Biovic</h1>
                 <p class="hero__paragraph"> Soluciones Inteligentes para la Gestión y Mantenimiento de Equipos Biomédicos</p>
                 <a href="#" class="cta">Agendar demo</a>
             </section>
+            
         </div>
+        
     </header>
 
 

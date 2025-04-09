@@ -37,6 +37,8 @@ Route::get('/', function () {
 Route::get('/empleados', function () {
     return view('empleips.form');
 })->name('empleados');
+Route::post('hojadevida/actualizar-meses', [HojadevidaController::class, 'actualizarMeses'])->name('actualizarMeses');
+
 Route::get('/hojadevida/resultado_lista', [HojadevidaController::class, 'busqueda'])->name('busqueda');
 //###################################################################################################### GRUPO RUTAS PARA ADMIN Y EMPLEADOS
 Route::middleware(['auth', 'role:admin,empleado'])->group(function () {

@@ -16,7 +16,7 @@
 <body>
     @extends('admin.admin.layouts.app')
     @section('content')
-        <div class="form-container " style=" height: 85vh">
+        <div class="form-container " style=" height: 100%">
             <h1>Registrar nombre de equipo</h1>
             <form class="cajon " action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf {{-- token o seguridad  --}}
