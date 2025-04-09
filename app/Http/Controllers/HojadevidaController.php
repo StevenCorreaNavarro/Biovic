@@ -180,11 +180,6 @@ class HojadevidaController extends Controller
             'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',// validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 667f6adfbdffb553ca779ea8f38f77734886e495
 
         $fecha = Carbon::parse($request->fechaCali);
         $tipoPeriodo = $request->perioCali;
