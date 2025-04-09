@@ -177,7 +177,7 @@ class HojadevidaController extends Controller
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
             'perioCali' => 'nullable|string',
-            'fechaCali' => 'nullable|date',
+            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',// validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
@@ -227,14 +227,11 @@ class HojadevidaController extends Controller
         }
         $hdv->perioCali = $request->input('perioCali');
         // Solo establecer fechaCali si perioCali es 'anual'
-        // if (strtolower($request->input('perioCali')) === 'Anual') {
-        //     $hdv->fechaCali = $request->input('fechaCali');
-        // } else {
-        //     $hdv->fechaCali = null;
-        // }
-
-
-
+        if ($request->input('perioCali') === 'ANUAL') {
+            $hdv->fechaCali = $request->input('fechaCali');
+        } else {
+            $hdv->fechaCali = null;
+        }
 
         // $equipo->save();
         $hdv->save();

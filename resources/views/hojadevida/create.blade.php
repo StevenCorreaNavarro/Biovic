@@ -212,15 +212,24 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative"> NO USAR 
                         <div class="form-group">
                             <label for="perioMto"> Periodo Mantenimiento </label>
                             <input type="text" name="perioMto" class="form-control"
                                 value="{{ isset($hojadevida->perioMto) ? $hojadevida->perioMto : old('perioMto') }}"
                                 id="perioMto">
                         </div>
-                    </div>
+                    </div> --}}
 
+                    <div class="col-md-3 position-relative">
+                        <label for="perioCali">Periodo de Mantenimiento</label>
+                        <select name="perioCali" id="perioCali" class="form-control form-select" required>
+                            <option value="">Seleccione una opcion</option>
+                            <option value="semestre">Trimestral</option>
+                            <option value="cuatrimestre">Cuatrimestral</option>
+                            {{-- <option value="anual">Anual</option> --}}
+                        </select>
+                    </div>
 
                     {{--  Código Ecri --}}
                     <div class="col-md-3 position-relative">
@@ -244,7 +253,7 @@
                         </div>
                     </div>
 
-                    <!-- Script mejorado -->
+                    <!-- Script Codigo Ecri -->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             const searchInput = document.getElementById('search-codiecri');
@@ -282,74 +291,52 @@
                             });
                         });
                     </script>
+                    {{-- Fin Codigo ecri --}}
 
-
-
-                    {{-- INICIO CALIBRACION --}}
-                    {{-- <div class="col-md-3 position-relative">
-                        <label for="perioCali">Periodo de Calibracion</label>
-                        <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
-                            class="form-control @error('perioCali') is-invalid @enderror">
-                    </div> --}}
-
-                    <!-- Campo FechaCali (Oculto por defecto) -->
-                    {{-- <div id="fechaCaliDiv" style="display: none;" class="col-md-3 position-relative">
-                        <label for="fechaCali">Fecha Cali</label>
-                        <input type="date" name="fechaCali" id="fechaCali" class="form-control">
-                    </div> --}}
-
-
-
-
-
-
-
-                    <div class="col-md-3 position-relative">
-                        <label for="fechaCali">Fecha Cali</label>
-                        <input type="date" name="fechaCali" id="fechaCali" class="form-control" required>
-                    </div>
-
-                    <div class="col-md-3 position-relative">
-                        <label for="perioCali">Periodo</label>
-                        <select name="perioCali" id="perioCali" class="form-control form-select" required>
-                            <option value="">Seleccione una opcion</option>
-                            <option value="cuatrimestre">Cuatrimestral</option>
-                            {{-- <option value="semestre">Semestral</option> --}}
-                            <option value="anual">Anual</option>
+                    <!-- PERIODO DE CALIBRACIÓN -->
+                    <div>
+                        <label for="perioCali">Periodo de Calibración</label>
+                        <select id="perioCali" name="perioCali">
+                            <option value="">Seleccione una opción</option>
+                            <option value="ANUAL">Anual</option>
+                            <option value="NO REGISTRA">No Registra</option>
                         </select>
                     </div>
-
-
-
-
+                    
+                    <!-- FECHA DE CALIBRACIÓN -->
+                    <div id="fechaCaliDiv" style="display: none; margin-top: 10px;">
+                        <label for="fechaCali">Fecha de Calibración</label>
+                        <input type="date" id="fechaCali" name="fechaCali" max="{{ now()->toDateString() }}">
+                    </div>
+                    
+                    <!-- SCRIPT FUNCIONAL -->
                     <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            let perioCaliInput = document.getElementById("perioCali");
-                            let fechaCaliDiv = document.getElementById("fechaCaliDiv");
-
-                            function toggleFechaCali(value) {
-                                console.log("Valor ingresado:", value); // Debugging
-                                if (value.toLowerCase().trim() === "anual") {
-                                    fechaCaliDiv.style.display = "block"; // Mostrar el campo si el valor es "anual"
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const select = document.getElementById("perioCali");
+                            const fechaDiv = document.getElementById("fechaCaliDiv");
+                            const fechaInput = document.getElementById("fechaCali");
+                    
+                            if (!select || !fechaDiv || !fechaInput) {
+                                console.warn("Uno de los elementos no fue encontrado.");
+                                return;
+                            }
+                    
+                            function mostrarFecha() {
+                                const valor = select.value.trim().toUpperCase();
+                                if (valor === "ANUAL") {
+                                    fechaDiv.style.display = "block";
                                 } else {
-                                    fechaCaliDiv.style.display = "none"; // Ocultarlo en cualquier otro caso
+                                    fechaDiv.style.display = "none";
+                                    fechaInput.value = "";
                                 }
                             }
-
-                            // Detectar cambios en el input
-                            perioCaliInput.addEventListener("input", function() {
-                                toggleFechaCali(this.value);
-                            });
-
-                            // Ejecutar la función al cargar la página si hay un valor predefinido
-                            toggleFechaCali(perioCaliInput.value);
+                    
+                            select.addEventListener("change", mostrarFecha);
+                    
+                            // Ejecutar al cargar por si ya tiene valor
+                            mostrarFecha();
                         });
                     </script>
-                    {{-- FIN CALIBRACION --}}
-
-
-
-
 
                     {{--  Imagen --}}
                     <div class="col-md-6 position-relative">
