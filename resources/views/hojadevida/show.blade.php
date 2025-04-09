@@ -55,14 +55,23 @@
             <div>
                 @include('hojadevida.showpdf')
             </div>
+
+            <div class="a" style="padding-left: 890px">
+                <h1> Registrar </h1>
+                <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
+                    Ingresar Nueva hoja de vida
+                </a>                
+            </div>
+            
             <div class="b" style="padding-left: 850px">
-               
+                
                 <h1>Hoja de Vida PDF</h1>
                 <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"
                     target="_blank">Descargar PDF
                     <i class="bi bi-download"></i>
                 </a>
-            </div>
+
+
         </div>
   
 

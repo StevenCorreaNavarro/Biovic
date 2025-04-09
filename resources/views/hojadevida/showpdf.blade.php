@@ -153,25 +153,25 @@
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FECHA DE ADQUISICION</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fechaAdquisicion ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FACTURA / CONTRATO</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->factura ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">COSTO</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->costo ?? '---' }}</td>
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FECHA DE INSTALACICON</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FORMA DE ADQUISICION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fechaInstalacion ?? '---' }}</td>
+                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">FORMA DE ADQUISICION</td>{{-- PTE no muestra valor --}}
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->forma_adqui?->formaadqui ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROPIEDAD</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->propiedad?->nombreempresa ?? '---' }}</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">GARANTIA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->garantia ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VIDA UTIL</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->vidaUtil ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>
                 <td style="border: 1px solid rgb(255, 255, 255);"></td>
             </tr>

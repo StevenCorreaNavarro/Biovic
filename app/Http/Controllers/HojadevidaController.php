@@ -132,7 +132,7 @@ class HojadevidaController extends Controller
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
         // return view('hojadevida.create', compact( 'nombreservicios','nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo'));
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
     }
     // public function create()
     // {
@@ -201,7 +201,7 @@ class HojadevidaController extends Controller
         $hdv->perioCali = $tipoPeriodo;
 
         // Solo marcar una X en el mes correspondiente
-        $hdv->$mesTraducido = 'X';
+        //$hdv->$mesTraducido = 'X';
 
 
 
