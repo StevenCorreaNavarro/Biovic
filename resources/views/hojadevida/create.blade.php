@@ -294,7 +294,7 @@
                     {{-- Fin Codigo ecri --}}
 
                     {{-- INICIO CALIBRACION --}}
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
                         <input type="text" name="perioCali" value="{{ old('perioCali') }}" id="perioCali"
                             class="form-control @error('perioCali') is-invalid @enderror">
@@ -331,7 +331,37 @@
                             // Ejecutar la función al cargar la página si hay un valor predefinido
                             toggleFechaCali(perioCaliInput.value);
                         });
+                    </script> --}}
+                  
+                    
+                    <div class="col-md-3 position-relative">
+                        <label for="periodo">Periodo de Calibracion</label>
+                        <select name="periodo" id="periodo" class="form-control" required onchange="mostrarFechaCali()">
+                            <option value="">Selecciona...</option>
+                            <option value="cuatrimestre">Cuatrimestral</option>
+                            {{-- <option value="semestre">Semestral</option> --}}
+                            <option value="anual">Anual</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 position-relative" id="fechaCaliContainer" style="display: none;">
+                        <label for="fechaCali">Fecha Cali</label>
+                        <input type="date" name="fechaCali" id="fechaCali" class="form-control">
+                    </div>
+                    
+                    <script>
+                    function mostrarFechaCali() {
+                        const periodo = document.getElementById('periodo').value;
+                        const fechaCaliDiv = document.getElementById('fechaCaliContainer');
+                    
+                        if (periodo === 'anual') {
+                            fechaCaliDiv.style.display = 'block';
+                        } else {
+                            fechaCaliDiv.style.display = 'none';
+                            document.getElementById('fechaCali').value = ''; // Limpiar valor si se oculta
+                        }
+                    }
                     </script>
+                    
 
                     {{--  Imagen --}}
                     <div class="col-md-6 position-relative">

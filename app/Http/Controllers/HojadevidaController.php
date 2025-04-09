@@ -182,24 +182,24 @@ class HojadevidaController extends Controller
         ]);
   
 
-        // $fecha = Carbon::parse($request->fechaCali);
-        // $tipoPeriodo = $request->perioCali;
-        // $mesesASumar = match ($tipoPeriodo) {
-        //     'cuatrimestre' => 4,   // 3er mes (inicio + 2)
-        //     // 'semestre' => 6,    // 6to mes (inicio + 5)
-        //     'anual' => 12       // 12avo mes (inicio + 11)
-        // };
+        $fecha = Carbon::parse($request->fechaCali);
+        $tipoPeriodo = $request->perioCali;
+        $mesesASumar = match ($tipoPeriodo) {
+            'cuatrimestre' => 4,   // 3er mes (inicio + 2)
+            // 'semestre' => 6,    // 6to mes (inicio + 5)
+            'anual' => 12       // 12avo mes (inicio + 11)
+        };
 
-        // // Calcular el mes final
-        // $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
-        // $mesTraducido = $this->traducirMes(strtolower($mesFinal));
-        // // $equipo = new Hojadevida();
-        // // $equipo = new Equipo();
-        // $hdv->fechaCali = $request->fechaCali;
-        // $hdv->perioCali = $tipoPeriodo;
+        // Calcular el mes final
+        $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
+        $mesTraducido = $this->traducirMes(strtolower($mesFinal));
+        // $equipo = new Hojadevida();
+        // $equipo = new Equipo();
+        $hdv->fechaCali = $request->fechaCali;
+        $hdv->perioCali = $tipoPeriodo;
 
-        // // Solo marcar una X en el mes correspondiente
-        // $hdv->$mesTraducido = 'X';
+        // Solo marcar una X en el mes correspondiente
+        $hdv->$mesTraducido = 'X';
 
 
 
@@ -226,13 +226,13 @@ class HojadevidaController extends Controller
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
      
-        $hdv->perioCali = $request->input('perioCali');
-        // Solo establecer fechaCali si perioCali es 'anual'
-        if (strtolower($request->input('perioCali')) === 'Anual') {
-            $hdv->fechaCali = $request->input('fechaCali');
-        } else {
-            $hdv->fechaCali = null;
-        }
+        // $hdv->perioCali = $request->input('perioCali');
+        // // Solo establecer fechaCali si perioCali es 'anual'
+        // if (strtolower($request->input('perioCali')) === 'Anual') {
+        //     $hdv->fechaCaliDiv = $request->input('fechaCaliDiv');
+        // } else {
+        //     $hdv->fechaCali = null;
+        // }
         // $equipo->save();
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
