@@ -180,7 +180,11 @@ class HojadevidaController extends Controller
             'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',// validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 667f6adfbdffb553ca779ea8f38f77734886e495
 
         $fecha = Carbon::parse($request->fechaCali);
         $tipoPeriodo = $request->perioCali;
@@ -225,14 +229,14 @@ class HojadevidaController extends Controller
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
-        $hdv->perioCali = $request->input('perioCali');
-        // Solo establecer fechaCali si perioCali es 'anual'
-        if ($request->input('perioCali') === 'ANUAL') {
-            $hdv->fechaCali = $request->input('fechaCali');
-        } else {
-            $hdv->fechaCali = null;
-        }
-
+     
+        // $hdv->perioCali = $request->input('perioCali');
+        // // Solo establecer fechaCali si perioCali es 'anual'
+        // if (strtolower($request->input('perioCali')) === 'Anual') {
+        //     $hdv->fechaCaliDiv = $request->input('fechaCaliDiv');
+        // } else {
+        //     $hdv->fechaCali = null;
+        // }
         // $equipo->save();
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar

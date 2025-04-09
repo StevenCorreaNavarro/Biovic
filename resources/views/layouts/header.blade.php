@@ -69,7 +69,7 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"
                         style=" --bs-scroll-height: 100px; margin-left: 1%; margin-right:1%">
-                        <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li>
+                        <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="{{ route('menu') }}">Menu</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['hoja_vida','hojadevida.*']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
                         <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a></li>
