@@ -239,12 +239,12 @@ class HojadevidaController extends Controller
 
 
         // REGISTRO HISTORICO
-        $hdv->fechafechaAdquisicion = $request->fechaAdquisicion;
+        $hdv->fechaAdquisicion = $request->fechaAdquisicion;
         $hdv->fechaInstalacion = $request->fechaInstalacion;
         $hdv->garantia = $request->garantia;
 
         $hdv->factura = $request->factura;
-        $hdv->forma_adquis_id = $request->forma_adquis_id;
+        $hdv->forma_adqui_id = $request->forma_adqui_id;
         $hdv->vidaUtil = $request->vidaUtil;
 
         $hdv->costo = $request->costo;
