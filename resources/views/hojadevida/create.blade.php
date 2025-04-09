@@ -326,7 +326,7 @@
                             // Ejecutar al cargar por si ya tiene valor
                             mostrarFecha();
                         });
-                    </script> --}}
+                    </script>
                   
                     
                     <div class="col-md-3 position-relative">
@@ -354,10 +354,7 @@
                         }
                     }
                     </script>
-<<<<<<< HEAD
-=======
                     
->>>>>>> 667f6adfbdffb553ca779ea8f38f77734886e495
 
                     {{--  Imagen --}}
                     <div class="col-md-6 position-relative">
