@@ -335,10 +335,19 @@
                             // Ejecutar al cargar por si ya tiene valor
                             mostrarFecha();
                         });
-                    </script> --}}
-
-
-
+                    </script>
+                   --}}
+                    
+                    <div class="col-md-3 position-relative">
+                        <label for="perioCali">Periodo de Calibracion</label>
+                        <select name="perioCali" id="perioCali" class="form-control" required onchange="mostrarFechaCali()">
+                            <option value="">Selecciona...</option>
+                            <option value="cuatrimestre">Cuatrimestral</option>
+                            {{-- <option value="semestre">Semestral</option> --}}  
+                            <option value="anual">Anual</option>
+                        </select>
+                    </div>
+                    
                     <script>
                         function mostrarFechaCali() {
                             const periodo = document.getElementById('perioCali').value;
