@@ -101,11 +101,11 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 80%;
+    height: 90%;
     background-color: #000000;
     /* background-image: radial-gradient( #33adffb9, #0064e68b 50% ,#0258929c 100%),url("http://localhost/biovic/public/IMG/manotas.jpg"); */
    
-    background-image: linear-gradient(45deg,  #00275a9a 50% , #005b97a9 100%), url("http://localhost/biovic/public/IMG/mans.png");
+    background-image: linear-gradient(45deg,  #010d5797 100% , #012470a9 100%), url("http://localhost/biovic/public/IMG/mans.png");
     background-size: cover;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%);
     z-index: -1;
