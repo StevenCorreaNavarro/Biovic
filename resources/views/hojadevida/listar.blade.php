@@ -107,7 +107,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
 
                     <ul class="dropdown-menu " style="padding: 0%;width:200vw">
-                        <img  src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh; background-color:white;border: 1px solid rgb(0, 12, 65);box-shadow: 0 4px 18px rgba(0, 0, 0, 0.529);">
+                        <img  src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh; background-color:white;border: 1px solid rgb(0, 12, 65);box-shadow: 0 4px 18px rgba(0, 0, 0, 0.331);">
                     </ul>
                     @else
                     <span>No hay imagen</span>
