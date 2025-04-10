@@ -102,12 +102,12 @@
 
                 <td class="dropend" style="padding: 0%" width="50">
                     @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
-                    <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
+                    <img style="padding: 0%;" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
                         height="50" type="button" class="btn btn-secondary dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
 
-                    <ul class="dropdown-menu" style="padding: 0%">
-                        <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh">
+                    <ul class="dropdown-menu " style="padding: 0%;width:200vw">
+                        <img  src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh; background-color:white;border: 1px solid rgb(0, 12, 65);box-shadow: 0 4px 18px rgba(0, 0, 0, 0.331);">
                     </ul>
                     @else
                     <span>No hay imagen</span>

@@ -56,12 +56,12 @@
                 @include('hojadevida.showpdf')
             </div>
 
-            <div class="a" style="padding-left: 890px">
+            <!-- <div class="a" style="padding-left: 890px">
                 <h1> Registrar </h1>
                 <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                     Ingresar Nueva hoja de vida
                 </a>                
-            </div>
+            </div> -->
             
             <div class="b" style="padding-left: 850px">
                 
