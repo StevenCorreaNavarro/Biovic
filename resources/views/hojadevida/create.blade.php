@@ -481,7 +481,7 @@
                                 @foreach ($propiedad as $nombreempre)
                                     <option value="{{ $nombreempre->id }}"
                                         {{ isset($hojadevida) && $hojadevida->propiedad_id == $nombreempre->id ? 'selected' : '' }}>
-                                        {{ $nombreempre->propiedad }}
+                                        {{ $nombreempre->nombreempresa }}
                                 @endforeach
                             </select>
                         </div>
