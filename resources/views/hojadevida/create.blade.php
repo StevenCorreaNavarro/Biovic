@@ -363,9 +363,9 @@
 
 
                     {{-- Imagen --}}
-                    <div class="col-md-6 position-relative">
+                    <div class="col-md-6 position-relative d-flex">
 
-                        <div class="form-group">
+                        <div class="form-group ">
 
                             <label for="foto">Selecciona una imagen:</label>
                             <input type="file" name="foto" id="foto"
@@ -376,9 +376,10 @@
                             @enderror
 
                             {{-- Vista previa de la imagen --}}
-                            <img id="preview" class="img-thumbnail img-fluid mt-3" src="" width="100"
-                                style="display: none;" alt="Vista previa">
+
                         </div>
+                        <img id="preview" class="img-thumbnail m-2 img-fluid mt-3" src="" width="120"
+                            style="display: none;" alt="Vista previa">
                     </div>
 
                     <script>
