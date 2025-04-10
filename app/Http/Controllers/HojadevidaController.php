@@ -192,19 +192,6 @@ class HojadevidaController extends Controller
             default => 0, // Si no es ninguno de los anteriores, no sumar meses
         };
 
-        // Calcular el mes final
-        $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
-        $mesTraducido = $this->traducirMes(strtolower($mesFinal));
-        // $equipo = new Hojadevida();
-        // $equipo = new Equipo();
-        $hdv->fechaCali = $request->fechaCali;
-        $hdv->perioCali = $tipoPeriodo;
-
-        // Solo marcar una X en el mes correspondiente
-        //$hdv->$mesTraducido = 'X';
-
-
-
         // DESCRIPCION DE EQUIPO
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
@@ -236,6 +223,19 @@ class HojadevidaController extends Controller
         //     $hdv->fechaCali = null;
         // }
         // $equipo->save();
+
+        // Calcular el mes final
+        $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
+        $mesTraducido = $this->traducirMes(strtolower($mesFinal));
+        // $equipo = new Hojadevida();
+        // $equipo = new Equipo();
+        $hdv->fechaCali = $request->fechaCali;
+        $hdv->perioCali = $tipoPeriodo;
+
+        // Solo marcar una X en el mes correspondiente
+        //$hdv->$mesTraducido = 'X';
+
+
 
 
         // REGISTRO HISTORICO
