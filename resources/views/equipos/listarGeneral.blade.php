@@ -111,10 +111,10 @@
                                 <td>{{ $hdv->id }}</td>
                                 <td class="dropend" style="padding: 0%" width="50">
                                     @if ($hdv->foto)
-                                        <img style="padding: 0%" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
+                                        <img style="padding: 0%; background-color:white " src="{{ asset('storage/' . $hdv->foto) }}" width="50"
                                             height="50" type="button" class="btn btn-secondary dropdown-toggle"
                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                        <ul class="dropdown-menu" style="padding: 0%">
+                                        <ul class="dropdown-menu" style="padding: 0%; background-color:white;">
                                             <img src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh">
 
                                         </ul>
@@ -159,7 +159,7 @@
         </main>
 
         <div class="container mt-5">
-            <h1 class="text-center">Listado de Equipos</h1>
+            <!-- <h1 class="text-center">Listado de Equipos</h1> -->
             <div class="justify-content-end mb-3">
 
             </div>

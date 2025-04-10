@@ -62,15 +62,12 @@ return new class extends Migration
             $table->string('noviembre')->nullable();
             $table->string('diciembre')->nullable();
 
-            
-
             $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
             $table->unsignedBigInteger('modelo_id')->nullable();	 
             $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
             $table->unsignedBigInteger('marca_id')->nullable();	 
             $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
-
 
             $table->unsignedBigInteger('estadoequipo_id')->nullable();	 
             $table->foreign('estadoequipo_id')->references('id')->on('estadoequipos')->onDelete('cascade');
@@ -98,14 +95,12 @@ return new class extends Migration
 
             $table->unsignedBigInteger('cla_uso_id')->nullable();	 
             $table->foreign('cla_uso_id')->references('id')->on('cla_usos')->onDelete('cascade');
-
             
             $table->unsignedBigInteger('forma_adqui_id')->nullable();	 
             $table->foreign('forma_adqui_id')->references('id')->on('forma_adquis')->onDelete('cascade');
 
             $table->unsignedBigInteger('propiedad_id')->nullable();	 
             $table->foreign('propiedad_id')->references('id')->on('propiedads')->onDelete('cascade'); 
-
 
             $table->unsignedBigInteger('mag_fuen_alimen_id')->nullable();	
             $table->foreign('mag_fuen_alimen_id')->references('id')->on('mag_fuen_alimens')->onDelete('cascade');
@@ -138,8 +133,6 @@ return new class extends Migration
 
             $table->unsignedBigInteger('fabricante_id')->nullable();	 
             $table->foreign('fabricante_id')->references('id')->on('fabricantes')->onDelete('cascade');
-
-
             
             $table->timestamps();
         });

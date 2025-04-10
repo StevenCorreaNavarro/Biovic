@@ -124,15 +124,13 @@ class HojadevidaController extends Controller
         $clauso = ClaUso::all();
         $codiecri = codEcri::all();
 
-
         $formaadqui = Formaadqui::all();
-        $nombreempresa = Propiedad::all();
-
+        $propiedad = Propiedad::all();
 
         $nombrealimentacion = magFuenAlimen::all(); //
         $abreviacionvolumen = magVol::all(); //
         // return view('hojadevida.create', compact( 'nombreservicios','nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo'));
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo'));
     }
     // public function create()
     // {
@@ -199,18 +197,15 @@ class HojadevidaController extends Controller
         // $equipo = new Equipo();
         $hdv->fechaCali = $request->fechaCali;
         $hdv->perioCali = $tipoPeriodo;
-
         // Solo marcar una X en el mes correspondiente
         $hdv->$mesTraducido = 'X';
-
-
 
         // DESCRIPCION DE EQUIPO
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
-        $hdv->servicio_id = $request->servicio_id;
+        // $hdv->servicio_id = $request->servicio_id;
         $hdv->serie = $request->serie;
         $hdv->actFijo = $request->actFijo;
         $hdv->estadoequipo_id = $request->estadoequipo_id; // para estado poder guardar  original $hdv->estadoequipo = $request->estadoequipo; 
@@ -223,6 +218,7 @@ class HojadevidaController extends Controller
         $hdv->cla_uso_id = $request->cla_uso_id;
         $hdv->perioMto = $request->perioMto; // agregado para periodo de mantenimiento
         $hdv->cod_ecri_id = $request->cod_ecri_id;
+
         if ($request->hasFile('foto')) {
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD

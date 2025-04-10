@@ -438,10 +438,10 @@
                             <label for="propiedad_id">Propiedad</label>
                             <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
-                                @foreach ($nombreempresa as $nombreempre)
+                                @foreach ($propiedad as $nombreempre)
                                     <option value="{{ $nombreempre->id }}"
                                         {{ isset($hojadevida) && $hojadevida->propiedad_id == $nombreempre->id ? 'selected' : '' }}>
-                                        {{ $nombreempre->nombreempresa }}
+                                        {{ $nombreempre->propiedad }}
                                 @endforeach
                             </select>
                         </div>
