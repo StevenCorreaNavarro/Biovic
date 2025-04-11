@@ -196,7 +196,7 @@
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION </td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->magFuenAlimen?->nombrealimentacion ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
                 <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>

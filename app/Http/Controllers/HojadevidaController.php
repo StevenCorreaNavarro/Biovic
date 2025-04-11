@@ -262,6 +262,10 @@ class HojadevidaController extends Controller
         
 
 
+        // REGISTRO HISTORICO
+        $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
+
+
 
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
