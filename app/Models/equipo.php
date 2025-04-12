@@ -35,6 +35,12 @@ class Equipo extends Model {
     {
         return $this->belongsTo('App\Models\Marca');
     }
+    
+    public function propiedad()
+{
+    return $this->belongsTo(Propiedad::class);
+}
+
 
 
     

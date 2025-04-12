@@ -73,19 +73,26 @@ class HojadevidaController extends Controller
     {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $hdvs = hojadevida::with('equipo')->get();
-        $query = Hojadevida::with('equipo', 'servicio');
+        $query = Hojadevida::with('equipo', 'servicio', 'propiedad');
 
-        // Filtrar por el nombre del equipo si se ingresa un término en el buscador
         if ($request->has('search')) {
             $search = $request->input('search');
-            $query->whereHas('equipo', function ($q) use ($search) {
-                $q->where('nombre_equipo', 'LIKE', "%$search%")
-                    ->orWhere('serie', 'LIKE', "%$search%")
-                    ->orWhere('actFijo', 'LIKE', "%$search%");
+
+            $query->where(function ($q) use ($search) {
+                // Búsqueda por equipo relacionado
+                $q->whereHas('equipo', function ($eq) use ($search) {
+                    $eq->where('nombre_equipo', 'LIKE', "%$search%")
+                        ->orWhere('serie', 'LIKE', "%$search%")
+                        ->orWhere('actFijo', 'LIKE', "%$search%");
+                })
+                    // Búsqueda por nombre de propiedad (desde la relación en hojadevida)
+                    ->orWhereHas('propiedad', function ($p) use ($search) {
+                        $p->where('nombreempresa', 'LIKE', "%$search%");
+                    });
             });
         }
 
-        $hdvs = $query->get();
+        $hdvs = $query->orderBy('id', 'desc')->get();
         return view('hojadevida.listar', compact('hdvs'));
 
 
@@ -176,8 +183,8 @@ class HojadevidaController extends Controller
         $hdv = new Hojadevida();
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
-            'perioCali' => 'nullable|string',
-            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',// validacion y fecha no  posterior a la actual 
+            'perioCali' => 'required|in:trimestre,cuatrimestre,anual',
+            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable', // validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
@@ -198,7 +205,7 @@ class HojadevidaController extends Controller
         $hdv->fechaCali = $request->fechaCali;
         $hdv->perioCali = $tipoPeriodo;
         // Solo marcar una X en el mes correspondiente
-        // $hdv->$mesTraducido = 'X';
+        $hdv->$mesTraducido = 'X';
 
 
         // DESCRIPCION DE EQUIPO
@@ -224,7 +231,7 @@ class HojadevidaController extends Controller
             $hdv->foto = $request->file('foto')->store('public/fotos');
             $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
         }
-     
+
         $hdv->perioCali = $request->input('perioCali');
         // // Solo establecer fechaCali si perioCali es 'anual'
         // if (strtolower($request->input('perioCali')) === 'Anual') {
@@ -235,12 +242,12 @@ class HojadevidaController extends Controller
         // $equipo->save();
 
         // Calcular el mes final
-        $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
-        $mesTraducido = $this->traducirMes(strtolower($mesFinal));
-        // $equipo = new Hojadevida();
-        // $equipo = new Equipo();
-        $hdv->fechaCali = $request->fechaCali;
-        $hdv->perioCali = $tipoPeriodo;
+        // $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
+        // $mesTraducido = $this->traducirMes(strtolower($mesFinal));
+        // // $equipo = new Hojadevida();
+        // // $equipo = new Equipo();
+        // $hdv->fechaCali = $request->fechaCali;
+        // $hdv->perioCali = $tipoPeriodo;
 
         // Solo marcar una X en el mes correspondiente
         //$hdv->$mesTraducido = 'X';
@@ -259,7 +266,7 @@ class HojadevidaController extends Controller
 
         $hdv->costo = $request->costo;
         $hdv->propiedad_id = $request->propiedad_id;
-        
+
 
 
         // REGISTRO HISTORICO

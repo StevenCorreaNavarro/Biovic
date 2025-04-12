@@ -72,7 +72,8 @@ class hojadevida extends Model
         return $this->belongsTo('App\Models\NombreEquipo');
     }
     public function propiedad (){
-        return $this->belongsTo('App\Models\Propiedad');
+        // return $this->belongsTo('App\Models\Propiedad');
+        return $this->belongsTo(Propiedad::class);
     }
     public function proveedor (){
         return $this->belongsTo('App\Models\Proveedor');
@@ -107,6 +108,8 @@ class hojadevida extends Model
     {
         return $this->belongsTo(Modelo::class, 'modelo_id'); 
     }
+    
+    
     protected $fillable = ['foto', 'codecris']; // Agregamos 'foto' para que se pueda asignar masivamente
     
         //     $request->validate([
@@ -114,4 +117,7 @@ class hojadevida extends Model
         //     'fechaCali' => 'nullable|date',
         //     'foto'=>'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
         // ]);
+
+        
+        
 }

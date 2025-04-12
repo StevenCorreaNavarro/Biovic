@@ -23,6 +23,8 @@ class EquipoController extends Controller
         $modelos = Modelo::where('marca_id', $marca_id)->get();
         return response()->json($modelos);
     }
+
+    
     // }
     // public function store()
     // {

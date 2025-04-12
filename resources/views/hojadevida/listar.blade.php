@@ -82,6 +82,7 @@
                 <th>NOMBRE EQUIPO</th>
                 <th>MARCA</th>
                 <th>MODELO</th>
+                <th>PROPIEDAD</th>
                 <th>SERIE</th>
                 <th>SERVICIO</th>
                 <th>ACTIVO FIJO</th>
@@ -118,6 +119,7 @@
                 <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                 <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                 <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
+                <td>{{ $hdv->propiedad?->nombreempresa?? '---' }}</td>
                 <td>{{ $hdv->serie }}</td>
                 <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                 <td>{{ $hdv->actFijo ?? '---' }}</td>
