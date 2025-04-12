@@ -178,8 +178,6 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
-
-        // dd($request->all());  Agregar esta línea para ver los datos recibidos, luego eliminar  despues de la prueba
         $hdv = new Hojadevida();
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
@@ -200,8 +198,7 @@ class HojadevidaController extends Controller
         // Calcular el mes final
         $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
         $mesTraducido = $this->traducirMes(strtolower($mesFinal));
-        // $equipo = new Hojadevida();
-        // $equipo = new Equipo();
+
         $hdv->fechaCali = $request->fechaCali;
         $hdv->perioCali = $tipoPeriodo;
         // Solo marcar una X en el mes correspondiente
@@ -213,7 +210,6 @@ class HojadevidaController extends Controller
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
-        // $hdv->servicio_id = $request->servicio_id;
         $hdv->serie = $request->serie;
         $hdv->actFijo = $request->actFijo;
         $hdv->estadoequipo_id = $request->estadoequipo_id; // para estado poder guardar  original $hdv->estadoequipo = $request->estadoequipo; 
@@ -233,27 +229,6 @@ class HojadevidaController extends Controller
         }
 
         $hdv->perioCali = $request->input('perioCali');
-        // // Solo establecer fechaCali si perioCali es 'anual'
-        // if (strtolower($request->input('perioCali')) === 'Anual') {
-        //     $hdv->fechaCaliDiv = $request->input('fechaCaliDiv');
-        // } else {
-        //     $hdv->fechaCali = null;
-        // }
-        // $equipo->save();
-
-        // Calcular el mes final
-        // $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
-        // $mesTraducido = $this->traducirMes(strtolower($mesFinal));
-        // // $equipo = new Hojadevida();
-        // // $equipo = new Equipo();
-        // $hdv->fechaCali = $request->fechaCali;
-        // $hdv->perioCali = $tipoPeriodo;
-
-        // Solo marcar una X en el mes correspondiente
-        //$hdv->$mesTraducido = 'X';
-
-
-
 
         // REGISTRO HISTORICO
         $hdv->fechaAdquisicion = $request->fechaAdquisicion;
@@ -267,12 +242,8 @@ class HojadevidaController extends Controller
         $hdv->costo = $request->costo;
         $hdv->propiedad_id = $request->propiedad_id;
 
-
-
         // REGISTRO HISTORICO
         $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
-
-
 
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
