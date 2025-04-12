@@ -12,6 +12,15 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/tablas.css') }}"> --}}
     <title>Title</title>
     <style>
+        table{
+            font-size: 13px;
+          
+        }
+        tr{
+           /* border-bottom:   1px solid rgba(0, 0, 0, 0.221); */
+         
+            
+        }
 
     </style>
 </head>
@@ -32,7 +41,7 @@
             action="{{ route('hojadevida.listar') }}">
 
             <input class="form-control m-2" class="form-control" style="width: 400px" type="text" name="search"
-                placeholder="Buscar por nombre de equipo..." value="{{ request('search') }}">
+                placeholder="Buscar...." value="{{ request('search') }}">
 
 
                 
@@ -74,7 +83,7 @@
 
 
 
-    <table class="w-100 table fs-7 table-striped  text table-hover">
+    <table class="w-100 table  table-striped  text table-hover">
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
@@ -116,10 +125,10 @@
                     {{-- <img src="{{ asset('images/default.png') }}" width="50" height="50" alt="Sin imagen"> --}}
                     @endif
                 </td>
-                <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
+                <td class="fw-bolder">{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
                 <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
                 <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                <td>{{ $hdv->propiedad?->nombreempresa?? '---' }}</td>
+                <td >{{ $hdv->propiedad?->nombreempresa?? '---' }}</td>
                 <td>{{ $hdv->serie }}</td>
                 <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
                 <td>{{ $hdv->actFijo ?? '---' }}</td>
