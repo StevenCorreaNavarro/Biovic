@@ -198,9 +198,9 @@ class HojadevidaController extends Controller
         $hdv->fechaCali = $request->fechaCali;
         $hdv->perioCali = $tipoPeriodo;
         // Solo marcar una X en el mes correspondiente
-        $hdv->$mesTraducido = 'X';
+        // $hdv->$mesTraducido = 'X';
 
-        
+
         // DESCRIPCION DE EQUIPO
         // se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
@@ -260,6 +260,10 @@ class HojadevidaController extends Controller
         $hdv->costo = $request->costo;
         $hdv->propiedad_id = $request->propiedad_id;
         
+
+
+        // REGISTRO HISTORICO
+        $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
 
 
 

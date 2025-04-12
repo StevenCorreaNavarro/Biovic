@@ -490,21 +490,24 @@
                     <br><br><br>
                 </div>
 
+                {{-- INICIO REGISTRO TECNICO --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Registro tecnico
                     </h1>
+
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for="mag_fuen_alimen_id"> Fuente de Alimentacion</label>
-                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
-                                class="form-control form-select">
-                                <option value="">Seleccione una opcion</option>
-                                @foreach ($nombrealimentacion as $nombrefuentealimentacion)
-                                    <option value="{{ $nombrefuentealimentacion->id }}"
-                                        {{ isset($hojadevida) && $hojadevida->mag_fuen_alimen_id == $nombrefuentealimentacion->id ? 'selected' : '' }}>
-                                        {{ $nombrefuentealimentacion->nombrealimentacion }}
+                            <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
+                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($nombrealimentacion as $fuente)
+                                    <option 
+                                        value="{{ $fuente->id }}" 
+                                        {{ old('mag_fuen_alimen_id', $hojadevida->mag_fuen_alimen_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->nombrealimentacion }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
