@@ -27,6 +27,9 @@ use Dompdf\Options;
 
 class PanelAdminController extends Controller
 {
+
+
+    
     // public function create()
     // {
     //     $equipos = Equipo::all();
@@ -331,14 +334,33 @@ class PanelAdminController extends Controller
 
     public function show($id) {}
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        // Lógica para actualizar datos
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->identity = $request->identity;
+        $user->foto = $request->foto;
+        $user->contact = $request->contact;
+        $user->adress = $request->adress;
+        $user->profession = $request->profession;
+        $user->post = $request->post;
+        $user->email = $request->email;
+      
+        
+        $user->save();
+
+        return redirect()->route('user.listausers');
     }
-    public function edit($id)
+       //Update
+  
+    public function edituser(User $user)
     {
-        return view('admin.admin.layouts.app');
+        return view('users.edit', compact('user'));
+    
     }
+
+
+    
 
     public function destroy(hojadevida $hdv)
     {

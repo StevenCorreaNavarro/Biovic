@@ -102,7 +102,7 @@
 
 <body>
     @extends('admin.admin.layouts.app')
- 
+
     @section('content')
         <div class="form-container">
             <h1> Lista usuarios</h1>
@@ -158,18 +158,34 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                    <button type="button" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></button>
+                                    <a type="button" class="btn btn-warning" href="{{ route('user.edituser', $user->id) }} "><i class="bi bi-pencil-square"></i></a>
+                                   
+                                    {{-- <button href="{{ route('admin.edituser', $user->id) }} " type="button"  class="btn btn-warning"><i class="bi bi-pencil-square"></i></button> --}}
                                     <button type="button" class="btn btn-success"><i class="bi bi-eye"></i></button>
                                 </div>
                             </td>
+                            {{-- @foreach ($units as $unit)
+                    <tr>
+                        <td>{{ $unit->id }}</td>
+                        <td>{{ $unit->nombre }}</td>
+                        <td>{{ $unit->descrip }}</td>
+                        <td>{{ $unit->ubica }} </td>
+                        <td><a href="{{ route('unit.edit', $unit->id) }} " class="btn btn-primary">Editar</a></td>
+                        <td>
+                            <form action="{{ route('unit.destroy', $unit->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach --}}
 
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
- 
     @endsection
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>

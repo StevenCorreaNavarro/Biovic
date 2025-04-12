@@ -61,17 +61,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/usuarios', [PanelAdminController::class, 'listausers'])->name('user.listausers');
     Route::get('/admin/empleados', [PanelAdminController::class, 'listausersempleados'])->name('user.listaempleados');
     Route::get('/admin/usuariosuni', [PanelAdminController::class, 'listauseronly'])->name('user.listauseronly');
-    Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
+  
     Route::get('/admin/listar_marca', [PanelAdminController::class, 'listar_marca'])->name('adminlista.listar_dos');
     Route::get('/admin/listar_modelo', [PanelAdminController::class, 'listar_modelo'])->name('adminlista.listar_tres');
     Route::get('/admin/listar', [PanelAdminController::class, 'listar'])->name('adminlista.listar');
+    Route::get('/admin/lista_registrada', [PanelAdminController::class, 'lista_Registrada'])->name('adminlistaR.lista_registrada');
+
     Route::get('/admin/asociar', [PanelAdminController::class, 'asociar'])->name('adminaso.asociar');
     Route::get('/admin/asociar/mod', [PanelAdminController::class, 'asociarmod'])->name('adminaso.asociarmod');
     Route::post('/admin/store_aso/mod', [PanelAdminController::class, 'storeasomod'])->name('adminasomod.storeasomod');
-    Route::get('/admin/lista_registrada', [PanelAdminController::class, 'lista_Registrada'])->name('adminlistaR.lista_registrada');
+
     Route::get('/admin/create', [PanelAdminController::class, 'create'])->name('admin.create');
     Route::get('/admin/create_dos', [PanelAdminController::class, 'create_dos'])->name('admin.create_dos');
     Route::get('/admin/create_tres', [PanelAdminController::class, 'create_tres'])->name('admin.create_tres');
+
+  Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
     Route::post('/admin/store', [PanelAdminController::class, 'store'])->name('admin.store');
     Route::post('/admin/store_dos', [PanelAdminController::class, 'store_dos'])->name('admin.store_dos');
     Route::post('/admin/store_tres', [PanelAdminController::class, 'store_tres'])->name('admin.store_tres');
@@ -81,7 +85,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/marcas/{equipo_id}', [EquipoController::class, 'getMarcas']);
     Route::get('/modelos/{marca_id}', [EquipoController::class, 'getModelos']);
-  
+    Route::put('/admin/{user}', [PanelAdminController::class, 'update'])->name('user.updateuser');
+    Route::get('/admin/{user}/edit', [PanelAdminController::class, 'edituser'])->name('user.edituser');
+
+    // Route::get('tiendas_oficiales',[UnitController::class,'listar'])->name('unit.listar');  
+    // Route::get('unidad/create',[UnitController::class,'create'])->name('unit.create');
+    // Route::post('unidad/store', [UnitController::class,'store'])->name('unit.store');
+    // Route::get('unidad/{unit}', [UnitController::class, 'show'])->name('unit.show');
+    // Route::put('unidad/{unit}',[UnitController::class,'update'])->name('unit.update');
+    // Route::get('unidad/{unit}/editar',[UnitController::class,'edit'])->name('unit.edit');
+    // Route::delete('unidad/{unit}',[UnitController::class,'destroy'])->name('unit.destroy');
 });
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ GRUPOS RUTAS ADMINISTRADOR FIN
 
