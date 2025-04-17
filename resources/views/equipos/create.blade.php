@@ -22,8 +22,7 @@
                 @csrf {{-- token o seguridad  --}}
                 <div>
                     <label for="nombre_equipo" class="form-label">Escribe un equipo:</label>
-                    <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"
-                        value="{{ old('nombre') }}" required>
+                    <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"   value="{{ old('nombre') }}" required>
                     <datalist id="equipos-list">
                         @foreach ($equipos as $equipo)
                             <option value="{{ $equipo->nombre_equipo }}" data-id="{{ $equipo->id }} "></option>

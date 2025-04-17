@@ -23,7 +23,7 @@ h4{
     filter: invert(1); /* Cambia el color de los iconos a negro */
 }
 h1{
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #9c9898;
 }
 
@@ -83,7 +83,7 @@ label{
 }
 /* Header */
 .navbar {
-    height: 6%;
+    height: 7%;
     margin: 0%;
     /* padding: 0%;
     box-sizing: border-box; */
@@ -91,6 +91,7 @@ label{
     /* align-items: center; */
     align-content: center;
     background: linear-gradient(45deg, #0062E6, #33AEFF);
+    /* background: linear-gradient(45deg, #0062E6, #33AEFF); */
     /* background: #7169dd; */
     /* background: -webkit-linear-gradient(to right, hsla(236, 63%, 75%, 0.459), hsla(239, 65%, 36%, 0.664)), url(../IMG/fondo2.1.jpg);
     background: linear-gradient(to right, hsla(234, 32%, 69%, 0.459), hsla(226, 53%, 48%, 0.664)), url(../IMG/fondo2.1.jpg); */

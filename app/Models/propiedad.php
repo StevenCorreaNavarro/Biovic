@@ -13,6 +13,11 @@ class propiedad extends Model
         return $this->hasMany('App\Models\Hojadevida');
     }
 
+    
+    public function propiedad()
+    {
+        return $this->belongsTo(Propiedad::class);
+    }
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }

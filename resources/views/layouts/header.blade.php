@@ -14,8 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="shortcut icon" href="{{ asset('IMG/logobiomed.png') }}" type="image/x-icon">
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- styles tw --}}
@@ -57,11 +57,15 @@
                 <i class="fa-solid fa-arrow-left" style="margin-left: 5%; color:white"></i>
             </a> --}}
             <div class="container-fluid">
-                <a class="navbar-brander d-flex" style="margin: 0%; padding: 0%;" href="{{ asset('main ') }}">
-                    <img src=" {{ asset('IMG/CutPaste_2024-08-02_10-48-31-556.png ') }}" alt="VitalSoft" height="40">
-                    <h1 style="font-weight: bold;">Biovic</h1>
-                    {{-- <h5>Tec</h5> --}}
-                </a>
+                {{-- <a class="navbar-brander d-flex" style="margin: 0%; padding: 0%;" href="{{ asset('main ') }}">
+                    <img src=" {{ asset('IMG/logobiomed.png ') }}" alt="VitalSoft" height="40" > 
+                    <h1 style="font-weight: bold; padding-left:10px;">Biovic</h1>
+                    {{-- <h5>Tec</h5> 
+                </a> --}}
+                <a class="navbar-brander d-flex" href="{{ asset('main ') }}" style="text-decoration: none;margin: 0%;    padding: 0%;">
+                    <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40">
+                        <h1 style="text-decoration: none; font-size:2rem;  ">Biomedic</h1>
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

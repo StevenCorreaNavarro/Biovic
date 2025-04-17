@@ -112,11 +112,6 @@ class PanelAdminController extends Controller
         return view('users.lista', compact('users'));
     }
 
-
-
-
-
-
     public function listausersempleados()
     {
         $users = User::whereIn('role', ['admin', 'empleado'])

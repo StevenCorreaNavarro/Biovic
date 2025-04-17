@@ -37,7 +37,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4" style="padding: 7rem;">
             <div class="col">
                 <div class="card h-100">
-                    <a href="manto_crono/listar" style="text-decoration: none;">
+                    <a href="manto_crono/propiedadbuscar" style="text-decoration: none;">
                         <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title" style="margin-top: 1rem;">Cronograma de Mantenimiento</h5>

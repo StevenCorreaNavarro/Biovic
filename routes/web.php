@@ -45,6 +45,9 @@ Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create', [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
+
+
+   
 });
 
 
@@ -141,6 +144,8 @@ Route::middleware('auth')->group(function () {
     Route::get('hojadevida/{hdv}', [HojadevidaController::class, 'show'])->name('hojadevida.show');
 
     Route::get('manto_crono/listar', [MantoCronoController::class, 'listar'])->name('mantocrono.listar');
+    Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
+    Route::get('manto_crono/propiedad', [MantoCronoController::class, 'propiedad'])->name('mantocrono.propiedad');
     Route::get('manto_crono/create', [MantoCronoController::class, 'create'])->name('mantocrono.create');
     // Route::get('/manto_crono', function ()  {return view('manto_crono');});
 

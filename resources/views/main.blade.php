@@ -13,7 +13,7 @@
     <!-- <meta charset="UTF-8"> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <title>Ingreso de hoja de vida</title> -->
-    <link rel="shortcut icon" href="img/Logo_VitalTech2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logobiomed.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="IMG/logotipo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -34,8 +34,8 @@
         <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 10%;">
             <div class="container-fluid" style="margin: 0%;    padding: 0%;">
                 <a class="navbar-brander d-flex" href="main" style="text-decoration: none;margin: 0%;    padding: 0%;">
-                    <h1 style="text-decoration: none; font-size:400%">Biovic</h1>
-                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="biovic" height="40">
+                <img src="IMG/logobiomed.png" alt="biovic" height="40">
+                    <h1 style="text-decoration: none;  ">Biomedic</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,10 @@
             <section class="">
                 <h1 class="hero__title">Biovic</h1>
                 <p class="hero__paragraph"> Soluciones Inteligentes para la Gestión y Mantenimiento de Equipos Biomédicos</p>
-                <a href="#" class="cta">Agendar demo</a>
+                <center>
+                    <a href="#" class="cta">Agendar demo</a>
+                </center>
+                
             </section>
             
         </div>

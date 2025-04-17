@@ -28,7 +28,7 @@ use Dompdf\Options;
 class MantoCronoController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    
+
     // public function index()
     // {
     //     $datosempleips['empleips']=empleips::paginate(5);// se crea la variable $datos
@@ -36,11 +36,41 @@ class MantoCronoController extends BaseController
     //     //
     // }
 
+
+
+    public function propiedad(Request $request)
+    {
+        $query = hojadevida::query(); // Consulta base sin relaciones innecesarias
+        $propiedads = Propiedad::all();
+        
+        $hdvs = [];
+        // Filtrar por el nombre si hay un término de búsqueda
+        if ($request->has('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                // Búsqueda por equipo relacionado
+                $q->whereHas('propiedad', function ($eq) use ($search) {
+                    $eq->where('nombreempresa', 'LIKE', "%$search%");
+                });
+            });
+        }
+        $hdvs = $query->orderBy('id', 'desc')->get();
+        return view('manto_crono', compact('hdvs','propiedads'));
+    }
+//la tabla aparecera vacias y solo muestra  lo que buscas
+    public function propiedadbuscar()
+    {
+        $hdvs = hojadevida::whereRaw('0 = 1')->get(); 
+        $propiedads = Propiedad::all();
+        // $empleips = new Empleips();
+        return view('manto_crono', compact('hdvs','propiedads'));
+    }
+
+
+
     public function listar()
     {
-
-
-        
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
         // $empleips = new Empleips();
         return view('manto_crono', compact('hdvs'));
