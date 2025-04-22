@@ -31,14 +31,15 @@ return new class extends Migration
             $table->integer('costo')->nullable();;
             $table->string('factura')->nullable();;
 
-            // $table->integer('fuenteAlimentacion')->nullable();
+            
+            $table->integer('frecuencia')->nullable();;
+            $table->integer('corrienteMax')->nullable();;
+            $table->integer('corrienteMin')->nullable();;
             $table->integer('volMax')->nullable();;
             $table->integer('volMin')->nullable();;
             $table->integer('presion')->nullable();;
             $table->integer('peso')->nullable();;
-            $table->integer('frecuencia')->nullable();;
-            $table->integer('corrienteMax')->nullable();;
-            $table->integer('corrienteMin')->nullable();;
+
             $table->integer('potencia')->nullable();;
             $table->integer('dimLargo')->nullable();;
             $table->integer('dimAncho')->nullable();;
@@ -47,7 +48,7 @@ return new class extends Migration
             $table->integer('temperatura')->nullable();;
             $table->integer('velocidad')->nullable();;
             $table->integer('humedad')->nullable();;
-            $table->text('recomendaciones')->nullable();;
+            
 
             $table->string('enero')->nullable();
             $table->string('febrero')->nullable();
@@ -99,16 +100,23 @@ return new class extends Migration
             // REGISTRO TECNICO 
             $table->unsignedBigInteger('mag_fuen_alimen_id')->nullable();	
             $table->foreign('mag_fuen_alimen_id')->references('id')->on('mag_fuen_alimens')->onDelete('cascade');
+
+            $table->unsignedBigInteger('mag_fuen_ali_id')->nullable();	
+            $table->foreign('mag_fuen_ali_id')->references('id')->on('mag_fuen_alis')->onDelete('cascade');
+
             $table->unsignedBigInteger('mag_vol_id')->nullable();	 
             $table->foreign('mag_vol_id')->references('id')->on('mag_vols')->onDelete('cascade');
-            $table->unsignedBigInteger('mag_pre_id')->nullable();	 
-            $table->foreign('mag_pre_id')->references('id')->on('mag_pres')->onDelete('cascade');
-            $table->unsignedBigInteger('mag_peso_id')->nullable();	 
-            $table->foreign('mag_peso_id')->references('id')->on('mag_pesos')->onDelete('cascade');
+
             $table->unsignedBigInteger('mag_fre_id')->nullable();	
             $table->foreign('mag_fre_id')->references('id')->on('mag_fres')->onDelete('cascade');
             $table->unsignedBigInteger('mag_corriente_id')->nullable();	 
             $table->foreign('mag_corriente_id')->references('id')->on('mag_corrientes')->onDelete('cascade');
+
+            $table->unsignedBigInteger('mag_peso_id')->nullable();	 
+            $table->foreign('mag_peso_id')->references('id')->on('mag_pesos')->onDelete('cascade');
+            $table->unsignedBigInteger('mag_pre_id')->nullable();	 
+            $table->foreign('mag_pre_id')->references('id')->on('mag_pres')->onDelete('cascade');
+
             $table->unsignedBigInteger('mag_pot_id')->nullable();	 
             $table->foreign('mag_pot_id')->references('id')->on('mag_pots')->onDelete('cascade');
             $table->unsignedBigInteger('mag_dimension_id')->nullable();	 
@@ -119,6 +127,19 @@ return new class extends Migration
             $table->foreign('mag_temp_id')->references('id')->on('mag_temps')->onDelete('cascade');
             $table->unsignedBigInteger('mag_vel_id')->nullable();	 
             $table->foreign('mag_vel_id')->references('id')->on('mag_vels')->onDelete('cascade');
+        
+        
+        // SOPORTES
+            $table->string('soporteFactura')->nullable();;
+            $table->string('soporteRegistroInvima')->nullable();;
+            $table->string('soporteCertificadoCalibracion')->nullable();;
+            $table->string('soporteManual')->nullable();;
+            $table->string('soporteLimpiezaDesinfeccion')->nullable();;
+
+        // RECOMENDACION 
+            $table->text('recomendaciones')->nullable();
+
+
 
 
 
