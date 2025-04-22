@@ -162,40 +162,40 @@
                                 <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
                             </td>
 
-                            <td style="font-size: 8px;" @if ($hdv->enero == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px; border: 1px solid rgb(205, 205, 205);" @if ($hdv->enero == 'X') class="bg-yellow " @endif>
                                 <h6>{{ $hdv->enero }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->febrero == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->febrero == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->febrero }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->marzo == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->marzo == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->marzo }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->abril == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->abril == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->abril }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->mayo == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->mayo == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->mayo }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->junio == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->junio == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->junio }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->julio == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->julio == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->julio }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->agosto == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->agosto == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->agosto }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->septiembre == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->septiembre == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->septiembre }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->octubre == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->octubre == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->octubre }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->noviembre == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->noviembre == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->noviembre }}</h6>
                             </td>
-                            <td style="font-size: 8px;" @if ($hdv->diciembre == 'X') class="bg-yellow" @endif>
+                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->diciembre == 'X') class="bg-yellow" @endif>
                                 <h6>{{ $hdv->diciembre }}</h6>
                             </td>
 
