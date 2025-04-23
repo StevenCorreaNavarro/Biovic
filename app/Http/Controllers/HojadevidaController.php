@@ -212,6 +212,12 @@ class HojadevidaController extends Controller
             'perioCali' => 'required|in:trimestre,cuatrimestre,anual',
             'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable', // validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
+            // Nueva funcionalidad para validar  pdf 
+            'soporteFactura' => 'nullable|mimes:pdf|max:10000',
+            'soporteRegistroInvima' => 'nullable|mimes:pdf|max:10000',
+            'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
+            'soporteManual' => 'nullable|mimes:pdf|max:10000',
+            'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
         ]);
 
         $fecha = Carbon::parse($request->fechaCali);
@@ -302,7 +308,31 @@ class HojadevidaController extends Controller
         $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
         $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
 
+        // Cargar y guardar los archivos PDF
+        if ($request->hasFile('soporteFactura')) {
+            $hdv->soporteFactura = $request->file('soporteFactura')->store('public/soportes');
+            $hdv->soporteFactura = str_replace('public/', '', $hdv->soporteFactura); // Eliminar 'public/' para la base de datos
+        }
 
+        if ($request->hasFile('soporteRegistroInvima')) {
+            $hdv->soporteRegistroInvima = $request->file('soporteRegistroInvima')->store('public/soportes');
+            $hdv->soporteRegistroInvima = str_replace('public/', '', $hdv->soporteRegistroInvima);
+        }
+
+        if ($request->hasFile('soporteCertificadoCalibracion')) {
+            $hdv->soporteCertificadoCalibracion = $request->file('soporteCertificadoCalibracion')->store('public/soportes');
+            $hdv->soporteCertificadoCalibracion = str_replace('public/', '', $hdv->soporteCertificadoCalibracion);
+        }
+
+        if ($request->hasFile('soporteManual')) {
+            $hdv->soporteManual = $request->file('soporteManual')->store('public/soportes');
+            $hdv->soporteManual = str_replace('public/', '', $hdv->soporteManual);
+        }
+
+        if ($request->hasFile('soporteLimpiezaDesinfeccion')) {
+            $hdv->soporteLimpiezaDesinfeccion = $request->file('soporteLimpiezaDesinfeccion')->store('public/soportes');
+            $hdv->soporteLimpiezaDesinfeccion = str_replace('public/', '', $hdv->soporteLimpiezaDesinfeccion);
+        }
 
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar

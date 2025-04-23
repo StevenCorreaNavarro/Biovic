@@ -1194,11 +1194,77 @@
                     </div>
                 </div>
 
-                
+
+                {{--  SOPORTES --}}                
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+                    <h1 class="text-white"
+                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        Soportes Legales
+                    </h1>                
+                    {{-- Soporte de Factura --}}
+                    <div class="col-md-6 position-relative d-flex">
+                        <div class="form-group">
+                            <label for="soporteFactura">Selecciona el Soporte de Factura (PDF)</label>
+                            <input type="file" name="soporteFactura" id="soporteFactura"
+                                class="form-control @error('soporteFactura') is-invalid @enderror" accept="application/pdf">
+                            @error('soporteFactura')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Soporte de Registro Invima --}}
+                    <div class="col-md-6 position-relative d-flex">
+                        <div class="form-group">
+                            <label for="soporteRegistroInvima">Selecciona el Soporte de Registro Invima (PDF)</label>
+                            <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
+                                class="form-control @error('soporteRegistroInvima') is-invalid @enderror" accept="application/pdf">
+                            @error('soporteRegistroInvima')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Soporte de Certificado de Calibración --}}
+                    <div class="col-md-6 position-relative d-flex">
+                        <div class="form-group">
+                            <label for="soporteCertificadoCalibracion">Selecciona el Soporte de Certificado de Calibración (PDF)</label>
+                            <input type="file" name="soporteCertificadoCalibracion" id="soporteCertificadoCalibracion"
+                                class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror" accept="application/pdf">
+                            @error('soporteCertificadoCalibracion')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Soporte de Manual --}}
+                    <div class="col-md-6 position-relative d-flex">
+                        <div class="form-group">
+                            <label for="soporteManual">Selecciona el Soporte de Manual (PDF)</label>
+                            <input type="file" name="soporteManual" id="soporteManual"
+                                class="form-control @error('soporteManual') is-invalid @enderror" accept="application/pdf">
+                            @error('soporteManual')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Soporte de Limpieza y Desinfección --}}
+                    <div class="col-md-6 position-relative d-flex">
+                        <div class="form-group">
+                            <label for="soporteLimpiezaDesinfeccion">Selecciona el Soporte de Limpieza y Desinfección (PDF)</label>
+                            <input type="file" name="soporteLimpiezaDesinfeccion" id="soporteLimpiezaDesinfeccion"
+                                class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror" accept="application/pdf">
+                            @error('soporteLimpiezaDesinfeccion')
+                                <div class="invalid-feedback">El campo es obligatorio</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                {{-- FIN CARGA DE SOPORTES --}}
 
 
-
-                
                 {{-- ACCION DE GUARDAR  --}}
                 <div class="d-grid gap-0 col-4 mx-auto">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
