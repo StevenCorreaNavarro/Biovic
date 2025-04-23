@@ -1295,41 +1295,42 @@
 
 
     {{-- este script es para las opciones equipo modelo marca --}}
-    <script>
-        $(document).ready(function() {
-            $('#equipo').change(function() {
-                var equipoID = $(this).val();
-                $('#marca').empty().append('<option value="">Seleccione una marca</option>');
-                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop(
-                    'disabled', true);
+{{-- este script es para las opciones equipo modelo marca --}}
+<script>
+    $(document).ready(function() {
+        $('#equipo').change(function() {
+            var equipoID = $(this).val();
+            $('#marca').empty().append('<option value="">Seleccione una marca</option>');
+            $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop(
+                'disabled', true);
 
-                if (equipoID) {
-                    $.get('/biovic/public/marcas/' + equipoID, function(data) {
-                        $.each(data, function(index, marca) {
-                            $('#marca').append('<option value="' + marca.id + '">' + marca
-                                .nombre_marca + '</option>');
-                        });
-                        $('#marca').prop('disabled', false);
+            if (equipoID) {
+                $.get('/biovic/public/marcas/' + equipoID, function(data) {
+                    $.each(data, function(index, marca) {
+                        $('#marca').append('<option value="' + marca.id + '">' + marca
+                            .nombre_marca + '</option>');
                     });
-                }
-            });
-
-            $('#marca').change(function() {
-                var marcaID = $(this).val();
-                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>');
-
-                if (marcaID) {
-                    $.get('/biovic/public/modelos/' + marcaID, function(data) {
-                        $.each(data, function(index, modelo) {
-                            $('#modelo').append('<option value="' + modelo.id + '">' +
-                                modelo.nombre_modelo + '</option>');
-                        });
-                        $('#modelo').prop('disabled', false);
-                    });
-                }
-            });
+                    $('#marca').prop('disabled', false);
+                });
+            }
         });
-    </script>
+
+        $('#marca').change(function() {
+            var marcaID = $(this).val();
+            $('#modelo').empty().append('<option value="">Seleccione un modelo</option>');
+
+            if (marcaID) {
+                $.get('/biovic/public/modelos/' + marcaID, function(data) {
+                    $.each(data, function(index, modelo) {
+                        $('#modelo').append('<option value="' + modelo.id + '">' +
+                            modelo.nombre_modelo + '</option>');
+                    });
+                    $('#modelo').prop('disabled', false);
+                });
+            }
+        });
+    });
+</script>
     {{-- <script>
         $(document).ready(function() {
             // Evento cuando cambia el select de equipo
