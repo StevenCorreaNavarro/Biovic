@@ -28,7 +28,9 @@ body {
     display: block;
 }
 
-
+.-card-img-top{
+    border-radius: 10%;
+}
 .dropdown-item:hover {
     background-color: #f8f9fa;
     color: #007bff;
@@ -48,7 +50,12 @@ header .textos-header {
     text-align: center;
 }
 
-
+.card a img{
+    /* padding-top: 9%; */
+    border-radius: 32px 32px 0 0;
+    /* background: linear-gradient(  green,blue); */
+    /* z-index: 12; */
+}
 /* TARJETAS */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,8 +65,10 @@ header .textos-header {
 }
 
 .card:hover {
+    border-radius: 9%;
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    
 }
 
 /* Opcional: Efecto de hover específico para el contenido de la tarjeta */

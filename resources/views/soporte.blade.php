@@ -22,7 +22,7 @@
 <body>
   @extends('layouts.header')
   <main>
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="padding: 7rem;">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="padding: 7rem; margin:0%;">
       <div class="col">
         <div class="card h-100">
           <a href="sopor_reporte_manto" style="text-decoration: none;">

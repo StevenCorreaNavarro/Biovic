@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-class MantoCronoController extends BaseController
+class CheckListController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
@@ -37,11 +37,10 @@ class MantoCronoController extends BaseController
     // }
 
 
-
-    public function propiedad(Request $request)
+    public function propiedadchecklist(Request $request)
     {
         $query = hojadevida::query(); // Consulta base sin relaciones innecesarias
-        $propiedads = Propiedad::all();
+        $propiedades = Propiedad::all();
         
         $hdvs = [];
         // Filtrar por el nombre si hay un término de búsqueda
@@ -56,16 +55,40 @@ class MantoCronoController extends BaseController
             });
         }
         $hdvs = $query->orderBy('id', 'desc')->get();
-        return view('manto_crono', compact('hdvs','propiedads'));
+        return view('checklist', compact('hdvs','propiedades'));
     }
 //la tabla aparecera vacias y solo muestra  lo que buscas
-    public function propiedadbuscar()
+    public function propiedadbuscarchecklist()
     {
         $hdvs = hojadevida::whereRaw('0 = 1')->get(); 
-        $propiedads = Propiedad::all();
+        $propiedades = Propiedad::all();
         // $empleips = new Empleips();
-        return view('manto_crono', compact('hdvs','propiedads'));
+        return view('checklist', compact('hdvs','propiedades'));
     }
+
+    public function listarchecklist()
+    {
+        $hdvs = hojadevida::orderBy('id', 'desc')->get();
+        // $empleips = new Empleips();
+        return view('checklist', compact('hdvs'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function listar()
     {

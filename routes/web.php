@@ -9,6 +9,8 @@ use App\Http\Controllers\HojadevidaController;
 use App\Http\Controllers\EmpleipsController;
 use App\Http\Controllers\PanelAdminController;
 use App\Http\Controllers\MantoCronoController;
+use App\Http\Controllers\CaliCronoController;
+use App\Http\Controllers\CheckListController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\CodEcriController; // agregado para enviar codigo ecri
@@ -142,6 +144,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
     Route::delete('/hojadevida/{dato}', [HojadevidaController::class, 'destroy'])->name('hojadevida.stores');
     Route::get('hojadevida/{hdv}', [HojadevidaController::class, 'show'])->name('hojadevida.show');
+
+    Route::get('crono_cali/listar', [CaliCronoController::class, 'listarcali'])->name('cronocali.listarcali');
+    Route::get('crono_cali/propiedadbuscar', [CaliCronoController::class, 'propiedadbuscarcali'])->name('cronocali.propiedadbuscarcali');
+    Route::get('crono_cali/propiedad', [CaliCronoController::class, 'propiedadCali'])->name('cronocali.propiedad');
+
+    Route::get('check_list/listar', [CheckListController::class, 'listarchecklist'])->name('check_list.listarchecklisti');
+    Route::get('check_list/propiedadbuscar', [CheckListController::class, 'propiedadbuscarchecklist'])->name('check_list.propiedadbuscarchecklist');
+    Route::get('check_list/propiedad', [CheckListController::class, 'propiedadchecklist'])->name('check_list.propiedad');
 
     Route::get('manto_crono/listar', [MantoCronoController::class, 'listar'])->name('mantocrono.listar');
     Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
