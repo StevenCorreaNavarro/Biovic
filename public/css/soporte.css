@@ -82,7 +82,7 @@ header .textos-header {
 }
 
 .card:hover .card-body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa00;
     /* Fondo más claro en el contenido de la tarjeta al hacer hover */
 }
 

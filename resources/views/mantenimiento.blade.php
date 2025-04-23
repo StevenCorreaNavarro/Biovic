@@ -41,7 +41,7 @@
 
             <div class="col">
                 <div class="card h-100">
-                    <a href="manto_crono/propiedadbuscar" style="text-decoration: none;">
+                    <a href="manto_crono/propiedadbuscar" style="text-decoration: none; ">
                         <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h3 class="card-title  text-center">Cronograma de Mantenimiento</h3>
@@ -53,7 +53,7 @@
             <div class="col">
                 <div class="card h-100">
                     <a href="check_list/propiedadbuscar" style="text-decoration: none;">
-                        <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
+                        <img src="IMG/monitor.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h3 class="card-title text-center">Lista de Verificacion</h3>
                         <p class="card-text">Registra y monitorea las fechas de mantenimiento para asegurar el óptimo funcionamiento de tus equipos biomédicos.</p>
@@ -78,7 +78,7 @@
                     <a href="alarma_calibracion">
                         <img src="IMG/reparacion2.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Alarmas</h5>
+                            <h3 class="card-title text-center">Alarmas</h3>
                             <p class="card-text">Genera alarmas y gestiona reportes para mantener un control eficiente del mantenimiento.</p>
                         </div>
                     </a>
@@ -90,7 +90,7 @@
                     <a href="inventario">
                         <img src="IMG/reparacion2.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Inventario fisico</h5>
+                            <h3 class="card-title text-center">Inventario fisico</h3>
                             <p class="card-text">Genera alarmas y gestiona reportes para mantener un control eficiente del mantenimiento.</p>
                         </div>
                     </a>
