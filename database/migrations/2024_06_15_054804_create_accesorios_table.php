@@ -17,7 +17,9 @@ return new class extends Migration
             $table -> string('marcaAccesorio');
             $table -> string('modeloAccesorio');
             $table -> string('serieAccesorio');
-            $table -> integer('costoAccesorio');         
+            $table -> integer('costoAccesorio');     
+            $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');    
             $table->timestamps();
         });
     }

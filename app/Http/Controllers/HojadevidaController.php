@@ -204,7 +204,7 @@ class HojadevidaController extends Controller
         $hdv = new Hojadevida();
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
-            'perioCali' => 'required|in:trimestre,cuatrimestre,anual',
+            'perioCali' => 'nullable|in:trimestre,cuatrimestre,anual',
             'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable', // validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
         ]);

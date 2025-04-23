@@ -43,7 +43,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
                                 class="btn btn-primary">
-                        </div>
+                        </div>z
                     </div>
                 </div>
             </div>
