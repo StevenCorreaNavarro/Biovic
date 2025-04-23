@@ -27,8 +27,7 @@
             @csrf {{-- LLave de seguridad obligatoria --}}
 
             {{-- MDAL PARA ASEGURAR QUE GUARDA DATOS --}}
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -47,6 +46,7 @@
                     </div>
                 </div>
             </div>
+
             {{-- Inicio descripcion --}}
             <div style="background-color: rgb(255, 255, 255)" class="row g-2 needs-validation formu p-5">
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
@@ -57,16 +57,13 @@
                         style="background-color: #a6a6a630; border-radius:10px;">
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select border border-3">
+                            <select id="equipo" name="equipo_id" class="form-control form-select border border-3">
                                 <option value="">Selecciona un equipo</option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
                                 @endforeach
                             </select>
                         </div>
-
-
-
 
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
@@ -84,6 +81,8 @@
                         </div>
                     </div>
 
+                    {{-- SEGUNDA PARTE --}}
+                    {{-- SERIE --}}
                     <div class="col-md-3 position-relative ">
                         <div class="form-group ">
                             <label for="serie"> Serie </label>
@@ -92,6 +91,8 @@
                                 id="serie">
                         </div>
                     </div>
+
+                    {{-- ACTIVO FIJO --}}
                     <div class="col-md-3 position-relative ">
                         <div class="form-group">
                             <label for=actFijo> Activo Fijo </label>
@@ -149,6 +150,7 @@
                         </select>
                     </div>
 
+                    {{-- TECNOLOGIA PREDOMINANTE --}}
                     <div class="col-md-3 ">
                         <div class="form-group">
                             <label for="tec_predo_id">Tecnologia Predominante</label>
@@ -163,6 +165,7 @@
                         </div>
                     </div>
 
+                    {{-- REGISTRO INVIMA --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=regInvima> Registro Invima </label>
@@ -172,6 +175,7 @@
                         </div>
                     </div>
 
+                    {{-- CLASIFICACION DE RIESGO --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="cla_riesgo_id">Clasificacion de Riesgo</label>
@@ -186,6 +190,7 @@
                         </div>
                     </div>
 
+                    {{-- CLASIFICACION BIOMEDICA --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="cla_biome_id">Clasificación Biomedica</label>
@@ -214,25 +219,6 @@
                             </select>
                         </div>
                     </div>
-
-                    {{-- <div class="col-md-3 position-relative"> NO USAR 
-                        <div class="form-group">
-                            <label for="perioMto"> Periodo Mantenimiento </label>
-                            <input type="text" name="perioMto" class="form-control"
-                                value="{{ isset($hojadevida->perioMto) ? $hojadevida->perioMto : old('perioMto') }}"
-                                id="perioMto">
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-md-3 position-relative">
-                        <label for="perioCali">Periodo de Mantenimiento</label>
-                        <select name="perioCali" id="perioCali" class="form-control form-select" required>
-                            <option value="">Seleccione una opcion</option>
-                            <option value="semestre">Trimestral</option>
-                            <option value="cuatrimestre">Cuatrimestral</option>
-                            {{-- <option value="anual">Anual</option>
-                        </select>
-                    </div> --}}
 
                     {{--  Código Ecri --}}
                     <div class="col-md-3 position-relative">
@@ -313,57 +299,10 @@
                     <div class="col-md-3 position-relative" id="fechaCaliContainer" style="display: none;">
                         <label for="fechaCali">Fecha Cali</label>
                         <input type="date" name="fechaCali" id="fechaCali" class="form-control">
-                    </div>
+                    </div>  
+                    {{-- FIN CALIBRACION --}}
 
-                    <!-- SCRIPT FUNCIONAL -->
-                    {{-- <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const select = document.getElementById("perioCali");
-                            const fechaDiv = document.getElementById("fechaCaliDiv");
-                            const fechaInput = document.getElementById("fechaCali");
-                    
-                            if (!select || !fechaDiv || !fechaInput) {
-                                console.warn("Uno de los elementos no fue encontrado.");
-                                return;
-                            }
-                    
-                            function mostrarFecha() {
-                                const valor = select.value.trim().toUpperCase();
-                                if (valor === "ANUAL") {
-                                    fechaDiv.style.display = "block";
-                                } else {
-                                    fechaDiv.style.display = "none";
-                                    fechaInput.value = "";
-                                }
-                            }
-                    
-                            select.addEventListener("change", mostrarFecha);
-                    
-                            // Ejecutar al cargar por si ya tiene valor
-                            mostrarFecha();
-                        });
-                    </script>
-                    --}}
-                    {{-- Fin Calibracion --}}
-
-                    {{-- Script para mostrar/ocultar el campo de fecha 
-                    <script>
-                        function mostrarFechaCali() {
-                            const periodo = document.getElementById('perioCali').value;
-                            const fechaCaliDiv = document.getElementById('fechaCaliContainer');
-
-                            if (periodo === 'anual') {
-                                fechaCaliDiv.style.display = 'block';
-                            } else if (periodo === 'cuatrimestre') {
-                                fechaCaliDiv.style.display = 'block';
-                            } else {
-                                fechaCaliDiv.style.display = 'none';
-                                document.getElementById('fechaCali').value = ''; // Limpiar valor si se oculta
-                            }
-                        }
-                    </script>--}}
-
-
+                    {{-- Script para mostrar el campo de fecha de calibración --}}
                     <script>
                         function mostrarFechaCali() {
                             const periodo = document.getElementById('perioCali').value;
@@ -386,7 +325,7 @@
                             const fechaAtras = yyyyAtras + '-' + mmAtras + '-' + ddAtras;
 
                             // Establecer el rango de fechas
-                            fechaCaliInput.setAttribute('max', fechaHoy);  // Fecha máxima: Hoy
+                            fechaCaliInput.setAttribute('max', fechaHoy); // Fecha máxima: Hoy
                             fechaCaliInput.setAttribute('min', fechaAtras); // Fecha mínima: Un año atrás
 
                             if (periodo === 'anual' || periodo === 'cuatrimestre') {
@@ -424,16 +363,15 @@
                             let reader = new FileReader();
                             reader.onload = function() {
                                 let preview = document.getElementById('preview');
-                                preview.src = reader.result;  
+                                preview.src = reader.result;
                                 preview.style.display = 'block';
                             }
                             reader.readAsDataURL(event.target.files[0]);
                         }
                     </script>
-                </div>
-                {{-- //######################################################################################################################################################### --}}
-
-                {{-- FIN DESCRIPCION DE EQUIPO  --}}
+                </div>            
+            </div>                 
+            {{-- FIN DESCRIPCION DE EQUIPO  --}}
 
 
                 {{-- INICIO REGISTRO HISTORICO --}}
@@ -472,7 +410,7 @@
                     </div>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
+                        document.addEventListener('DOMContentLoaded', function() {
                             const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
                             const garantiaInput = document.getElementById('garantiaCalculada');
 
@@ -485,7 +423,7 @@
                                     const dd = String(garantia.getDate()).padStart(2, '0');
                                     const mm = String(garantia.getMonth() + 1).padStart(2, '0');
                                     const yyyy = garantia.getFullYear();
-                                    
+
 
                                     garantiaInput.value = `${yyyy}-${mm}-${dd}`;
                                 } else {
@@ -512,7 +450,7 @@
                         </div>
                     </div>
 
-
+ 
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
@@ -537,18 +475,8 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-md-3 position-relative">
-                        <div class="form-group">
-                            <label for=vidaUtil> Vida Util </label>
-                            <input type="date" name="vidaUtil" class="form-control"
-                                value="{{ isset($hojadevida->vidaUtil) ? $hojadevida->vidaUtil : old('vidaUtil') }}"
-                                id="vidaUtil">
-                        </div>
-                    </div> --}}
 
-
-
-                                        <!-- Selector de años de vida útil -->
+                    <!-- Selector de años de vida útil -->
                     <div class="col-md-2 position-relative">
                         <div class="form-group">
                             <label for="aniosVida">Años de Vida Útil</label>
@@ -568,10 +496,11 @@
                     </div>
 
                     <!-- Campo oculto para enviar (guarda el valor calculado) -->
-                    <input type="hidden" name="vidaUtil" id="vidaUtil" value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
+                    <input type="hidden" name="vidaUtil" id="vidaUtil"
+                        value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
+                        document.addEventListener('DOMContentLoaded', function() {
                             const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
                             const aniosVidaSelect = document.getElementById('aniosVida');
                             const vidaUtilVisible = document.getElementById('vidaUtilCalculada');
@@ -634,6 +563,7 @@
                     </div>
                     <br><br><br>
                 </div>
+                {{-- FIN REGISTRO HISTORICO --}}
 
                 {{-- INICIO REGISTRO TECNICO --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
@@ -645,11 +575,11 @@
                     <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
-                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control form-select">
+                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
+                                class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($nombrealimentacion as $fuente)
-                                    <option 
-                                        value="{{ $fuente->id }}" 
+                                    <option value="{{ $fuente->id }}"
                                         {{ old('mag_fuen_alimen_id', $hojadevida->mag_fuen_alimen_id ?? '') == $fuente->id ? 'selected' : '' }}>
                                         {{ $fuente->nombrealimentacion }}
                                     </option>
@@ -673,8 +603,7 @@
                             <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($magFrec as $frecuencia)
-                                    <option 
-                                        value="{{ $frecuencia->id }}" 
+                                    <option value="{{ $frecuencia->id }}"
                                         {{ old('mag_fre_id', $hojadevida->mag_fre_id ?? '') == $frecuencia->id ? 'selected' : '' }}>
                                         {{ $frecuencia->nombrefrecuencia }} ({{ $frecuencia->abreviacionfrecuencia }})
                                     </option>
@@ -706,9 +635,9 @@
                             <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
                             <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
-                                @foreach ($fuentesAli as $fuente)  {{-- Asi se recibe desde  hojadevidaController--}}
-                                    <option 
-                                        value="{{ $fuente->id }}" 
+                                @foreach ($fuentesAli as $fuente)
+                                    {{-- Asi se recibe desde  hojadevidaController --}}
+                                    <option value="{{ $fuente->id }}"
                                         {{ old('mag_fuen_ali_id', $hojadevida->mag_fuen_ali_id ?? '') == $fuente->id ? 'selected' : '' }}>
                                         {{ $fuente->abrefuentealimen }}
                                     </option>
@@ -725,7 +654,7 @@
                                 id="corrienteMax">
                         </div>
                     </div>
-                    
+
                     <div class="col-md-4 position-relative ">
                         <div class="form-group">
                             <label for="corrienteMin">Corriente Min</label>
@@ -734,15 +663,14 @@
                                 id="corrienteMin">
                         </div>
                     </div>
-                    
+
                     <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="mag_corriente_id">Unidad de Corriente</label>
                             <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($corrientes as $corriente)
-                                    <option 
-                                        value="{{ $corriente->id }}" 
+                                    <option value="{{ $corriente->id }}"
                                         {{ old('mag_corriente_id', $hojadevida->mag_corriente_id ?? '') == $corriente->id ? 'selected' : '' }}>
                                         {{ $corriente->abreviacioncorriente }}
                                     </option>
@@ -761,15 +689,14 @@
                                 id="peso">
                         </div>
                     </div>
-                    
+
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_peso_id">Unidad de Peso</label>
                             <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($pesos as $peso)
-                                    <option 
-                                        value="{{ $peso->id }}" 
+                                    <option value="{{ $peso->id }}"
                                         {{ old('mag_peso_id', $hojadevida->mag_peso_id ?? '') == $peso->id ? 'selected' : '' }}>
                                         {{ $peso->abreviacionpeso }}
                                     </option>
@@ -777,7 +704,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-3 position-relative ">
                         <div class="form-group">
                             <label for="presion">Presión</label>
@@ -786,15 +713,14 @@
                                 id="presion">
                         </div>
                     </div>
-                    
+
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_pres_id">Unidad de Presión</label>
                             <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($presiones as $presion)
-                                    <option 
-                                        value="{{ $presion->id }}" 
+                                    <option value="{{ $presion->id }}"
                                         {{ old('mag_pres_id', $hojadevida->mag_pres_id ?? '') == $presion->id ? 'selected' : '' }}>
                                         {{ $presion->abreviacionpresion }}
                                     </option>
@@ -818,8 +744,7 @@
                             <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($potencias as $potencia)
-                                    <option 
-                                        value="{{ $potencia->id }}" 
+                                    <option value="{{ $potencia->id }}"
                                         {{ old('mag_pot_id', $hojadevida->mag_pot_id ?? '') == $potencia->id ? 'selected' : '' }}>
                                         {{ $potencia->abreviacionpotencia }}
                                     </option>
@@ -831,10 +756,11 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="temperatura">Temperatura</label>
-                            <input type="text" name="temperatura" class="form-control" value="{{ old('temperatura') }}" id="temperatura">
+                            <input type="text" name="temperatura" class="form-control"
+                                value="{{ old('temperatura') }}" id="temperatura">
                         </div>
                     </div>
-                
+
                     <!-- Selección de Unidad de Temperatura -->
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
@@ -842,8 +768,7 @@
                             <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($temperaturas as $temp)
-                                    <option 
-                                        value="{{ $temp->id }}" 
+                                    <option value="{{ $temp->id }}"
                                         {{ old('mag_temp_id') == $temp->id ? 'selected' : '' }}>
                                         {{ $temp->nombretemperatura }} <!-- Mostrar nombre de la temperatura -->
                                     </option>
@@ -852,11 +777,12 @@
                         </div>
                     </div>
 
-                            <!-- Campo Velocidad -->
+                    <!-- Campo Velocidad -->
                     <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="velocidad">Velocidad</label>
-                            <input type="text" name="velocidad" class="form-control" value="{{ old('velocidad') }}" id="velocidad">
+                            <input type="text" name="velocidad" class="form-control"
+                                value="{{ old('velocidad') }}" id="velocidad">
                         </div>
                     </div>
 
@@ -867,8 +793,7 @@
                             <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($velocidad as $vel)
-                                    <option 
-                                        value="{{ $vel->id }}" 
+                                    <option value="{{ $vel->id }}"
                                         {{ old('mag_vel_id', $hojadevida->mag_vel_id ?? '') == $vel->id ? 'selected' : '' }}>
                                         {{ $vel->abreviacionvelocidad }}
                                     </option>
@@ -881,7 +806,8 @@
                     <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="humedad">Humedad (%)</label>
-                            <input type="text" name="humedad" class="form-control" value="{{ old('humedad') }}" id="humedad">
+                            <input type="text" name="humedad" class="form-control" value="{{ old('humedad') }}"
+                                id="humedad">
                         </div>
                     </div>
 
@@ -889,7 +815,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="dimLargo">Largo</label>
-                            <input type="text" name="dimLargo" class="form-control" value="{{ old('dimLargo') }}" id="dimLargo">
+                            <input type="text" name="dimLargo" class="form-control"
+                                value="{{ old('dimLargo') }}" id="dimLargo">
                         </div>
                     </div>
 
@@ -897,7 +824,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="dimAncho">Ancho</label>
-                            <input type="text" name="dimAncho" class="form-control" value="{{ old('dimAncho') }}" id="dimAncho">
+                            <input type="text" name="dimAncho" class="form-control"
+                                value="{{ old('dimAncho') }}" id="dimAncho">
                         </div>
                     </div>
 
@@ -905,7 +833,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="dimAlto">Alto</label>
-                            <input type="text" name="dimAlto" class="form-control" value="{{ old('dimAlto') }}" id="dimAlto">
+                            <input type="text" name="dimAlto" class="form-control" value="{{ old('dimAlto') }}"
+                                id="dimAlto">
                         </div>
                     </div>
 
@@ -916,8 +845,7 @@
                             <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($dimensiones as $dim)
-                                    <option 
-                                        value="{{ $dim->id }}" 
+                                    <option value="{{ $dim->id }}"
                                         {{ old('mag_dimension_id', $hojadevida->mag_dimension_id ?? '') == $dim->id ? 'selected' : '' }}>
                                         {{ $dim->abreviaciondimension }}
                                     </option>
@@ -925,13 +853,13 @@
                             </select>
                         </div>
                     </div>
-                
-                    
-                    <br>
-                    <br>
-                
-                </div>
 
+
+                    <br>
+                    <br>
+
+                </div>
+                {{-- FIN REGISTRO TECNICO --}}
 
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
                     <h1 class="text-white"
@@ -939,114 +867,116 @@
                         Accesorios
                     </h1>
 
-                <!-- SELECT ACCESORIO -->
+                    <!-- SELECT ACCESORIO -->
 
-                <div class="row g-3 mt-4">
-                    <div class="col-md-6">
-                        <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
-                        <select id="accesorio_id" name="accesorio_id" class="form-select border border-2 shadow-sm">
-                            <option value="">Seleccione un accesorio</option>
-                            @foreach ($accesorios as $accesorio)
-                                <option 
-                                    value="{{ $accesorio->id }}"
-                                    data-equipo-id="{{ $accesorio->equipo_id }}"
-                                    data-nombre-accesorio="{{ $accesorio->nombreAccesorio ?? 'No disponible' }}" 
-                                    data-modelo="{{ $accesorio->modeloAccesorio ?? 'No disponible' }}"
-                                    data-serie="{{ $accesorio->serieAccesorio ?? 'No disponible' }}"
-                                    data-costo="{{ $accesorio->costoAccesorio ?? 'No disponible' }}">
-                                    {{ $accesorio->nombreAccesorio ?? 'No disponible' }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                
-                <!-- MENSAJE SI NO HAY ACCESORIOS -->
-                <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
-                    No hay accesorios disponibles para el equipo seleccionado.
-                </div>
-                
-                <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
-                <div id="info_accesorio" class="container mt-4 d-none">
-                    <div class="row border rounded p-3 bg-light shadow-sm">
-                        <div class="col-12 mb-2">
-                            <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Serie:</strong> <span id="serie_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Costo:</strong> <span id="costo_accesorio"></span>
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-6">
+                            <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
+                            <select id="accesorio_id" name="accesorio_id"
+                                class="form-select border border-2 shadow-sm">
+                                <option value="">Seleccione un accesorio</option>
+                                @foreach ($accesorios as $accesorio)
+                                    <option value="{{ $accesorio->id }}"
+                                        data-equipo-id="{{ $accesorio->equipo_id }}"
+                                        data-nombre-accesorio="{{ $accesorio->nombreAccesorio ?? 'No disponible' }}"
+                                        data-modelo="{{ $accesorio->modeloAccesorio ?? 'No disponible' }}"
+                                        data-serie="{{ $accesorio->serieAccesorio ?? 'No disponible' }}"
+                                        data-costo="{{ $accesorio->costoAccesorio ?? 'No disponible' }}">
+                                        {{ $accesorio->nombreAccesorio ?? 'No disponible' }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                </div>
 
-                {{--  SCRIPT ACCESORIO --}}
+                    <!-- MENSAJE SI NO HAY ACCESORIOS -->
+                    <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
+                        No hay accesorios disponibles para el equipo seleccionado.
+                    </div>
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const equipoSelect = document.getElementById('equipo_id');
-                        const accesorioSelect = document.getElementById('accesorio_id');
-                        const mensajeNoAccesorios = document.getElementById('mensaje_no_accesorios');
-                        const infoAccesorio = document.getElementById('info_accesorio');
-                
-                        if (!equipoSelect || !accesorioSelect) return;
-                
-                        equipoSelect.addEventListener('change', function () {
-                            const equipoId = this.value;
-                            const opciones = accesorioSelect.querySelectorAll('option');
-                            let hayAccesorios = false;
-                
-                            mensajeNoAccesorios.classList.add('d-none');
-                
-                            opciones.forEach(option => {
-                                const idEquipo = option.getAttribute('data-equipo-id');
-                                if (!idEquipo || equipoId === '') {
-                                    option.style.display = '';
-                                } else if (equipoId === idEquipo) {
-                                    option.style.display = '';
-                                    hayAccesorios = true;
-                                } else {
-                                    option.style.display = 'none';
-                                }
-                            });
-                
-                            if (!hayAccesorios) mensajeNoAccesorios.classList.remove('d-none');
-                
-                            accesorioSelect.value = '';
-                            infoAccesorio.classList.add('d-none');
-                        });
-                
-                        accesorioSelect.addEventListener('change', function () {
-                            const option = accesorioSelect.options[accesorioSelect.selectedIndex];
-                
-                            if (!option || option.value === '') {
+                    <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
+                    <div id="info_accesorio" class="container mt-4 d-none">
+                        <div class="row border rounded p-3 bg-light shadow-sm">
+                            <div class="col-12 mb-2">
+                                <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Serie:</strong> <span id="serie_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Costo:</strong> <span id="costo_accesorio"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--  SCRIPT ACCESORIO --}}
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const equipoSelect = document.getElementById('equipo_id');
+                            const accesorioSelect = document.getElementById('accesorio_id');
+                            const mensajeNoAccesorios = document.getElementById('mensaje_no_accesorios');
+                            const infoAccesorio = document.getElementById('info_accesorio');
+
+                            if (!equipoSelect || !accesorioSelect) return;
+
+                            equipoSelect.addEventListener('change', function() {
+                                const equipoId = this.value;
+                                const opciones = accesorioSelect.querySelectorAll('option');
+                                let hayAccesorios = false;
+
+                                mensajeNoAccesorios.classList.add('d-none');
+
+                                opciones.forEach(option => {
+                                    const idEquipo = option.getAttribute('data-equipo-id');
+                                    if (!idEquipo || equipoId === '') {
+                                        option.style.display = '';
+                                    } else if (equipoId === idEquipo) {
+                                        option.style.display = '';
+                                        hayAccesorios = true;
+                                    } else {
+                                        option.style.display = 'none';
+                                    }
+                                });
+
+                                if (!hayAccesorios) mensajeNoAccesorios.classList.remove('d-none');
+
+                                accesorioSelect.value = '';
                                 infoAccesorio.classList.add('d-none');
-                                return;
-                            }
-                
-                            document.getElementById('descripcion_accesorio').textContent = option.getAttribute('data-nombre-accesorio') || 'No disponible';
-                            document.getElementById('modelo_accesorio').textContent = option.getAttribute('data-modelo') || 'No disponible';
-                            document.getElementById('serie_accesorio').textContent = option.getAttribute('data-serie') || 'No disponible';
-                            document.getElementById('costo_accesorio').textContent = option.getAttribute('data-costo') || 'No disponible';
-                
-                            infoAccesorio.classList.remove('d-none');
+                            });
+
+                            accesorioSelect.addEventListener('change', function() {
+                                const option = accesorioSelect.options[accesorioSelect.selectedIndex];
+
+                                if (!option || option.value === '') {
+                                    infoAccesorio.classList.add('d-none');
+                                    return;
+                                }
+
+                                document.getElementById('descripcion_accesorio').textContent = option.getAttribute(
+                                    'data-nombre-accesorio') || 'No disponible';
+                                document.getElementById('modelo_accesorio').textContent = option.getAttribute(
+                                    'data-modelo') || 'No disponible';
+                                document.getElementById('serie_accesorio').textContent = option.getAttribute(
+                                    'data-serie') || 'No disponible';
+                                document.getElementById('costo_accesorio').textContent = option.getAttribute(
+                                    'data-costo') || 'No disponible';
+
+                                infoAccesorio.classList.remove('d-none');
+                            });
                         });
-                    });
-                </script>
+                    </script>
+                </div>
+                    {{-- FIN ACCESORIOS --}}
 
-                {{-- FIN ACCESORIOS --}}
 
-
-                {{--  FABRICANTE - PROVEEDOR  --}}
-
-                    {{-- FABRICANTE - PROVEEDOR --}}
+                    {{--  INICIO  FABRICANTE - PROVEEDOR  --}}              
                     <div class="container-fluid my-4">
                         <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
                             <h1 class="text-white text-center py-2 rounded" style="background-color: black;">
@@ -1056,18 +986,19 @@
                             <!-- COLUMNA IZQUIERDA - FABRICANTE -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
-                                    <select id="fabricante_id" name="fabricante_id" class="form-select border border-3">
+                                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un
+                                        fabricante:</label>
+                                    <select id="fabricante_id" name="fabricante_id"
+                                        class="form-select border border-3">
                                         <option value="">Seleccione un fabricante</option>
                                         @foreach ($fabricantes as $fabricante)
-                                            <option 
-                                                value="{{ $fabricante->id }}"
+                                            <option value="{{ $fabricante->id }}"
                                                 data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
                                                 data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
                                                 data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
                                                 data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
                                                 data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
-                                                {{ $fabricante->nombreFabri ?? 'No disponible' }} 
+                                                {{ $fabricante->nombreFabri ?? 'No disponible' }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -1084,7 +1015,8 @@
                                 </div>
 
                                 <!-- SIN FABRICANTES -->
-                                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
+                                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3"
+                                    style="display: none;">
                                     No hay fabricantes disponibles.
                                 </div>
                             </div>
@@ -1092,18 +1024,20 @@
                             <!-- COLUMNA DERECHA - PROVEEDOR -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
-                                    <select id="proveedor_id" name="proveedor_id" class="form-select border border-3">
+                                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un
+                                        proveedor:</label>
+                                    <select id="proveedor_id" name="proveedor_id"
+                                        class="form-select border border-3">
                                         <option value="">Seleccione un proveedor</option>
                                         @foreach ($proveedores as $proveedor)
-                                            <option 
-                                                value="{{ $proveedor->id }}"
+                                            <option value="{{ $proveedor->id }}"
                                                 data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
                                                 data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
                                                 data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
                                                 data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
                                                 data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
-                                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} - {{ $proveedor->ciudadProvee ?? 'No disponible' }}
+                                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} -
+                                                {{ $proveedor->ciudadProvee ?? 'No disponible' }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -1120,7 +1054,8 @@
                                 </div>
 
                                 <!-- SIN PROVEEDORES -->
-                                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
+                                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3"
+                                    style="display: none;">
                                     No hay proveedores disponibles.
                                 </div>
                             </div>
@@ -1129,63 +1064,70 @@
 
 
 
-                {{-- INICION SCRIPT --}}
+                    {{-- INICION SCRIPT --}}
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const fabricanteSelect = document.getElementById('fabricante_id');
-                        const infoFabricante = document.getElementById('info_fabricante');
-                        const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes');
-                
-                        if (fabricanteSelect.options.length <= 1) mensajeNoFabricantes.style.display = 'block';
-                
-                        fabricanteSelect.addEventListener('change', function () {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoFabricante.style.display = 'none';
-                
-                            document.getElementById('nombre_fabricante').textContent = selected.getAttribute('data-nombre-fabri') || 'No disponible';
-                            document.getElementById('direccion_fabricante').textContent = selected.getAttribute('data-direccion-fabri') || 'No disponible';
-                            document.getElementById('telefono_fabricante').textContent = selected.getAttribute('data-telefono-fabri') || 'No disponible';
-                            document.getElementById('ciudad_fabricante').textContent = selected.getAttribute('data-ciudad-fabri') || 'No disponible';
-                            document.getElementById('email_fabricante').textContent = selected.getAttribute('data-email-fabri') || 'No disponible';
-                
-                            infoFabricante.style.display = 'block';
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const fabricanteSelect = document.getElementById('fabricante_id');
+                            const infoFabricante = document.getElementById('info_fabricante');
+                            const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes');
+
+                            if (fabricanteSelect.options.length <= 1) mensajeNoFabricantes.style.display = 'block';
+
+                            fabricanteSelect.addEventListener('change', function() {
+                                const selected = this.options[this.selectedIndex];
+                                if (!selected || selected.value === '') return infoFabricante.style.display = 'none';
+
+                                document.getElementById('nombre_fabricante').textContent = selected.getAttribute(
+                                    'data-nombre-fabri') || 'No disponible';
+                                document.getElementById('direccion_fabricante').textContent = selected.getAttribute(
+                                    'data-direccion-fabri') || 'No disponible';
+                                document.getElementById('telefono_fabricante').textContent = selected.getAttribute(
+                                    'data-telefono-fabri') || 'No disponible';
+                                document.getElementById('ciudad_fabricante').textContent = selected.getAttribute(
+                                    'data-ciudad-fabri') || 'No disponible';
+                                document.getElementById('email_fabricante').textContent = selected.getAttribute(
+                                    'data-email-fabri') || 'No disponible';
+
+                                infoFabricante.style.display = 'block';
+                            });
+
+                            const proveedorSelect = document.getElementById('proveedor_id');
+                            const infoProveedor = document.getElementById('info_proveedor');
+                            const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores');
+
+                            if (proveedorSelect.options.length <= 1) mensajeNoProveedores.style.display = 'block';
+
+                            proveedorSelect.addEventListener('change', function() {
+                                const selected = this.options[this.selectedIndex];
+                                if (!selected || selected.value === '') return infoProveedor.style.display = 'none';
+
+                                document.getElementById('nombre_proveedor').textContent = selected.getAttribute(
+                                    'data-nombre-proveedor') || 'No disponible';
+                                document.getElementById('direccion_proveedor').textContent = selected.getAttribute(
+                                    'data-direccion-proveedor') || 'No disponible';
+                                document.getElementById('telefono_proveedor').textContent = selected.getAttribute(
+                                    'data-telefono-proveedor') || 'No disponible';
+                                document.getElementById('ciudad_proveedor').textContent = selected.getAttribute(
+                                    'data-ciudad-proveedor') || 'No disponible';
+                                document.getElementById('email_proveedor').textContent = selected.getAttribute(
+                                    'data-email-proveedor') || 'No disponible';
+
+                                infoProveedor.style.display = 'block';
+                            });
                         });
-                
-                        const proveedorSelect = document.getElementById('proveedor_id');
-                        const infoProveedor = document.getElementById('info_proveedor');
-                        const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores');
-                
-                        if (proveedorSelect.options.length <= 1) mensajeNoProveedores.style.display = 'block';
-                
-                        proveedorSelect.addEventListener('change', function () {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoProveedor.style.display = 'none';
-                
-                            document.getElementById('nombre_proveedor').textContent = selected.getAttribute('data-nombre-proveedor') || 'No disponible';
-                            document.getElementById('direccion_proveedor').textContent = selected.getAttribute('data-direccion-proveedor') || 'No disponible';
-                            document.getElementById('telefono_proveedor').textContent = selected.getAttribute('data-telefono-proveedor') || 'No disponible';
-                            document.getElementById('ciudad_proveedor').textContent = selected.getAttribute('data-ciudad-proveedor') || 'No disponible';
-                            document.getElementById('email_proveedor').textContent = selected.getAttribute('data-email-proveedor') || 'No disponible';
-                
-                            infoProveedor.style.display = 'block';
-                        });
-                    });
-                </script>
+                    </script>
 
-                {{-- FIN FABRICANTES Y PROVEEDORES --}}
+                    {{-- FIN FABRICANTES Y PROVEEDORES --}}
 
-                
-            </div> {{--  Cierre Div linea 51  --}}
 
                 {{--  RECOMENDACIONES --}}
 
-                
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Recomendaciones
-                    </h1> 
+                    </h1>
                     <div class="col-md-12 position-relative">
                         <div class="form-group">
                             <label for="recomendaciones"></label>
@@ -1194,19 +1136,21 @@
                     </div>
                 </div>
 
+                
 
-                {{--  SOPORTES --}}                
+                {{--  SOPORTES --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Soportes Legales
-                    </h1>                
+                    </h1>
                     {{-- Soporte de Factura --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
                             <label for="soporteFactura">Selecciona el Soporte de Factura (PDF)</label>
                             <input type="file" name="soporteFactura" id="soporteFactura"
-                                class="form-control @error('soporteFactura') is-invalid @enderror" accept="application/pdf">
+                                class="form-control @error('soporteFactura') is-invalid @enderror"
+                                accept="application/pdf">
                             @error('soporteFactura')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -1218,7 +1162,8 @@
                         <div class="form-group">
                             <label for="soporteRegistroInvima">Selecciona el Soporte de Registro Invima (PDF)</label>
                             <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
-                                class="form-control @error('soporteRegistroInvima') is-invalid @enderror" accept="application/pdf">
+                                class="form-control @error('soporteRegistroInvima') is-invalid @enderror"
+                                accept="application/pdf">
                             @error('soporteRegistroInvima')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -1228,9 +1173,12 @@
                     {{-- Soporte de Certificado de Calibración --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteCertificadoCalibracion">Selecciona el Soporte de Certificado de Calibración (PDF)</label>
-                            <input type="file" name="soporteCertificadoCalibracion" id="soporteCertificadoCalibracion"
-                                class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror" accept="application/pdf">
+                            <label for="soporteCertificadoCalibracion">Selecciona el Soporte de Certificado de
+                                Calibración (PDF)</label>
+                            <input type="file" name="soporteCertificadoCalibracion"
+                                id="soporteCertificadoCalibracion"
+                                class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror"
+                                accept="application/pdf">
                             @error('soporteCertificadoCalibracion')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -1242,7 +1190,8 @@
                         <div class="form-group">
                             <label for="soporteManual">Selecciona el Soporte de Manual (PDF)</label>
                             <input type="file" name="soporteManual" id="soporteManual"
-                                class="form-control @error('soporteManual') is-invalid @enderror" accept="application/pdf">
+                                class="form-control @error('soporteManual') is-invalid @enderror"
+                                accept="application/pdf">
                             @error('soporteManual')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -1252,9 +1201,11 @@
                     {{-- Soporte de Limpieza y Desinfección --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteLimpiezaDesinfeccion">Selecciona el Soporte de Limpieza y Desinfección (PDF)</label>
+                            <label for="soporteLimpiezaDesinfeccion">Selecciona el Soporte de Limpieza y Desinfección
+                                (PDF)</label>
                             <input type="file" name="soporteLimpiezaDesinfeccion" id="soporteLimpiezaDesinfeccion"
-                                class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror" accept="application/pdf">
+                                class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror"
+                                accept="application/pdf">
                             @error('soporteLimpiezaDesinfeccion')
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
@@ -1264,7 +1215,7 @@
 
                 {{-- FIN CARGA DE SOPORTES --}}
 
-
+                
                 {{-- ACCION DE GUARDAR  --}}
                 <div class="d-grid gap-0 col-4 mx-auto">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -1295,8 +1246,40 @@
         </div>
     </footer>
 
+    <script>
+        $(document).ready(function () {
+            $('#equipo').change(function () {
+                var equipoID = $(this).val();
+                $('#marca').empty().append('<option value="">Seleccione una marca</option>');
+                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop('disabled', true);
+    
+                if (equipoID) {
+                    $.get('{{ url("marcas") }}/' + equipoID, function (data) {
+                        $.each(data, function (index, marca) {
+                            $('#marca').append('<option value="' + marca.id + '">' + marca.nombre_marca + '</option>');
+                        });
+                        $('#marca').prop('disabled', false);
+                    });
+                }
+            });
+    
+            $('#marca').change(function () {
+                var marcaID = $(this).val();
+                $('#modelo').empty().append('<option value="">Seleccione un modelo</option>');
+    
+                if (marcaID) {
+                    $.get('{{ url("modelos") }}/' + marcaID, function (data) {
+                        $.each(data, function (index, modelo) {
+                            $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre_modelo + '</option>');
+                        });
+                        $('#modelo').prop('disabled', false);
+                    });
+                }
+            });
+        });
+    </script>
 
-    {{-- este script es para las opciones equipo modelo marca --}}
+    {{-- este script es para las opciones equipo modelo marca
     <script>
         $(document).ready(function() {
             $('#equipo').change(function() {
@@ -1331,69 +1314,7 @@
                 }
             });
         });
-    </script>
-    {{-- <script>
-        $(document).ready(function() {
-            // Evento cuando cambia el select de equipo
-            $('#equipo').change(function() {
-                var equipoId = $(this).val(); // Obtener el ID del equipo seleccionado
-
-                if (equipoId) {
-                    $.ajax({
-                        url: '/biovic/public/modelos/' + equipoId, // Ruta en Laravel para obtener los modelos
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#modelo').empty().append('<option value="">Selecciona un modelo</option>');
-
-                            $.each(data, function(index, modelo) {
-                                $('#modelo').append('<option value="' + modelo.id + '">' + modelo.nombre_modelo + '</option>');
-                            });
-
-                            $('#modelo').prop('disabled', false);
-                            $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
-                        },
-                        error: function() {
-                            alert('Error al obtener modelos.');
-                        }
-                    });
-                } else {
-                    $('#modelo').empty().append('<option value="">Selecciona un modelo</option>').prop('disabled', true);
-                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
-                }
-            });
-
-            // Evento cuando cambia el select de modelo
-            $('#modelo').change(function() {
-                var modeloId = $(this).val(); // Obtener el ID del modelo seleccionado
-
-                if (modeloId) {
-                    $.ajax({
-                        url: '{{ url("get-modelos") }}/'+ modeloId, // Ruta en Laravel para obtener las marcas
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#marca').empty().append('<option value="">Selecciona una marca</option>');
-
-                            $.each(data, function(index, marca) {
-                                $('#marca').append('<option value="' + marca.id + '">' + marca.nombre_marca + '</option>');
-                            });
-
-                            $('#marca').prop('disabled', false);
-                        },
-                        error: function() {
-                            alert('Error al obtener marcas.');
-                        }
-                    });
-                } else {
-                    $('#marca').empty().append('<option value="">Selecciona una marca</option>').prop('disabled', true);
-                }
-            });
-        });
     </script> --}}
-
-
-
 
 
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
