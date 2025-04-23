@@ -43,7 +43,7 @@
                 <a href="{{ route('menu') }}" class="logo d-flex align-items-center justify-content-center">
                     {{-- <img src=" {{ asset('IMG/logocircular.png') }}" alt="VitalSoft" height="40" alt="navbar brand"
                     class="navbar-brand"> --}}
-                    <h1 class="logo  " style="font-weight: bold; color:white; padding:1%; font-size:50px">Biovic</h1>
+                    <h1 class="logo  " style="font-weight: bold; color:white; padding:1%; font-size:40px">Vitalsoft</h1>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

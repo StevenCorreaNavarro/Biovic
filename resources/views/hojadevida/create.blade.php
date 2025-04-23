@@ -371,27 +371,28 @@
                         }
                     </script>
                 </div>
-            </div>
-            {{-- FIN DESCRIPCION DE EQUIPO  --}}
+
+                {{-- FIN DESCRIPCION DE EQUIPO  --}}
 
 
-            {{-- INICIO REGISTRO HISTORICO --}}
-            <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation mb-4  formu p-5">
-                {{--  Seleccion Fondo Blan --}}
-                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                    Registro
-                    historico
-                </h1>
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=fechaAdquisicion> Fecha de Adquisicion </label>
-                        <input type="date" name="fechaAdquisicion" class="form-control"
-                            value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}"
-                            id="fechaAdquisicion">
+                {{-- INICIO REGISTRO HISTORICO --}}
+                <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation mb-4  formu p-5">
+                    {{--  Seleccion Fondo Blan --}}
+                    <h1 class="text-white"
+                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        Registro
+                        historico
+                    </h1>
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=fechaAdquisicion> Fecha de Adquisicion </label>
+                            <input type="date" name="fechaAdquisicion" class="form-control"
+                                value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}"
+                                id="fechaAdquisicion">
+                        </div>
                     </div>
-                </div>
 
-                {{-- <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=garantia> Garantía </label>
                             <input type="date" name="garantia" class="form-control"
@@ -401,722 +402,732 @@
                     </div> --}}
 
 
-                {{--  Fecha Garantia Calculada --}}
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="garantia">Garantía (1 año después)</label>
-                        <input type="text" id="garantiaCalculada" class="form-control" readonly>
-                    </div>
-                </div>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
-                        const garantiaInput = document.getElementById('garantiaCalculada');
-
-                        function calcularGarantia() {
-                            const fechaAdquisicion = new Date(fechaAdquisicionInput.value);
-                            if (!isNaN(fechaAdquisicion)) {
-                                const garantia = new Date(fechaAdquisicion);
-                                garantia.setFullYear(garantia.getFullYear() + 1);
-
-                                const dd = String(garantia.getDate()).padStart(2, '0');
-                                const mm = String(garantia.getMonth() + 1).padStart(2, '0');
-                                const yyyy = garantia.getFullYear();
-
-
-                                garantiaInput.value = `${yyyy}-${mm}-${dd}`;
-                            } else {
-                                garantiaInput.value = '';
-                            }
-                        }
-
-                        // Calcular al cargar si ya hay valor
-                        calcularGarantia();
-
-                        // Calcular cada vez que cambie la fecha de adquisición
-                        fechaAdquisicionInput.addEventListener('change', calcularGarantia);
-                    });
-                </script>
-
-
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=fechaInstalacion> Fecha de Instalacion </label>
-                        <input type="date" name="fechaInstalacion" class="form-control"
-                            value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}"
-                            id="fechaInstalacion">
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=factura> Factura </label>
-                        <input type="text" name="factura" class="form-control"
-                            value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}"
-                            id="factura">
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="forma_adqui_id">Forma de Adquisicion</label>
-                        <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
-                            <option value="">Seleccione una opcion</option>
-                            @foreach ($formaadqui as $formaadquisicion)
-                                <option value="{{ $formaadquisicion->id }}"
-                                    {{ isset($hojadevida) && $hojadevida->forma_adqui_id == $formaadquisicion->id ? 'selected' : '' }}>
-                                    {{ $formaadquisicion->formaadqui }}
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-
-                <!-- Selector de años de vida útil -->
-                <div class="col-md-2 position-relative">
-                    <div class="form-group">
-                        <label for="aniosVida">Años de Vida Útil</label>
-                        <select id="aniosVida" class="form-control">
-                            <option value="5" selected>5 años</option>
-                            <option value="10">10 años</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Vida Útil calculada (solo visible) -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="vidaUtil">Vida Útil</label>
-                        <input type="text" id="vidaUtilCalculada" class="form-control" readonly>
-                    </div>
-                </div>
-
-                <!-- Campo oculto para enviar (guarda el valor calculado) -->
-                <input type="hidden" name="vidaUtil" id="vidaUtil"
-                    value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
-                        const aniosVidaSelect = document.getElementById('aniosVida');
-                        const vidaUtilVisible = document.getElementById('vidaUtilCalculada');
-                        const vidaUtilHidden = document.getElementById('vidaUtil');
-
-                        // Función para calcular la vida útil
-                        function calcularVidaUtil() {
-                            const fechaAdq = new Date(fechaAdquisicionInput.value);
-                            const anios = parseInt(aniosVidaSelect.value);
-
-                            if (!isNaN(fechaAdq.getTime()) && !isNaN(anios)) {
-                                const vidaUtil = new Date(fechaAdq);
-                                vidaUtil.setFullYear(vidaUtil.getFullYear() + anios);
-
-                                const yyyy = vidaUtil.getFullYear();
-                                const mm = String(vidaUtil.getMonth() + 1).padStart(2, '0');
-                                const dd = String(vidaUtil.getDate()).padStart(2, '0');
-                                const vidaFinal = `${yyyy}-${mm}-${dd}`;
-
-                                // Mostrar y guardar la vida útil calculada
-                                vidaUtilVisible.value = vidaFinal;
-                                vidaUtilHidden.value = vidaFinal;
-                            } else {
-                                // Si no hay fecha, limpiar los campos
-                                vidaUtilVisible.value = '';
-                                vidaUtilHidden.value = '';
-                            }
-                        }
-
-                        // Llamar a la función al cargar la página para calcular la vida útil si ya se tiene una fecha
-                        calcularVidaUtil();
-
-                        // Escuchar cambios en la fecha de adquisición y los años seleccionados
-                        fechaAdquisicionInput.addEventListener('change', calcularVidaUtil);
-                        aniosVidaSelect.addEventListener('change', calcularVidaUtil);
-                    });
-                </script>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for=costo> Costo </label>
-                        <input type="text" name="costo" class="form-control"
-                            value="{{ isset($hojadevida->costo) ? $hojadevida->costo : old('costo') }}"
-                            id="costo">
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="propiedad_id">Propiedad</label>
-                        <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
-                            <option value="">Seleccione una opcion</option>
-                            @foreach ($propiedad as $nombreempre)
-                                <option value="{{ $nombreempre->id }}"
-                                    {{ isset($hojadevida) && $hojadevida->propiedad_id == $nombreempre->id ? 'selected' : '' }}>
-                                    {{ $nombreempre->nombreempresa }}
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <br><br><br>
-            </div>
-            {{-- FIN REGISTRO HISTORICO --}}
-
-            {{-- INICIO REGISTRO TECNICO --}}
-            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                    Registro tecnico
-                </h1>
-
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
-                        <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($nombrealimentacion as $fuente)
-                                <option value="{{ $fuente->id }}"
-                                    {{ old('mag_fuen_alimen_id', $hojadevida->mag_fuen_alimen_id ?? '') == $fuente->id ? 'selected' : '' }}>
-                                    {{ $fuente->nombrealimentacion }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative ">
-                    <div class="form-group">
-                        <label for=frecuencia> Frecuencia </label>
-                        <input type="text" name="frecuencia" class="form-control"
-                            value="{{ isset($hojadevida->frecuencia) ? $hojadevida->frecuencia : old('frecuencia') }}"
-                            id="frecuencia">
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="mag_fre_id">Unidad de Frecuencia</label>
-                        <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($magFrec as $frecuencia)
-                                <option value="{{ $frecuencia->id }}"
-                                    {{ old('mag_fre_id', $hojadevida->mag_fre_id ?? '') == $frecuencia->id ? 'selected' : '' }}>
-                                    {{ $frecuencia->nombrefrecuencia }} ({{ $frecuencia->abreviacionfrecuencia }})
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative ">
-                    <div class="form-group">
-                        <label for=volMax> Voltaje Max </label>
-                        <input type="text" name="volMax" class="form-control"
-                            value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
-                            id="volMax">
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative ">
-                    <div class="form-group">
-                        <label for=volMin> Voltaje Min </label>
-                        <input type="text" name="volMin" class="form-control"
-                            value="{{ isset($hojadevida->volMin) ? $hojadevida->volMin : old('volMin') }}"
-                            id="volMax">
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
-                        <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($fuentesAli as $fuente)
-                                {{-- Asi se recibe desde  hojadevidaController --}}
-                                <option value="{{ $fuente->id }}"
-                                    {{ old('mag_fuen_ali_id', $hojadevida->mag_fuen_ali_id ?? '') == $fuente->id ? 'selected' : '' }}>
-                                    {{ $fuente->abrefuentealimen }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative ">
-                    <div class="form-group">
-                        <label for="corrienteMax">Corriente Max</label>
-                        <input type="text" name="corrienteMax" class="form-control"
-                            value="{{ isset($hojadevida->corrienteMax) ? $hojadevida->corrienteMax : old('corrienteMax') }}"
-                            id="corrienteMax">
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative ">
-                    <div class="form-group">
-                        <label for="corrienteMin">Corriente Min</label>
-                        <input type="text" name="corrienteMin" class="form-control"
-                            value="{{ isset($hojadevida->corrienteMin) ? $hojadevida->corrienteMin : old('corrienteMin') }}"
-                            id="corrienteMin">
-                    </div>
-                </div>
-
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="mag_corriente_id">Unidad de Corriente</label>
-                        <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($corrientes as $corriente)
-                                <option value="{{ $corriente->id }}"
-                                    {{ old('mag_corriente_id', $hojadevida->mag_corriente_id ?? '') == $corriente->id ? 'selected' : '' }}>
-                                    {{ $corriente->abreviacioncorriente }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-3 position-relative ">
-                    <div class="form-group">
-                        <label for="peso">Peso Equipo</label>
-                        <input type="text" name="peso" class="form-control"
-                            value="{{ isset($hojadevida->peso) ? $hojadevida->peso : old('peso') }}" id="peso">
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="mag_peso_id">Unidad de Peso</label>
-                        <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($pesos as $peso)
-                                <option value="{{ $peso->id }}"
-                                    {{ old('mag_peso_id', $hojadevida->mag_peso_id ?? '') == $peso->id ? 'selected' : '' }}>
-                                    {{ $peso->abreviacionpeso }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative ">
-                    <div class="form-group">
-                        <label for="presion">Presión</label>
-                        <input type="text" name="presion" class="form-control"
-                            value="{{ isset($hojadevida->presion) ? $hojadevida->presion : old('presion') }}"
-                            id="presion">
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="mag_pres_id">Unidad de Presión</label>
-                        <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($presiones as $presion)
-                                <option value="{{ $presion->id }}"
-                                    {{ old('mag_pres_id', $hojadevida->mag_pres_id ?? '') == $presion->id ? 'selected' : '' }}>
-                                    {{ $presion->abreviacionpresion }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="potencia">Potencia</label>
-                        <input type="text" name="potencia" class="form-control"
-                            value="{{ isset($hojadevida->potencia) ? $hojadevida->potencia : old('potencia') }}"
-                            id="potencia">
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="mag_pot_id">Unidad de Potencia</label>
-                        <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($potencias as $potencia)
-                                <option value="{{ $potencia->id }}"
-                                    {{ old('mag_pot_id', $hojadevida->mag_pot_id ?? '') == $potencia->id ? 'selected' : '' }}>
-                                    {{ $potencia->abreviacionpotencia }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="temperatura">Temperatura</label>
-                        <input type="text" name="temperatura" class="form-control"
-                            value="{{ old('temperatura') }}" id="temperatura">
-                    </div>
-                </div>
-
-                <!-- Selección de Unidad de Temperatura -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="mag_temp_id">Unidad de Temperatura</label>
-                        <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($temperaturas as $temp)
-                                <option value="{{ $temp->id }}"
-                                    {{ old('mag_temp_id') == $temp->id ? 'selected' : '' }}>
-                                    {{ $temp->nombretemperatura }} <!-- Mostrar nombre de la temperatura -->
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Campo Velocidad -->
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="velocidad">Velocidad</label>
-                        <input type="text" name="velocidad" class="form-control" value="{{ old('velocidad') }}"
-                            id="velocidad">
-                    </div>
-                </div>
-
-                <!-- Select Unidad Velocidad -->
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="mag_vel_id">Unidad de Velocidad</label>
-                        <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($velocidad as $vel)
-                                <option value="{{ $vel->id }}"
-                                    {{ old('mag_vel_id', $hojadevida->mag_vel_id ?? '') == $vel->id ? 'selected' : '' }}>
-                                    {{ $vel->abreviacionvelocidad }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Campo Humedad -->
-                <div class="col-md-4 position-relative">
-                    <div class="form-group">
-                        <label for="humedad">Humedad (%)</label>
-                        <input type="text" name="humedad" class="form-control" value="{{ old('humedad') }}"
-                            id="humedad">
-                    </div>
-                </div>
-
-                <!-- Tamaño Equipo -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="dimLargo">Largo</label>
-                        <input type="text" name="dimLargo" class="form-control" value="{{ old('dimLargo') }}"
-                            id="dimLargo">
-                    </div>
-                </div>
-
-                <!-- Campo Ancho -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="dimAncho">Ancho</label>
-                        <input type="text" name="dimAncho" class="form-control" value="{{ old('dimAncho') }}"
-                            id="dimAncho">
-                    </div>
-                </div>
-
-                <!-- Campo Alto -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="dimAlto">Alto</label>
-                        <input type="text" name="dimAlto" class="form-control" value="{{ old('dimAlto') }}"
-                            id="dimAlto">
-                    </div>
-                </div>
-
-                <!-- Seleccion Unidad Dimensión -->
-                <div class="col-md-3 position-relative">
-                    <div class="form-group">
-                        <label for="mag_dimension_id">Unidad de Dimensión</label>
-                        <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($dimensiones as $dim)
-                                <option value="{{ $dim->id }}"
-                                    {{ old('mag_dimension_id', $hojadevida->mag_dimension_id ?? '') == $dim->id ? 'selected' : '' }}>
-                                    {{ $dim->abreviaciondimension }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-
-                <br>
-                <br>
-
-            </div>
-            {{-- FIN REGISTRO TECNICO --}}
-
-            <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-                <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                    Accesorios
-                </h1>
-
-                <!-- SELECT ACCESORIO -->
-                <div class="row g-3 mt-4">
-                    <div class="col-md-6">
-                        <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
-                        <select id="accesorio_id" name="accesorio_id" class="form-select border border-2 shadow-sm">
-                            <option value="">Seleccione un accesorio</option>
-                            @foreach ($accesorios as $accesorio)
-                                <option value="{{ $accesorio->id }}" data-equipo-id="{{ $accesorio->equipo_id }}"
-                                    data-nombre-accesorio="{{ $accesorio->nombreAccesorio ?? 'No disponible' }}"
-                                    data-modelo="{{ $accesorio->modeloAccesorio ?? 'No disponible' }}"
-                                    data-serie="{{ $accesorio->serieAccesorio ?? 'No disponible' }}"
-                                    data-costo="{{ $accesorio->costoAccesorio ?? 'No disponible' }}">
-                                    {{ $accesorio->nombreAccesorio ?? 'No disponible' }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <!-- MENSAJE SI NO HAY ACCESORIOS -->
-                <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
-                    No hay accesorios disponibles para el equipo seleccionado.
-                </div>
-
-                <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
-                <div id="info_accesorio" class="container mt-4 d-none">
-                    <div class="row border rounded p-3 bg-light shadow-sm">
-                        <div class="col-12 mb-2">
-                            <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Serie:</strong> <span id="serie_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Costo:</strong> <span id="costo_accesorio"></span>
+                    {{--  Fecha Garantia Calculada --}}
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="garantia">Garantía (1 año después)</label>
+                            <input type="text" id="garantiaCalculada" class="form-control" readonly>
                         </div>
                     </div>
-                </div>
 
-                <!-- SCRIPT ACCESORIO -->
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const equipoSelect = document.getElementById('equipo_id');
-                        const accesorioSelect = document.getElementById('accesorio_id');
-                        const mensajeNoAccesorios = document.getElementById('mensaje_no_accesorios');
-                        const infoAccesorio = document.getElementById('info_accesorio');
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
+                            const garantiaInput = document.getElementById('garantiaCalculada');
 
-                        if (!equipoSelect || !accesorioSelect) return;
+                            function calcularGarantia() {
+                                const fechaAdquisicion = new Date(fechaAdquisicionInput.value);
+                                if (!isNaN(fechaAdquisicion)) {
+                                    const garantia = new Date(fechaAdquisicion);
+                                    garantia.setFullYear(garantia.getFullYear() + 1);
 
-                        equipoSelect.addEventListener('change', function() {
-                            const equipoId = this.value;
-                            const opciones = accesorioSelect.querySelectorAll('option');
-                            let hayAccesorios = false;
+                                    const dd = String(garantia.getDate()).padStart(2, '0');
+                                    const mm = String(garantia.getMonth() + 1).padStart(2, '0');
+                                    const yyyy = garantia.getFullYear();
 
-                            // Oculta todos excepto el primero (placeholder)
-                            opciones.forEach((option, index) => {
-                                if (index === 0) {
-                                    option.style.display = '';
-                                    return;
-                                }
 
-                                const idEquipo = option.getAttribute('data-equipo-id');
-                                if (equipoId && idEquipo === equipoId) {
-                                    option.style.display = '';
-                                    hayAccesorios = true;
+                                    garantiaInput.value = `${yyyy}-${mm}-${dd}`;
                                 } else {
-                                    option.style.display = 'none';
+                                    garantiaInput.value = '';
+                                }
+                            }
+
+                            // Calcular al cargar si ya hay valor
+                            calcularGarantia();
+
+                            // Calcular cada vez que cambie la fecha de adquisición
+                            fechaAdquisicionInput.addEventListener('change', calcularGarantia);
+                        });
+                    </script>
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=fechaInstalacion> Fecha de Instalacion </label>
+                            <input type="date" name="fechaInstalacion" class="form-control"
+                                value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}"
+                                id="fechaInstalacion">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=factura> Factura </label>
+                            <input type="text" name="factura" class="form-control"
+                                value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}"
+                                id="factura">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="forma_adqui_id">Forma de Adquisicion</label>
+                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
+                                <option value="">Seleccione una opcion</option>
+                                @foreach ($formaadqui as $formaadquisicion)
+                                    <option value="{{ $formaadquisicion->id }}"
+                                        {{ isset($hojadevida) && $hojadevida->forma_adqui_id == $formaadquisicion->id ? 'selected' : '' }}>
+                                        {{ $formaadquisicion->formaadqui }}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!-- Selector de años de vida útil -->
+                    <div class="col-md-2 position-relative">
+                        <div class="form-group">
+                            <label for="aniosVida">Años de Vida Útil</label>
+                            <select id="aniosVida" class="form-control">
+                                <option value="5" selected>5 años</option>
+                                <option value="10">10 años</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vida Útil calculada (solo visible) -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="vidaUtil">Vida Útil</label>
+                            <input type="text" id="vidaUtilCalculada" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Campo oculto para enviar (guarda el valor calculado) -->
+                    <input type="hidden" name="vidaUtil" id="vidaUtil"
+                        value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
+                            const aniosVidaSelect = document.getElementById('aniosVida');
+                            const vidaUtilVisible = document.getElementById('vidaUtilCalculada');
+                            const vidaUtilHidden = document.getElementById('vidaUtil');
+
+                            // Función para calcular la vida útil
+                            function calcularVidaUtil() {
+                                const fechaAdq = new Date(fechaAdquisicionInput.value);
+                                const anios = parseInt(aniosVidaSelect.value);
+
+                                if (!isNaN(fechaAdq.getTime()) && !isNaN(anios)) {
+                                    const vidaUtil = new Date(fechaAdq);
+                                    vidaUtil.setFullYear(vidaUtil.getFullYear() + anios);
+
+                                    const yyyy = vidaUtil.getFullYear();
+                                    const mm = String(vidaUtil.getMonth() + 1).padStart(2, '0');
+                                    const dd = String(vidaUtil.getDate()).padStart(2, '0');
+                                    const vidaFinal = `${yyyy}-${mm}-${dd}`;
+
+                                    // Mostrar y guardar la vida útil calculada
+                                    vidaUtilVisible.value = vidaFinal;
+                                    vidaUtilHidden.value = vidaFinal;
+                                } else {
+                                    // Si no hay fecha, limpiar los campos
+                                    vidaUtilVisible.value = '';
+                                    vidaUtilHidden.value = '';
+                                }
+                            }
+
+                            // Llamar a la función al cargar la página para calcular la vida útil si ya se tiene una fecha
+                            calcularVidaUtil();
+
+                            // Escuchar cambios en la fecha de adquisición y los años seleccionados
+                            fechaAdquisicionInput.addEventListener('change', calcularVidaUtil);
+                            aniosVidaSelect.addEventListener('change', calcularVidaUtil);
+                        });
+                    </script>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=costo> Costo </label>
+                            <input type="text" name="costo" class="form-control"
+                                value="{{ isset($hojadevida->costo) ? $hojadevida->costo : old('costo') }}"
+                                id="costo">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="propiedad_id">Propiedad</label>
+                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
+                                <option value="">Seleccione una opcion</option>
+                                @foreach ($propiedad as $nombreempre)
+                                    <option value="{{ $nombreempre->id }}"
+                                        {{ isset($hojadevida) && $hojadevida->propiedad_id == $nombreempre->id ? 'selected' : '' }}>
+                                        {{ $nombreempre->nombreempresa }}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <br><br><br>
+                </div>
+                {{-- FIN REGISTRO HISTORICO --}}
+
+                {{-- INICIO REGISTRO TECNICO --}}
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                    <h1 class="text-white"
+                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        Registro tecnico
+                    </h1>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
+                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
+                                class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($nombrealimentacion as $fuente)
+                                    <option value="{{ $fuente->id }}"
+                                        {{ old('mag_fuen_alimen_id', $hojadevida->mag_fuen_alimen_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->nombrealimentacion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=frecuencia> Frecuencia </label>
+                            <input type="text" name="frecuencia" class="form-control"
+                                value="{{ isset($hojadevida->frecuencia) ? $hojadevida->frecuencia : old('frecuencia') }}"
+                                id="frecuencia">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_fre_id">Unidad de Frecuencia</label>
+                            <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($magFrec as $frecuencia)
+                                    <option value="{{ $frecuencia->id }}"
+                                        {{ old('mag_fre_id', $hojadevida->mag_fre_id ?? '') == $frecuencia->id ? 'selected' : '' }}>
+                                        {{ $frecuencia->nombrefrecuencia }} ({{ $frecuencia->abreviacionfrecuencia }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMax> Voltaje Max </label>
+                            <input type="text" name="volMax" class="form-control"
+                                value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
+                                id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMin> Voltaje Min </label>
+                            <input type="text" name="volMin" class="form-control"
+                                value="{{ isset($hojadevida->volMin) ? $hojadevida->volMin : old('volMin') }}"
+                                id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
+                            <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($fuentesAli as $fuente)
+                                    {{-- Asi se recibe desde  hojadevidaController --}}
+                                    <option value="{{ $fuente->id }}"
+                                        {{ old('mag_fuen_ali_id', $hojadevida->mag_fuen_ali_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->abrefuentealimen }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMax">Corriente Max</label>
+                            <input type="text" name="corrienteMax" class="form-control"
+                                value="{{ isset($hojadevida->corrienteMax) ? $hojadevida->corrienteMax : old('corrienteMax') }}"
+                                id="corrienteMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMin">Corriente Min</label>
+                            <input type="text" name="corrienteMin" class="form-control"
+                                value="{{ isset($hojadevida->corrienteMin) ? $hojadevida->corrienteMin : old('corrienteMin') }}"
+                                id="corrienteMin">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_corriente_id">Unidad de Corriente</label>
+                            <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($corrientes as $corriente)
+                                    <option value="{{ $corriente->id }}"
+                                        {{ old('mag_corriente_id', $hojadevida->mag_corriente_id ?? '') == $corriente->id ? 'selected' : '' }}>
+                                        {{ $corriente->abreviacioncorriente }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="peso">Peso Equipo</label>
+                            <input type="text" name="peso" class="form-control"
+                                value="{{ isset($hojadevida->peso) ? $hojadevida->peso : old('peso') }}"
+                                id="peso">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_peso_id">Unidad de Peso</label>
+                            <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($pesos as $peso)
+                                    <option value="{{ $peso->id }}"
+                                        {{ old('mag_peso_id', $hojadevida->mag_peso_id ?? '') == $peso->id ? 'selected' : '' }}>
+                                        {{ $peso->abreviacionpeso }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="presion">Presión</label>
+                            <input type="text" name="presion" class="form-control"
+                                value="{{ isset($hojadevida->presion) ? $hojadevida->presion : old('presion') }}"
+                                id="presion">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pres_id">Unidad de Presión</label>
+                            <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($presiones as $presion)
+                                    <option value="{{ $presion->id }}"
+                                        {{ old('mag_pres_id', $hojadevida->mag_pres_id ?? '') == $presion->id ? 'selected' : '' }}>
+                                        {{ $presion->abreviacionpresion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="potencia">Potencia</label>
+                            <input type="text" name="potencia" class="form-control"
+                                value="{{ isset($hojadevida->potencia) ? $hojadevida->potencia : old('potencia') }}"
+                                id="potencia">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pot_id">Unidad de Potencia</label>
+                            <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($potencias as $potencia)
+                                    <option value="{{ $potencia->id }}"
+                                        {{ old('mag_pot_id', $hojadevida->mag_pot_id ?? '') == $potencia->id ? 'selected' : '' }}>
+                                        {{ $potencia->abreviacionpotencia }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="temperatura">Temperatura</label>
+                            <input type="text" name="temperatura" class="form-control"
+                                value="{{ old('temperatura') }}" id="temperatura">
+                        </div>
+                    </div>
+
+                    <!-- Selección de Unidad de Temperatura -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_temp_id">Unidad de Temperatura</label>
+                            <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($temperaturas as $temp)
+                                    <option value="{{ $temp->id }}"
+                                        {{ old('mag_temp_id') == $temp->id ? 'selected' : '' }}>
+                                        {{ $temp->nombretemperatura }} <!-- Mostrar nombre de la temperatura -->
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Campo Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="velocidad">Velocidad</label>
+                            <input type="text" name="velocidad" class="form-control"
+                                value="{{ old('velocidad') }}" id="velocidad">
+                        </div>
+                    </div>
+
+                    <!-- Select Unidad Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_vel_id">Unidad de Velocidad</label>
+                            <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($velocidad as $vel)
+                                    <option value="{{ $vel->id }}"
+                                        {{ old('mag_vel_id', $hojadevida->mag_vel_id ?? '') == $vel->id ? 'selected' : '' }}>
+                                        {{ $vel->abreviacionvelocidad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Campo Humedad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="humedad">Humedad (%)</label>
+                            <input type="text" name="humedad" class="form-control" value="{{ old('humedad') }}"
+                                id="humedad">
+                        </div>
+                    </div>
+
+                    <!-- Tamaño Equipo -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimLargo">Largo</label>
+                            <input type="text" name="dimLargo" class="form-control"
+                                value="{{ old('dimLargo') }}" id="dimLargo">
+                        </div>
+                    </div>
+
+                    <!-- Campo Ancho -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAncho">Ancho</label>
+                            <input type="text" name="dimAncho" class="form-control"
+                                value="{{ old('dimAncho') }}" id="dimAncho">
+                        </div>
+                    </div>
+
+                    <!-- Campo Alto -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAlto">Alto</label>
+                            <input type="text" name="dimAlto" class="form-control" value="{{ old('dimAlto') }}"
+                                id="dimAlto">
+                        </div>
+                    </div>
+
+                    <!-- Seleccion Unidad Dimensión -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_dimension_id">Unidad de Dimensión</label>
+                            <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($dimensiones as $dim)
+                                    <option value="{{ $dim->id }}"
+                                        {{ old('mag_dimension_id', $hojadevida->mag_dimension_id ?? '') == $dim->id ? 'selected' : '' }}>
+                                        {{ $dim->abreviaciondimension }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                </div>
+                {{-- FIN REGISTRO TECNICO --}}
+
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                    <h1 class="text-white"
+                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        Accesorios
+                    </h1>
+
+                    <!-- SELECT ACCESORIO -->
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-6">
+                            <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
+                            <select id="accesorio_id" name="accesorio_id"
+                                class="form-select border border-2 shadow-sm">
+                                <option value="">Seleccione un accesorio</option>
+                                @foreach ($accesorios as $accesorio)
+                                    <option value="{{ $accesorio->id }}"
+                                        data-equipo-id="{{ $accesorio->equipo_id }}"
+                                        data-nombre-accesorio="{{ $accesorio->nombreAccesorio ?? 'No disponible' }}"
+                                        data-modelo="{{ $accesorio->modeloAccesorio ?? 'No disponible' }}"
+                                        data-serie="{{ $accesorio->serieAccesorio ?? 'No disponible' }}"
+                                        data-costo="{{ $accesorio->costoAccesorio ?? 'No disponible' }}">
+                                        {{ $accesorio->nombreAccesorio ?? 'No disponible' }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- MENSAJE SI NO HAY ACCESORIOS -->
+                    <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
+                        No hay accesorios disponibles para el equipo seleccionado.
+                    </div>
+
+                    <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
+                    <div id="info_accesorio" class="container mt-4 d-none">
+                        <div class="row border rounded p-3 bg-light shadow-sm">
+                            <div class="col-12 mb-2">
+                                <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Serie:</strong> <span id="serie_accesorio"></span>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <strong>Costo:</strong> <span id="costo_accesorio"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCRIPT ACCESORIO -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const equipoSelect = document.getElementById('equipo_id');
+                            const accesorioSelect = document.getElementById('accesorio_id');
+                            const mensajeNoAccesorios = document.getElementById('mensaje_no_accesorios');
+                            const infoAccesorio = document.getElementById('info_accesorio');
+
+                            if (!equipoSelect || !accesorioSelect) return;
+
+                            equipoSelect.addEventListener('change', function() {
+                                const equipoId = this.value;
+                                const opciones = accesorioSelect.querySelectorAll('option');
+                                let hayAccesorios = false;
+
+                                // Oculta todos excepto el primero (placeholder)
+                                opciones.forEach((option, index) => {
+                                    if (index === 0) {
+                                        option.style.display = '';
+                                        return;
+                                    }
+
+                                    const idEquipo = option.getAttribute('data-equipo-id');
+                                    if (equipoId && idEquipo === equipoId) {
+                                        option.style.display = '';
+                                        hayAccesorios = true;
+                                    } else {
+                                        option.style.display = 'none';
+                                    }
+                                });
+
+                                accesorioSelect.selectedIndex = 0;
+                                infoAccesorio.classList.add('d-none');
+
+                                if (!hayAccesorios) {
+                                    mensajeNoAccesorios.classList.remove('d-none');
+                                } else {
+                                    mensajeNoAccesorios.classList.add('d-none');
                                 }
                             });
 
-                            accesorioSelect.selectedIndex = 0;
-                            infoAccesorio.classList.add('d-none');
+                            accesorioSelect.addEventListener('change', function() {
+                                const option = this.options[this.selectedIndex];
 
-                            if (!hayAccesorios) {
-                                mensajeNoAccesorios.classList.remove('d-none');
-                            } else {
-                                mensajeNoAccesorios.classList.add('d-none');
-                            }
+                                if (!option || option.value === '') {
+                                    infoAccesorio.classList.add('d-none');
+                                    return;
+                                }
+
+                                document.getElementById('descripcion_accesorio').textContent = option.getAttribute(
+                                    'data-nombre-accesorio') || 'No disponible';
+                                document.getElementById('modelo_accesorio').textContent = option.getAttribute(
+                                    'data-modelo') || 'No disponible';
+                                document.getElementById('serie_accesorio').textContent = option.getAttribute(
+                                    'data-serie') || 'No disponible';
+                                document.getElementById('costo_accesorio').textContent = option.getAttribute(
+                                    'data-costo') || 'No disponible';
+
+                                infoAccesorio.classList.remove('d-none');
+                            });
                         });
+                    </script>
+                </div>
+                {{-- FIN ACCESORIOS --}}
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                    {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
+                    <div class="container-fluid my-4">
+                        <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
+                            <h1 class="text-white text-center py-2 rounded" style="background-color: black;">
+                                Datos del fabricante y proveedor
+                            </h1>
 
-                        accesorioSelect.addEventListener('change', function() {
-                            const option = this.options[this.selectedIndex];
+                            <!-- COLUMNA IZQUIERDA - FABRICANTE -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un
+                                        fabricante:</label>
+                                    <select id="fabricante_id" name="fabricante_id"
+                                        class="form-select border border-3">
+                                        <option value="">Seleccione un fabricante</option>
+                                        @foreach ($fabricantes as $fabricante)
+                                            <option value="{{ $fabricante->id }}"
+                                                data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
+                                                data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
+                                                data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
+                                                data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
+                                                data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
+                                                {{ $fabricante->nombreFabri ?? 'No disponible' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            if (!option || option.value === '') {
-                                infoAccesorio.classList.add('d-none');
-                                return;
-                            }
+                                <!-- INFO FABRICANTE -->
+                                <div id="info_fabricante" style="display: none;">
+                                    <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
+                                    <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
+                                    <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
+                                    <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
+                                    <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
+                                    <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
+                                </div>
 
-                            document.getElementById('descripcion_accesorio').textContent = option.getAttribute(
-                                'data-nombre-accesorio') || 'No disponible';
-                            document.getElementById('modelo_accesorio').textContent = option.getAttribute(
-                                'data-modelo') || 'No disponible';
-                            document.getElementById('serie_accesorio').textContent = option.getAttribute(
-                                'data-serie') || 'No disponible';
-                            document.getElementById('costo_accesorio').textContent = option.getAttribute(
-                                'data-costo') || 'No disponible';
-
-                            infoAccesorio.classList.remove('d-none');
-                        });
-                    });
-                </script>
-            </div> 
-            {{-- FIN ACCESORIOS --}}
-
-                {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
-                <div class="container-fluid my-4">
-                    <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                        <h1 class="text-white text-center py-2 rounded" style="background-color: black;">
-                            Datos del fabricante y proveedor
-                        </h1>
-
-                        <!-- COLUMNA IZQUIERDA - FABRICANTE -->
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="fabricante_id" class="form-label fw-bold">Selecciona un
-                                    fabricante:</label>
-                                <select id="fabricante_id" name="fabricante_id" class="form-select border border-3">
-                                    <option value="">Seleccione un fabricante</option>
-                                    @foreach ($fabricantes as $fabricante)
-                                        <option value="{{ $fabricante->id }}"
-                                            data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
-                                            data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
-                                            data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
-                                            data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
-                                            data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
-                                            {{ $fabricante->nombreFabri ?? 'No disponible' }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <!-- SIN FABRICANTES -->
+                                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3"
+                                    style="display: none;">
+                                    No hay fabricantes disponibles.
+                                </div>
                             </div>
 
-                            <!-- INFO FABRICANTE -->
-                            <div id="info_fabricante" style="display: none;">
-                                <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
-                                <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
-                                <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
-                                <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
-                                <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
-                                <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
-                            </div>
+                            <!-- COLUMNA DERECHA - PROVEEDOR -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un
+                                        proveedor:</label>
+                                    <select id="proveedor_id" name="proveedor_id"
+                                        class="form-select border border-3">
+                                        <option value="">Seleccione un proveedor</option>
+                                        @foreach ($proveedores as $proveedor)
+                                            <option value="{{ $proveedor->id }}"
+                                                data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
+                                                data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
+                                                data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
+                                                data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
+                                                data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
+                                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} -
+                                                {{ $proveedor->ciudadProvee ?? 'No disponible' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <!-- SIN FABRICANTES -->
-                            <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
-                                No hay fabricantes disponibles.
-                            </div>
-                        </div>
+                                <!-- INFO PROVEEDOR -->
+                                <div id="info_proveedor" style="display: none;">
+                                    <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
+                                    <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
+                                    <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
+                                    <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
+                                    <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
+                                    <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
+                                </div>
 
-                        <!-- COLUMNA DERECHA - PROVEEDOR -->
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="proveedor_id" class="form-label fw-bold">Selecciona un
-                                    proveedor:</label>
-                                <select id="proveedor_id" name="proveedor_id" class="form-select border border-3">
-                                    <option value="">Seleccione un proveedor</option>
-                                    @foreach ($proveedores as $proveedor)
-                                        <option value="{{ $proveedor->id }}"
-                                            data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
-                                            data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
-                                            data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
-                                            data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
-                                            data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
-                                            {{ $proveedor->nombreProveedor ?? 'No disponible' }} -
-                                            {{ $proveedor->ciudadProvee ?? 'No disponible' }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- INFO PROVEEDOR -->
-                            <div id="info_proveedor" style="display: none;">
-                                <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
-                                <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
-                                <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
-                                <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
-                                <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
-                                <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
-                            </div>
-
-                            <!-- SIN PROVEEDORES -->
-                            <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
-                                No hay proveedores disponibles.
+                                <!-- SIN PROVEEDORES -->
+                                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3"
+                                    style="display: none;">
+                                    No hay proveedores disponibles.
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
+                    {{-- INICION SCRIPT --}}
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const fabricanteSelect = document.getElementById('fabricante_id');
+                            const infoFabricante = document.getElementById('info_fabricante');
+                            const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes');
+
+                            if (fabricanteSelect.options.length <= 1) mensajeNoFabricantes.style.display = 'block';
+
+                            fabricanteSelect.addEventListener('change', function() {
+                                const selected = this.options[this.selectedIndex];
+                                if (!selected || selected.value === '') return infoFabricante.style.display = 'none';
+
+                                document.getElementById('nombre_fabricante').textContent = selected.getAttribute(
+                                    'data-nombre-fabri') || 'No disponible';
+                                document.getElementById('direccion_fabricante').textContent = selected.getAttribute(
+                                    'data-direccion-fabri') || 'No disponible';
+                                document.getElementById('telefono_fabricante').textContent = selected.getAttribute(
+                                    'data-telefono-fabri') || 'No disponible';
+                                document.getElementById('ciudad_fabricante').textContent = selected.getAttribute(
+                                    'data-ciudad-fabri') || 'No disponible';
+                                document.getElementById('email_fabricante').textContent = selected.getAttribute(
+                                    'data-email-fabri') || 'No disponible';
+
+                                infoFabricante.style.display = 'block';
+                            });
+
+                            const proveedorSelect = document.getElementById('proveedor_id');
+                            const infoProveedor = document.getElementById('info_proveedor');
+                            const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores');
+
+                            if (proveedorSelect.options.length <= 1) mensajeNoProveedores.style.display = 'block';
+
+                            proveedorSelect.addEventListener('change', function() {
+                                const selected = this.options[this.selectedIndex];
+                                if (!selected || selected.value === '') return infoProveedor.style.display = 'none';
+
+                                document.getElementById('nombre_proveedor').textContent = selected.getAttribute(
+                                    'data-nombre-proveedor') || 'No disponible';
+                                document.getElementById('direccion_proveedor').textContent = selected.getAttribute(
+                                    'data-direccion-proveedor') || 'No disponible';
+                                document.getElementById('telefono_proveedor').textContent = selected.getAttribute(
+                                    'data-telefono-proveedor') || 'No disponible';
+                                document.getElementById('ciudad_proveedor').textContent = selected.getAttribute(
+                                    'data-ciudad-proveedor') || 'No disponible';
+                                document.getElementById('email_proveedor').textContent = selected.getAttribute(
+                                    'data-email-proveedor') || 'No disponible';
+
+                                infoProveedor.style.display = 'block';
+                            });
+                        });
+                    </script>
+
+                    {{-- FIN FABRICANTES Y PROVEEDORES --}}
                 </div>
-
-
-
-                {{-- INICION SCRIPT --}}
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const fabricanteSelect = document.getElementById('fabricante_id');
-                        const infoFabricante = document.getElementById('info_fabricante');
-                        const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes');
-
-                        if (fabricanteSelect.options.length <= 1) mensajeNoFabricantes.style.display = 'block';
-
-                        fabricanteSelect.addEventListener('change', function() {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoFabricante.style.display = 'none';
-
-                            document.getElementById('nombre_fabricante').textContent = selected.getAttribute(
-                                'data-nombre-fabri') || 'No disponible';
-                            document.getElementById('direccion_fabricante').textContent = selected.getAttribute(
-                                'data-direccion-fabri') || 'No disponible';
-                            document.getElementById('telefono_fabricante').textContent = selected.getAttribute(
-                                'data-telefono-fabri') || 'No disponible';
-                            document.getElementById('ciudad_fabricante').textContent = selected.getAttribute(
-                                'data-ciudad-fabri') || 'No disponible';
-                            document.getElementById('email_fabricante').textContent = selected.getAttribute(
-                                'data-email-fabri') || 'No disponible';
-
-                            infoFabricante.style.display = 'block';
-                        });
-
-                        const proveedorSelect = document.getElementById('proveedor_id');
-                        const infoProveedor = document.getElementById('info_proveedor');
-                        const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores');
-
-                        if (proveedorSelect.options.length <= 1) mensajeNoProveedores.style.display = 'block';
-
-                        proveedorSelect.addEventListener('change', function() {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoProveedor.style.display = 'none';
-
-                            document.getElementById('nombre_proveedor').textContent = selected.getAttribute(
-                                'data-nombre-proveedor') || 'No disponible';
-                            document.getElementById('direccion_proveedor').textContent = selected.getAttribute(
-                                'data-direccion-proveedor') || 'No disponible';
-                            document.getElementById('telefono_proveedor').textContent = selected.getAttribute(
-                                'data-telefono-proveedor') || 'No disponible';
-                            document.getElementById('ciudad_proveedor').textContent = selected.getAttribute(
-                                'data-ciudad-proveedor') || 'No disponible';
-                            document.getElementById('email_proveedor').textContent = selected.getAttribute(
-                                'data-email-proveedor') || 'No disponible';
-
-                            infoProveedor.style.display = 'block';
-                        });
-                    });
-                </script>
-
-                {{-- FIN FABRICANTES Y PROVEEDORES --}}
-
 
                 {{--  RECOMENDACIONES --}}
 
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Recomendaciones
@@ -1132,7 +1143,7 @@
 
 
                 {{--  SOPORTES --}}
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4 formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Soportes Legales
@@ -1210,18 +1221,18 @@
 
 
                 {{-- ACCION DE GUARDAR  --}}
-                <div class="d-grid gap-0 col-4 mx-auto">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                <div class="d-flex gap-4 col-4 mx-auto">
+                    <button style="width: 200px" type="button" class="btn btn-primary w-10" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Guardar
                     </button>
                     {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
-                    <br>
-                    <a href="{{ url('hojadevida/listar') }}" class="btn btn-primary">
-                        <h6> Lista </h6>
-                    </a>
+                    <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
+
+                    </button>
+                  
                 </div>
-            
+
 
         </form>
     </main>
