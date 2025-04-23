@@ -198,41 +198,40 @@
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION </td>
                 <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->magFuenAlimen?->nombrealimentacion ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2 HZ</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{$hdvs->frecuencia ?? '--' }} - {{$hdvs->mag_fres?->abreviacionfrecuencia?? '--' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{$hdvs->capacidad ?? '--' }} - {{$hdvs->mag_capas?->abreviacioncapacidad?? '--' }}</td>
             </tr>
             <tr class="f">
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MAX</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 VAC</td>
+                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAJE MAX</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->volMax ?? '--' }} - {{$hdvs->mag_fuen_alis?->abrefuentealimen?? '--' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CORRIENTE MAX</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->corrienteMax ?? '--' }} - {{$hdvs->mag_corrientes?->abreviacioncorriente?? '--' }} </td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TEMPERATURA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 °C</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->temperatura ?? '--' }} - {{$hdvs->mag_temps?->abreviaciontemperatura??'--' }}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAGE MIN</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 VAC</td>
+                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAJE MIN</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->volMin ?? '--' }} - {{$hdvs->mag_fuen_alis?->abrefuentealimen?? '--' }}</td></td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CORRIENTE MIN</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->corrienteMin ?? '--' }} - {{$hdvs->mag_corrientes?->abreviacioncorriente?? '--' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VELOCIDAD</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->velocidad ?? '--' }}  - {{$hdvs->mag_vels?->abreviacionvelocidad?? '--' }}</td></td>
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PRESION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->presion ?? '--' }}  - {{$hdvs->mag_pres?->abreviacionpresion?? '--' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">POTENCIA</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 W</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->potencia ?? '--' }}  - {{$hdvs->mag_pots?->abreviacionpotencia?? '--' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">HUMEDAD</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 %</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->humedad ?? '--' }}  {{'%'}}</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">PESO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 KG</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{$hdvs->peso ?? '--' }}  - {{$hdvs->mag_peso?->abreviacionpeso?? '--' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIMENSIONES</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">MANUAL</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">Alto: {{$hdvs->dimAlto ?? '--' }}   Largo:  {{$hdvs->dimAlto ?? '--' }}</td>
+                <td style="border: 1px solid rgb(255, 255, 255);"> Ancho:  {{$hdvs->dimAncho ?? '--' }}   {{$hdvs->mag_dimension?->nombredimension?? '---' }} </td>
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
@@ -257,47 +256,47 @@
                     COSTO</th>
             </tr>
             <tr>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
             </tr>
-            <tr class="f">
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-            </tr>
-            <tr class="f">
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+            {{-- <tr class="f">
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
             </tr>
             <tr>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}</td>
             </tr>
             <tr class="f">
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->modelo?->nombre_modelox ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}</td>
             </tr>
+            <tr>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}</td>
+            </tr>
+            <tr class="f">
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}</td>
+            </tr> --}}
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
@@ -307,37 +306,38 @@
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            
 
 
             <tr>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">PROVEEDOR</td>
-                <td style="width: 30%;border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="width: 30%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->proveedor?->nombreProveedor ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FABRICANTE</td>
-                <td style="width: 30%;border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="width: 30%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fabricante?->nombreFabri ?? '---' }}"</td>
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIRECCION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->proveedor?->direccionProvee ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DIRECCION</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fabricante?->direccionFabri ?? '---' }}</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TELEFONO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->proveedor?->telefonoProvee ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">TELEFONO</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fabricante?->telefonoFabri ?? '---' }}</td>
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CIUDAD/PAIS</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->proveedor?->ciudadProvee ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">CIUDAD/PAIS</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fabricante?->ciudadFabri ?? '---' }}</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">EMAIL Y/O WEB</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2 </td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->proveedor?->emailWebProve ?? '---' }}</td>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">EMAIL Y/O WEB</td>
-                <td style="border: 1px solid rgb(255, 255, 255);">Dato 2</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->fabricante?->emailWebFabri ?? '---' }}</td>
             </tr>
         </table>
 
@@ -345,6 +345,19 @@
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">RECOMENDACIONES</h4>
+                </th>
+            </tr>
+        </table>
+        <tr>
+            <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">DEL FABRICANTE</td>
+            <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->recomendacion?? '---' }}</td>
+        </tr>
+
+
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr>
+                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                    <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">NR: NO REGISTRA   NA: NO APLICA</h4>
                 </th>
             </tr>
         </table>
