@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('fabricantes', function (Blueprint $table) {
             $table->id();
-            $table -> string('nombreFabri');
-            $table -> string('direccionFabri');
-            $table -> string('telefonoFabri');
-            $table -> string('ciudadFabri');
-            $table -> string('emailWebFabri');         
+            $table -> string('nombreFabri')->nullable();
+            $table -> string('direccionFabri')->nullable();
+            $table -> string('telefonoFabri')->nullable();
+            $table -> string('ciudadFabri')->nullable();
+            $table -> string('emailWebFabri')->nullable();         
             $table->timestamps();
         });
     }

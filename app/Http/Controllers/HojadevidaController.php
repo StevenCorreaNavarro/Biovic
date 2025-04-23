@@ -25,7 +25,9 @@ use App\Models\MagPot;
 use App\Models\magTemp;
 use App\Models\magDimension;
 use App\Models\magVel;
-
+use App\Models\accesorio;
+use App\Models\fabricante;
+use App\Models\proveedor;
 
 
 
@@ -157,10 +159,13 @@ class HojadevidaController extends Controller
         $temperaturas = MagTemp::all();
         $dimensiones  = magDimension::all();
         $velocidad = magVel::all();
+        $accesorios = accesorio::all();
+        $fabricantes = fabricante::all();
+        $proveedores = proveedor::all();
         
 
         // 3. enviar los datos a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones')); // pasar las variables  a la vista
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios','fabricantes','proveedores')); // pasar las variables  a la vista
     }
     // public function create()
     // {
@@ -292,6 +297,11 @@ class HojadevidaController extends Controller
         $hdv->mag_dimension_id = $request->mag_dimension_id;
 
         $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
+
+        $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
+        $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
+        $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
+
 
 
         $hdv->save();

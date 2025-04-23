@@ -41,7 +41,10 @@ class Equipo extends Model {
     return $this->belongsTo(Propiedad::class);
 }
 
-
+public function accesorios()
+{
+    return $this->hasMany(Accesorio::class);
+}
 
     
 }
