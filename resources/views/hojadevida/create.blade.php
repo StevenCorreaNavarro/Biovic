@@ -43,7 +43,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
                                 class="btn btn-primary">
-                        </div>z
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,16 +57,13 @@
                         style="background-color: #a6a6a630; border-radius:10px;">
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select border border-3">
+                            <select id="equipo" name="equipo_id" class="form-control form-select border border-3">
                                 <option value="">Selecciona un equipo</option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
                                 @endforeach
                             </select>
                         </div>
-
-
-
 
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
@@ -343,7 +340,7 @@
                             mostrarFecha();
                         });
                     </script>
-                    --}}
+                   --}}
                     {{-- Fin Calibracion --}}
 
                     {{-- Script para mostrar/ocultar el campo de fecha 
@@ -512,7 +509,7 @@
                         </div>
                     </div>
 
-
+ 
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
@@ -931,261 +928,12 @@
                     <br>
                 
                 </div>
-
-
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-                    <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                        Accesorios
-                    </h1>
-
-                <!-- SELECT ACCESORIO -->
-
-                <div class="row g-3 mt-4">
-                    <div class="col-md-6">
-                        <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
-                        <select id="accesorio_id" name="accesorio_id" class="form-select border border-2 shadow-sm">
-                            <option value="">Seleccione un accesorio</option>
-                            @foreach ($accesorios as $accesorio)
-                                <option 
-                                    value="{{ $accesorio->id }}"
-                                    data-equipo-id="{{ $accesorio->equipo_id }}"
-                                    data-nombre-accesorio="{{ $accesorio->nombreAccesorio ?? 'No disponible' }}" 
-                                    data-modelo="{{ $accesorio->modeloAccesorio ?? 'No disponible' }}"
-                                    data-serie="{{ $accesorio->serieAccesorio ?? 'No disponible' }}"
-                                    data-costo="{{ $accesorio->costoAccesorio ?? 'No disponible' }}">
-                                    {{ $accesorio->nombreAccesorio ?? 'No disponible' }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                
-                <!-- MENSAJE SI NO HAY ACCESORIOS -->
-                <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
-                    No hay accesorios disponibles para el equipo seleccionado.
-                </div>
-                
-                <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
-                <div id="info_accesorio" class="container mt-4 d-none">
-                    <div class="row border rounded p-3 bg-light shadow-sm">
-                        <div class="col-12 mb-2">
-                            <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Serie:</strong> <span id="serie_accesorio"></span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong>Costo:</strong> <span id="costo_accesorio"></span>
-                        </div>
-                    </div>
-                </div>
-
-                {{--  SCRIPT ACCESORIO --}}
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const equipoSelect = document.getElementById('equipo_id');
-                        const accesorioSelect = document.getElementById('accesorio_id');
-                        const mensajeNoAccesorios = document.getElementById('mensaje_no_accesorios');
-                        const infoAccesorio = document.getElementById('info_accesorio');
-                
-                        if (!equipoSelect || !accesorioSelect) return;
-                
-                        equipoSelect.addEventListener('change', function () {
-                            const equipoId = this.value;
-                            const opciones = accesorioSelect.querySelectorAll('option');
-                            let hayAccesorios = false;
-                
-                            mensajeNoAccesorios.classList.add('d-none');
-                
-                            opciones.forEach(option => {
-                                const idEquipo = option.getAttribute('data-equipo-id');
-                                if (!idEquipo || equipoId === '') {
-                                    option.style.display = '';
-                                } else if (equipoId === idEquipo) {
-                                    option.style.display = '';
-                                    hayAccesorios = true;
-                                } else {
-                                    option.style.display = 'none';
-                                }
-                            });
-                
-                            if (!hayAccesorios) mensajeNoAccesorios.classList.remove('d-none');
-                
-                            accesorioSelect.value = '';
-                            infoAccesorio.classList.add('d-none');
-                        });
-                
-                        accesorioSelect.addEventListener('change', function () {
-                            const option = accesorioSelect.options[accesorioSelect.selectedIndex];
-                
-                            if (!option || option.value === '') {
-                                infoAccesorio.classList.add('d-none');
-                                return;
-                            }
-                
-                            document.getElementById('descripcion_accesorio').textContent = option.getAttribute('data-nombre-accesorio') || 'No disponible';
-                            document.getElementById('modelo_accesorio').textContent = option.getAttribute('data-modelo') || 'No disponible';
-                            document.getElementById('serie_accesorio').textContent = option.getAttribute('data-serie') || 'No disponible';
-                            document.getElementById('costo_accesorio').textContent = option.getAttribute('data-costo') || 'No disponible';
-                
-                            infoAccesorio.classList.remove('d-none');
-                        });
-                    });
-                </script>
-
-                {{-- FIN ACCESORIOS --}}
-
-
-                {{--  FABRICANTE - PROVEEDOR  --}}
-
-                    {{-- FABRICANTE - PROVEEDOR --}}
-                    <div class="container-fluid my-4">
-                        <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                            <h1 class="text-white text-center py-2 rounded" style="background-color: black;">
-                                Datos del fabricante y proveedor
-                            </h1>
-
-                            <!-- COLUMNA IZQUIERDA - FABRICANTE -->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
-                                    <select id="fabricante_id" name="fabricante_id" class="form-select border border-3">
-                                        <option value="">Seleccione un fabricante</option>
-                                        @foreach ($fabricantes as $fabricante)
-                                            <option 
-                                                value="{{ $fabricante->id }}"
-                                                data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
-                                                data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
-                                                data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
-                                                data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
-                                                data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
-                                                {{ $fabricante->nombreFabri ?? 'No disponible' }} 
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- INFO FABRICANTE -->
-                                <div id="info_fabricante" style="display: none;">
-                                    <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
-                                    <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
-                                    <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
-                                    <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
-                                    <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
-                                    <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
-                                </div>
-
-                                <!-- SIN FABRICANTES -->
-                                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
-                                    No hay fabricantes disponibles.
-                                </div>
-                            </div>
-
-                            <!-- COLUMNA DERECHA - PROVEEDOR -->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
-                                    <select id="proveedor_id" name="proveedor_id" class="form-select border border-3">
-                                        <option value="">Seleccione un proveedor</option>
-                                        @foreach ($proveedores as $proveedor)
-                                            <option 
-                                                value="{{ $proveedor->id }}"
-                                                data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
-                                                data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
-                                                data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
-                                                data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
-                                                data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
-                                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} - {{ $proveedor->ciudadProvee ?? 'No disponible' }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- INFO PROVEEDOR -->
-                                <div id="info_proveedor" style="display: none;">
-                                    <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
-                                    <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
-                                    <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
-                                    <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
-                                    <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
-                                    <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
-                                </div>
-
-                                <!-- SIN PROVEEDORES -->
-                                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
-                                    No hay proveedores disponibles.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                {{-- INICION SCRIPT --}}
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const fabricanteSelect = document.getElementById('fabricante_id');
-                        const infoFabricante = document.getElementById('info_fabricante');
-                        const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes');
-                
-                        if (fabricanteSelect.options.length <= 1) mensajeNoFabricantes.style.display = 'block';
-                
-                        fabricanteSelect.addEventListener('change', function () {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoFabricante.style.display = 'none';
-                
-                            document.getElementById('nombre_fabricante').textContent = selected.getAttribute('data-nombre-fabri') || 'No disponible';
-                            document.getElementById('direccion_fabricante').textContent = selected.getAttribute('data-direccion-fabri') || 'No disponible';
-                            document.getElementById('telefono_fabricante').textContent = selected.getAttribute('data-telefono-fabri') || 'No disponible';
-                            document.getElementById('ciudad_fabricante').textContent = selected.getAttribute('data-ciudad-fabri') || 'No disponible';
-                            document.getElementById('email_fabricante').textContent = selected.getAttribute('data-email-fabri') || 'No disponible';
-                
-                            infoFabricante.style.display = 'block';
-                        });
-                
-                        const proveedorSelect = document.getElementById('proveedor_id');
-                        const infoProveedor = document.getElementById('info_proveedor');
-                        const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores');
-                
-                        if (proveedorSelect.options.length <= 1) mensajeNoProveedores.style.display = 'block';
-                
-                        proveedorSelect.addEventListener('change', function () {
-                            const selected = this.options[this.selectedIndex];
-                            if (!selected || selected.value === '') return infoProveedor.style.display = 'none';
-                
-                            document.getElementById('nombre_proveedor').textContent = selected.getAttribute('data-nombre-proveedor') || 'No disponible';
-                            document.getElementById('direccion_proveedor').textContent = selected.getAttribute('data-direccion-proveedor') || 'No disponible';
-                            document.getElementById('telefono_proveedor').textContent = selected.getAttribute('data-telefono-proveedor') || 'No disponible';
-                            document.getElementById('ciudad_proveedor').textContent = selected.getAttribute('data-ciudad-proveedor') || 'No disponible';
-                            document.getElementById('email_proveedor').textContent = selected.getAttribute('data-email-proveedor') || 'No disponible';
-                
-                            infoProveedor.style.display = 'block';
-                        });
-                    });
-                </script>
-
-                {{-- FIN FABRICANTES Y PROVEEDORES --}}
-
-                
-            </div> {{--  Cierre Div linea 51  --}}
-
                 {{--  RECOMENDACIONES --}}
-
-                
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
                         Recomendaciones
-                    </h1> 
+                    </h1>
                     <div class="col-md-12 position-relative">
                         <div class="form-group">
                             <label for="recomendaciones"></label>
@@ -1194,77 +942,7 @@
                     </div>
                 </div>
 
-
-                {{--  SOPORTES --}}                
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
-                    <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
-                        Soportes Legales
-                    </h1>                
-                    {{-- Soporte de Factura --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteFactura">Selecciona el Soporte de Factura (PDF)</label>
-                            <input type="file" name="soporteFactura" id="soporteFactura"
-                                class="form-control @error('soporteFactura') is-invalid @enderror" accept="application/pdf">
-                            @error('soporteFactura')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- Soporte de Registro Invima --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteRegistroInvima">Selecciona el Soporte de Registro Invima (PDF)</label>
-                            <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
-                                class="form-control @error('soporteRegistroInvima') is-invalid @enderror" accept="application/pdf">
-                            @error('soporteRegistroInvima')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- Soporte de Certificado de Calibración --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteCertificadoCalibracion">Selecciona el Soporte de Certificado de Calibración (PDF)</label>
-                            <input type="file" name="soporteCertificadoCalibracion" id="soporteCertificadoCalibracion"
-                                class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror" accept="application/pdf">
-                            @error('soporteCertificadoCalibracion')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- Soporte de Manual --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteManual">Selecciona el Soporte de Manual (PDF)</label>
-                            <input type="file" name="soporteManual" id="soporteManual"
-                                class="form-control @error('soporteManual') is-invalid @enderror" accept="application/pdf">
-                            @error('soporteManual')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- Soporte de Limpieza y Desinfección --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteLimpiezaDesinfeccion">Selecciona el Soporte de Limpieza y Desinfección (PDF)</label>
-                            <input type="file" name="soporteLimpiezaDesinfeccion" id="soporteLimpiezaDesinfeccion"
-                                class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror" accept="application/pdf">
-                            @error('soporteLimpiezaDesinfeccion')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-
-                {{-- FIN CARGA DE SOPORTES --}}
-
-
+                
                 {{-- ACCION DE GUARDAR  --}}
                 <div class="d-grid gap-0 col-4 mx-auto">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
