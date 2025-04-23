@@ -47,8 +47,12 @@ class hojadevida extends Model
     public function magFre (){
         return $this->belongsTo('App\Models\MagFre');
     }
-    public function magFuenAlimen (){
+    public function magFuenAlimen (){ // Con que trabaja el equipo
         return $this->belongsTo('App\Models\MagFuenAlimen');
+    }
+
+    public function magFuenAli (){ // Voltahe Ac o Dc
+        return $this->belongsTo('App\Models\MagFuenAli');
     }
     public function magPeso (){
         return $this->belongsTo('App\Models\MagPeso');

@@ -343,7 +343,7 @@
                    --}}
                     {{-- Fin Calibracion --}}
 
-                    {{-- Script para mostrar/ocultar el campo de fecha --}}
+                    {{-- Script para mostrar/ocultar el campo de fecha 
                     <script>
                         function mostrarFechaCali() {
                             const periodo = document.getElementById('perioCali').value;
@@ -358,8 +358,42 @@
                                 document.getElementById('fechaCali').value = ''; // Limpiar valor si se oculta
                             }
                         }
-                    </script>
+                    </script>--}}
 
+
+                    <script>
+                        function mostrarFechaCali() {
+                            const periodo = document.getElementById('perioCali').value;
+                            const fechaCaliDiv = document.getElementById('fechaCaliContainer');
+                            const fechaCaliInput = document.getElementById('fechaCali');
+
+                            // Establecer la fecha máxima (hoy) en el input de fecha de calibración
+                            const hoy = new Date();
+                            const dd = String(hoy.getDate()).padStart(2, '0');
+                            const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+                            const yyyy = hoy.getFullYear();
+                            const fechaHoy = yyyy + '-' + mm + '-' + dd;
+
+                            // Establecer la fecha mínima (un año atrás) en el input de fecha de calibración
+                            const unAnoAtras = new Date();
+                            unAnoAtras.setFullYear(unAnoAtras.getFullYear() - 1);
+                            const ddAtras = String(unAnoAtras.getDate()).padStart(2, '0');
+                            const mmAtras = String(unAnoAtras.getMonth() + 1).padStart(2, '0');
+                            const yyyyAtras = unAnoAtras.getFullYear();
+                            const fechaAtras = yyyyAtras + '-' + mmAtras + '-' + ddAtras;
+
+                            // Establecer el rango de fechas
+                            fechaCaliInput.setAttribute('max', fechaHoy);  // Fecha máxima: Hoy
+                            fechaCaliInput.setAttribute('min', fechaAtras); // Fecha mínima: Un año atrás
+
+                            if (periodo === 'anual' || periodo === 'cuatrimestre') {
+                                fechaCaliDiv.style.display = 'block';
+                            } else {
+                                fechaCaliDiv.style.display = 'none';
+                                fechaCaliInput.value = ''; // Limpiar valor si se oculta
+                            }
+                        }
+                    </script>
 
 
                     {{-- Imagen --}}
@@ -416,6 +450,56 @@
                         </div>
                     </div>
 
+                    {{-- <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=garantia> Garantía </label>
+                            <input type="date" name="garantia" class="form-control"
+                                value="{{ isset($hojadevida->garantia) ? $hojadevida->garantia : old('garantia') }}"
+                                id="garantia">
+                        </div>
+                    </div> --}}
+
+
+                    {{--  Fecha Garantia Calculada --}}
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="garantia">Garantía (1 año después)</label>
+                            <input type="text" id="garantiaCalculada" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
+                            const garantiaInput = document.getElementById('garantiaCalculada');
+
+                            function calcularGarantia() {
+                                const fechaAdquisicion = new Date(fechaAdquisicionInput.value);
+                                if (!isNaN(fechaAdquisicion)) {
+                                    const garantia = new Date(fechaAdquisicion);
+                                    garantia.setFullYear(garantia.getFullYear() + 1);
+
+                                    const dd = String(garantia.getDate()).padStart(2, '0');
+                                    const mm = String(garantia.getMonth() + 1).padStart(2, '0');
+                                    const yyyy = garantia.getFullYear();
+                                    
+
+                                    garantiaInput.value = `${yyyy}-${mm}-${dd}`;
+                                } else {
+                                    garantiaInput.value = '';
+                                }
+                            }
+
+                            // Calcular al cargar si ya hay valor
+                            calcularGarantia();
+
+                            // Calcular cada vez que cambie la fecha de adquisición
+                            fechaAdquisicionInput.addEventListener('change', calcularGarantia);
+                        });
+                    </script>
+
+
+
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaInstalacion> Fecha de Instalacion </label>
@@ -424,14 +508,8 @@
                                 id="fechaInstalacion">
                         </div>
                     </div>
-                    <div class="col-md-3 position-relative">
-                        <div class="form-group">
-                            <label for=garantia> Garantía </label>
-                            <input type="date" name="garantia" class="form-control"
-                                value="{{ isset($hojadevida->garantia) ? $hojadevida->garantia : old('garantia') }}"
-                                id="garantia">
-                        </div>
-                    </div>
+
+ 
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
@@ -456,14 +534,78 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative">
+                    {{-- <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=vidaUtil> Vida Util </label>
                             <input type="date" name="vidaUtil" class="form-control"
                                 value="{{ isset($hojadevida->vidaUtil) ? $hojadevida->vidaUtil : old('vidaUtil') }}"
                                 id="vidaUtil">
                         </div>
+                    </div> --}}
+
+
+
+                                        <!-- Selector de años de vida útil -->
+                    <div class="col-md-2 position-relative">
+                        <div class="form-group">
+                            <label for="aniosVida">Años de Vida Útil</label>
+                            <select id="aniosVida" class="form-control">
+                                <option value="5" selected>5 años</option>
+                                <option value="10">10 años</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <!-- Vida Útil calculada (solo visible) -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="vidaUtil">Vida Útil</label>
+                            <input type="text" id="vidaUtilCalculada" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Campo oculto para enviar (guarda el valor calculado) -->
+                    <input type="hidden" name="vidaUtil" id="vidaUtil" value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
+                            const aniosVidaSelect = document.getElementById('aniosVida');
+                            const vidaUtilVisible = document.getElementById('vidaUtilCalculada');
+                            const vidaUtilHidden = document.getElementById('vidaUtil');
+
+                            // Función para calcular la vida útil
+                            function calcularVidaUtil() {
+                                const fechaAdq = new Date(fechaAdquisicionInput.value);
+                                const anios = parseInt(aniosVidaSelect.value);
+
+                                if (!isNaN(fechaAdq.getTime()) && !isNaN(anios)) {
+                                    const vidaUtil = new Date(fechaAdq);
+                                    vidaUtil.setFullYear(vidaUtil.getFullYear() + anios);
+
+                                    const yyyy = vidaUtil.getFullYear();
+                                    const mm = String(vidaUtil.getMonth() + 1).padStart(2, '0');
+                                    const dd = String(vidaUtil.getDate()).padStart(2, '0');
+                                    const vidaFinal = `${yyyy}-${mm}-${dd}`;
+
+                                    // Mostrar y guardar la vida útil calculada
+                                    vidaUtilVisible.value = vidaFinal;
+                                    vidaUtilHidden.value = vidaFinal;
+                                } else {
+                                    // Si no hay fecha, limpiar los campos
+                                    vidaUtilVisible.value = '';
+                                    vidaUtilHidden.value = '';
+                                }
+                            }
+
+                            // Llamar a la función al cargar la página para calcular la vida útil si ya se tiene una fecha
+                            calcularVidaUtil();
+
+                            // Escuchar cambios en la fecha de adquisición y los años seleccionados
+                            fechaAdquisicionInput.addEventListener('change', calcularVidaUtil);
+                            aniosVidaSelect.addEventListener('change', calcularVidaUtil);
+                        });
+                    </script>
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
@@ -497,7 +639,7 @@
                         Registro tecnico
                     </h1>
 
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
                             <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id" class="form-control form-select">
@@ -513,45 +655,295 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative">
-                        <label for=volMax> Voltaje Max </label>
-                        <input type="text" name="volMax" class="form-control"
-                            value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
-                            id="volMax">
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=frecuencia> Frecuencia </label>
+                            <input type="text" name="frecuencia" class="form-control"
+                                value="{{ isset($hojadevida->frecuencia) ? $hojadevida->frecuencia : old('frecuencia') }}"
+                                id="frecuencia">
+                        </div>
                     </div>
 
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_fre_id">Unidad de Frecuencia</label>
+                            <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($magFrec as $frecuencia)
+                                    <option 
+                                        value="{{ $frecuencia->id }}" 
+                                        {{ old('mag_fre_id', $hojadevida->mag_fre_id ?? '') == $frecuencia->id ? 'selected' : '' }}>
+                                        {{ $frecuencia->nombrefrecuencia }} ({{ $frecuencia->abreviacionfrecuencia }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMax> Voltaje Max </label>
+                            <input type="text" name="volMax" class="form-control"
+                                value="{{ isset($hojadevida->volMax) ? $hojadevida->volMax : old('volMax') }}"
+                                id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMin> Voltaje Min </label>
+                            <input type="text" name="volMin" class="form-control"
+                                value="{{ isset($hojadevida->volMin) ? $hojadevida->volMin : old('volMin') }}"
+                                id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
+                            <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($fuentesAli as $fuente)  {{-- Asi se recibe desde  hojadevidaController--}}
+                                    <option 
+                                        value="{{ $fuente->id }}" 
+                                        {{ old('mag_fuen_ali_id', $hojadevida->mag_fuen_ali_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->abrefuentealimen }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMax">Corriente Max</label>
+                            <input type="text" name="corrienteMax" class="form-control"
+                                value="{{ isset($hojadevida->corrienteMax) ? $hojadevida->corrienteMax : old('corrienteMax') }}"
+                                id="corrienteMax">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMin">Corriente Min</label>
+                            <input type="text" name="corrienteMin" class="form-control"
+                                value="{{ isset($hojadevida->corrienteMin) ? $hojadevida->corrienteMin : old('corrienteMin') }}"
+                                id="corrienteMin">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_corriente_id">Unidad de Corriente</label>
+                            <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($corrientes as $corriente)
+                                    <option 
+                                        value="{{ $corriente->id }}" 
+                                        {{ old('mag_corriente_id', $hojadevida->mag_corriente_id ?? '') == $corriente->id ? 'selected' : '' }}>
+                                        {{ $corriente->abreviacioncorriente }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="peso">Peso Equipo</label>
+                            <input type="text" name="peso" class="form-control"
+                                value="{{ isset($hojadevida->peso) ? $hojadevida->peso : old('peso') }}"
+                                id="peso">
+                        </div>
+                    </div>
+                    
                     <div class="col-md-3 position-relative">
-                        <label for=volMin> Voltaje Min </label>
-                        <input type="text" name="volMin" class="form-control"
-                            value="{{ isset($hojadevida->covolMinsto) ? $hojadevida->volMin : old('volMin') }}"
-                            id="volMin">
+                        <div class="form-group">
+                            <label for="mag_peso_id">Unidad de Peso</label>
+                            <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($pesos as $peso)
+                                    <option 
+                                        value="{{ $peso->id }}" 
+                                        {{ old('mag_peso_id', $hojadevida->mag_peso_id ?? '') == $peso->id ? 'selected' : '' }}>
+                                        {{ $peso->abreviacionpeso }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="presion">Presión</label>
+                            <input type="text" name="presion" class="form-control"
+                                value="{{ isset($hojadevida->presion) ? $hojadevida->presion : old('presion') }}"
+                                id="presion">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pres_id">Unidad de Presión</label>
+                            <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($presiones as $presion)
+                                    <option 
+                                        value="{{ $presion->id }}" 
+                                        {{ old('mag_pres_id', $hojadevida->mag_pres_id ?? '') == $presion->id ? 'selected' : '' }}>
+                                        {{ $presion->abreviacionpresion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <div class="form-group">
-                                <label for="mag_vol_id"> Fuente de Alimentacion</label>
-                                <select name="mag_vol_id" id="mag_vol_id" class="form-control form-select">
-                                    <option value="">Seleccione una opcion</option>
-                                    @foreach ($abreviacionvolumen as $abrevivolumen)
-                                        <option value="{{ $abrevivolumen->id }}"
-                                            {{ isset($hojadevida) && $hojadevida->mag_fuen_alimen_id == $abrevivolumen->id ? 'selected' : '' }}>
-                                            {{ $abrevivolumen->abreviacionvolumen }}
-                                    @endforeach
-                                </select>
-                            </div>
+                            <label for="potencia">Potencia</label>
+                            <input type="text" name="potencia" class="form-control"
+                                value="{{ isset($hojadevida->potencia) ? $hojadevida->potencia : old('potencia') }}"
+                                id="potencia">
                         </div>
                     </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pot_id">Unidad de Potencia</label>
+                            <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($potencias as $potencia)
+                                    <option 
+                                        value="{{ $potencia->id }}" 
+                                        {{ old('mag_pot_id', $hojadevida->mag_pot_id ?? '') == $potencia->id ? 'selected' : '' }}>
+                                        {{ $potencia->abreviacionpotencia }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="temperatura">Temperatura</label>
+                            <input type="text" name="temperatura" class="form-control" value="{{ old('temperatura') }}" id="temperatura">
+                        </div>
+                    </div>
+                
+                    <!-- Selección de Unidad de Temperatura -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_temp_id">Unidad de Temperatura</label>
+                            <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($temperaturas as $temp)
+                                    <option 
+                                        value="{{ $temp->id }}" 
+                                        {{ old('mag_temp_id') == $temp->id ? 'selected' : '' }}>
+                                        {{ $temp->nombretemperatura }} <!-- Mostrar nombre de la temperatura -->
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                            <!-- Campo Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="velocidad">Velocidad</label>
+                            <input type="text" name="velocidad" class="form-control" value="{{ old('velocidad') }}" id="velocidad">
+                        </div>
+                    </div>
+
+                    <!-- Select Unidad Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_vel_id">Unidad de Velocidad</label>
+                            <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($velocidad as $vel)
+                                    <option 
+                                        value="{{ $vel->id }}" 
+                                        {{ old('mag_vel_id', $hojadevida->mag_vel_id ?? '') == $vel->id ? 'selected' : '' }}>
+                                        {{ $vel->abreviacionvelocidad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Campo Humedad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="humedad">Humedad (%)</label>
+                            <input type="text" name="humedad" class="form-control" value="{{ old('humedad') }}" id="humedad">
+                        </div>
+                    </div>
+
+                    <!-- Tamaño Equipo -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimLargo">Largo</label>
+                            <input type="text" name="dimLargo" class="form-control" value="{{ old('dimLargo') }}" id="dimLargo">
+                        </div>
+                    </div>
+
+                    <!-- Campo Ancho -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAncho">Ancho</label>
+                            <input type="text" name="dimAncho" class="form-control" value="{{ old('dimAncho') }}" id="dimAncho">
+                        </div>
+                    </div>
+
+                    <!-- Campo Alto -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAlto">Alto</label>
+                            <input type="text" name="dimAlto" class="form-control" value="{{ old('dimAlto') }}" id="dimAlto">
+                        </div>
+                    </div>
+
+                    <!-- Seleccion Unidad Dimensión -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_dimension_id">Unidad de Dimensión</label>
+                            <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($dimensiones as $dim)
+                                    <option 
+                                        value="{{ $dim->id }}" 
+                                        {{ old('mag_dimension_id', $hojadevida->mag_dimension_id ?? '') == $dim->id ? 'selected' : '' }}>
+                                        {{ $dim->abreviaciondimension }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                
+                    
                     <br>
                     <br>
-
-
-
-                    {{-- ACCION DE GUARDAR  --}}
-
-
-
+                
                 </div>
+                {{--  RECOMENDACIONES --}}
+                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation formu p-5">
+                    <h1 class="text-white"
+                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        Recomendaciones
+                    </h1>
+                    <div class="col-md-12 position-relative">
+                        <div class="form-group">
+                            <label for="recomendaciones"></label>
+                            <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                
+                {{-- ACCION DE GUARDAR  --}}
                 <div class="d-grid gap-0 col-4 mx-auto">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">

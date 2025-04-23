@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class magFuenAli extends Model
 {
     use HasFactory;
+
+    public function hojadevidas(){
+        return $this->hasMany('App\Models\Hojadevida');
+    }
 }

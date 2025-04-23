@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\estadoequipo;
+use App\Models\estadoequipo; // 1. agregar aqui para mostrar valores
 use App\Models\servicio;
 use App\Models\nombreEquipo;
 use App\Models\Ubifisica;
@@ -13,9 +13,21 @@ use App\Models\claBiome;
 use App\Models\claUso;
 use App\Models\formaAdqui;
 use App\Models\propiedad;
-use App\Models\magFuenAlimen;
+use App\Models\magFuenAlimen; // para la alimentacion de los equipos con que trabajan 
 use App\Models\magVol;
 use App\Models\equipo;
+use App\Models\magFre;
+use App\Models\magFuenAli; // para la alimentacion de los voltages 
+use App\Models\magCorriente;
+use App\Models\magPeso;
+use App\Models\magPre;
+use App\Models\MagPot;
+use App\Models\magTemp;
+use App\Models\magDimension;
+use App\Models\magVel;
+
+
+
 
 use App\Models\hojadevida;
 use Illuminate\Http\Request;
@@ -116,7 +128,7 @@ class HojadevidaController extends Controller
     }
 
     public function create()
-    {
+    { // 2. Agregar el modelo aqui para mostrar valores
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
         $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
@@ -134,10 +146,21 @@ class HojadevidaController extends Controller
         $formaadqui = Formaadqui::all();
         $propiedad = Propiedad::all();
 
-        $nombrealimentacion = magFuenAlimen::all(); //
-        $abreviacionvolumen = magVol::all(); //
-        // return view('hojadevida.create', compact( 'nombreservicios','nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo')); // pasar las variables  a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo'));
+        $nombrealimentacion = magFuenAlimen::all();
+        $abreviacionvolumen = magVol::all();
+        $magFrec = magFre::all();
+        $fuentesAli = magFuenAli::all();
+        $corrientes = magCorriente::all(); 
+        $pesos = magPeso::all();
+        $presiones = magPre::all();
+        $potencias = MagPot::all();
+        $temperaturas = MagTemp::all();
+        $dimensiones  = magDimension::all();
+        $velocidad = magVel::all();
+        
+
+        // 3. enviar los datos a la vista
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones')); // pasar las variables  a la vista
     }
     // public function create()
     // {
@@ -206,7 +229,7 @@ class HojadevidaController extends Controller
 
 
         // DESCRIPCION DE EQUIPO
-        // se hace uno por uno de los datos para que sean guardados
+        // 4. se hace uno por uno de los datos para que sean guardados
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
@@ -242,8 +265,34 @@ class HojadevidaController extends Controller
         $hdv->costo = $request->costo;
         $hdv->propiedad_id = $request->propiedad_id;
 
-        // REGISTRO HISTORICO
+        // REGISTRO TECNICO
         $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
+        $hdv->frecuencia = $request->frecuencia;
+        $hdv->mag_fre_id = $request->mag_fre_id;
+        $hdv->volMax = $request->volMax;
+        $hdv->volMin = $request->volMin;
+        $hdv->mag_fuen_ali_id = $request->mag_fuen_ali_id;
+        $hdv->corrienteMax = $request->corrienteMax;
+        $hdv->corrienteMin = $request->corrienteMin;
+        $hdv->mag_corriente_id = $request->mag_corriente_id;
+        $hdv->peso = $request->peso;
+        $hdv->mag_peso_id = $request->mag_peso_id;
+        $hdv->presion = $request->presion;
+        $hdv->mag_pre_id = $request->mag_pre_id;
+        $hdv->peso = $request->peso; // Asignamos el valor de 'peso'
+        $hdv->mag_peso_id = $request->mag_peso_id; // Asignamos el ID del peso
+        $hdv->temperatura = $request->temperatura;
+        $hdv->mag_temp_id = $request->mag_temp_id; // ID de la temperatura seleccionada
+        $hdv->velocidad = $request->velocidad;
+        $hdv->mag_vel_id = $request->mag_vel_id;
+        $hdv->humedad = $request->humedad;
+        $hdv->dimLargo = $request->dimLargo;
+        $hdv->dimAncho = $request->dimAncho;
+        $hdv->dimAlto = $request->dimAlto;
+        $hdv->mag_dimension_id = $request->mag_dimension_id;
+
+        $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
+
 
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar

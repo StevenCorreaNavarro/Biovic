@@ -91,7 +91,7 @@
             <tr>
                 <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">SERVICIO: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->servicio?->nombreservicio ?? '---' }} </td>
-                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO: </td>
+                <td style="width: 25%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CODIGO ECRI: </td>
                 <td style="width: 15%;border: 1px solid rgb(255, 255, 255);">{{$hdvs->codecri?->codiecri??'---'}}</td>
                 <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); ">
                     @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
