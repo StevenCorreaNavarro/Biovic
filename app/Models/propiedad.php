@@ -18,6 +18,10 @@ class propiedad extends Model
     {
         return $this->belongsTo(Propiedad::class);
     }
+    public function propiedadcali()
+    {
+        return $this->belongsTo(Propiedad::class);
+    }
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }

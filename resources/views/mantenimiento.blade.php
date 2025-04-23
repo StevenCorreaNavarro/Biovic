@@ -16,7 +16,9 @@
     <link rel="stylesheet"
         href="/path/to/styles.css">
 
-    <link rel="stylesheet" href="css/menu.css">
+    <!-- <link rel="stylesheet" href="css/menu.css"> -->
+    <link rel="stylesheet" href="    css/gestion_mantop.css">
+
     <link rel="icon" type="image/x-icon" href="IMG/logotipo.png" />
 
     <link rel="stylesheet"
@@ -33,26 +35,39 @@
     @extends('layouts.header')
     <br>
     <main>
-        <h1 style="margin-top: 4rem; text-align:center">Gestion de Mantenimiento</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4" style="padding: 7rem;">
+        <h1 style="margin-top: 2rem; text-align:center">Gestion de Mantenimiento</h1>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-left: 3rem; padding-right:3rem;margin:2rem">
+
             <div class="col">
                 <div class="card h-100">
                     <a href="manto_crono/propiedadbuscar" style="text-decoration: none;">
                         <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title" style="margin-top: 1rem;">Cronograma de Mantenimiento</h5>
-                            <p class="card-text">Registra y monitorea las fechas de mantenimiento para asegurar el óptimo funcionamiento de tus equipos biomédicos</p>
+                        <h3 class="card-title  text-center">Cronograma de Mantenimiento</h3>
+                        <p class="card-text">Registra y monitorea las fechas de mantenimiento para asegurar el óptimo funcionamiento de tus equipos biomédicos</p>
                         </div>
                     </a>
                 </div>
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <a href="manto_crono_cal" class="text-decoration-none">
+                    <a href="check_list/propiedadbuscar" style="text-decoration: none;">
+                        <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h3 class="card-title text-center">Lista de Verificacion</h3>
+                        <p class="card-text">Registra y monitorea las fechas de mantenimiento para asegurar el óptimo funcionamiento de tus equipos biomédicos.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <a href="crono_cali/propiedadbuscar" class="text-decoration-none">
                         <img src="IMG/reparacion3.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Cronograma de Calibración</h5>
-                            <p class="card-text">Programa y gestiona la calibración de equipos para garantizar precisión y seguridad en su uso.</p>
+                        <h3 class="card-title  text-center">Cronograma de Calibracion</h3>
+                        <p class="card-text">Genera alarmas, imprime y guarda reportes para una gestión eficiente del mantenimiento.</p>
                         </div>
                     </a>
                 </div>
@@ -117,3 +132,7 @@
 </body>
 
 </html>
+
+
+
+

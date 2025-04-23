@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Estilo general para el menú desplegable */
+.dropdown-menu {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.dropdown-item {
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.-card-img-top{
+    border-radius: 10%;
+}
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+
+.dropdown-divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+header .textos-header {
+    display: flex;
+    height: 430px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card a img{
+    /* padding-top: 9%; */
+    border-radius: 32px 32px 0 0;
+    /* background: linear-gradient(  green,blue); */
+    /* z-index: 12; */
+}
+/* TARJETAS */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    border-radius: 9%;
+
+}
+
+.card:hover {
+    border-radius: 9%;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    
+}
+
+/* Opcional: Efecto de hover específico para el contenido de la tarjeta */
+.card-body {
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.card-body a {
+    text-decoration: none;
+    /* Elimina el subrayado en enlaces */
+}
+
+.card-body .card-text {
+    color: #000000;
+}
+
+.card-body .card-title {
+    color: #000000;
+}
+
+.card:hover .card-body {
+    background-color: #f8f9fa00;
+    /* Fondo más claro en el contenido de la tarjeta al hacer hover */
+}
+
+.card-body:hover .card-title {
+    color: #7169dd;
+}
+
+.card-body:hover .card-text {
+    color: #7169dd;
+    /* Cambia el color del texto en el cuerpo de la tarjeta */
+}
+
+
+
+/* Footer */
+footer {
+    padding: 1rem;
+    background-color: #272626;
+    color: #fdfbfb;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.letrero {
+    font-size: 15px;
+    text-align: justify;
+    margin: 0 10rem;
+}
+
+.footer-column1,
+.footer-column2 {
+    flex: 1;
+    text-align: center;
+    margin: 3rem;
+}
+
+.footer-column2 h4 {
+    margin-right: 40%;
+}
+
+.footer-content h4 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 100;
+    letter-spacing: 3px;
+    margin-bottom: 3rem;
+}
+
+.footer-content-about-us {
+    font-size: 1.6rem;
+    padding: 2%;
+    color: #fdfbfb;
+    text-align: center;
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons i {
+    font-size: 1.3rem;
+    padding: .3rem 1rem;
+    color: #fff;
+}
+
+.news-form {
+    display: flex;
+    align-items: center;
+}
+
+.news-input {
+    width: 100%;
+    max-width: 15rem;
+    padding: 1.2rem;
+    border-radius: 4rem;
+    margin-top: -2%;
+}
+
+.news-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 2px .6rem;
+    margin-left: -1px;
+}
+
+.social-icons i.fa-twitter:hover,
+.social-icons i.fa-twitter:focus {
+    color: var(--twitter);
+}
+
+.social-icons i.fa-youtube:hover,
+.social-icons i.fa-youtube:focus {
+    color: var(--youtube);
+}
+
+.social-icons i.fa-linkedin-in:hover,
+.social-icons i.fa-linkedin-in:focus {
+    color: var(--linkedin);
+}
+
+.social-icons i:hover,
+.social-icons i:focus {
+    color: var(--instagram);
+}
+
+.social-icons i.fa-facebook-square:hover,
+.social-icons i.fa-facebook-square:focus {
+    color: var(--facebook);
+}
+
+:root {
+    --facebook: blue;
+    --twitter: #55acee;
+    --youtube: red;
+    --instagram: #e4405f;
+}

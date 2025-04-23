@@ -25,7 +25,7 @@
         tr,
         th {
             /* border: 1px solid black; */
-            font-size: smaller;
+            /* font-size: smaller; */
         }
 
         .bg-yellow {
@@ -64,21 +64,20 @@
 
 
         <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
-        <h1>CRONOGRAMA DE MANTENIMIENTO</h1>
+            <h1>CRONOGRAMA DE CALIBRACION</h1>
             <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
-                action="{{ route('mantocrono.propiedad') }}">
-                
+                action="{{ route('cronocali.propiedad') }}">
                 @csrf {{-- token o seguridad  --}}
                 {{-- <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"   value="{{ old('nombre') }}" required> --}}
                 <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text" name="search"  placeholder="Buscar..." value="{{ request('search') }}"      list="propiedad-list"   value="{{ old('propiedad') }}" required>
                     <datalist style="font-size: 10%" id="propiedad-list">
-                        @foreach ($propiedads as $prop)
+                        @foreach ($propiedades as $prop)
                             <option value="{{ $prop->nombreempresa}}" data-id="{{ $prop->id }} "></option>
                         @endforeach
                     </datalist>
 
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
-                    href="{{ route('mantocrono.propiedadbuscar') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
+                    href="{{ route('cronocali.propiedadbuscarcali') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
                 {{-- <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                 Registrar Nueva hoja de vida
@@ -89,7 +88,7 @@
             <div class="row p-0 m-0">
                 <div class="w-25  bg-black border border-light "><img src="{{ asset('IMG/logotipohancho.png') }}"
                         height="100px" alt=""></div>
-                <div class="w-25 p-3 bg-primary border fs-4 border-light text-center text-white">CRONOGRAMA DE MANTENIMIENTO
+                <div class="w-25 p-3 bg-primary fs-4 border border-light text-center text-white">CRONOGRAMA DE CALIBRACION
                 </div>
                 <div class="w-25 p-3 bg-primary border border-light text-center">
                     <h5> version:</h5>
@@ -126,18 +125,10 @@
                         <th>MARCA</th>
                         <th>MODELO</th>
                         <th>SERIE</th>
-                        <th>ENERO</th>
-                        <th>FEBRERO</th>
-                        <th>MARZO</th>
-                        <th>ABRIL</th>
-                        <th>MAYO</th>
-                        <th>JUNIO</th>
-                        <th>JULIO</th>
-                        <th>AGOSTO</th>
-                        <th>SEPTIEMBRE</th>
-                        <th>OCTUBRE</th>
-                        <th>NOVIEMBRE</th>
-                        <th>DICIEMBRE</th>
+                        <th>FECHA CALIBRACION</th>
+                        <th>FECHA DE VENCIMIENTO</th>
+                        <th>ESTADO</th>
+                    
                     </tr>
                 </thead>
                 <tbody>
@@ -164,42 +155,7 @@
                                 <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
                             </td>
 
-                            <td style="font-size: 8px; border: 1px solid rgb(205, 205, 205);" @if ($hdv->enero == 'X') class="bg-yellow " @endif>
-                                <h6>{{ $hdv->enero }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->febrero == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->febrero }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->marzo == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->marzo }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->abril == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->abril }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->mayo == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->mayo }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->junio == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->junio }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->julio == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->julio }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->agosto == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->agosto }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->septiembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->septiembre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->octubre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->octubre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->noviembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->noviembre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);" @if ($hdv->diciembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->diciembre }}</h6>
-                            </td>
+                 
 
                             <!-- <td>{{ $hdv->enero }}</td>
                         <td>{{ $hdv->febrero }}</td>

@@ -59,7 +59,7 @@
         <!-- Sección Hero -->
         <div class="hero d-flex flex-column ">
             <section class="">
-                <h1 class="hero__title">Biovic</h1>
+                <h1 class="hero__title">Viltalsoft</h1>
                 <p class="hero__paragraph"> Soluciones Inteligentes para la Gestión y Mantenimiento de Equipos Biomédicos</p>
                 <center>
                     <a href="#" class="cta">Agendar demo</a>
