@@ -114,7 +114,7 @@ class hojadevida extends Model
     }
     
     
-    protected $fillable = ['foto', 'codecris']; // Agregamos 'foto' para que se pueda asignar masivamente
+    protected $fillable = ['foto', 'codecris','estadoequipo_id']; // Agregamos 'foto' para que se pueda asignar masivamente
     
         //     $request->validate([
         //     'perioCali' => 'required|string',

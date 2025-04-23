@@ -206,6 +206,7 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
+        // dd($request->all()); // Se pone para ver los datos que llegan del formulario
         $hdv = new Hojadevida();
         $request->validate([
             'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
@@ -335,6 +336,7 @@ class HojadevidaController extends Controller
         }
 
         $hdv->save();
+        //dd($hdv);// se pone para ver los datos que llegan del formulario
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
         // return view('hojadevida.listar');
     }
