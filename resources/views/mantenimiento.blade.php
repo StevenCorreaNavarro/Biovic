@@ -41,7 +41,8 @@
 
             <div class="col">
                 <div class="card h-100">
-                    <a href="manto_crono/propiedadbuscar" style="text-decoration: none; ">
+                    {{-- <a href="manto_crono/propiedadbuscar" style="text-decoration: none; "> --}}
+                        <a href="manto_crono/propiedad" style="text-decoration: none; ">
                         <img src="IMG/reparacion1.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h3 class="card-title  text-center">Cronograma de Mantenimiento</h3>
@@ -52,7 +53,9 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <a href="check_list/propiedadbuscar" style="text-decoration: none;">
+                    
+                    {{-- <a href="check_list/propiedadbuscar" style="text-decoration: none;"> --}}
+                        <a href="check_list/propiedad" style="text-decoration: none;">
                         <img src="IMG/monitor.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h3 class="card-title text-center">Lista de Verificacion</h3>
@@ -63,7 +66,8 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <a href="crono_cali/propiedadbuscar" class="text-decoration-none">
+                    {{-- <a href="crono_cali/propiedadbuscar" class="text-decoration-none"> --}}
+                        <a href="crono_cali/propiedad" class="text-decoration-none">
                         <img src="IMG/reparacion3.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h3 class="card-title  text-center">Cronograma de Calibracion</h3>

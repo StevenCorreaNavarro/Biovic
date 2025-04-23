@@ -154,7 +154,13 @@
                             <td style="font-size: 8px; ">
                                 <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
                             </td>
-
+                            <td style="font-size: 8px; ">
+                                <h6>{{ $hdv->fechaCali ?? 'NO REGISTRA' }}</h6>
+                            </td>
+                            
+                            <td style="font-size: 8px; ">
+                                <h6>{{ $hdv->garantia ?? 'NO REGISTRA' }}</h6>
+                            </td>
                  
 
                             <!-- <td>{{ $hdv->enero }}</td>

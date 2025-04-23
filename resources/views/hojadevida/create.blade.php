@@ -1241,7 +1241,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#equipo').change(function() {
+            $('#equipo_id').change(function() {
                 var equipoID = $(this).val();
                 $('#marca').empty().append('<option value="">Seleccione una marca</option>');
                 $('#modelo').empty().append('<option value="">Seleccione un modelo</option>').prop(
