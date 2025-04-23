@@ -104,21 +104,22 @@
                     </div>
 
                     {{-- ESTADO --}}
-                    <div class="col-md-3 position-relative ">
-                        <label for="estadoequipo_id">Estado del Equipo</label>
-                        {{--  Mostrar valores de `$estadoequipo` para depuración     
+                    {{--  Mostrar valores de `$estadoequipo` para depuración     
                         <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}}
-
-                        <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
-                            <option value="">Seleccione una opción</option>
-                            @foreach ($estadoequipo as $estadoequi)
-                                <option value="{{ $estadoequi->id }}"
-                                    {{ isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id ? 'selected' : '' }}>
-                                    {{ $estadoequi->estadoequipo }} {{-- Aqui recibi las opciones para mostrar  --}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <div class="col-md-3 position-relative">
+                            <div class="form-group">
+                                <label for="estadoequipo_id">Estado del Equipo</label>
+                                <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
+                                    <option value="">Seleccione una opción</option>
+                                    @foreach ($estadoequipo as $estadoequi)
+                                        <option value="{{ $estadoequi->id }}"
+                                            {{ (isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id) || old('estadoequipo_id') == $estadoequi->id ? 'selected' : '' }}>
+                                            {{ $estadoequi->estadoequipo }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                     {{-- Ubicacion Fisica --}}
                     <div class="col-md-3 position-relative">
