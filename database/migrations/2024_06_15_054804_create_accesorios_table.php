@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('accesorios', function (Blueprint $table) {
             $table->id();
-            $table -> string('nombreAccesorio');
-            $table -> string('marcaAccesorio');
-            $table -> string('modeloAccesorio');
-            $table -> string('serieAccesorio');
-            $table -> integer('costoAccesorio');     
-            $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
-            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');    
+            $table -> string('nombreAccesorio')->nullable();   
+            $table -> string('marcaAccesorio')->nullable();   
+            $table -> string('modeloAccesorio')->nullable();   
+            $table -> string('serieAccesorio')->nullable();   
+            $table -> integer('costoAccesorio')->nullable();   
+            
+            // Relación con la tabla equipos
+            $table->unsignedBigInteger('equipo_id');
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
+                                   
             $table->timestamps();
+
+ 
         });
     }
 

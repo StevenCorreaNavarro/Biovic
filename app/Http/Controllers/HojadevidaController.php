@@ -25,7 +25,9 @@ use App\Models\MagPot;
 use App\Models\magTemp;
 use App\Models\magDimension;
 use App\Models\magVel;
-
+use App\Models\accesorio;
+use App\Models\fabricante;
+use App\Models\proveedor;
 
 
 
@@ -157,10 +159,13 @@ class HojadevidaController extends Controller
         $temperaturas = MagTemp::all();
         $dimensiones  = magDimension::all();
         $velocidad = magVel::all();
+        $accesorios = accesorio::all();
+        $fabricantes = fabricante::all();
+        $proveedores = proveedor::all();
         
 
         // 3. enviar los datos a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones')); // pasar las variables  a la vista
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios','fabricantes','proveedores')); // pasar las variables  a la vista
     }
     // public function create()
     // {
@@ -207,6 +212,12 @@ class HojadevidaController extends Controller
             'perioCali' => 'nullable|in:trimestre,cuatrimestre,anual',
             'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable', // validacion y fecha no  posterior a la actual 
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
+            // Nueva funcionalidad para validar  pdf 
+            'soporteFactura' => 'nullable|mimes:pdf|max:10000',
+            'soporteRegistroInvima' => 'nullable|mimes:pdf|max:10000',
+            'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
+            'soporteManual' => 'nullable|mimes:pdf|max:10000',
+            'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
         ]);
 
         $fecha = Carbon::parse($request->fechaCali);
@@ -293,6 +304,35 @@ class HojadevidaController extends Controller
 
         $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
 
+        $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
+        $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
+        $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
+
+        // Cargar y guardar los archivos PDF
+        if ($request->hasFile('soporteFactura')) {
+            $hdv->soporteFactura = $request->file('soporteFactura')->store('public/soportes');
+            $hdv->soporteFactura = str_replace('public/', '', $hdv->soporteFactura); // Eliminar 'public/' para la base de datos
+        }
+
+        if ($request->hasFile('soporteRegistroInvima')) {
+            $hdv->soporteRegistroInvima = $request->file('soporteRegistroInvima')->store('public/soportes');
+            $hdv->soporteRegistroInvima = str_replace('public/', '', $hdv->soporteRegistroInvima);
+        }
+
+        if ($request->hasFile('soporteCertificadoCalibracion')) {
+            $hdv->soporteCertificadoCalibracion = $request->file('soporteCertificadoCalibracion')->store('public/soportes');
+            $hdv->soporteCertificadoCalibracion = str_replace('public/', '', $hdv->soporteCertificadoCalibracion);
+        }
+
+        if ($request->hasFile('soporteManual')) {
+            $hdv->soporteManual = $request->file('soporteManual')->store('public/soportes');
+            $hdv->soporteManual = str_replace('public/', '', $hdv->soporteManual);
+        }
+
+        if ($request->hasFile('soporteLimpiezaDesinfeccion')) {
+            $hdv->soporteLimpiezaDesinfeccion = $request->file('soporteLimpiezaDesinfeccion')->store('public/soportes');
+            $hdv->soporteLimpiezaDesinfeccion = str_replace('public/', '', $hdv->soporteLimpiezaDesinfeccion);
+        }
 
         $hdv->save();
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
