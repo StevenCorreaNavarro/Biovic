@@ -9,7 +9,7 @@ class ubiFisica extends Model
 {
     use HasFactory;
 
-    
+
     protected $table = 'ubifisicas'; // Nombre correcto de la tabla
 
     public function hojadevidas(){
@@ -19,5 +19,9 @@ class ubiFisica extends Model
     public function reporteservicios(){
         return $this->hasMany('App\Models\Reporteservicio');
     }
-    
+
+    public function reportemtto(){
+        return $this->hasMany('App\Models\Reportemtto');
+    }
+
 }

@@ -13,4 +13,8 @@ class estadoequipo extends Model
         return $this->hasMany('App\Models\Hojadevida');
     }
 
+    public function reportemtto(){ // envio a reportemtto
+        return $this->hasMany('App\Models\reportemtto');
+    }
+
 }
