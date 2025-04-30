@@ -75,7 +75,7 @@
                         style=" --bs-scroll-height: 100px; margin-left: 1%; margin-right:1%">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
-                                href="{{ route('menu') }}">Menu</a></li>
+                                href="{{ asset('/') }}">Menu</a></li>
                         <li class="nav-item dropdown">
                             <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
                                 href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
@@ -95,7 +95,7 @@
                                     <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
                                             vida</a></li>
                                 @endif
-                                <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Ver hojas de vida</a>
+                                <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de vida</a>
                                 </li>
                             </ul>
                         </li>

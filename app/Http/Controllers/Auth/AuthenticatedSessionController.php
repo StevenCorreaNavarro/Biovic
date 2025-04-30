@@ -43,6 +43,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/main');                             //ruta colocada cuando sale va al main
+        return redirect('/');                             //ruta colocada cuando sale va al main
     }
 }

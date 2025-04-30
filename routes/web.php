@@ -126,12 +126,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('empleips', EmpleipsController::class);
-    Route::get('/menuing', function () {
-        Alert::success(' Bienvenido!', 'Ingreso exitoso');
-        // toast('Ejemplo del toast')->success('ejemplo del tost');
-        return view('menu');
-        // return View('admin.layouts.app');
-    })->name('menu');
+   
 
     //####################################################################### DESCARGAR PDF
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
@@ -228,6 +223,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/', function () {
+    Alert::success(' Bienvenido!', 'Ingreso exitoso');
+    // toast('Ejemplo del toast')->success('ejemplo del tost');
+    return view('main');
+    // return View('admin.layouts.app');
+})->name('menu');
 
 require __DIR__ . '/auth.php';
 

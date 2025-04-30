@@ -20,52 +20,7 @@
 <body>
 
     @extends('layouts.header')
-    <!-- <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <a href="/HTML/menu.html" style="margin-left: 3%; margin-right:3%">
-                <i class="fa-solid fa-arrow-left" style="margin-left: 8%; color:white"></i>
-            </a>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="main">
-                    VitalSoft
-                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="Logo de VitalSoft" height="40">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/HTML/main.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Link
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/HTML/hojas_vida.html">Hojas de Vida</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/HTML/mantenimiento.html">Gestión de Mantenimiento</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/HTML/soporte.html">Soporte Técnico</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/HTML/soporte.html">Configuración</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/HTML/main.html">Cerrar Sesión</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Menú Principal</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="button" onclick="window.location.href='https://www.google.com'">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header> -->
+   
 
 
     @include('sweetalert::alert')
