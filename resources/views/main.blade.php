@@ -265,7 +265,21 @@
         </div>
         <br>
 
+        <div class="exa ">
+            <div class="container1 ">
 
+                <div class="texto">
+                    <h1>Creación, Ingreso y edicion de hojas de vida</h1>
+                    <p>El ingreso de hojas de vida de equipos biomédicos implica registrar la información esencial
+                        de
+                        los dispositivos para un mantenimiento eficiente y seguro.
+
+                    </p>
+                    <a href="/HTML/hojas_vida.html" class="btn cta-btn">saber más</a>
+                </div>
+                <img src="IMG/img4.jpg" alt="Descripción de la imagen" class="imagen">
+            </div>
+        </div>
 
         {{-- <section class="dis-sto exa">
             <div class="container ">
@@ -287,23 +301,28 @@
                 </div>
             </div>
         </section> --}}
-        <div class="exa ">
-            <div class="container1 ">
-                <img src="IMG/solicitudes.webp" alt="Descripción de la imagen" class="imagen">
-                <div class="texto">
 
-                    <h1>Solicitudes de mantenimiento en la palma de tu mano</h1>
-
-                    <p> Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos
+        <section>
+            <div class="container ">
+                <div class="res-info">
+                    <div class="imagen-4">
+                        <img src="IMG/Planificador.webp" alt="">
+                    </div>
+                    <div class="res-des pad-rig tx">
+                        <div class="global">
+                            <h1 class="head hea-dark">Solicitudes de mantenimiento en la palma de tu mano</h1>
+                        </div>
+                        <p>
+                            Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos
                         de
                         mantenimiento a sus equipos biomedicos a través del portal de solicitudes
-                    </p>
-                    <a href="mantenimiento_demosta" class="btn cta-btn">Saber más</a>
+                        </p>
+                        <a href="mantenimiento_demosta" class="btn cta-btn">Saber más</a>
+                    </div>
                 </div>
-
             </div>
-        </div>
-       
+        </section>
+<hr >       
         <section>
             <div class="container ">
                 <div class="res-info">
@@ -324,6 +343,7 @@
                 </div>
             </div>
         </section>
+        <hr>
         {{-- <section class="disco">
             <div class="container">
                 <div class="res-info">
@@ -344,21 +364,7 @@
                 </div>
             </div>
         </section> --}}
-        <div class="exa ">
-            <div class="container1 ">
-
-                <div class="texto">
-                    <h1>Creación, Ingreso y edicion de hojas de vida</h1>
-                    <p>El ingreso de hojas de vida de equipos biomédicos implica registrar la información esencial
-                        de
-                        los dispositivos para un mantenimiento eficiente y seguro.
-
-                    </p>
-                    <a href="/HTML/hojas_vida.html" class="btn cta-btn">saber más</a>
-                </div>
-                <img src="IMG/img4.jpg" alt="Descripción de la imagen" class="imagen">
-            </div>
-        </div>
+     
 
         <section>
             <div class="container ">
@@ -375,6 +381,34 @@
                             sencillas, potenciando los planes para mejorar la eficiencia y la precisión
                         </p>
                         <a href="/catalogo.html" class="btn cta-btn">saber más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="about-services">
+            <div class="contenedor">
+
+                <div class="servicio-cont">
+                    <div class="servicio-ind">
+                        <img src="IMG/ilustracion1.svg" alt="Ilustración 1">
+                        <a href="/HTML/hojas_vida.html" class="logo">HOJAS DE VIDA</a>
+                        <p>Ofrecemos programas personalizados de mantenimiento preventivo para garantizar la longevidad y el rendimiento óptimo de tus equipos biomédicos.</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="IMG/ilustracion2.svg" alt="Ilustración 2">
+                        <a href="/HTML/mantenimiento.html" class="logo">GESTIÓN DE MANTENIMIENTO</a>
+                        <p>Nuestro equipo de expertos está capacitado para proporcionar asistencia técnica inmediata y resolver cualquier pregunta o preocupación que puedas tener.</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="IMG/preventivo.svg" alt="Preventivo">
+                        <a href="/HTML/soporte.html" class="logo">SOPORTE TÉCNICO</a>
+                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier problema que pueda surgir con tus equipos biomédicos.</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="IMG/20943761.jpg" alt="Preventivo">
+                        <a href="/HTML/soporte.html" class="logo">CONFIGURACIÓN</a>
+                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier problema que pueda surgir con tus equipos biomédicos.</p>
                     </div>
                 </div>
             </div>

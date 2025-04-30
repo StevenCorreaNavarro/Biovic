@@ -668,6 +668,49 @@ main .sobre-nosotros {
     color: #000000;
 }
 
+.about-services {
+    background: #ffffff;
+    padding-bottom: 30px;
+}
+.about-services .contendor{
+    background-color: white;
+}
+.servicio-cont {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los ítems se muevan a una nueva línea si no caben en una sola fila */
+    justify-content: space-between; /* Espacia los ítems de manera uniforme */
+    gap: 20px; /* Ajusta el espaciado entre los ítems */
+}
+.servicio-ind {
+    border: 1px solid rgba(46, 46, 46, 0.307);
+    display: flex; /* Utiliza flexbox para el contenedor interno */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Alinea los elementos horizontalmente al centro */
+    justify-content: center; /* Alinea los elementos verticalmente al centro */
+    flex: 1; /* Hace que los ítems se expandan para llenar el espacio disponible */
+    min-width: 200px; /* Establece un ancho mínimo para cada ítem */
+    max-width: 310px; /* Establece un ancho máximo para cada ítem */
+    box-sizing: border-box; /* Incluye el padding y border en el cálculo del ancho total */
+    padding: 10px; /* Agrega padding interno para espaciado adicional */
+    text-align: center; /* Centra el texto y otros elementos dentro del ítem */
+    border-radius: 8px; /* Redondea las esquinas del borde */
+    background-color: #f9f9f9; /* Agrega un color de fondo claro */
+    
+}
+.servicio-ind img {
+    width: auto; /* Asegura que la imagen ocupe todo el ancho del ítem */
+    height: 100%; /* Mantiene la relación de aspecto de la imagen */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.servicio-ind h3 {
+    margin: 10px 0; /* Espacio alrededor del encabezado */
+}
+.servicio-ind p {
+    font-size: 0.9em; /* Ajusta el tamaño del texto de la descripción */
+    color: #333; /* Color del texto de la descripción */
+    padding-bottom: 0px;
+}
 .taste.bt {
     display: flex;
     align-items: center;
