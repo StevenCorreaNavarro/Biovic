@@ -126,15 +126,12 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('empleips', EmpleipsController::class);
-
     Route::get('/menuing', function () {
         Alert::success(' Bienvenido!', 'Ingreso exitoso');
         // toast('Ejemplo del toast')->success('ejemplo del tost');
         return view('menu');
         // return View('admin.layouts.app');
     })->name('menu');
-
-
 
     //####################################################################### DESCARGAR PDF
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
@@ -157,35 +154,37 @@ Route::middleware('auth')->group(function () {
     Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
     Route::get('manto_crono/propiedad', [MantoCronoController::class, 'propiedad'])->name('mantocrono.propiedad');
     Route::get('manto_crono/create', [MantoCronoController::class, 'create'])->name('mantocrono.create');
+
+    Route::get('alarma_calibracion', [MantoCronoController::class, 'listar_alarma'])->name('alarma');
+    Route::get('inventario', [MantoCronoController::class, 'listar_inventario'])->name('inventario');
+
+    Route::get('verhojadevida', [MantoCronoController::class, 'verhojadevida'])->name('hoja_ver');
+    
     // Route::get('/manto_crono', function ()  {return view('manto_crono');});
 
     Route::get('/orden_trabajo', function () {
         return view('orden_trabajo');
     });
-    Route::get('/alarma_calibracion', function () {
-        return view('alarma_calibracion');
-    });
+
     Route::get('/mantenimiento_demosta', function () {
         return view('mantenimiento_demosta');
     });
-    Route::get('/inventario', function () {
-        return view('inventario');
-    });
+
     Route::get('/mantenimiento_demosta', function () {
         return view('mantenimiento_demosta');
     });
-    Route::get('/inventario', function () {
-        return view('inventario');
-    });
+    // Route::get('/inventario', function () {
+    //     return view('inventario');
+    // });
     Route::get('/editar_HV', function () {
         return view('editar_HV');
     });
     Route::get('/descargar_hv', function () {
         return view('descargar_hv');
     });
-    Route::get('/hoja_ver', function () {
-        return view('hoja_ver');
-    });
+    // Route::get('/hoja_ver', function () {
+    //     return view('hoja_ver');
+    // });
     Route::get('/reporte_de_servicio', function () {
         return view('reporte_de_servicio');
     });

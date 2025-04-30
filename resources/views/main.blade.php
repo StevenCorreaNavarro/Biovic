@@ -14,7 +14,8 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <title>Ingreso de hoja de vida</title> -->
     <link rel="shortcut icon" href="img/logobiomed.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="IMG/logotipo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -28,198 +29,313 @@
 </head>
 
 <body>
-    
+    {{-- @extends('layouts.header') --}}
+
 
 
     <header>
         <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 10%;">
             <div class="container-fluid" style="margin: 0%;    padding: 0%;">
-                <a class="navbar-brander d-flex" href="main" style="text-decoration: none;margin: 0%;    padding: 0%;">
-                <img src="IMG/logobiomed.png" alt="biovic" height="40">
+                <a class="navbar-brander d-flex" href="main"
+                    style="text-decoration: none;margin: 0%;    padding: 0%;">
+                    <img src="IMG/logobiomed.png" alt="biovic" height="40">
                     <h1 style="text-decoration: none;  ">Biomedic</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
-                        </li> -->
-                    </ul>
-                </div>
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
+                    <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"  style=" --bs-scroll-height: 100px; margin-left: 2%; margin-right:2%">
+                        @guest
+                        @if (Route::has('login'))
+                        @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
+                            href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hojas de Vida
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if ((Auth::check() && Auth::user()->role === 'admin') || Auth::user()->role === 'empleado')
+                                <li><a class="dropdown-item " href="{{ asset('hojadevida/create') }}">Generar hoja
+                                        de vida</a></li>
+                                {{-- <div class="dropdown-divider"></div> --}}
+
+                                <li><a class="dropdown-item" href="{{ asset('subir_soporte') }}">Subir soporte</a>
+                                </li>
+
+                                <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
+                                        vida</a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Ver hojas de vida</a>
+                            </li>
+                        </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs(['mantocrono.*', 'alarma', 'check_list.*', 'cronocali.*', 'inventario']) ? 'po' : '' }}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestión de Mantenimiento
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ asset('manto_crono/propiedad') }}">Cronograma de
+                                    Mantenimiento</a></li>
+                            {{-- <li><hr class="dropdown-divider"></li> --}}
+                            <li><a class="dropdown-item" href="{{ asset('crono_cali/propiedad') }}">Cronograma de
+                                    Calibracion</a></li>
+                            <li><a class="dropdown-item" href="{{ asset('check_list/propiedad') }}">Lista de
+                                    verificacion</a></li>
+                            <li><a class="dropdown-item" href="{{ asset('alarma_calibracion') }}">Alarmas</a></li>
+                            <li><a class="dropdown-item" href="{{ asset('inventario') }}">Inventario fisico</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} "
+                            href="{{ route('soporte') }}">Soporte Técnico
+                        </a>
+                    </li>
+                    @if (Auth::check() && Auth::user()->role === 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
+                    </li>
+                @endif
+
+                    @endguest
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
+                    </li> -->
                 </ul>
             </div>
-        </nav>
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    {{-- <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a> --}}
+                    @guest
+                        @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
+                        {{-- <button class="button"><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></button> --}}
+                    </li>
+                    @endif
+                @else
+                    {{-- despliegue --}}
+                    {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle button" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
 
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item " href="#">Mi Perfil</a>
+                            <a class="dropdown-item" href="#">Notificaciones</a>
+                            <a class="dropdown-item" href="#">Favoritos</a>
+                            <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
+                            {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
 
-        <!-- Sección Hero -->
-        <div class="hero d-flex flex-column ">
-            <section class="">
-                <h1 class="hero__title">ViltalSoft</h1>
-                <p class="hero__paragraph"> Soluciones Inteligentes para la Gestión y Mantenimiento de Equipos Biomédicos</p>
-                <center>
-                    <a href="#" class="cta">Agendar demo</a>
-                </center>
-                
-            </section>
-            
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Cerrar sesión
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf</form>
+                        </div>
+                    </li>
+            </div>
+
+            </li>
+        @endguest
+        </li>
+        </ul>
         </div>
-        
-    </header>
+    </nav>
 
 
+    <!-- Sección Hero -->
+    <div class="hero d-flex flex-column ">
+        <section class="">
+            <h1 class="hero__title">ViltalSoft</h1>
+            <p class="hero__paragraph"> Soluciones Inteligentes para la Gestión y Mantenimiento de Equipos
+                Biomédicos</p>
+            <center>
+                <a href="#" class="cta">Agendar demo</a>
+            </center>
 
-    <main>
-
-        <section class="container about">
-            <h1 class="subtitle">¿Qué beneficios tendras con nosotros?</h1>
-            <p class="about__paragraph">Al contratar los servicios de VitalSoft, los clientes obtienen confianza en la fiabilidad de sus equipos médicos y un servicio proactivo que garantiza la eficiencia y la seguridad del cuidado médico.</p>
-
-            <div class="about__main">
-                <article class="about__icons1">
-                    <img src="IMG/centraliza_la_informacion2.png" class="about__icon">
-                    <h3 class="about__title" style="margin-top: 4%;">Programación Preventiva </h3>
-                    <p class="about__paragrah">Desarrollamos planes de mantenimiento preventivo adaptados a las necesidades específicas de cada cliente</p>
-                </article>
-
-                <article class="about__icons2">
-                    <img src="IMG/img13.jpg" class="about__icon">
-                    <h3 class="about__title" style="margin-top: 1.7%;">Servicio Técnico Especializado</h3>
-                    <p class="about__paragrah">Contamos con un equipo de técnicos altamente capacitados y certificados en el mantenimiento de equipos biomédicos</p>
-                </article>
-
-                <article class="about__icons3">
-                    <img src="IMG/solicitudes.webp" class="about__icon">
-                    <h3 class="about__title" style="margin-top: 7.3%;">Cumplimiento Normativo</h3>
-                    <p class="about__paragrah">Nos comprometemos a cumplir con los estándares de calidad más rigurosos y las regulaciones de seguridad en el cuidado de la salud?</p>
-                </article>
-            </div>
         </section>
 
-        <section class="dis-sto">
-            <div class="container">
-                <div class="res-info">
-                    <div>
-                        <img src="IMG/solicitudes.webp" alt="">
-                    </div>
-                    <div class="res-des pad-rig">
-                        <div class="global">
-                            <h1 class="head hea-dark">Solicitudes de mantenimiento en la palma de tu mano</h1>
-                        </div>
-                        <p>
-                            Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos de
-                            mantenimiento a sus equipos biomedicos a través del portal de solicitudes
-                        </p>
-                        <a href="mantenimiento_demosta" class="btn cta-btn">Saber más</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="taste bt">
-            <div class="container">
-                <div class="flex-container">
-                    <div class="text-content">
-                        <h2 class="h2-sub">
-                            <span class="fil text-black " style="color:white;">Realiza tus ordenes de trabajo</span>
-                        </h2>
-                        <p style="color: white; " class=" text-black  ">Obtén un mayor control sobre tus operaciones, aplica el mantenimiento y
-                            toma decisiones inteligentes con las capacidades y pronósticos sugeridos
-                        </p>
-                        <a href="orden_trabajo" class="btn cta-btn">Saber más</a>
-                    </div>
-                    <div class="image-content">
-                        <img src="IMG/orden de trabajo.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="disco">
-            <div class="container">
-                <div class="res-info">
-                    <div class="res-des">
-                        <div class="global">
-                            <h1 class="head hea-dark">Creación, Ingreso y edicion de hojas de vida </h1>
-                        </div>
-                        <p>
-                            El ingreso de hojas de vida de equipos biomédicos implica registrar la información esencial de
-                            los dispositivos para un mantenimiento eficiente y seguro.
-                        </p>
-                        <a href="/HTML/hojas_vida.html" class="btn cta-btn">saber más</a>
-                    </div>
-                    <div class="image-group pad-rig">
-                        <img src="IMG/img4.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+
+</header>
+
+
+
+<main>
+
+    <section class="container about">
+        <h1 class="subtitle">¿Qué beneficios tendras con nosotros?</h1>
+        <p class="about__paragraph">Al contratar los servicios de VitalSoft, los clientes obtienen confianza en la
+            fiabilidad de sus equipos médicos y un servicio proactivo que garantiza la eficiencia y la seguridad del
+            cuidado médico.</p>
+
+        <div class="about__main">
+            <article class="about__icons1">
+                <img src="IMG/centraliza_la_informacion2.png" class="about__icon">
+                <h3 class="about__title" style="margin-top: 4%;">Programación Preventiva </h3>
+                <p class="about__paragrah">Desarrollamos planes de mantenimiento preventivo adaptados a las
+                    necesidades específicas de cada cliente</p>
+            </article>
+
+            <article class="about__icons2">
+                <img src="IMG/img13.jpg" class="about__icon">
+                <h3 class="about__title" style="margin-top: 1.7%;">Servicio Técnico Especializado</h3>
+                <p class="about__paragrah">Contamos con un equipo de técnicos altamente capacitados y certificados
+                    en el mantenimiento de equipos biomédicos</p>
+            </article>
+
+            <article class="about__icons3">
+                <img src="IMG/solicitudes.webp" class="about__icon">
+                <h3 class="about__title" style="margin-top: 7.3%;">Cumplimiento Normativo</h3>
+                <p class="about__paragrah">Nos comprometemos a cumplir con los estándares de calidad más rigurosos
+                    y las regulaciones de seguridad en el cuidado de la salud?</p>
+            </article>
         </div>
-        </section>
-        <section>
-            <div class="container">
-                <div class="res-info">
-                    <div class="imagen-4">
-                        <img src="IMG/Planificador.webp" alt="">
-                    </div>
-                    <div class="res-des pad-rig">
-                        <div class="global">
-                            <h1 class="head hea-dark">Planificadores de mantenimiento </h1>
-                        </div>
-                        <p>
-                            Con la ayuda de VITALTECH, las operaciones de mantenimiento biomedico pasaran a ser mas
-                            sencillas, potenciando los planes para mejorar la eficiencia y la precisión
-                        </p>
-                        <a href="/catalogo.html" class="btn cta-btn">saber más</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="bg-primary text-white text-center py-4">
+    </section>
+
+    <section class="dis-sto">
         <div class="container">
-            <h4>Vitalsoft</h4>
-            <p>&copy; Soluciones biomedicas a la medida</p>
-            <div class="my-3 footer-social-icons">
-                <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+            <div class="res-info">
+                <div>
+                    <img src="IMG/solicitudes.webp" alt="">
+                </div>
+                <div class="res-des pad-rig">
+                    <div class="global">
+                        <h1 class="head hea-dark">Solicitudes de mantenimiento en la palma de tu mano</h1>
+                    </div>
+                    <p>
+                        Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos
+                        de
+                        mantenimiento a sus equipos biomedicos a través del portal de solicitudes
+                    </p>
+                    <a href="mantenimiento_demosta" class="btn cta-btn">Saber más</a>
+                </div>
             </div>
         </div>
-    </footer>
-    <script>
-        document.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) { // Ajusta el valor según sea necesario
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-
-    <!-- <script>
-        const selectElement = function (element) {
-            return document.querySelector(element);
+    </section>
+    <section class="taste bt">
+        <div class="container">
+            <div class="flex-container">
+                <div class="text-content">
+                    <h2 class="h2-sub">
+                        <span class="fil text-black " style="color:white;">Realiza tus ordenes de trabajo</span>
+                    </h2>
+                    <p style="color: white; " class=" text-black  ">Obtén un mayor control sobre tus operaciones,
+                        aplica el mantenimiento y
+                        toma decisiones inteligentes con las capacidades y pronósticos sugeridos
+                    </p>
+                    <a href="orden_trabajo" class="btn cta-btn">Saber más</a>
+                </div>
+                <div class="image-content">
+                    <img src="IMG/orden de trabajo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="disco">
+        <div class="container">
+            <div class="res-info">
+                <div class="res-des">
+                    <div class="global">
+                        <h1 class="head hea-dark">Creación, Ingreso y edicion de hojas de vida </h1>
+                    </div>
+                    <p>
+                        El ingreso de hojas de vida de equipos biomédicos implica registrar la información esencial
+                        de
+                        los dispositivos para un mantenimiento eficiente y seguro.
+                    </p>
+                    <a href="/HTML/hojas_vida.html" class="btn cta-btn">saber más</a>
+                </div>
+                <div class="image-group pad-rig">
+                    <img src="IMG/img4.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="res-info">
+                <div class="imagen-4">
+                    <img src="IMG/Planificador.webp" alt="">
+                </div>
+                <div class="res-des pad-rig">
+                    <div class="global">
+                        <h1 class="head hea-dark">Planificadores de mantenimiento </h1>
+                    </div>
+                    <p>
+                        Con la ayuda de VITALTECH, las operaciones de mantenimiento biomedico pasaran a ser mas
+                        sencillas, potenciando los planes para mejorar la eficiencia y la precisión
+                    </p>
+                    <a href="/catalogo.html" class="btn cta-btn">saber más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="bg-primary text-white text-center py-4">
+    <div class="container">
+        <h4>Vitalsoft</h4>
+        <p>&copy; Soluciones biomedicas a la medida</p>
+        <div class="my-3 footer-social-icons">
+            <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+<script>
+    document.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) { // Ajusta el valor según sea necesario
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
         }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+</script>
 
-        let menuToggle = selectElement('.menu-toggle');
-        let body = selectElement('body');
 
-        menuToggle.addEventListener('click', function () {
-            body.classList.toggle('open');
-        })
-    </script> -->
+<!-- <script>
+    const selectElement = function(element) {
+        return document.querySelector(element);
+    }
+
+    let menuToggle = selectElement('.menu-toggle');
+    let body = selectElement('body');
+
+    menuToggle.addEventListener('click', function() {
+        body.classList.toggle('open');
+    })
+</script> -->
 
 </body>
 

@@ -36,8 +36,26 @@ class MantoCronoController extends BaseController
     //     //
     // }
 
+    public function verhojadevida()
+    {
+        // $hdvs = hojadevida::orderBy('id', 'desc')->get();
+        // $propiedads = Propiedad::all();
+        return view('hoja_ver');
+    }
 
+    public function listar_inventario()
+    {
+        // $hdvs = hojadevida::orderBy('id', 'desc')->get();
+        // $propiedads = Propiedad::all();
+        return view('inventario');
+    }
 
+    public function listar_alarma()
+    {
+        // $hdvs = hojadevida::orderBy('id', 'desc')->get();
+        // $propiedads = Propiedad::all();
+        return view('alarma_calibracion');
+    }
     public function propiedad(Request $request)
     {
         $query = hojadevida::query(); // Consulta base sin relaciones innecesarias

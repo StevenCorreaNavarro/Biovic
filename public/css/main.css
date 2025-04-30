@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    max-width: 100%;
-}
 
 html {
     font-family: 'Open Sans', sans-serif;
@@ -202,8 +195,15 @@ h1{
 }
 
 /* Si prefieres aplicar el margen directamente al enlace */
-.nav-item.special-spacing .nav-link {
+.nav-item .special-spacing 
+.nav-link {
     margin-right: 2rem; /* Ajusta el valor según el espacio que necesites */
+}
+.nav-link{
+    margin: 0 6px 0 6px;
+    color: #ffffff;
+    
+    list-style: none;
 }
 
 .navbar .navbar-brander{
@@ -220,6 +220,60 @@ h1{
     padding: 0%;
     font-size: 300%;
     text-decoration: none;
+}
+.nav-link{
+    margin: 0 6px 0 6px;
+    color: #ffffff;
+    
+    list-style: none;
+}
+
+
+.dropdown-menu {
+    /* background: linear-gradient(45deg, #0062E6, #33AEFF); */
+    /* color: white; */
+    border: 1px solid rgba(0, 0, 0, 0.125); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.444); 
+    border-radius:   10px  ;
+    /* padding: -4rem; Ajusta el padding alrededor de los elementos del menú */
+    /*max-width: 14rem;  Ajusta el ancho mínimo del menú desplegable */
+    /* margin-left: -4rem;*/
+    
+
+   
+  
+}
+.po{
+    padding-bottom:9px;
+
+    transform: scale(1.1);
+    /* box-shadow: 0px -8px 8px 0px rgba(0, 0, 0, 0.2);  */
+    
+    /* padding-bot
+    hitom: 25px; */
+    color: #ffffff;
+    /* text-transform: uppercase; */
+    /* box-decoration-break: clone; */
+     border-radius: 10px 10px 0 0;
+    /* background-color: rgb(255, 255, 255); */
+    
+    background: linear-gradient( rgba(226, 232, 255, 0), #0047a4bb);
+    /* text-shadow: #ffffff; */
+    /* text-decoration: solid; */
+}
+
+.dropdown-item {
+    color: #ffffff; 
+    /* padding: 8px 16px;  */
+    text-decoration: none;
+    display: block; 
+    width: 100% !important;
+}
+
+
+.dropdown-item:hover{
+    background-color: #0064e6bb; 
+    color: #ffffff; 
 }
 
 a {

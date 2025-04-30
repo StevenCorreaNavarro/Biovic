@@ -126,19 +126,20 @@ label{
 }
 
 .po{
-    padding-bottom:10px;
+    padding-bottom:9px;
 
     transform: scale(1.1);
+    /* box-shadow: 0px -8px 8px 0px rgba(0, 0, 0, 0.2);  */
     
     /* padding-bot
     hitom: 25px; */
     color: #ffffff;
     /* text-transform: uppercase; */
     /* box-decoration-break: clone; */
-     border-radius: 15px 15px 0 0;
+     border-radius: 10px 10px 0 0;
     /* background-color: rgb(255, 255, 255); */
     
-    background: linear-gradient( rgba(4, 15, 58, 0), rgba(5, 5, 73, 0.644), rgba(14, 3, 111, 0));
+    background: linear-gradient( rgba(226, 232, 255, 0), #0047a4bb);
     /* text-shadow: #ffffff; */
     /* text-decoration: solid; */
 }
@@ -191,46 +192,47 @@ nav > a {
 
 /* Estilo general para el menú desplegable */
 
-
-/* Opcional: Ajusta el padding y margen de los elementos del menú */
+/* 
+/* Opcional: Ajusta el padding y margen de los elementos del menú 
 .navbar .dropdown-menu .dropdown-item {
-    padding: 0.4rem 1.25rem; /* Ajusta el padding de los elementos del menú */
-    font-size: 1rem; /* Ajusta el tamaño de la fuente de los elementos del menú */
-}
+    padding: 0.4rem 1.25rem; /* Ajusta el padding de los elementos del menú 
+    font-size: 1rem; /* Ajusta el tamaño de la fuente de los elementos del menú 
+} */
 
 /* Opcional: Estilo para el separador en el menú desplegable */
-.navbar .dropdown-menu .dropdown-divider {
-    margin: 0.3rem 0; /* Ajusta el margen superior e inferior del separador */
-    margin-left: 3rem;
 
-
-}
 
 .dropdown-menu {
-    background-color: #fff; 
+    background: linear-gradient(45deg, #0062E6, #33AEFF);
+    color: white;
     border: 1px solid rgba(0, 0, 0, 0.125); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-    padding: -4rem; /* Ajusta el padding alrededor de los elementos del menú */
-    max-width: 14rem; /* Ajusta el ancho mínimo del menú desplegable */
-    margin-left: -4rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.444); 
+    border-radius:   10px  ;
+    /* padding: -4rem; Ajusta el padding alrededor de los elementos del menú */
+    /*max-width: 14rem;  Ajusta el ancho mínimo del menú desplegable */
+    /* margin-left: -4rem;*/
+    
+
+   
   
 }
 
 
 .dropdown-item {
-    color: #333; 
-    padding: 8px 16px; 
+    color: #ffffff; 
+    /* padding: 8px 16px;  */
     text-decoration: none;
     display: block; 
+    width: 100% !important;
 }
 
 
-.dropdown-item:hover {
-    background-color: #f8f9fa; 
-    color: #007bff; 
+.dropdown-item:hover{
+    background-color: #0064e6bb; 
+    color: #ffffff; 
 }
 .dropdown-divider {
-    border-top: 1px solid rgba(0, 0, 0, 0.125); 
+    border-top: 1px solid rgba(255, 255, 255, 0.331); 
 }
 
 
@@ -266,9 +268,7 @@ header .textos-header {
     width: 10%;
 }
 
-.dropdown-menu {
-    min-width: 200px; /* Ancho mínimo del menú desplegable */
-}
+
 
 form .formu{
     box-shadow: 0 0 20px rgba(58, 58, 58, 0.315);

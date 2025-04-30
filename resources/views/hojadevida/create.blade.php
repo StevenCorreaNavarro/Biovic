@@ -51,7 +51,7 @@
             {{-- Inicio descripcion --}}
             <div style="background-color: rgb(255, 255, 255)" class="row g-2 needs-validation formu p-5">
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
-                    <h1 class="text-white" style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                    <h1 class="text-white" style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
                     </h1>
                     <div class="row g-0 needs-validation border border-dark-subtle py-3"
@@ -380,7 +380,7 @@
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation mb-4  formu p-5">
                     {{--  Seleccion Fondo Blan --}}
                     <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Registro
                         historico
                     </h1>
@@ -570,7 +570,7 @@
                 {{-- INICIO REGISTRO TECNICO --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Registro tecnico
                     </h1>
 
@@ -865,7 +865,7 @@
 
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Accesorios
                     </h1>
 
@@ -984,7 +984,7 @@
                     {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
                     <div class="container-fluid my-4">
                         <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                            <h1 class="text-white text-center py-2 rounded" style="background-color: black;">
+                            <h1 class="text-white text-center py-2 rounded" style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
                                 Datos del fabricante y proveedor
                             </h1>
 
@@ -1130,7 +1130,7 @@
 
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Recomendaciones
                     </h1>
                     <div class="col-md-12 position-relative">
@@ -1146,7 +1146,7 @@
                 {{--  SOPORTES --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4 formu p-5">
                     <h1 class="text-white"
-                        style="background-color: rgb(0, 0, 0); margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Soportes Legales
                     </h1>
                     {{-- Soporte de Factura --}}
@@ -1222,15 +1222,15 @@
 
 
                 {{-- ACCION DE GUARDAR  --}}
-                <div class="d-flex gap-4 col-4 mx-auto">
-                    <button style="width: 200px" type="button" class="btn btn-primary w-10" data-bs-toggle="modal"
+                <div class="d-flex gap-3 col-3 mx-auto">
+                    <button style="width: 500px" type="button" class="btn btn-primary w-10" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Guardar
                     </button>
                     {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
-                    <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
+                    {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
 
-                    </button>
+                    </button> --}}
                   
                 </div>
 

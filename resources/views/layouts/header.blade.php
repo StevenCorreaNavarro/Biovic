@@ -19,8 +19,8 @@
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- styles tw --}}
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    {{-- <link rel="stylesheet" href="css/header.css"> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -76,12 +76,59 @@
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
                                 href="{{ route('menu') }}">Menu</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
-                                href="{{ route('hoja_vida') }}">Hojas de Vida</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
-                                href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a></li>
-                        <li><a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} "
-                                href="{{ route('soporte') }}">Soporte Técnico</a></li>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
+                                href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hojas de Vida
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if ((Auth::check() && Auth::user()->role === 'admin') || Auth::user()->role === 'empleado')
+                                    <li><a class="dropdown-item " href="{{ asset('hojadevida/create') }}">Generar hoja
+                                            de vida</a></li>
+                                    {{-- <div class="dropdown-divider"></div> --}}
+
+                                    <li><a class="dropdown-item" href="{{ asset('subir_soporte') }}">Subir soporte</a>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
+                                            vida</a></li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Ver hojas de vida</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- <li> --}}
+                            {{-- <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
+                                href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a> --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs(['mantocrono.*', 'alarma', 'check_list.*', 'cronocali.*', 'inventario']) ? 'po' : '' }}"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestión de Mantenimiento
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ asset('manto_crono/propiedad') }}">Cronograma de
+                                        Mantenimiento</a></li>
+                                {{-- <li><hr class="dropdown-divider"></li> --}}
+                                <li><a class="dropdown-item" href="{{ asset('crono_cali/propiedad') }}">Cronograma de
+                                        Calibracion</a></li>
+                                <li><a class="dropdown-item" href="{{ asset('check_list/propiedad') }}">Lista de
+                                        verificacion</a></li>
+                                <li><a class="dropdown-item" href="{{ asset('alarma_calibracion') }}">Alarmas</a></li>
+
+
+
+                                <li><a class="dropdown-item" href="{{ asset('inventario') }}">Inventario fisico</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- </li> --}}
+                        <li>
+                            <a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} "
+                                href="{{ route('soporte') }}">Soporte Técnico
+                            </a>
+                        </li>
                         @if (Auth::check() && Auth::user()->role === 'admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
@@ -141,7 +188,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end my-2" aria-labelledby="navbarDropdown">
                                     <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
 
                                     <div class="dropdown-divider"></div>
