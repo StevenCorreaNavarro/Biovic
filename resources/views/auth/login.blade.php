@@ -1,3 +1,6 @@
+<head>
+<link rel="icon" type="image/x-icon" href="IMG/logo.png">
+</head>
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
