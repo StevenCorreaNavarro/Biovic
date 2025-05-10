@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="{{ asset('IMG/logo.png') }}">
     <title>Generar hoja de vida</title>
-  
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/path/to/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-  
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,9 +50,11 @@
             </div>
 
             {{-- Inicio descripcion --}}
-            <div style="background-color: rgb(255, 255, 255)" class="row g-2 needs-validation formu p-5">
+            <div style="background-color: #e2e2e2;" class="row g-2 needs-validation formu p-5">
+                
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
-                    <h1 class="text-white" style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
                     </h1>
                     <div class="row g-0 needs-validation border border-dark-subtle py-3"
@@ -107,20 +109,20 @@
                     {{-- ESTADO --}}
                     {{--  Mostrar valores de `$estadoequipo` para depuración     
                         <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}}
-                        <div class="col-md-3 position-relative">
-                            <div class="form-group">
-                                <label for="estadoequipo_id">Estado del Equipo</label>
-                                <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
-                                    <option value="">Seleccione una opción</option>
-                                    @foreach ($estadoequipo as $estadoequi)
-                                        <option value="{{ $estadoequi->id }}"
-                                            {{ (isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id) || old('estadoequipo_id') == $estadoequi->id ? 'selected' : '' }}>
-                                            {{ $estadoequi->estadoequipo }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="estadoequipo_id">Estado del Equipo</label>
+                            <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($estadoequipo as $estadoequi)
+                                    <option value="{{ $estadoequi->id }}"
+                                        {{ (isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id) || old('estadoequipo_id') == $estadoequi->id ? 'selected' : '' }}>
+                                        {{ $estadoequi->estadoequipo }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
 
                     {{-- Ubicacion Fisica --}}
                     <div class="col-md-3 position-relative">
@@ -985,7 +987,8 @@
                     {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
                     <div class="container-fluid my-4">
                         <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                            <h1 class="text-white text-center py-2 rounded" style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
+                            <h1 class="text-white text-center py-2 rounded"
+                                style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
                                 Datos del fabricante y proveedor
                             </h1>
 
@@ -1232,13 +1235,13 @@
                     {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
 
                     </button> --}}
-                  
+
                 </div>
 
 
         </form>
     </main>
-    <br><br><br>
+
     <footer class="bg-primary text-white text-center py-4">
         <div class="container">
             <h4>VitalSoft</h4>

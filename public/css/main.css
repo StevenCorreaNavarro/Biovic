@@ -284,16 +284,24 @@ h1 {
 }
 
 
+
+
 .dropdown-menu {
+    font-size: 50rem;
+    /* Tamaño de fuente más grande */
+    padding: 1rem;
+    /* Espacio interno del menú */
+    min-width: 200px;
+    /* Ancho mínimo del menú desplegable */
     /* background: linear-gradient(45deg, #0062E6, #33AEFF); */
     /* color: white; */
     border: 1px solid rgba(0, 0, 0, 0.125);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.444);
     border-radius: 10px;
-    /* padding: -4rem; Ajusta el padding alrededor de los elementos del menú */
+    /* padding: 24rem; Ajusta el padding alrededor de los elementos del menú */
     /*max-width: 14rem;  Ajusta el ancho mínimo del menú desplegable */
     /* margin-left: -4rem;*/
-
+    
 
 
 
@@ -407,15 +415,18 @@ h4 {
     /* text-decoration: solid; */
 }
 
+
+
 .dropdown-item {
-    color: #ffffff;
-    /* padding: 8px 16px;  */
+    /* color: #ffffff; */
+    padding: 8px 16px; 
     text-decoration: none;
     display: block;
     width: 100% !important;
+    font-size: 1.5rem;
+    padding: 0.75rem 1.25rem;
+   
 }
-
-
 .dropdown-item:hover {
     background-color: #0064e6bb;
     color: #ffffff;
@@ -469,29 +480,7 @@ nav>a {
 
 }
 
-/* Estilo para el menú desplegable */
-.dropdown-menu {
-    font-size: 50rem;
-    /* Tamaño de fuente más grande */
-    padding: 1rem;
-    /* Espacio interno del menú */
-    min-width: 200px;
-    /* Ancho mínimo del menú desplegable */
-}
 
-/* Estilo para los elementos del menú */
-.dropdown-item {
-    padding: 0.75rem 1.25rem;
-    /* Espacio interno de cada elemento del menú */
-    font-size: 1.5rem;
-    /* Tamaño de fuente más grande en cada elemento */
-}
-
-/* Opcional: Estilo para el separador en el menú */
-.dropdown-divider {
-    margin: 0.5rem 0;
-    /* Margen alrededor del separador */
-}
 
 
 

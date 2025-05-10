@@ -70,6 +70,7 @@
 
                                         <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
                                                 vida</a></li>
+                                                
                                     @endif
                                     <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de vida</a>
                                     </li>
@@ -385,8 +386,8 @@
                 </div>
             </div>
         </section>
-        <hr>
-        <section class="about-services">
+       
+        <section class="about-services" style="background-color: #e2e2e2;">
             <div class="contenedor">
 
                 <div class="servicio-cont">
