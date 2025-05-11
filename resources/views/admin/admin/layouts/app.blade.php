@@ -132,7 +132,7 @@
                                                 style="width: 100%; height: auto; position: relative; "> --}}
                                             <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                 alt="Foto de perfil"
-                                                style="  width: auto; height: 100%; position: relative; ">
+                                                style=" width: 100%; height: auto; position: relative; ">
                                         </div>
                                     @else
                                       <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
@@ -151,7 +151,7 @@
                                                         style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
                                                         <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                             alt="Foto de perfil"
-                                                            style="  width: 100%; height: 100%; position: relative; ">
+                                                            style="  width: 100%; height: auto; position: relative; ">
                                                     </div>
                                                 @else
                                                     <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
@@ -222,7 +222,7 @@
                                 <div
                                     style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
                                     <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                                        style="  width: auto;  height: 100%; position: relative; ">
+                                        style="  width: 100%; height: auto; position: relative; ">
                                 </div>
                             @else
                                  <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
