@@ -81,20 +81,24 @@
 
                         </li>
                         <li class="nav-item dropdown hidden-caret">
-                            <a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}" href="{{ route('menu') }}">Menu</a>
+                            <a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
+                                href="{{ route('menu') }}">Menu</a>
 
                         </li>
                         <li class="nav-item dropdown hidden-caret">
 
-                            <a class="nav-link {{ request()->routeIs(['hoja_vida','hojadevida.*']) ? 'po' : '' }}" href="{{ route('hoja_vida') }}">Hojas de Vida</a>
+                            <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
+                                href="{{ route('hoja_vida') }}">Hojas de Vida</a>
                         </li>
                         <li class="nav-item dropdown hidden-caret">
 
-                            <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}" href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a>
+                            <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
+                                href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a>
                         </li>
 
                         <li class="nav-item dropdown hidden-caret">
-                            <a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} " href="{{ route('soporte') }}">Soporte Técnico</a>
+                            <a class="nav-link {{ request()->routeIs(['soporte']) ? 'po' : '' }} "
+                                href="{{ route('soporte') }}">Soporte Técnico</a>
 
                         </li>
                         <li class="nav-item dropdown hidden-caret">
@@ -118,17 +122,49 @@
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
-                                        class="avatar-img rounded-circle">
+                                    @if (Auth::check() && Auth::user()->foto)
+                                        <div
+                                            style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                alt="Foto de perfil"
+                                                style="width: 100%; height: auto; position: relative; "> --}}
+                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                                style="width: 100%; height: auto; position: relative; "> --}}
+                                            <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                alt="Foto de perfil"
+                                                style="  width: auto; height: 100%; position: relative; ">
+                                        </div>
+                                    @else
+                                      <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                                class="avatar-img rounded-circle">
+                                    @endif
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <div class="dropdown-user-scroll scrollbar-outer">
                                     <li>
                                         <div class="user-box">
-                                            <div class="avatar-lg"><img
-                                                    src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
-                                                    class="avatar-img rounded-circle">
+                                            <div class="avatar-lg">
+
+                                                @if (Auth::check() && Auth::user()->foto)
+                                                    <div
+                                                        style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                                        <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                            alt="Foto de perfil"
+                                                            style="  width: 100%; height: 100%; position: relative; ">
+                                                    </div>
+                                                @else
+                                                    <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                                class="avatar-img rounded-circle">
+                                                @endif
+
+
+
+
+
+                                                {{-- 
+                                                <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                                                    class="avatar-img rounded-circle"> --}}
                                             </div>
                                             <div class="u-text">
                                                 <h4>{{ Auth::user()->name }}</h4>
@@ -182,8 +218,16 @@
                 <div class="sidebar-content">
                     <div class="user">
                         <div class="avatar-sm float-left mr-2">
-                            <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
+                            @if (Auth::check() && Auth::user()->foto)
+                                <div
+                                    style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                        style="  width: auto;  height: 100%; position: relative; ">
+                                </div>
+                            @else
+                                 <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
                                 class="avatar-img rounded-circle">
+                            @endif
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -432,6 +476,38 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="nav-item {{ request()->routeIs('propiedad.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#propiedad">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Propiedad</p>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="collapse {{ request()->routeIs('propiedad.*') ? 'show' : '' }}"
+                                id="propiedad">
+                                <ul class="nav nav-collapse">
+                                    <li
+                                        class="{{ request()->routeIs(['propiedad.updateprop', 'propiedad.editpropiedad']) ? 'active' : '' }}">
+                                        <a>
+                                            <span class="sub-item">Actualizar</span>
+                                        </a>
+                                    </li>
+                                    {{-- <li
+                                        class="{{ request()->routeIs(['user.listaempleados', 'user.listaempleados']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listaempleados') }}">
+                                            <span class="sub-item">Lista empleados</span>
+                                        </a>
+                                    </li>
+
+                                    <li
+                                        class="{{ request()->routeIs(['user.listauseronly', 'user.listauseronly']) ? 'active' : '' }}">
+                                        <a href="{{ route('user.listauseronly') }}">
+                                            <span class="sub-item">Lista usuarios</span>
+                                        </a>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                        </li>
 
 
 
@@ -455,6 +531,7 @@ fas fa-clipboard-list"></i>
                                             <span class="sub-item">Lista usuarios</span>
                                         </a>
                                     </li>
+
                                     {{-- <div class="collapse {{ request()->routeIs('user.*') ? 'show' : '' }}"
                             id="usuarios">
                             <ul class="nav nav-collapse">
@@ -466,7 +543,7 @@ fas fa-clipboard-list"></i>
                                             <span class="sub-item"></span>
                                         </a>
                                     </li> --}}
-                                    <li>
+                                    {{-- <li>
                                         <a href="components/gridsystem.html">
                                             <span class="sub-item">Grid System</span>
                                         </a>
@@ -505,7 +582,7 @@ fas fa-clipboard-list"></i>
                                         <a href="components/typography.html">
                                             <span class="sub-item">Typography</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </li>

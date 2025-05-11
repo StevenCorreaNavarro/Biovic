@@ -100,8 +100,9 @@ label {
     /* padding: 0%;
     box-sizing: border-box; */
     justify-content: center;
-    /* align-items: center; */
     align-content: center;
+    /* align-items: center; */
+    
     background: linear-gradient(45deg, #0062E6, #33AEFF);
     /* background: linear-gradient(45deg, #0062E6, #33AEFF); */
     /* background: #7169dd; */
@@ -110,6 +111,7 @@ label {
     background-size: cover;
     background-attachment: fixed;
     position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;

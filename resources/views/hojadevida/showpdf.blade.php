@@ -57,7 +57,7 @@
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr style=" background-color:rgb(0, 64, 255); overflow: hidden;  padding: 0px;">
                 <td rowspan="3"
-                    style=" background-color: rgb(0, 64, 255); border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
+                    style=" background-color: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
                         margin: 0px;">
                     <img src="{{ $hdvs->propiedad?->foto ? asset('storage/' . $hdvs->propiedad->foto) : asset('IMG/logotipohancho.png') }}"
                         style="width:auto;  height: 90px;padding: 0px;
@@ -69,16 +69,17 @@
                     <h4 style="padding:0%;margin:0;  color:white">HOJA DE VIDA EQUIPO MÉDICO</h4>
                 </td>
                 <td rowspan="3"
-                    style=" background-color:rgb(0, 64, 255);border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
+                    style=" background-color:rgb(0, 0, 0);border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
                         margin: 0px;">
                     {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" height="100px"> --}}
-                    <img src="{{ asset('IMG/logotipohancho.png') }}"  style="width:auto;  height: 90px;padding: 0px;
+                    <img src="{{ asset('IMG/logotipohancho.png') }}"
+                        style="width:auto;  height: 90px;padding: 0px;
                         margin: 0px;">
                     {{-- <span class="user-level
                 </td>
 
                 {{-- NO BOOORRAAAAAAAAAAAAAAAARRR NI POR EL PTAS --}}
-                {{-- @if (Auth::check() && Auth::user()->foto)
+                    {{-- @if (Auth::check() && Auth::user()->foto)
                     <td rowspan="3"
                         style=" background-color:rgb(0, 64, 255);border: 1px solid rgb(0, 0, 0); text-align: center;"
                         width="200">

@@ -197,7 +197,7 @@
                                             {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                                                 style="width: 100%; height: auto; position: relative; "> --}}
                                             <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                                                style="  width: 100%; height: auto; position: relative; ">
+                                                style="  width: auto; height: 100%; position: relative; ">
                                         </div>
                                     @else
                                         {{ Auth::user()->name }}
