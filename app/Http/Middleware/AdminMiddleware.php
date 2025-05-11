@@ -10,7 +10,7 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if ($request->user() && $request->user()->role !== 'admin' ) {
+        if ($request->user() && $request->user()->role !== 'Admin' ) {
             return redirect('/'); // Redireccionar a la página principal o a una página de acceso denegado
         }
     

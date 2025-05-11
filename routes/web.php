@@ -43,7 +43,7 @@ Route::post('hojadevida/actualizar-meses', [HojadevidaController::class, 'actual
 
 Route::get('/hojadevida/resultado_lista', [HojadevidaController::class, 'busqueda'])->name('busqueda');
 //###################################################################################################### GRUPO RUTAS PARA ADMIN Y EMPLEADOS
-Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
+Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create', [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
@@ -54,7 +54,7 @@ Route::middleware(['auth', 'role:admin,empleado'])->group(function () {
 
 
 //######################################################################################################## GRUPOS RUTAS ADMINISTRADOR COMIENZO
-Route::middleware(['auth', 'admin'])->group(function () { 
+Route::middleware(['auth', 'Admin'])->group(function () { 
     Route::get('/admin', function () {
         return view('admin.admin.layouts.app');
     })->name('adminad.dashboard');

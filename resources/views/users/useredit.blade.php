@@ -59,23 +59,23 @@
 
                 <div class="col-md-12 position-relative">
                     <div class="form-group">
-                        @if (Auth::check() && Auth::user()->role === 'admin')
+                        @if (Auth::check() && Auth::user()->role === 'Admin')
                             <label for="role" class="form-label">
-                                <span>Rol (user, empleado, admin)</span>
+                                <span>Rol (User, Empleado, Admin)</span>
                                 <br>
                                 {{-- <input class="form-control" type="text" name="role"
                                     value="{{ old('role', $user->role) }}"> --}}
                                 <select name="role" id="role" class="form-control" required>
                                     <option value="{{ old('role', $user->role) }}">{{ Auth::user()->role }}</option>
                                     <br>
-                                    <option value="user">User</option>
-                                    <option value="empleado">Empleado</option>
-                                    <option value="admin">Admin</option>
+                                    <option value="User">User</option>
+                                    <option value="Empleado">Empleado</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
                             </label>
                         @else
                             <label for="role" class="form-label">
-                                <span>Rol (user, empleado, admin)</span>
+                                <span>Rol (User, Empleado, Admin)</span>
                                 <br>
                                 {{-- <input class="form-control" type="text" name="role"
                                     value="{{ old('role', $user->role) }}"> --}}

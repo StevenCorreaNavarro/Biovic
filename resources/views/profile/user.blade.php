@@ -47,6 +47,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+    <style>
+        .form-containers {
+    width: 540px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    text-align: center;
+}
+    </style>
 </head>
 @extends('layouts.header')
 <!--
@@ -65,13 +76,13 @@
                 </form>
             </div> -->
 <main>
-    <div class="form-container">
+    <div class="form-containers">
 
         <center>
             <div class="cajon" id="formulario" action="{{ route('hojadevida.listar') }}">
                 @if (Auth::check() && Auth::user()->foto)
                     <div
-                        style=" position: relative;  width: 200px;  height: 200px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
+                        style=" position: relative;  width: 150px;  height: 150px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                             style=" width: 100%; height: 100%; object-fit: cover; "><br>
 
@@ -87,14 +98,14 @@
         <br>
 
          {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
-        <span class="user-level"><h6>Correo electronico:</h6> {{ Auth::user()->email }}</span><br>
+        <span class="user-level">Correo electronico:  {{ Auth::user()->email }}</span><br>
      
-        <span class="user-level">Rol: {{ Auth::user()->role }}</span><br>
-        <span class="user-level">Identificacion: {{ Auth::user()->identity }}</span><br>
-        <span class="user-level">Contacto: {{ Auth::user()->contact }}</span><br>
-        <span class="user-level">Direccion: {{ Auth::user()->adress }}</span><br>
-        <span class="user-level">Profesion: {{ Auth::user()->profession }}</span><br>
-        <span class="user-level">Cargo: {{ Auth::user()->post }}</span><br> <br>
+        <span class="user-level">Rol:  {{ Auth::user()->role }}</span><br>
+        <span class="user-level">Identificacion:  {{ Auth::user()->identity }}</span><br>
+        <span class="user-level">Contacto:  {{ Auth::user()->contact }}</span><br>
+        <span class="user-level">Direccion:  {{ Auth::user()->adress }}</span><br>
+        <span class="user-level">Profesion:  {{ Auth::user()->profession }}</span><br>
+        <span class="user-level">Cargo:  {{ Auth::user()->post }}</span><br> <br>
         <a href="{{ route('user.editusers', ['user' => Auth::id()]) }}" class="btn btn-primary">
            <i class="bi bi-pencil-square"></i>
         </a>
