@@ -48,11 +48,12 @@
 
                             <label class="form-label">
                                 <span>Imagen</span>
-                                <br><center>
+                                <br>
+                                <center>
                                     <img id="preview" class="img-thumbnail m-2 img-fluid mt-3 items-center" width="120"
-                                    style="display: none;" alt="Vista previa">
+                                        style="display: none;" alt="Vista previa">
                                 </center>
-                                
+
                                 <input type="file" name="foto" id="foto"
                                     class="form-control @error('foto') is-invalid @enderror" accept="image/*"
                                     onchange="previewImage(event)">
@@ -66,7 +67,7 @@
                     </div>
 
 
-                    <div class="col-md-12 position-relative">
+                    {{-- <div class="col-md-12 position-relative">
                         <div class="form-group">
                             <label class="form-label">
                                 <span>Rol (user, empleado, admin)</span>
@@ -75,7 +76,28 @@
                                     value="{{ old('role', $user->role) }}">
                             </label>
                         </div>
+                    </div> --}}
+                    <div class="col-md-12 position-relative">
+                        <div class="form-group">
+                            @if (Auth::check() && Auth::user()->role === 'admin')
+                                <label for="role" class="form-label">
+                                    <span>Rol (user, empleado, admin)</span>
+                                    <br>
+                                    {{-- <input class="form-control" type="text" name="role"
+                                    value="{{ old('role', $user->role) }}"> --}}
+                                    <select name="role" id="role" class="form-control" required>
+                                        <option value="{{ old('role', $user->role) }}">{{ Auth::user()->role }}</option>
+                                        <br>
+                                        <option value="user">User</option>
+                                        <option value="empleado">Empleado</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </label>
+                           
+                            @endif
+                        </div>
                     </div>
+
 
                     <div class="col-md-12 position-relative">
                         <div class="form-group">

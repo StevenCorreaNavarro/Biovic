@@ -28,7 +28,7 @@ use App\Models\magVel;
 use App\Models\accesorio;
 use App\Models\fabricante;
 use App\Models\proveedor;
-
+use App\Models\user;
 
 
 use App\Models\hojadevida;
@@ -167,6 +167,11 @@ class HojadevidaController extends Controller
 
         // 3. enviar los datos a la vista
         return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios','fabricantes','proveedores')); // pasar las variables  a la vista
+    }
+    public function edituser(User $user)
+    {
+
+        return view('users.useredit', compact('user'));
     }
     // public function create()
     // {
@@ -440,9 +445,24 @@ class HojadevidaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, hojadevida $hojadevida)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->identity = $request->identity;
+        // $user->foto = $request->foto;
+        if ($request->hasFile('foto')) {
+            $user->foto = $request->file('foto')->store('public/fotos');
+            $user->foto = str_replace('public/', '', $user->foto); // Eliminar 'public/' para la BD
+        }
+        $user->contact = $request->contact;
+        $user->adress = $request->adress;
+        $user->profession = $request->profession;
+        $user->post = $request->post;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('profile.edit');
     }
 
     /**

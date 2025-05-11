@@ -110,6 +110,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //#################################################################################################### comienzo INGRESO USUARIO NORMAL
 Route::middleware('auth')->group(function () {
+    
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo esta parte es para llenar equipos->modelo->marca
     Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {
         return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
@@ -134,8 +135,8 @@ Route::middleware('auth')->group(function () {
     //####################################################################### DESCARGAR PDF
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
-
-
+ Route::put('/user/{user}', [HojadevidaController::class, 'update'])->name('user.updateusers');
+ Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
 
     Route::get('hojadevida/listar', [HojadevidaController::class, 'listar'])->name('hojadevida.listar');
     Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
@@ -225,7 +226,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [ProfileController::class, 'ver'])->name('profile.edit');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profiless', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profilesss', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
