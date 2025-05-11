@@ -95,12 +95,13 @@
                                     <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
                                             vida</a></li>
                                 @endif
-                                <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de vida</a>
+                                <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de
+                                        vida</a>
                                 </li>
                             </ul>
                         </li>
                         {{-- <li> --}}
-                            {{-- <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
+                        {{-- <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
                                 href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs(['mantocrono.*', 'alarma', 'check_list.*', 'cronocali.*', 'inventario']) ? 'po' : '' }}"
@@ -180,19 +181,55 @@
                         @else
                             {{-- despliegue --}}
                             {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-                            <ul class="nav-item dropdown">
+                            <ul class="nav-item dropdown d-flex">
                                 <a id="navbarDropdown"
                                     style=" justify-content: center; align-content:center; padding-right:2rem; "
-                                    class="nav-link dropdown-toggle button" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    class="nav-link  button" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" v-pre>
+
+
+                                    @if (Auth::check() && Auth::user()->foto)
+                                        <div
+                                            style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                alt="Foto de perfil"
+                                                style="width: 100%; height: auto; position: relative; "> --}}
+                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                                style="width: 100%; height: auto; position: relative; "> --}}
+                                            <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                                style="  width: 100%; height: auto; position: relative; ">
+                                        </div>
+                                    @else
+                                        {{ Auth::user()->name }}
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end my-2" aria-labelledby="navbarDropdown">
-                                    <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+
+
+
+
+                                    @if (Auth::check() && Auth::user()->foto)
+                                        <a class="dropdown-item " href="{{ asset('perfil') }}">
+                                            {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                    alt="Foto de perfil"
+                                                    style="width: 100%; height: auto; position: relative; ">
+                                                
+                                            </div> --}}
+                                            {{-- <div> 
+                                                {{ Auth::user()->name }}
+                                            </div> --}}
+{{ Auth::user()->name }}
+                                        </a>
+                                    @else
+                                        <a href="{{ asset('perfil') }}"
+                                            class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+                                    @endif
+
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item " href="#">Mi Perfil</a>
+                                    <a class="dropdown-item " href="{{ asset('perfil') }}">Mi Perfil</a>
                                     <a class="dropdown-item" href="#">Notificaciones</a>
                                     <a class="dropdown-item" href="#">Favoritos</a>
                                     <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>

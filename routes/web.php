@@ -93,6 +93,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/{user}', [PanelAdminController::class, 'update'])->name('user.updateuser');
     Route::get('/admin/{user}/edit', [PanelAdminController::class, 'edituser'])->name('user.edituser');
 
+    Route::put('/admin/prop/{prop}', [PanelAdminController::class, 'updateprop'])->name('propiedad.updateprop');
+    Route::get('/admin/prop/{prop}/edit', [PanelAdminController::class, 'editpropiedad'])->name('propiedad.editpropiedad');
+
     // Route::get('tiendas_oficiales',[UnitController::class,'listar'])->name('unit.listar');  
     // Route::get('unidad/create',[UnitController::class,'create'])->name('unit.create');
     // Route::post('unidad/store', [UnitController::class,'store'])->name('unit.store');
@@ -131,8 +134,10 @@ Route::middleware('auth')->group(function () {
     //####################################################################### DESCARGAR PDF
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
+
+
+    
     Route::get('hojadevida/listar', [HojadevidaController::class, 'listar'])->name('hojadevida.listar');
-   
     Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
     Route::delete('/hojadevida/{dato}', [HojadevidaController::class, 'destroy'])->name('hojadevida.stores');
     Route::get('hojadevida/{hdv}', [HojadevidaController::class, 'show'])->name('hojadevida.show');
@@ -219,9 +224,10 @@ Route::middleware('auth')->group(function () {
  //########################################################################################fin ingresar primero para navegar FIN USUARIO NORMAL
 
 Route::middleware('auth')->group(function () {
+    Route::get('/perfil', [ProfileController::class, 'ver'])->name('profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profiless', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profilesss', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/', function () {
     Alert::success(' Bienvenido!', 'Ingreso exitoso');

@@ -29,7 +29,7 @@ class PanelAdminController extends Controller
 {
 
 
-    
+
     // public function create()
     // {
     //     $equipos = Equipo::all();
@@ -104,7 +104,7 @@ class PanelAdminController extends Controller
     }
 
 
-    
+
     public function listauseronly()
     {
         $users = User::whereNotIn('role', ['admin', 'empleado'])->orderBy('id', 'desc')->get();
@@ -334,28 +334,45 @@ class PanelAdminController extends Controller
         $user->role = $request->role;
         $user->name = $request->name;
         $user->identity = $request->identity;
-        $user->foto = $request->foto;
+        // $user->foto = $request->foto;
+        if ($request->hasFile('foto')) {
+            $user->foto = $request->file('foto')->store('public/fotos');
+            $user->foto = str_replace('public/', '', $user->foto); // Eliminar 'public/' para la BD
+        }
         $user->contact = $request->contact;
         $user->adress = $request->adress;
         $user->profession = $request->profession;
         $user->post = $request->post;
         $user->email = $request->email;
-      
-        
         $user->save();
 
         return redirect()->route('user.listausers');
     }
-       //Update
-  
+    //Update
     public function edituser(User $user)
     {
+
         return view('users.edit', compact('user'));
-    
+    }
+
+    public function updateprop(Request $request, Propiedad $prop)
+    {
+        // $user->foto = $request->foto;
+        if ($request->hasFile('foto')) {
+            $prop->foto = $request->file('foto')->store('public/fotos');
+            $prop->foto = str_replace('public/', '', $prop->foto); // Eliminar 'public/' para la BD
+        }
+        $prop->save();
+        // return redirect()->route('user.listausers');
+    }
+    public function editpropiedad(Propiedad $prop)
+    {
+
+        return view('propiedad.edit', compact('prop'));
     }
 
 
-    
+
 
     public function destroy(hojadevida $hdv)
     {

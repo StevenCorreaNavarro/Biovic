@@ -1,0 +1,258 @@
+
+
+body {
+    font-family: 'open sans';
+}
+
+.contenedor {
+    padding: 60px 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.titulo {
+    color: #f6f5f7;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Header */
+
+
+
+.navbar {
+    background: #7169dd;
+    background: -webkit-linear-gradient(to right, hsla(236, 63%, 75%, 0.459), hsla(239, 65%, 36%, 0.664)), url(../IMG/fondo2.1.jpg);
+    background: linear-gradient(to right, hsla(234, 32%, 69%, 0.459), hsla(226, 53%, 48%, 0.664)), url(../IMG/fondo2.1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Ajusta el color y la opacidad según sea necesario */
+    opacity: 0.8;
+    /* Ajusta la opacidad */
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand,
+/* .navbar .dropdown-menu .dropdown-item, */
+.navbar .btn {
+    color: white !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+header h1 {
+    color: #f2f2f2;
+    margin-left: 5%;
+    margin-top: -2%;
+    text-decoration: none;
+}
+
+
+nav {
+    text-align: right;
+    padding: 30px 50px 0 0;
+}
+
+nav>a {
+    color: #fff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+nav>a:hover {
+    text-decoration: underline;
+}
+
+.textos-header h2 {
+    font-size: 30px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.imagen_portada {
+    padding-right: 34vw;
+    height: 10%;
+    width: 10%;
+
+
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+main {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    width: 440px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cajon label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cajon input[type="text"],
+.cajon input[type="date"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.cajon .boton {
+    width: 60%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cajon .boton:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+/* Footer */
+
+footer {
+    background: linear-gradient(45deg, #0062E6, #33AEFF);
+    color: white;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+footer .social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+footer .social-icons a:hover,
+footer .social-icons a:focus {
+    color: #ddd;
+}
+
+
+
+
+footer .social-icons a:hover {
+    color: #ddd;
+}
+
+footer .footer-links a {
+    color: white;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+footer .footer-links a:hover {
+    color: #ddd;
+}
+
+.news-input {
+    width: 100%;
+    max-width: 15rem;
+    padding: 1.2rem;
+    border-radius: 4rem;
+    object-position: left;
+    margin-top: -2%;
+}
+
+.news-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 2px .6rem;
+    margin-left: -1px;
+}
+
+.social-icons i.fa-x-twitter:hover,
+.social-icons i.fa-x-twitter:focus {
+    color: var(--twitter);
+}
+
+.social-icons i.fa-youtube:hover,
+.social-icons i.fa-youtube:focus {
+    color: var(--youtube);
+}
+
+.social-icons i.fa-linkedin-in:hover,
+.social-icons i.fa-linkedin-in:focus {
+    color: var(--linkedin);
+}
+
+.social-icons i:hover,
+.social-icons i:focus {
+    color: var(--instagram);
+}
+
+.social-icons i.fa-facebook-square:hover,
+.social-icons i.fa-facebook-square:focus {
+    color: var(--facebook);
+}
+
+:root {
+    --facebook: blue;
+    --twitter: #55acee;
+    --youtube: red;
+    --instagram: #e4405f;
+}

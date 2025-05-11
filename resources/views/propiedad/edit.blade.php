@@ -25,7 +25,7 @@
     @section('content')
         <main>
             <div class="form-container ">
-                <form action="{{ route('user.updateuser', $user) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('propiedad.updateprop', $prop) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <h1> Editar usuario</h1>
@@ -66,7 +66,7 @@
                     </div>
 
 
-                    <div class="col-md-12 position-relative">
+                    {{-- <div class="col-md-12 position-relative">
                         <div class="form-group">
                             <label class="form-label">
                                 <span>Rol (user, empleado, admin)</span>
@@ -89,11 +89,6 @@
                     </div>
 
 
-                    {{-- <label class="form-label">
-           
-            <br>
-            <input class="form-control" type="password" name="password" value="{{ old( $user->password) }}">
-                </label> --}}
 
                     <div class="col-md-12 position-relative">
                         <div class="form-group">
@@ -118,16 +113,7 @@
                             </label>
                         </div>
                     </div>
-                    {{-- <div class="col-md-12 position-relative">
-                    <div class="form-group">
-                        <label class="form-label">
-                            <span>Foto</span>
-                            <br>
-                            <input class="form-control" type="text" name="foto"
-                                value="{{ old('foto', $user->foto) }}">
-                        </label>
-                    </div>
-                </div> --}}
+                 
                     <div class="col-md-12 position-relative">
                         <div class="form-group">
                             <label class="form-label">
@@ -168,7 +154,7 @@
                                     value="{{ old('post', $user->post) }}">
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <button class="btn btn-primary" type="submit">Enviar Formulario:</button>
 

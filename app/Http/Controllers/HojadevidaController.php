@@ -83,6 +83,7 @@ class HojadevidaController extends Controller
         return $pdf->stream('documento.pdf');
     }
 
+
     public function listar(Request $request)
     {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();

@@ -54,7 +54,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
-                                            href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
+                                                href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
                                 <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Hojas de Vida
@@ -70,9 +70,9 @@
 
                                         <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
                                                 vida</a></li>
-                                                
                                     @endif
-                                    <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de vida</a>
+                                    <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de
+                                            vida</a>
                                     </li>
                                 </ul>
                             </li>
@@ -130,7 +130,24 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a href="profile" class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+
+                                @if (Auth::check() && Auth::user()->foto)
+                                    <a class="dropdown-item " href="{{ asset('perfil') }}">
+                                        {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                    alt="Foto de perfil"
+                                                    style="width: 100%; height: auto; position: relative; ">
+                                                
+                                            </div> --}}
+                                        {{-- <div> 
+                                                {{ Auth::user()->name }}
+                                            </div> --}}
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                @else
+                                    <a href="{{ asset('perfil') }}"
+                                        class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+                                @endif
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item " href="#">Mi Perfil</a>
@@ -315,19 +332,19 @@
                         </div>
                         <p>
                             Conecta con tu entorno, permite a tus empleados, proveedores y clientes, solicitar trabajos
-                        de
-                        mantenimiento a sus equipos biomedicos a través del portal de solicitudes
+                            de
+                            mantenimiento a sus equipos biomedicos a través del portal de solicitudes
                         </p>
                         <a href="mantenimiento_demosta" class="btn cta-btn">Saber más</a>
                     </div>
                 </div>
             </div>
         </section>
-<hr >       
+        <hr>
         <section>
             <div class="container ">
                 <div class="res-info">
-                   
+
                     <div class="res-des pad-rig tx">
                         <div class="global">
                             <h1 class="head hea-dark">Realiza tus ordenes de trabajo </h1>
@@ -365,7 +382,7 @@
                 </div>
             </div>
         </section> --}}
-     
+
 
         <section>
             <div class="container ">
@@ -386,7 +403,7 @@
                 </div>
             </div>
         </section>
-       
+
         <section class="about-services" style="background-color: #e2e2e2;">
             <div class="contenedor">
 
@@ -394,22 +411,26 @@
                     <div class="servicio-ind">
                         <img src="IMG/ilustracion1.svg" alt="Ilustración 1">
                         <a href="/HTML/hojas_vida.html" class="logo">HOJAS DE VIDA</a>
-                        <p>Ofrecemos programas personalizados de mantenimiento preventivo para garantizar la longevidad y el rendimiento óptimo de tus equipos biomédicos.</p>
+                        <p>Ofrecemos programas personalizados de mantenimiento preventivo para garantizar la longevidad
+                            y el rendimiento óptimo de tus equipos biomédicos.</p>
                     </div>
                     <div class="servicio-ind">
                         <img src="IMG/ilustracion2.svg" alt="Ilustración 2">
                         <a href="/HTML/mantenimiento.html" class="logo">GESTIÓN DE MANTENIMIENTO</a>
-                        <p>Nuestro equipo de expertos está capacitado para proporcionar asistencia técnica inmediata y resolver cualquier pregunta o preocupación que puedas tener.</p>
+                        <p>Nuestro equipo de expertos está capacitado para proporcionar asistencia técnica inmediata y
+                            resolver cualquier pregunta o preocupación que puedas tener.</p>
                     </div>
                     <div class="servicio-ind">
                         <img src="IMG/preventivo.svg" alt="Preventivo">
                         <a href="/HTML/soporte.html" class="logo">SOPORTE TÉCNICO</a>
-                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier problema que pueda surgir con tus equipos biomédicos.</p>
+                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier
+                            problema que pueda surgir con tus equipos biomédicos.</p>
                     </div>
                     <div class="servicio-ind">
                         <img src="IMG/20943761.jpg" alt="Preventivo">
                         <a href="/HTML/soporte.html" class="logo">CONFIGURACIÓN</a>
-                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier problema que pueda surgir con tus equipos biomédicos.</p>
+                        <p>Brindamos servicios rápidos y eficientes de mantenimiento correctivo para resolver cualquier
+                            problema que pueda surgir con tus equipos biomédicos.</p>
                     </div>
                 </div>
             </div>
