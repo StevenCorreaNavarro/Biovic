@@ -132,7 +132,7 @@
                                                 style="width: 100%; height: auto; position: relative; "> --}}
                                             <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                 alt="Foto de perfil"
-                                                style=" width: 100%; height: auto; position: relative; ">
+                                                style=" width: 100%; height: 100%; object-fit: cover; ">
                                         </div>
                                     @else
                                         <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."
@@ -148,7 +148,8 @@
                                             <div class="u-text">
                                                 <h4>{{ Auth::user()->name }}</h4>
                                                 <p class="text-muted">{{ Auth::user()->email }}</p><a
-                                                    {{-- href="{{ route('profile.home') }}"  --}} class="btn btn-xs btn-secondary btn-sm">ver
+                                                    href="{{ asset('perfil') }}"
+                                                    class="btn btn-xs btn-secondary btn-sm text-white">ver
                                                     perfil</a>
                                             </div>
                                         </div>
@@ -201,7 +202,7 @@
                                 <div
                                     style="  position: relative; width: 45px; height: 45px; overflow: hidden; border-radius: 50%;box-shadow: 0px 0px 4px 1px   #0001017e; ">
                                     <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                                        style="  width: 100%; height: auto; position: relative; ">
+                                        style="  width: 100%; height: 100%; object-fit: cover;">
                                 </div>
                             @else
                                 <img src="{{ asset('atlantis/assets/img/perfil.png') }}" alt="..."

@@ -73,7 +73,7 @@
                 <div
                     style=" position: relative;  width: 200px;  height: 200px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
                     <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                        style="  width:auto ; height: 260px;"><br>
+                        style=" width: 100%; height: 100%; object-fit: cover; "><br>
 
                 </div><br>
                 <h2 class=""> {{ Auth::user()->name }}</h2>
