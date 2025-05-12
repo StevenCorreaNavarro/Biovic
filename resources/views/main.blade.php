@@ -60,7 +60,7 @@
                                     Hojas de Vida
                                 </a>
                                 <ul class="dropdown-menu">
-                                    @if ((Auth::check() && Auth::user()->role === 'admin') || Auth::user()->role === 'empleado')
+                                    @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')
                                         <li><a class="dropdown-item " href="{{ asset('hojadevida/create') }}">Generar hoja
                                                 de vida</a></li>
                                         {{-- <div class="dropdown-divider"></div> --}}
@@ -99,7 +99,7 @@
                                     href="{{ route('soporte') }}">Soporte Técnico
                                 </a>
                             </li>
-                            @if (Auth::check() && Auth::user()->role === 'admin')
+                            @if (Auth::check() && Auth::user()->role === 'Admin')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
                                 </li>

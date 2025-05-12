@@ -98,7 +98,7 @@
         <br>
 
          {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
-        <span class="user-level">Correo electronico:  {{ Auth::user()->email }}</span><br>
+        <span class="user-level">E-mail:  {{ Auth::user()->email }}</span><br>
      
         <span class="user-level">Rol:  {{ Auth::user()->role }}</span><br>
         <span class="user-level">Identificacion:  {{ Auth::user()->identity }}</span><br>
