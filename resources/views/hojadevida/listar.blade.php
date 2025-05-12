@@ -36,7 +36,7 @@
 
         <h1>Lista hoja de vida</h1>
 
- @if(Auth::check() && Auth::user()->role === 'admin'|| Auth::user()->role === 'empleado')
+ @if(Auth::check() && Auth::user()->role === 'Admin'|| Auth::user()->role === 'Empleado')
         <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
             action="{{ route('hojadevida.listar') }}">
 
