@@ -71,8 +71,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"
-                        style=" --bs-scroll-height: 100px; margin-left: 1%; margin-right:1%">
+                    <ul class="navbar-nav  navbar-nav-scroll"
+                        style=" --bs-scroll-height: 800px;--bs-scroll-widht: 400px; margin-left: 0%; margin-right:1%">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
                                 href="{{ asset('/') }}">Menu</a></li>

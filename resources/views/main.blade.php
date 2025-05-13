@@ -34,7 +34,7 @@
 
 
     <header>
-        <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 10%;">
+        <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 5%;">
             <div class="container-fluid" style="margin: 0%;    padding: 0%;">
                 <a class="navbar-brander d-flex" href="main"
                     style="text-decoration: none;margin: 0%;    padding: 0%;">
@@ -54,7 +54,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
-                                                href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
+                                                        href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
                                 <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Hojas de Vida
@@ -110,67 +110,69 @@
                         <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
                     </li> -->
                     </ul>
-                </div>
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        {{-- <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a> --}}
-                        @guest
-                            @if (Route::has('login'))
+                    <ul class="navbar-nav my-0 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; padding-right: 0%;">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
-                            {{-- <button class="button"><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></button> --}}
-                        </li>
-                        @endif
-                    @else
-                        {{-- despliegue --}}
-                        {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle button" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            {{-- <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a> --}}
+                            @guest
+                                @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
+                                {{-- <button class="button"><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></button> --}}
+                            </li>
+                            @endif
+                        @else
+                            {{-- despliegue --}}
+                            {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle button" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                @if (Auth::check() && Auth::user()->foto)
-                                    <a class="dropdown-item " href="{{ asset('perfil') }}">
-                                        {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                                    @if (Auth::check() && Auth::user()->foto)
+                                        <a class="dropdown-item " href="{{ asset('perfil') }}">
+                                            {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                     alt="Foto de perfil"
                                                     style="width: 100%; height: auto; position: relative; ">
                                                 
                                             </div> --}}
-                                        {{-- <div> 
+                                            {{-- <div> 
                                                 {{ Auth::user()->name }}
                                             </div> --}}
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                @else
-                                    <a href="{{ asset('perfil') }}"
-                                        class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
-                                @endif
+                                            {{ Auth::user()->name }}
+                                        </a>
+                                    @else
+                                        <a href="{{ asset('perfil') }}"
+                                            class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
+                                    @endif
 
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item " href="#">Mi Perfil</a>
-                                <a class="dropdown-item" href="#">Notificaciones</a>
-                                <a class="dropdown-item" href="#">Favoritos</a>
-                                <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
-                                {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item " href="#">Mi Perfil</a>
+                                    <a class="dropdown-item" href="#">Notificaciones</a>
+                                    <a class="dropdown-item" href="#">Favoritos</a>
+                                    <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
+                                    {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
 
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
-                                <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
+                                    <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                    Cerrar sesión
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf</form>
-                            </div>
-                        </li>
+                                        Cerrar sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf</form>
+                                </div>
+                            </li>
+                    </div>
                 </div>
+
 
                 </li>
             @endguest
