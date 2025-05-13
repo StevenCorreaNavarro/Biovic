@@ -22,7 +22,7 @@ use App\Models\PanelAdmin;
 
 
 
- // guardado hoy 4 abril 11:11
+// guardado hoy 4 abril 11:11
 Route::get('main', function () {
     // Alert::success(' Titulo de la alerta','mensaje de la alerta');
     // toast('Ejemplo del toast')->success('ejemplo del tost');
@@ -40,21 +40,17 @@ Route::get('/empleados', function () {
     return view('empleips.form');
 })->name('empleados');
 Route::post('hojadevida/actualizar-meses', [HojadevidaController::class, 'actualizarMeses'])->name('actualizarMeses');
-
 Route::get('/hojadevida/resultado_lista', [HojadevidaController::class, 'busqueda'])->name('busqueda');
 //###################################################################################################### GRUPO RUTAS PARA ADMIN Y EMPLEADOS
 Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create', [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
-
-
-   
 });
 
 
 //######################################################################################################## GRUPOS RUTAS ADMINISTRADOR COMIENZO
-Route::middleware(['auth', 'Admin'])->group(function () { 
+Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.admin.layouts.app');
     })->name('adminad.dashboard');
@@ -66,7 +62,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('/admin/usuarios', [PanelAdminController::class, 'listausers'])->name('user.listausers');
     Route::get('/admin/empleados', [PanelAdminController::class, 'listausersempleados'])->name('user.listaempleados');
     Route::get('/admin/usuariosuni', [PanelAdminController::class, 'listauseronly'])->name('user.listauseronly');
-  
+
     Route::get('/admin/listar_marca', [PanelAdminController::class, 'listar_marca'])->name('adminlista.listar_dos');
     Route::get('/admin/listar_modelo', [PanelAdminController::class, 'listar_modelo'])->name('adminlista.listar_tres');
     Route::get('/admin/listar', [PanelAdminController::class, 'listar'])->name('adminlista.listar');
@@ -80,13 +76,13 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('/admin/create_dos', [PanelAdminController::class, 'create_dos'])->name('admin.create_dos');
     Route::get('/admin/create_tres', [PanelAdminController::class, 'create_tres'])->name('admin.create_tres');
 
-  Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
+    Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
     Route::post('/admin/store', [PanelAdminController::class, 'store'])->name('admin.store');
     Route::post('/admin/store_dos', [PanelAdminController::class, 'store_dos'])->name('admin.store_dos');
     Route::post('/admin/store_tres', [PanelAdminController::class, 'store_tres'])->name('admin.store_tres');
     Route::post('/admin/stores', [PanelAdminController::class, 'stores'])->name('admin.stores');
     Route::post('/admin/store_aso', [PanelAdminController::class, 'storeaso'])->name('adminaso.storeaso');
-  Route::delete('/admin/lista_registrada/{hdv}', [PanelAdminController::class, 'destroy'])->name('adminlistarR.destroy');
+    Route::delete('/admin/lista_registrada/{hdv}', [PanelAdminController::class, 'destroy'])->name('adminlistarR.destroy');
 
     Route::get('/marcas/{equipo_id}', [EquipoController::class, 'getMarcas']);
     Route::get('/modelos/{marca_id}', [EquipoController::class, 'getModelos']);
@@ -110,7 +106,8 @@ Route::middleware(['auth', 'Admin'])->group(function () {
 
 //#################################################################################################### comienzo INGRESO USUARIO NORMAL
 Route::middleware('auth')->group(function () {
-    
+    Route::get('/documento/{id}/ver', [ChecklistController::class, 'verPDF']);
+
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ comienzo esta parte es para llenar equipos->modelo->marca
     Route::get('/get-modelos/{equipo_id}', function ($equipo_id) {
         return response()->json(Modelo::where('equipo_id', $equipo_id)->get());
@@ -130,13 +127,13 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('empleips', EmpleipsController::class);
-   
+
 
     //####################################################################### DESCARGAR PDF
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
- Route::put('/user/{user}', [HojadevidaController::class, 'update'])->name('user.updateusers');
- Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
+    Route::put('/user/{user}', [HojadevidaController::class, 'update'])->name('user.updateusers');
+    Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
 
     Route::get('hojadevida/listar', [HojadevidaController::class, 'listar'])->name('hojadevida.listar');
     Route::post('/hojadevida/stores', [HojadevidaController::class, 'stores'])->name('hojadevida.stores');
@@ -160,7 +157,7 @@ Route::middleware('auth')->group(function () {
     Route::get('inventario', [MantoCronoController::class, 'listar_inventario'])->name('inventario');
 
     Route::get('verhojadevida', [MantoCronoController::class, 'verhojadevida'])->name('hoja_ver');
-    
+
     // Route::get('/manto_crono', function ()  {return view('manto_crono');});
 
     Route::get('/orden_trabajo', function () {
@@ -222,7 +219,7 @@ Route::middleware('auth')->group(function () {
         return view('admin.users.registro');
     })->middleware(['auth', 'verified'])->name('users.create');
 });
- //########################################################################################fin ingresar primero para navegar FIN USUARIO NORMAL
+//########################################################################################fin ingresar primero para navegar FIN USUARIO NORMAL
 
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [ProfileController::class, 'ver'])->name('profile.edit');

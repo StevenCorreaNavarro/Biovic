@@ -35,13 +35,24 @@ class CheckListController extends BaseController
     //     return view('empleips.index',$datosempleips);
     //     //
     // }
+    public function verPDF($id)
+    {
+        $documento = hojadevida::findOrFail($id);
 
+        $ruta = storage_path('app/public/' . $documento->archivo);
+
+        if (!file_exists($ruta)) {
+            abort(404, 'Archivo no encontrado');
+        }
+
+        return response()->file($ruta);
+    }
 
     public function propiedadchecklist(Request $request)
     {
         $query = hojadevida::query(); // Consulta base sin relaciones innecesarias
         $propiedades = Propiedad::all();
-        
+
         $hdvs = [];
         // Filtrar por el nombre si hay un término de búsqueda
         if ($request->has('search')) {
@@ -55,15 +66,15 @@ class CheckListController extends BaseController
             });
         }
         $hdvs = $query->orderBy('id', 'desc')->get();
-        return view('checklist', compact('hdvs','propiedades'));
+        return view('checklist', compact('hdvs', 'propiedades'));
     }
-//la tabla aparecera vacias y solo muestra  lo que buscas
+    //la tabla aparecera vacias y solo muestra  lo que buscas
     public function propiedadbuscarchecklist()
     {
-        $hdvs = hojadevida::whereRaw('0 = 1')->get(); 
+        $hdvs = hojadevida::whereRaw('0 = 1')->get();
         $propiedades = Propiedad::all();
         // $empleips = new Empleips();
-        return view('checklist', compact('hdvs','propiedades'));
+        return view('checklist', compact('hdvs', 'propiedades'));
     }
 
     public function listarchecklist()

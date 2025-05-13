@@ -127,7 +127,7 @@
                 <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); ">
                     @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
                         <center>
-                            <img style="" src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px"
+                            <img src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px"
                                 alt="145px">
                         </center>
                     @else
@@ -230,14 +230,11 @@
             <tr>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FUENTE DE ALIMENTACION
                 </td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">
-                    {{ $hdvs->magFuenAlimen?->nombrealimentacion ?? '---' }}</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->magFuenAlimen?->nombrealimentacion ?? '---' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">FRECUENCIA</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->frecuencia ?? '--' }} -
-                    {{ $hdvs->mag_fres?->abreviacionfrecuencia ?? '--' }}</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->frecuencia ?? '--' }} - {{ $hdvs->mag_fres?->abreviacionfrecuencia ?? '--' }}</td>
                 <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);">CAPACIDAD</td>
-                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->capacidad ?? '--' }} -
-                    {{ $hdvs->mag_capas?->abreviacioncapacidad ?? '--' }}</td>
+                <td style="width: 12%;border: 1px solid rgb(255, 255, 255);">{{ $hdvs->capacidad ?? '--' }} - {{ $hdvs->mag_capas?->abreviacioncapacidad ?? '--' }}</td>
             </tr>
             <tr class="f">
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VOLTAJE MAX</td>
@@ -407,14 +404,14 @@
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
-                    <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">RECOMENDACIONES</h4>
+                    <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255); ">RECOMENDACIONES</h4>
                 </th>
             </tr>
         </table>
         <table>
             <tr>
-                <td style="width: 20%;font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>
-                <td style="width: 80%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->recomendacion ?? '---' }}</td>
+                {{-- <td style="width: 100%;font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td> --}}
+                <td style="width: 100%;border: 1px solid rgb(255, 255, 255);"> {{ $hdvs->recomendaciones ?? '---' }}</td>
             </tr>
 
         </table>

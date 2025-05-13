@@ -49,14 +49,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <style>
         .form-containers {
-    width: 540px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    text-align: center;
-}
+            width: 540px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            text-align: center;
+        }
     </style>
 </head>
 @extends('layouts.header')
@@ -70,8 +70,6 @@
 
                     <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
                         href="{{ route('user.listausers') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
-
-    
             </a> --}}
                 </form>
             </div> -->
@@ -85,7 +83,6 @@
                         style=" position: relative;  width: 150px;  height: 150px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                             style=" width: 100%; height: 100%; object-fit: cover; "><br>
-
                     </div><br>
                     <h2 class=""> {{ Auth::user()->name }}</h2>
                 @else
@@ -97,20 +94,18 @@
 
         <br>
 
-         {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
-        <span class="user-level">E-mail:  {{ Auth::user()->email }}</span><br>
-     
-        <span class="user-level">Rol:  {{ Auth::user()->role }}</span><br>
-        <span class="user-level">Identificacion:  {{ Auth::user()->identity }}</span><br>
-        <span class="user-level">Contacto:  {{ Auth::user()->contact }}</span><br>
-        <span class="user-level">Direccion:  {{ Auth::user()->adress }}</span><br>
-        <span class="user-level">Profesion:  {{ Auth::user()->profession }}</span><br>
-        <span class="user-level">Cargo:  {{ Auth::user()->post }}</span><br> <br>
+        {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
+        <span class="user-level">E-mail: {{ Auth::user()->email }}</span><br>
+
+        <span class="user-level">Rol: {{ Auth::user()->role }}</span><br>
+        <span class="user-level">Identificacion: {{ Auth::user()->identity }}</span><br>
+        <span class="user-level">Contacto: {{ Auth::user()->contact }}</span><br>
+        <span class="user-level">Direccion: {{ Auth::user()->adress }}</span><br>
+        <span class="user-level">Profesion: {{ Auth::user()->profession }}</span><br>
+        <span class="user-level">Cargo: {{ Auth::user()->post }}</span><br> <br>
         <a href="{{ route('user.editusers', ['user' => Auth::id()]) }}" class="btn btn-primary">
-           <i class="bi bi-pencil-square"></i>
+            <i class="bi bi-pencil-square"></i>
         </a>
-
-
     </div>
 
 </main>

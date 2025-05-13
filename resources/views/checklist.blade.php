@@ -19,19 +19,14 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: small;
-        }
-
-        tr,
-        th {
-            /* border: 1px solid black; */
-            /* font-size: smaller; */
+            font-size: 10px;
         }
 
         .bg-yellow {
             background-color: yellow !important;
             text-align: center;
             font-weight: bold;
+
         }
     </style>
 </head>
@@ -69,12 +64,14 @@
                 action="{{ route('check_list.propiedad') }}">
                 @csrf {{-- token o seguridad  --}}
                 {{-- <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"   value="{{ old('nombre') }}" required> --}}
-                <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text" name="search"  placeholder="Buscar..." value="{{ request('search') }}"      list="propiedad-list"   value="{{ old('propiedad') }}" required>
-                    <datalist style="font-size: 10%" id="propiedad-list">
-                        @foreach ($propiedades as $prop)
-                            <option value="{{ $prop->nombreempresa}}" data-id="{{ $prop->id }} "></option>
-                        @endforeach
-                    </datalist>
+                <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text"
+                    name="search" placeholder="Buscar..." value="{{ request('search') }}" list="propiedad-list"
+                    value="{{ old('propiedad') }}" required>
+                <datalist style="font-size: 10%" id="propiedad-list">
+                    @foreach ($propiedades as $prop)
+                        <option value="{{ $prop->nombreempresa }}" data-id="{{ $prop->id }} "></option>
+                    @endforeach
+                </datalist>
 
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
                     href="{{ route('check_list.propiedadbuscarchecklist') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
@@ -110,13 +107,13 @@
                             </div> --}}
                         @endforeach
                     @else
-                        <p >No se encontraron resultados para "{{ request('search') }}"</p>
+                        <p>No se encontraron resultados para "{{ request('search') }}"</p>
                     @endif
                 @endif
             </div>
             <table class="table  table-striped table-hover">
 
-                <thead class="table-dark">
+                <thead class="table-dark ">
                     <tr>
                         <th>ITEM</th>
 
@@ -130,51 +127,78 @@
                         <th>CERTIFICADO DE CALIBRACION</th>
                         <th>MANUAL DE USUARIO</th>
                         <th>PROTOCOLO DE LIMPIEZA</th>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($hdvs as $hdv)
                         <tr>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->id }}</h6>
+                            <td style="font-size: 12px">
+                                <span>{{ $hdv->id }}</span>
                             </td>
 
-                            <td style="font-size: 8px">
-                                <h6 style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
+                            <td style="font-size: 12px">
+                                <span
+                                    style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</span>
                             </td>
-                            <td style="font-size:8px">
-                                <h6>{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6>
+                            <td style="font-size:12px">
+                                <span>{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</span>
                             </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6>
+                            <td style="font-size: 12px">
+                                <span>{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</span>
                             </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</h6>
-                            </td>
-
-                            <td style="font-size: 8px; ">
-                                <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>X</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>X</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>X</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>X</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>X</h6>
+                            <td style="font-size: 12px">
+                                <span>{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</span>
                             </td>
 
-                 
+                            <td style="font-size: 12px; ">
+                                <span>{{ $hdv->serie ?? 'NO REGISTRA' }}</span>
+                            </td>
+                            <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
+                                class="text-center">
+                                @if ($hdv->soporteFactura)
+                                    <a style="color:rgb(13, 110, 253);"
+                                        href="{{ asset('storage/' . $hdv->soporteFactura) }}" target="_blank"><i
+                                            class="bi bi-eye-fill "></i></a>
+                                    {{-- @else
+                                    <i class="bi bi-exclamation text-warning"></i> --}}
+                                @endif
+                            </td>
+                            <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
+                                class="text-center ">
+                                @if ($hdv->soporteRegistroInvima)
+                                    <a style="color:rgb(13, 110, 253);"
+                                        href="{{ asset('storage/' . $hdv->soporteRegistroInvima) }}" target="_blank"><i
+                                            class="bi bi-eye-fill "></i></a>
+                                @endif
+                            </td>
+                            <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
+                                class="text-center">
+                                @if ($hdv->soporteCertificadoCalibracion)
+                                    <a style="color:rgb(13, 110, 253);"
+                                        href="{{ asset('storage/' . $hdv->soporteCertificadoCalibracion) }}"
+                                        target="_blank"><i class="bi bi-eye-fill "></i></a>
+                                @endif
+                            </td>
+                            <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
+                                class="text-center">
+                                @if ($hdv->soporteManual)
+                                    <a style="color:rgb(13, 110, 253);"
+                                        href="{{ asset('storage/' . $hdv->soporteManua) }}" target="_blank"><i
+                                            class="bi bi-eye-fill "></i></a>
+                                @endif
+                            </td>
+                            <td style="font-size: 22px;padding: 0px; margin: 0px; " class="text-center">
+                                @if ($hdv->soporteLimpiezaDesinfeccion)
+                                    <a style="color:rgb(13, 110, 253);"
+                                        href="{{ asset('storage/' . $hdv->soporteLimpiezaDesinfeccion) }}"
+                                        target="_blank"><i class="bi bi-eye-fill "></i></a>
+                                @endif
+                            </td>
 
-                            <!-- <td>{{ $hdv->enero }}</td>
+
+
+                            {{-- <td>{{ $hdv->enero }}</td>
                         <td>{{ $hdv->febrero }}</td>
                         <td>{{ $hdv->marzo }}</td>
                         <td>{{ $hdv->abril }}</td>
@@ -185,7 +209,7 @@
                         <td>{{ $hdv->septiembre }}</td>
                         <td>{{ $hdv->octubre }}</td>
                         <td>{{ $hdv->noviembre }}</td>
-                        <td>{{ $hdv->diciembre }}</td> -->
+                        <td>{{ $hdv->diciembre }}</td>  --}}
                         </tr>
                     @endforeach
                 </tbody>
