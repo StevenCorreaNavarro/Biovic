@@ -35,7 +35,7 @@
 
     <header>
         <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 5%;">
-            <div class="container-fluid" style="margin: 0%;    padding: 0%;">
+            <div class="container-fluid" >
                 <a class="navbar-brander d-flex" href="main"
                     style="text-decoration: none;margin: 0%;    padding: 0%;">
                     <img src="IMG/logobiomed.png" alt="biovic" height="40">
@@ -54,7 +54,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
-                                                        href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
+                                                            href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
                                 <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Hojas de Vida
@@ -110,7 +110,8 @@
                         <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a>
                     </li> -->
                     </ul>
-                    <ul class="navbar-nav my-0 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; padding-right: 0%;">
+                    <ul class="navbar-nav my-0 my-lg-0 navbar-nav-scroll"
+                        style="--bs-scroll-height: 100px; padding-right: 0%;">
                         <li class="nav-item">
                             {{-- <a class="nav-link" aria-current="true" href="{{ route('login') }}">Iniciar sesión</a> --}}
                             @guest
@@ -120,7 +121,7 @@
                                 {{-- <button class="button"><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></button> --}}
                             </li>
                             @endif
-                        @else
+                            @else
                             {{-- despliegue --}}
                             {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
                             <li class="nav-item dropdown">
@@ -170,7 +171,8 @@
                                         @csrf</form>
                                 </div>
                             </li>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
 
 
@@ -324,7 +326,7 @@
 
         <section>
             <div class="container ">
-                <div class="res-info">
+                <div class="res-info sabermas">
                     <div class="imagen-4">
                         <img src="IMG/Planificador.webp" alt="">
                     </div>
@@ -345,7 +347,7 @@
         <hr>
         <section>
             <div class="container ">
-                <div class="res-info">
+                <div class="res-info  sabermas">
 
                     <div class="res-des pad-rig tx">
                         <div class="global">
@@ -358,7 +360,7 @@
                         <a href="orden_trabajo" class="btn cta-btn">Saber más</a>
                     </div>
                     <div class="imagen-4">
-                        <img src="IMG/orden de trabajo.png" alt="" height="300px">
+                        <img src="IMG/orden de trabajo.png" alt=" " >
                     </div>
                 </div>
             </div>
@@ -388,7 +390,7 @@
 
         <section>
             <div class="container ">
-                <div class="res-info">
+                <div class="res-info sabermas">
                     <div class="imagen-4">
                         <img src="IMG/Planificador.webp" alt="">
                     </div>

@@ -68,11 +68,14 @@ body {
     margin: auto;
     overflow: hidden;
     background: white;
+    
 }
 
 .contenedor .titulo {
     color: #7169dd;
     font-weight: bold;
+    
+    
 }
 
 ul .botone {

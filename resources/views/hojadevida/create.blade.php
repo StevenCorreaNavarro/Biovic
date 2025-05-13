@@ -51,7 +51,7 @@
 
             {{-- Inicio descripcion --}}
             <div style="background-color: #e2e2e2;" class="row g-2 needs-validation formu p-5">
-                
+
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
@@ -482,7 +482,7 @@
 
 
                     <!-- Selector de años de vida útil -->
-                    <div class="col-md-2 position-relative">
+                    <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="aniosVida">Años de Vida Útil</label>
                             <select id="aniosVida" class="form-control">

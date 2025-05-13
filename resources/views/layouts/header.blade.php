@@ -70,9 +70,8 @@
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav  navbar-nav-scroll"
-                        style=" --bs-scroll-height: 800px;--bs-scroll-widht: 400px; margin-left: 0%; margin-right:1%">
+                <div class="collapse navbar-collapse" style="     padding: 0%;" id="navbarScroll">
+                    <ul class="navbar-nav  navbar-nav-scroll" style=" --bs-scroll-height: 800px; margin-left: 0%; ">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
                                 href="{{ asset('/') }}">Menu</a></li>
@@ -181,86 +180,80 @@
                         @else
                             {{-- despliegue --}}
                             {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-                            <ul class="nav-item dropdown d-flex">
-                                <a id="navbarDropdown"
-                                    style=" justify-content: center; align-content:center; padding-right:2rem; "
-                                    class="nav-link  button" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>
+
+                        </ul>
+                    </div>
+                    <div class="collapse navbar-collapse" style="  justify-content: end; padding-right:2%;" id="navbarScroll">
+                        <ul class="nav-link  navbar-nav-scrol">
+                            <a id="navbarDropdown  " class="nav-link  button" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
 
-                                    @if (Auth::check() && Auth::user()->foto)
-                                        <div
-                                            style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
-                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                @if (Auth::check() && Auth::user()->foto)
+                                    <div
+                                        style="margin-left:9% position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                        {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                 alt="Foto de perfil"
                                                 style="width: 100%; height: auto; position: relative; "> --}}
-                                            {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                        {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                                                 style="width: 100%; height: auto; position: relative; "> --}}
-                                            <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                                                style="  width: 100%; height: 100%; object-fit: cover; ">
-                                        </div>
-                                    @else
-                                        {{ Auth::user()->name }}
-                                    @endif
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end my-2" aria-labelledby="navbarDropdown">
-
-
-
-
-                                    @if (Auth::check() && Auth::user()->foto)
-                                        <a class="dropdown-item " href="{{ asset('perfil') }}">
-                                            {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                                            style="  width: 100%; height: 100%; object-fit: cover; ">
+                                    </div>
+                                @else
+                                    {{ Auth::user()->name }}
+                                @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end my-2" aria-labelledby="navbarDropdown">
+                                @if (Auth::check() && Auth::user()->foto)
+                                    <a class="dropdown-item " href="{{ asset('perfil') }}">
+                                        {{-- <div style="  position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                     alt="Foto de perfil"
                                                     style="width: 100%; height: auto; position: relative; ">
                                                 
                                             </div> --}}
-                                            {{-- <div> 
+                                        {{-- <div> 
                                                 {{ Auth::user()->name }}
                                             </div> --}}
-{{ Auth::user()->name }}
-                                        </a>
-                                    @else
-                                        <a href="{{ asset('perfil') }}"
-                                            class="bi bi-person-circle bi bi bi bi dropdown-item "> Perfil</a>
-                                    @endif
-
-
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item " href="{{ asset('perfil') }}">Mi Perfil</a>
-                                    <a class="dropdown-item" href="#">Notificaciones</a>
-                                    <a class="dropdown-item" href="#">Favoritos</a>
-                                    <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
-                                    {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
-
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
-                                    <div class="dropdown-divider"></div>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                        Cerrar sesión
+                                        {{ Auth::user()->name }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf</form>
-                            </ul>
+                                @else
+                                    <a href="{{ asset('perfil') }}"
+                                        class="bi bi-person-circle bi bi bi bi dropdown-item ">
+                                        Perfil</a>
+                                @endif
+
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item " href="{{ asset('perfil') }}">Mi Perfil</a>
+                                <a class="dropdown-item" href="#">Notificaciones</a>
+                                <a class="dropdown-item" href="#">Favoritos</a>
+                                <a class="dropdown-item" href="/HTML/soporte.html">Configuración</a>
+                                {{-- <a class="dropdown-item" href="{{froute('fav.show')}}">favoritoa</a> --}}
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item my-11" href="#">Configuraciones de Cuenta </a>
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Cerrar sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+
+                                </form>
+                            </div>
+                        </ul>
                     </div>
-
-
                 @endguest
             </div>
             </ul>
-            {{-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="button"
-                            onclick="window.location.href='https://www.google.com'">Search</button>
-                    </form> --}}
-            </div>
-            </div>
+
+
 
         </nav>
     </header>
