@@ -12,7 +12,7 @@ html {
 
 
 .imagen-4{
-    width: 35%;
+    width: 400px;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -334,7 +334,9 @@ h1 {
     flex-direction: column; /* Cambia la dirección del flex a columna */
     
   }
-
+  .imagen-4{
+    width: 340px;
+  }
   .hero__title{
     display: flex;
     flex-direction: column; /* Cambia la dirección del flex a columna */
