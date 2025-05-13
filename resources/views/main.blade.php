@@ -444,7 +444,7 @@
         <div class="container">
             <h4>Vitalsoft</h4>
             <p>&copy; Soluciones biomedicas a la medida</p>
-            <div class="my-3 footer-social-icons">
+            <div class="my-4 footer-social-icons">
                 <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
