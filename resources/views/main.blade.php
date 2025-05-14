@@ -35,7 +35,7 @@
 
     <header>
         <nav class="navbar navbar-expand-lg  fixed-top" style="    padding-left: 5%;   padding-right: 5%;">
-            <div class="container-fluid" >
+            <div class="container-fluid " >
                 <a class="navbar-brander d-flex" href="main"
                     style="text-decoration: none;margin: 0%;    padding: 0%;">
                     <img src="IMG/logobiomed.png" alt="biovic" height="40">

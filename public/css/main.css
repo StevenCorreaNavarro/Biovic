@@ -850,7 +850,7 @@ footer .social-icons a:focus {
 footer .footer-links a {
     color: white;
     font-size: 0.9rem;
-    transition: color 0.3s;
+      
 }
 
 footer .footer-links a:hover {

@@ -99,25 +99,19 @@ label {
 /* Header */
 .navbar {
     height: 45px;
-    margin: 0%;
-    /* padding: 0%;
-    box-sizing: border-box; */
-    justify-content: center;
-    /* align-items: center; */
-    align-content: center;
+
+    padding: 0%;
+    /* box-sizing: border-box; */
+
     background: linear-gradient(45deg, #0062E6, #33AEFF);
     /* background: linear-gradient(45deg, #0062E6, #33AEFF); */
     /* background: #7169dd; */
     /* background: -webkit-linear-gradient(to right, hsla(236, 63%, 75%, 0.459), hsla(239, 65%, 36%, 0.664)), url(../IMG/fondo2.1.jpg);
     background: linear-gradient(to right, hsla(234, 32%, 69%, 0.459), hsla(226, 53%, 48%, 0.664)), url(../IMG/fondo2.1.jpg); */
-    background-size: cover;
-    background-attachment: fixed;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+  
+}
+.biom{
+    font-size: 35px;
 }
 
 .navbar-scrolled {
@@ -150,10 +144,23 @@ label {
     box-shadow: 0px 0px 4px 0px rgb(4, 24, 125);
 }
 
+.container-fluid {
+     background: linear-gradient(45deg, #0062E6, #33AEFF);
+    padding: 0.5rem 1rem;
+    color: #fff;
+    /* Cambia el color del texto */
+    /* font-size: 1rem; */
+    /* Cambia el tamaño de la fuente */
+}
+.azul{
+    padding: 0px;
+    margin: 0px;
+}
+
 .po {
     padding-bottom: 9px;
 
-    transform: scale(1.1);
+
     /* box-shadow: 0px -8px 8px 0px rgba(0, 0, 0, 0.2);  */
 
     /* padding-bot

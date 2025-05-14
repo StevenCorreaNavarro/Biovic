@@ -51,34 +51,30 @@
     </div> --}}
 
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style=" margin: 0%;    padding: 0%;">
+        <nav class="navbar navbar-expand-lg  fixed-top " >
             {{-- <a href="/HTML/menu.html" style="margin-left: 1%; margin-right:1%">
                 <i class="fa-solid fa-arrow-left" style="margin-left: 5%; color:white"></i>
             </a> --}}
-            <div class="container-fluid">
-                {{-- <a class="navbar-brander d-flex" style="margin: 0%; padding: 0%;" href="{{ asset('main ') }}">
-                <img src=" {{ asset('IMG/logobiomed.png ') }}" alt="VitalSoft" height="40">
-                <h1 style="font-weight: bold; padding-left:10px;">Biovic</h1>
-                {{-- <h5>Tec</h5> 
-                </a> --}}
-                <a class="navbar-brander d-flex" href="{{ asset('main ') }}"
+              <div class="container-fluid azul" >
+                <a class="navbar-brander d-flex" href="main"
                     style="text-decoration: none;margin: 0%;    padding: 0%;">
                     <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40">
-                    <h1 style="text-decoration: none; font-size:2rem;  ">Biomedic</h1>
+                    <h1 class="biom" style="text-decoration: none;  ">Biomedic</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" style="     padding: 0%;" id="navbarScroll">
-                    <ul class="navbar-nav  navbar-nav-scroll" style=" --bs-scroll-height: 800px; margin-left: 0%; ">
+                 <div class="collapse navbar-collapse" id="navbarScroll">
+                     <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"
+                        style=" --bs-scroll-height: 100%;">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
                                 href="{{ asset('/') }}">Menu</a></li>
                         <li class="nav-item dropdown">
-                            <!-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
-                                href="{{ route('hoja_vida') }}">Hojas de Vida</a> -->
-                            <a class="nav-link dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
+                            {{-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
+                                href="{{ route('hoja_vida') }}">Hojas de Vida</a>  --}}
+                            <a class="nav-link dropdown dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Hojas de Vida
                             </a>
