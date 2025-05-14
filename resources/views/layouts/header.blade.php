@@ -51,23 +51,22 @@
     </div> --}}
 
     <header>
-        <nav class="navbar navbar-expand-lg  fixed-top " >
+        <nav class="navbar navbar-expand-lg  fixed-top ">
             {{-- <a href="/HTML/menu.html" style="margin-left: 1%; margin-right:1%">
                 <i class="fa-solid fa-arrow-left" style="margin-left: 5%; color:white"></i>
             </a> --}}
-              <div class="container-fluid azul" >
+            <div class="container-fluid azul">
                 <a class="navbar-brander d-flex" href="main"
-                    style="text-decoration: none;margin: 0%;    padding: 0%;">
-                    <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40">
+                    style="text-decoration: none;margin: 0%; ">
+                    <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40" ">
                     <h1 class="biom" style="text-decoration: none;  ">Biomedic</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                 <div class="collapse navbar-collapse" id="navbarScroll">
-                     <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll"
-                        style=" --bs-scroll-height: 100%;">
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll" style=" --bs-scroll-height: 100%;">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
                         <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
                                 href="{{ asset('/') }}">Menu</a></li>
@@ -179,7 +178,8 @@
 
                         </ul>
                     </div>
-                    <div class="collapse navbar-collapse" style="  justify-content: end; padding-right:2%;" id="navbarScroll">
+                    <div class="collapse navbar-collapse" style="  justify-content: end; padding-right:2%;"
+                        id="navbarScroll">
                         <ul class="nav-link  navbar-nav-scrol">
                             <a id="navbarDropdown  " class="nav-link  button" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -188,11 +188,7 @@
                                 @if (Auth::check() && Auth::user()->foto)
                                     <div
                                         style="margin-left:9% position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
-                                        {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                alt="Foto de perfil"
-                                                style="width: 100%; height: auto; position: relative; "> --}}
-                                        {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                                                style="width: 100%; height: auto; position: relative; "> --}}
+
                                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                                             style="  width: 100%; height: 100%; object-fit: cover; ">
                                     </div>
