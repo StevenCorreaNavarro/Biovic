@@ -102,7 +102,7 @@
                         {{-- Mostrar los resultados --}}
                         @foreach ($hdvs as $hdv)
                             {{-- <div class="card my-2">
-                                {{-- Muestra los datos que quieras del $hdv 
+                                {{-- Muestra los datos que quieras del $hdv
                                 <p>{{ $hdv->campo_ejemplo }}</p>
                             </div> --}}
                         @endforeach
@@ -160,8 +160,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteFactura) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
-                                    {{-- @else
-                                    <i class="bi bi-exclamation text-warning"></i> --}}
+                                    @else
+                                    <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
                             <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
