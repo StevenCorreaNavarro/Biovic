@@ -352,7 +352,7 @@
                     {{-- Ubicacion Fisica --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv2">
-                            <label for="ubifisica_id">Ubicación Física</label><i class="bi fab bi-pen"
+                            <label for="ubifisica_id">Ubicación Física</label><i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="ubifisica()"></i>
                             {{--  Mostrar valores de `$ubifisicas` para depuración  
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
@@ -371,7 +371,7 @@
                     {{-- SERVICIO --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv3">
-                            <label for="servicio_id">Servicio</label><i class="bi fab bi-pen"
+                            <label for="servicio_id">Servicio</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="servicio()"></i>
                             {{--  Mostrar valores de `$servicios` para depuración <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}}
                             <select name="servicio_id" id="servicio_id" class="form-control form-select">
@@ -389,7 +389,7 @@
                     {{-- TECNOLOGIA PREDOMINANTE --}}
                     <div class="col-md-3 ">
                         <div class="form-group" id="miDiv4">
-                            <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"
+                            <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="predo()"></i>
                             <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
@@ -415,7 +415,7 @@
                     {{-- CLASIFICACION DE RIESGO --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv5">
-                            <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"
+                            <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="riesgo()"></i>
                             <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
                                 <option value="">Seleccione una opcion</option>
@@ -431,7 +431,7 @@
                     {{-- CLASIFICACION BIOMEDICA --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv6">
-                            <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"
+                            <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="biom()"></i>
                             <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
@@ -447,7 +447,7 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv7">
-                            <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"
+                            <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="uso()"></i>
                             <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
