@@ -55,6 +55,8 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         return view('admin.admin.layouts.app');
     })->name('adminad.dashboard');
 
+    Route::post('/guardar-datos', [HojadevidaController::class, 'guardarDatos']);
+
     // Route::get('/admin/create', function () {return view('admin.admin.layouts.app');})->name('admin.dashboard');
     Route::get('/equipos/{id}/seleccionar-marcas', [PanelAdminController::class, 'mostrarFormulario'])->name('equipos.mostrarFormulario');
     Route::post('/equipos/{id}/asignar-marcas', [PaneladminController::class, 'asignarMarcas'])->name('equipos.asignarMarcas');

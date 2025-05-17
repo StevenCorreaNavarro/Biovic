@@ -213,10 +213,15 @@
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">GARANTIA</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->garantia ?? '---' }}</td>
+                
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VIDA UTIL</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->vidaUtil ?? '---' }}</td>
-                <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>
-                <td style="border: 1px solid rgb(255, 255, 255);"></td>
+                
+                {{-- <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>
+                <td style="border: 1px solid rgb(255, 255, 255);"></td> --}}
+
+                      <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">estado</td>
+                <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->estadoequipo?->estadoequipo ??  '---' }}</td>
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">

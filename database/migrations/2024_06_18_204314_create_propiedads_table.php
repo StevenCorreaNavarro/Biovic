@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('propiedads', function (Blueprint $table) {
             $table->id();
 //  $table->string('foto')->nullable();
-            $table -> string('nombreempresa');
-            $table -> string('nitempresa');
-            $table -> string('direccionempre');
-            $table -> string('telefonoempre');
-            $table -> string('ciudadempre');
-            $table -> string('sedeempresa');
-            $table -> string('emailWebempre');
-            $table -> string('representanteempresa');
+            $table -> string('nombreempresa')->nullable(); 
+            $table -> string('nitempresa')->nullable(); 
+            $table -> string('direccionempre')->nullable(); 
+            $table -> string('telefonoempre')->nullable(); 
+            $table -> string('ciudadempre')->nullable(); 
+            $table -> string('sedeempresa')->nullable(); 
+            $table -> string('emailWebempre')->nullable(); 
+            $table -> string('representanteempresa')->nullable(); 
 
             $table->timestamps();
         });

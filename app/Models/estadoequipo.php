@@ -16,5 +16,5 @@ class estadoequipo extends Model
     public function reportemtto(){ // envio a reportemtto
         return $this->hasMany('App\Models\reportemtto');
     }
-
+   protected $fillable = ['estadoequipo'];
 }

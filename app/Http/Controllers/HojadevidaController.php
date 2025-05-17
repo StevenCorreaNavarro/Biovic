@@ -40,35 +40,6 @@ use Carbon\Carbon; // para calcular fecha futura
 
 class HojadevidaController extends Controller
 {
-
-
-    // return view('users.lista', compact('users'));
-
-    // public function busqueda(Request $request)
-    // {
-    //     $query = Equipo::query(); // Consulta base sin relaciones innecesarias
-
-    //     // Filtrar por el nombre si hay un término de búsqueda
-    //     if ($request->has('search')) {
-    //         $search = $request->input('search');
-
-    //         $query->where(function ($q) use ($search) {
-    //             $q->where('nombre_equipo', 'LIKE', "%$search%");
-    //                 // ->orWhere('email', 'LIKE', "%$search%")
-    //                 // ->orWhere('contact', 'LIKE', "%$search%")
-    //                 // ->orWhere('role', 'LIKE', "%$search%")
-    //                 // ->orWhere('identity', 'LIKE', "%$search%");
-    //         });
-    //     }
-
-    //     $hdvs = $query->orderBy('id', 'desc')->get();
-
-    //     return view('hojadevida.listar', compact('hdvs'));
-    // }
-
-
-
-
     public function downloadPDF($id)
     {
         // Buscar los datos de la tabla Hdvs usando el ID
@@ -153,7 +124,7 @@ class HojadevidaController extends Controller
         $abreviacionvolumen = magVol::all();
         $magFrec = magFre::all();
         $fuentesAli = magFuenAli::all();
-        $corrientes = magCorriente::all(); 
+        $corrientes = magCorriente::all();
         $pesos = magPeso::all();
         $presiones = magPre::all();
         $potencias = MagPot::all();
@@ -163,10 +134,10 @@ class HojadevidaController extends Controller
         $accesorios = accesorio::all();
         $fabricantes = fabricante::all();
         $proveedores = proveedor::all();
-        
+
 
         // 3. enviar los datos a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios','fabricantes','proveedores')); // pasar las variables  a la vista
+        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios', 'fabricantes', 'proveedores')); // pasar las variables  a la vista
     }
     public function edituser(User $user)
     {
@@ -212,6 +183,9 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
+
+
+
         // dd($request->all()); // Se pone para ver los datos que llegan del formulario
         $hdv = new Hojadevida();
         $request->validate([
@@ -341,10 +315,136 @@ class HojadevidaController extends Controller
             $hdv->soporteLimpiezaDesinfeccion = str_replace('public/', '', $hdv->soporteLimpiezaDesinfeccion);
         }
 
+
+        if ($request->filled('estadoequipo')) {
+            // Guardar nuevo estado
+            $estado = new estadoequipo();
+            $estado->estadoequipo = $request->estadoequipo;
+            $estado->save();
+            $hdv->estadoequipo_id = $estado->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('estadoequipo_id')) {
+            // Asignar estado existente
+            $hdv->estadoequipo_id = $request->estadoequipo_id;
+        }
+
+        if ($request->filled('ubifisicas')) {
+            // Guardar nuevo estado
+            $ubi = new ubiFisica();
+            $ubi->ubicacionfisica = $request->ubifisicas;
+            $ubi->save();
+            $hdv->ubifisica_id = $ubi->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('ubifisica_id')) {
+            // Asignar estado existente
+            $hdv->ubifisica_id = $request->ubifisica_id;
+        }
+
+        if ($request->filled('nombreservicios')) {
+            // Guardar nuevo estado
+            $serv = new servicio();
+            // nombre columna-----------creates
+            $serv->nombreservicio = $request->nombreservicios;
+            $serv->save();
+            $hdv->servicio_id = $serv->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('servicio_id')) {
+            // Asignar estado existente
+            $hdv->servicio_id = $request->servicio_id;
+        }
+        if ($request->filled('tecPredos')) {
+            // Guardar nuevo estado
+            $pre = new tecPredo();
+            // nombre columna-----------creates
+            $pre->tecpredo = $request->tecPredos;
+            $pre->save();
+            $hdv->tec_predo_id = $pre->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('tec_predo_id')) {
+            // Asignar estado existente
+            $hdv->servicio_id = $request->tec_predo_id;
+        }
+        if ($request->filled('clariesgo')) {
+            // Guardar nuevo estado
+            $rie = new clariesgo();
+            // nombre columna-----------creates
+            $rie->clariesgo = $request->clariesgo;
+            $rie->save();
+            $hdv->cla_riesgo_id = $rie->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('cla_riesgo_id')) {
+            // Asignar estado existente
+            $hdv->cla_riesgo_id = $request->cla_riesgo_id;
+        }
+        if ($request->filled('clabiomedica')) {
+            // Guardar nuevo estado
+            $bio = new clabiome();
+            // nombre columna-----------creates
+            $bio->clabiomedica = $request->clabiomedica;
+            $bio->save();
+            $hdv->cla_biome_id = $bio->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('cla_biome_id')) {
+            // Asignar estado existente
+            $hdv->cla_biome_id = $request->cla_biome_id;
+        }
+        if ($request->filled('clauso')) {
+            // Guardar nuevo estado
+            $uso = new clauso();
+            // nombre columna-----------creates
+            $uso->clauso = $request->clauso;
+            $uso->save();
+            $hdv->cla_uso_id = $uso->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('cla_uso_id')) {
+            // Asignar estado existente
+            $hdv->cla_uso_id = $request->cla_uso_id;
+        }
+        // if ($request->filled('propiedad')) {
+        //     // Guardar nuevo estado
+        //     $pro = new propiedad ();
+        //     // nombre columna-----------creates
+        //     $pro->nombreempresa  = $request->propiedad ;
+        //     $pro->save();
+        //     $hdv->propiedad_id = $pro->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        // } elseif ($request->filled('propiedad_id')) {
+        //     // Asignar estado existente
+        //     $hdv->propiedad_id = $request->propiedad_id;
+        // }
+        if ($request->filled('propiedad')) {
+            // Guardar nuevo estado
+            $pro = new propiedad();
+            $pro->nombreempresa = $request->propiedad;
+
+            // Verifica si se ha subido una imagen
+            if ($request->hasFile('fotos')) {
+                $file = $request->file('fotos');
+                $fotoprop = time() . '_' . $file->getClientOriginalName();
+                $ruta = $file->storeAs('propiedadfotos', $fotoprop, 'public'); // se guarda en storage/app/public/estadofotos
+                $pro->foto = $ruta;
+            }
+
+            $pro->save();
+            $hdv->propiedad_id = $pro->id;
+        } elseif ($request->filled('propiedad_id')) {
+            $hdv->propiedad_id = $request->propiedad_id;
+        }
+
+
+        //  $ubi = new ubiFisica();
+        //             $ubi->ubicacionfisica = $request->ubifisicas;
+        //             $ubi->save();
+
+
+
+
+
+
+
         $hdv->save();
-        //dd($hdv);// se pone para ver los datos que llegan del formulario
+
+
+
+
+
+
+
+
         return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
-        // return view('hojadevida.listar');
+
     }
 
 
@@ -464,6 +564,7 @@ class HojadevidaController extends Controller
 
         return redirect()->route('profile.edit');
     }
+
 
     /**
      * Remove the specified resource from storage.

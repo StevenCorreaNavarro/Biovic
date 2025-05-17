@@ -16,7 +16,27 @@
     margin: 0 auto;
     /* Centra la imagen horizontalmente */
     margin-top: 6%;
+   
 
+}
+
+.fab{
+   
+    font-size: 13px;
+    color: #888888;
+    margin-left: 5%;
+}
+.dv{
+  background-color: rgb(236, 241, 251);
+  border: 1px solid #4079ff;
+    
+    /* box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.193); */
+}
+
+.fab:hover{
+    font-size: 18px;
+    color:#0062E6;
+    transition: 0.3s;
 }
 
 h4 {
@@ -85,16 +105,6 @@ ul .botone {
 }
 
 
-option,
-.nnn,
-input,
-select,
-label {
-
-    padding: 0%;
-    margin: 0%;
-    color: #0000009e;
-}
 
 /* Header */
 .navbar {
@@ -203,6 +213,17 @@ header h1 {
     margin-left: 5%;
     margin-top: -2%;
     text-decoration: none;
+}
+
+option,
+.nnn,
+input,
+select,
+label {
+
+    padding: 0%;
+    margin: 0%;
+    color: #0000009e;
 }
 
 /* nav{
@@ -332,3 +353,17 @@ form .formu {
     /* font-size: 300%; */
     font-weight: bold;
 }
+
+
+
+/* .form-control.filled,
+.form-select.filled {
+  background-color: #e6ffed !important;
+  border-color: #28a745 !important;
+}
+
+
+.form-label.filled {
+  color: #198754;
+  font-weight: bold;
+} */

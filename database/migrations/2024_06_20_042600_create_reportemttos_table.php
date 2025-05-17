@@ -35,8 +35,8 @@ return new class extends Migration
             $table->time('duracion');
             $table -> text('actividad');
 
-            $table->unsignedBigInteger('empleadomtto_id')->nullable();
-            $table->foreign('empleadomtto_id')->references('id')->on('empleadomttos')->onDelete('cascade');
+            // $table->unsignedBigInteger('empleadomtto_id')->nullable();
+            // $table->foreign('empleadomtto_id')->references('id')->on('empleadomttos')->onDelete('cascade');
 
             $table->longText('precaucionesUso');
 

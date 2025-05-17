@@ -56,9 +56,9 @@
                 <i class="fa-solid fa-arrow-left" style="margin-left: 5%; color:white"></i>
             </a> --}}
             <div class="container-fluid azul">
-                <a class="navbar-brander d-flex" href="main"
+                <a class="navbar-brander d-flex" href="{{ asset('main') }}"
                     style="text-decoration: none;margin: 0%; ">
-                    <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40" ">
+                    <img src="{{ asset('IMG/logobiomed.png') }}" alt="biovic" height="40" >
                     <h1 class="biom" style="text-decoration: none;  ">Biomedic</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -68,8 +68,8 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-0 my-lg-0 navbar-nav-scroll" style=" --bs-scroll-height: 100%;">
                         <!-- <li><a class="nav-link" href="{{ route('menu') }}"><i class="bi bi-house"></i></a></li> -->
-                        <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
-                                href="{{ asset('/') }}">Menu</a></li>
+                        <!-- <li><a class="nav-link {{ request()->routeIs(['menu']) ? 'po' : '' }}"
+                                href="{{ asset('/') }}">Menu</a></li> -->
                         <li class="nav-item dropdown">
                             {{-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
                                 href="{{ route('hoja_vida') }}">Hojas de Vida</a>  --}}
