@@ -83,8 +83,8 @@
                                             de vida</a></li>
                                     {{-- <div class="dropdown-divider"></div> --}}
 
-                                    <li><a class="dropdown-item" href="{{ asset('subir_soporte') }}">Subir soporte</a>
-                                    </li>
+                                    {{-- <li><a class="dropdown-item" href="{{ asset('subir_soporte') }}">Subir soporte</a>
+                                    </li> --}}
 
                                     <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
                                             vida</a></li>

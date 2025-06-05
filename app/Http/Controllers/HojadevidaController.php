@@ -423,6 +423,18 @@ class HojadevidaController extends Controller
             $hdv->propiedad_id = $request->propiedad_id;
         }
 
+        if ($request->filled('formaadqui')) {
+            // Guardar nuevo estado
+            $adqui = new formaadqui();
+            // nombre columna-----------creates
+            $adqui->formaadqui = $request->formaadqui;
+            $adqui->save();
+            $hdv->forma_adqui_id = $adqui->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('forma_adqui_id')) {
+            // Asignar estado existente
+            $hdv->forma_adqui_id = $request->forma_adqui_id;
+        }
+
 
         //  $ubi = new ubiFisica();
         //             $ubi->ubicacionfisica = $request->ubifisicas;

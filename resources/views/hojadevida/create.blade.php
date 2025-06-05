@@ -12,27 +12,28 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/path/to/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-      <style>
-    /* Estilo personalizado cuando el campo tiene valor */
-    .form-control.filled,
-    .form-select.filled {
-      background-color: rgb(236, 241, 251);
-      border-color: #4079ff!important;
-      
-    }
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <style>
+        /* Estilo personalizado cuando el campo tiene valor */
 
-    /* Estilo para el label */
-    .form-label.filled {
-      color: #198754;
-      font-weight: bold;
-    }
-  </style>
+        .form-control.filled,
+        .form-select.filled {
+            background-color: rgb(236, 241, 251);
+            border-color: #4079ff !important;
+
+        }
+
+        /* Estilo para el label */
+        .form-label.filled {
+            color: #198754;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,6 +50,8 @@
         let contenidoOriginal6;
         let contenidoOriginal7;
         let contenidoOriginalpropiedad;
+
+        let contenidoOriginal8;
 
         function transformarDiv() {
             const div = document.getElementById("miDiv");
@@ -106,6 +109,7 @@
                         value="{{ isset($tecPredos->tecPredos) ? $tecPredos->tecPredos : old('tecPredos') }}">
                         </div> `;
         }
+
         function riesgo() {
             const div = document.getElementById("miDiv5");
             contenidoOriginal5 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
@@ -120,6 +124,7 @@
                         value="{{ isset($clariesgo->clariesgo) ? $clariesgo->clariesgo : old('clariesgo') }}">
                         </div> `;
         }
+
         function biom() {
             const div = document.getElementById("miDiv6");
             contenidoOriginal6 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
@@ -134,6 +139,7 @@
                         value="{{ isset($clabiomedica->clabiomedica) ? $clabiomedica->clabiomedica : old('clabiomedica') }}">
                         </div> `;
         }
+
         function uso() {
             const div = document.getElementById("miDiv7");
             contenidoOriginal7 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
@@ -148,6 +154,7 @@
                         value="{{ isset($clauso->clauso) ? $clauso->clauso : old('clauso') }}">
                         </div> `;
         }
+
         function propiedad() {
             const div = document.getElementById("miDivpropiedad");
             contenidoOriginalpropiedad = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
@@ -184,16 +191,31 @@
                    
                          `;
         }
-          function previewImagen(event) {
-                            let reader = new FileReader();
-                            reader.onload = function() {
-                                let preview = document.getElementById('previews');
-                                preview.src = reader.result;
-                                preview.style.display = 'block';
-                            }
-                            reader.readAsDataURL(event.target.files[0]);
-                        }
 
+        function previewImagen(event) {
+            let reader = new FileReader();
+            reader.onload = function() {
+                let preview = document.getElementById('previews');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function adqui() {
+            const div = document.getElementById("miDiv8");
+            contenidoOriginal8 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+            div.innerHTML = `
+                        <div class="form-group">
+                        <label for="formaadqui">Nueva Clasificacion por uso</label>
+
+                        <i class="fa-solid fa-xmark" onclick="restadqui() " style="cursor:pointer; margin-left:10px;"></i>
+
+                        <input name="formaadqui" type="text" id="formaadqui" class="form-control dv"
+
+                        value="{{ isset($formaadqui->formaadqui) ? $formaadqui->formaadqui : old('formaadqui') }}">
+                        </div> `;
+        }
 
 
 
@@ -212,39 +234,48 @@
         function restpredo() {
             document.getElementById("miDiv4").innerHTML = contenidoOriginal4;
         }
+
         function restriesgo() {
             document.getElementById("miDiv5").innerHTML = contenidoOriginal5;
         }
+
         function restbiom() {
             document.getElementById("miDiv6").innerHTML = contenidoOriginal6;
         }
+
         function restuso() {
             document.getElementById("miDiv7").innerHTML = contenidoOriginal7;
         }
+
         function restpropiedad() {
             document.getElementById("miDivpropiedad").innerHTML = contenidoOriginalpropiedad;
         }
+        function restadqui() {
+            document.getElementById("miDiv8").innerHTML = contenidoOriginal8;
+        }
     </script>
     <!-- Modal -->
-<div class="modal fade" id="exampleModalparam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Parametro</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Se creara nuevo parametro para la hoja de vida y se guardara en base de datos para seleccionar en el  siguiente formulario.
-      </div>
-      <div class="modal-footer">
-        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">cerrar</button>
-      </div>
+    <div class="modal fade" id="exampleModalparam" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Parametro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Se creara nuevo parametro para la hoja de vida y se guardara en base de datos para seleccionar en el
+                    siguiente formulario.
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                    <button type="button" class="btn btn-primary"data-bs-dismiss="modal">cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-   
+
     @extends('layouts.header')
     <main class=" p-1 " style="background-color: rgb(255, 255, 255);">
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
@@ -335,7 +366,8 @@
                         <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv">
-                            <label for="estadoequipo_id">Estado del Equipo</label><i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                            <label for="estadoequipo_id">Estado del Equipo</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="transformarDiv()"></i>
                             <select name="estadoequipo_id" id="estadoequipo_id " class="form-control form-select ">
                                 <option value="">Seleccione una opción</option>
@@ -352,8 +384,8 @@
                     {{-- Ubicacion Fisica --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv2">
-                            <label for="ubifisica_id">Ubicación Física</label><i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="ubifisica()"></i>
+                            <label for="ubifisica_id">Ubicación Física</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="ubifisica()"></i>
                             {{--  Mostrar valores de `$ubifisicas` para depuración  
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
                             <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
@@ -371,8 +403,8 @@
                     {{-- SERVICIO --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv3">
-                            <label for="servicio_id">Servicio</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="servicio()"></i>
+                            <label for="servicio_id">Servicio</label><i class="bi fab bi-pen" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalparam" onclick="servicio()"></i>
                             {{--  Mostrar valores de `$servicios` para depuración <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}}
                             <select name="servicio_id" id="servicio_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
@@ -389,8 +421,8 @@
                     {{-- TECNOLOGIA PREDOMINANTE --}}
                     <div class="col-md-3 ">
                         <div class="form-group" id="miDiv4">
-                            <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="predo()"></i>
+                            <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="predo()"></i>
                             <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($tecPredos as $tecnopredominante)
@@ -415,8 +447,8 @@
                     {{-- CLASIFICACION DE RIESGO --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv5">
-                            <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="riesgo()"></i>
+                            <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="riesgo()"></i>
                             <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clariesgo as $clasiriesgo)
@@ -431,8 +463,8 @@
                     {{-- CLASIFICACION BIOMEDICA --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv6">
-                            <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="biom()"></i>
+                            <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="biom()"></i>
                             <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($clabiomedica as $clasibiomedica)
@@ -447,8 +479,8 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv7">
-                            <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"  data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="uso()"></i>
+                            <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="uso()"></i>
                             <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clauso as $clasiuso)
@@ -702,8 +734,9 @@
                     </div>
 
                     <div class="col-md-3 position-relative">
-                        <div class="form-group">
-                            <label for="forma_adqui_id">Forma de Adquisicion</label>
+                        <div class="form-group" id="miDiv8">
+                            <label for="forma_adqui_id">Forma de Adquisicion</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="adqui()"></i>
                             <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($formaadqui as $formaadquisicion)
@@ -790,8 +823,8 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDivpropiedad">
-                            <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
-                                onclick="propiedad()"></i>
+                            <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>
                             <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($propiedad as $nombreempre)
@@ -1528,33 +1561,33 @@
     </script>
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const campos = document.querySelectorAll('input.form-control, select.form-select');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const campos = document.querySelectorAll('input.form-control, select.form-select');
 
-    campos.forEach(campo => {
-      const contenedor = campo.closest('.mb-3');
-      const label = contenedor ? contenedor.querySelector('label') : null;
+            campos.forEach(campo => {
+                const contenedor = campo.closest('.mb-3');
+                const label = contenedor ? contenedor.querySelector('label') : null;
 
-      const actualizarEstilo = () => {
-        if (campo.value.trim() !== '') {
-          campo.classList.add('filled');
-          if (label) label.classList.add('filled');
-        } else {
-          campo.classList.remove('filled');
-          if (label) label.classList.remove('filled');
-        }
-      };
+                const actualizarEstilo = () => {
+                    if (campo.value.trim() !== '') {
+                        campo.classList.add('filled');
+                        if (label) label.classList.add('filled');
+                    } else {
+                        campo.classList.remove('filled');
+                        if (label) label.classList.remove('filled');
+                    }
+                };
 
-      // Ejecutar al cargar la página
-      actualizarEstilo();
+                // Ejecutar al cargar la página
+                actualizarEstilo();
 
-      // Ejecutar cada vez que se cambia el contenido
-      campo.addEventListener('input', actualizarEstilo);
-      campo.addEventListener('change', actualizarEstilo);
-    });
-  });
-</script>
+                // Ejecutar cada vez que se cambia el contenido
+                campo.addEventListener('input', actualizarEstilo);
+                campo.addEventListener('change', actualizarEstilo);
+            });
+        });
+    </script>
 
 
     {{-- este script es para las opciones equipo modelo marca
