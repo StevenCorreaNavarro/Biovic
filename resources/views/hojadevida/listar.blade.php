@@ -1,193 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Enter your description here" />
+    <title>Lista Hoja de Vida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    {{-- <link rel="stylesheet" href="{{ asset('css/tablas.css') }}"> --}}
-    <title>Title</title>
     <style>
-        table{
+        table {
             font-size: 13px;
-          
-        }
-        tr{
-           /* border-bottom:   1px solid rgba(0, 0, 0, 0.221); */
-         
-            
         }
 
+        table.dataTable thead th,
+        table.dataTable thead td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        table.dataTable tbody td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .filtro-select {
+            font-size: 12px;
+            padding: 2px 4px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        td:empty::after {
+            content: "---";
+            color: #999;
+        }
+
+        .dt-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dt-button {
+            font-size: 12px !important;
+            padding: 4px 10px !important;
+        }
     </style>
 </head>
 
 <body>
     @extends('layouts.header')
     <br><br>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Lista hoja de vida</h1>
 
-   
-    {{-- 10-   VISTA hojadevida/INDEX --}}
-    <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
+        @if(Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
+            <form class="d-flex mb-3" method="GET" action="{{ route('hojadevida.listar') }}">
+                <input class="form-control me-2" style="max-width: 400px;" type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}">
+                <button class="btn btn-primary me-2" type="submit"><i class="bi bi-search"></i></button>
+                <a href="{{ route('hojadevida.listar') }}" class="btn btn-primary me-2">Reiniciar</a>
+                <a href="{{ url('hojadevida/create') }}" class="btn btn-primary">Registrar Nueva hoja de vida</a>
+            </form>
+        @endif
 
+        <table id="tablaEquipos" class="table table-striped table-bordered w-100">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Equipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Propiedad</th>
+                    <th>Serie</th>
+                    <th>Servicio</th>
+                    <th>Activo Fijo</th>
+                    <th>Ubicación Física</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr>
+                    <th></th><th></th><th></th>
+                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+                    <th></th>
+                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+                    <th></th><th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($hdvs as $hdv)
+                    <tr>
+                        <td>{{ $hdv->id }}</td>
+                        <td>
+                            @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
+                                <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50" class="rounded"
+                                    data-bs-toggle="modal" data-bs-target="#imagenModal{{ $hdv->id }}" style="cursor: pointer;">
+                                <div class="modal fade" id="imagenModal{{ $hdv->id }}" tabindex="-1">
+                                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <img src="{{ asset('storage/' . $hdv->foto) }}" class="img-fluid" style="max-height: 90vh;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <span class="text-muted">Sin imagen</span>
+                            @endif
+                        </td>
+                        <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
+                        <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
+                        <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
+                        <td>{{ $hdv->propiedad?->nombreempresa ?? '---' }}</td>
+                        <td>{{ $hdv->serie }}</td>
+                        <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
+                        <td>{{ $hdv->actFijo ?? '---' }}</td>
+                        <td>{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ url('hojadevida/' . $hdv->id . '/show') }}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{{ url('descargar-pdf/' . $hdv->id) }}" class="btn btn-sm btn-warning" target="_blank"><i class="bi bi-download"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-        <h1>Lista hoja de vida</h1>
-
- @if(Auth::check() && Auth::user()->role === 'Admin'|| Auth::user()->role === 'Empleado')
-        <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
-            action="{{ route('hojadevida.listar') }}">
-
-            <input class="form-control m-2" class="form-control" style="width: 400px" type="text" name="search"
-                placeholder="Buscar...." value="{{ request('search') }}">
-
-
-                
-            <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
-                href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
-
-                
-            
-            <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
-                Registrar Nueva hoja de vida
-            </a>
-     
-        </form>
-  @endif
-
-
+        <!-- Contenedor para exportar -->
+        <div id="exportButtons" class="dt-buttons"></div>
     </div>
-     
 
-
-    {{-- <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre del Equipo</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($hdvs as $hoja)
-            <tr>
-                <td>{{ $hoja->id }}</td>
-    <td>{{ $hoja->equipo?->nombre_equipo ?? '---' }}</td>
-    <td>{{ $hoja->descripcion }}</td>
-    </tr>
-    @endforeach
-    </tbody>
-    </table> --}}
-
-
-
-    <table class="w-100 table  table-striped  text table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>FOTO</th>
-                <th>NOMBRE EQUIPO</th>
-                <th>MARCA</th>
-                <th>MODELO</th>
-                <th>PROPIEDAD</th>
-                <th>SERIE</th>
-                <th>SERVICIO</th>
-                <th>ACTIVO FIJO</th>
-
-                <th>UBICACION FISICA</th>
-
-                <th>FECHA</th>
-                <th>PDF</th>
-
-            </tr>
-        </thead>
-
-
-        <tbody>
-            @foreach ($hdvs as $hdv)
-            <tr>
-                <td>{{ $hdv->id }}</td>
-
-                <td class="dropend" style="padding: 0%" width="50">
-                    @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
-                    <img style="padding: 0%;" src="{{ asset('storage/' . $hdv->foto) }}" width="50"
-                        height="50" type="button" class="btn btn-secondary dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-
-                    <ul class="dropdown-menu " style="padding: 0%;width:200vw">
-                        <img  src="{{ asset('storage/' . $hdv->foto) }}" style="height:90vh; background-color:white;border: 1px solid rgb(0, 12, 65);box-shadow: 0 4px 18px rgba(0, 0, 0, 0.331);">
-                    </ul>
-                    @else
-                    <span>No hay imagen</span>
-                    {{-- Opcional: Mostrar una imagen por defecto --}}
-                    {{-- <img src="{{ asset('images/default.png') }}" width="50" height="50" alt="Sin imagen"> --}}
-                    @endif
-                </td>
-                <td class="fw-bolder">{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
-                <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
-                <td>{{ $hdv->modelo?->nombre_modelo ?? '---' }}</td>
-                <td >{{ $hdv->propiedad?->nombreempresa?? '---' }}</td>
-                <td>{{ $hdv->serie }}</td>
-                <td>{{ $hdv->servicio?->nombreservicio ?? '---' }}</td>
-                <td>{{ $hdv->actFijo ?? '---' }}</td>
-                <td>{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</td>
-                {{-- <td>{{ $hdv->ubica ?? '---' }}</td> --}}
-
-                {{-- <td>{{ $hoja->descripcion }}</td> --}}
-                {{-- @endforeach --}}
-
-                <td>{{ $hdv->created_at ?? '---' }}</td>
-
-
-                {{-- // acciones  --}}
-                {{-- <td> --}}
-                {{-- 22- Crear boton Editar: <hojadevida/id/edit</edit> --}}
-                {{-- <a href="{{url('/hojadevida/'.$hojadevida->id.'/edit')}}">
-                Editar
-                </a> --}}
-
-                {{-- 19- ACCION ELIMINAR --}}
-                {{-- <form action="{{ url('hojadevida/listar/' . $hdv->id) }}" method="post"> Envio los datos para ser
-                borrados
-                @csrf
-                {{ method_field('DELETE') }}
-                <input type="submit" onclick="return confirm('¿Quieres Borrar?')" value="Borrar">
-                </form> --}}
-
-                {{-- Mostrar hojadevida --}}
-                {{-- <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary">Ver
-
-                </a> --}}
-                {{-- </td> --}}
-                <td>
-                    {{-- <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-primary" target="_blank">
-                    Descargar PDF
-                    </a> --}}
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a href="{{ url('hojadevida' . '/' . $hdv->id . '/show') }}" class="btn btn-primary"><i
-                                class="bi bi-eye"></i>
-                        </a>
-                        <a href="{{ url('descargar-pdf' . '/' . $hdv->id) }}" class="btn btn-warning"
-                            target="_blank">
-                            <i class="bi bi-download"></i>
-                        </a>
-                        {{-- <button type="button" class="btn btn-danger">Left</button>
-                            
-
-                            <button type="button" class="btn btn-warning">Middle</button>
-                            <button type="button" class="btn btn-success">Right</button> --}}
-                    </div>
-                </td>
-
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-</body>
 
+    <script>
+        $(document).ready(function () {
+            const table = $('#tablaEquipos').DataTable({
+                dom: 'lrtip', // sin botones arriba
+                orderCellsTop: true,
+                fixedHeader: true,
+                language: {
+                    search: "Buscar:",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    zeroRecords: "No se encontraron resultados",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    paginate: {
+                        first: "Primero", last: "Último",
+                        next: "Siguiente", previous: "Anterior"
+                    }
+                },
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Exportar a Excel',
+                        className: 'btn btn-primary btn-sm'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Exportar a PDF',
+                        className: 'btn btn-primary btn-sm',
+                        orientation: 'landscape',
+                        pageSize: 'A4'
+                    }
+                ]
+            });
+
+            // Colocar botones en contenedor inferior
+            table.buttons().container().appendTo('#exportButtons');
+
+            // Filtros por columna
+            table.columns().every(function () {
+                const column = this;
+                const index = column.index();
+                const headerCell = $('#tablaEquipos thead tr:eq(1) th').eq(index);
+                const select = $('select', headerCell);
+
+                if (select.length > 0) {
+                    const uniqueValues = new Set();
+                    column.data().each(function (d) {
+                        const text = $('<div>').html(d).text().trim();
+                        if (text !== '') uniqueValues.add(text);
+                    });
+
+                    Array.from(uniqueValues).sort().forEach(function (val) {
+                        select.append(`<option value="${val}">${val}</option>`);
+                    });
+
+                    select.on('change', function () {
+                        const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
