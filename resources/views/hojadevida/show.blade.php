@@ -27,7 +27,7 @@
         }
         a{
             margin-top: 20px;
-            
+
             background-color: blue;
             color: white;
             padding: 10px;
@@ -50,7 +50,7 @@
 </head>
 
 <body>
-    
+
         <div  >
             <div>
                 @include('hojadevida.showpdf')
@@ -60,11 +60,11 @@
                 <h1> Registrar </h1>
                 <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                     Ingresar Nueva hoja de vida
-                </a>                
+                </a>
             </div> -->
-            
+
             <div class="b" style="padding-left: 850px">
-                
+
                 <h1>Hoja de Vida PDF</h1>
                 <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"
                     target="_blank">Descargar PDF
@@ -73,7 +73,7 @@
 
 
         </div>
-  
+
 
 </body>
 
