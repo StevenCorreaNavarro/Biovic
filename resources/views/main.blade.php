@@ -101,7 +101,7 @@
                             </li>
                             @if (Auth::check() && Auth::user()->role === 'Admin')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
+                                    <a class="nav-link" href="{{ route('adminlistaR.lista_registrada') }}">Panel de Administración</a>
                                 </li>
                             @endif
 

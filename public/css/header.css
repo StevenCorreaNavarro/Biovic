@@ -161,6 +161,7 @@ ul .botone {
     /* Cambia el color del texto */
     /* font-size: 1rem; */
     /* Cambia el tamaño de la fuente */
+      height: 40px;
 }
 .azul{
     padding: 0px;

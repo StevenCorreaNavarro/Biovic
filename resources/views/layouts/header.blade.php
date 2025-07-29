@@ -186,8 +186,7 @@
 
 
                                 @if (Auth::check() && Auth::user()->foto)
-                                    <div
-                                        style="margin-left:9% position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb; ">
+                                    <div style="margin-left:9% position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 4px 1px   #003170bb;"">
 
                                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                                             style="  width: 100%; height: 100%; object-fit: cover; ">
