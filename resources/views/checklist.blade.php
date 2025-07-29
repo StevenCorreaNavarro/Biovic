@@ -160,7 +160,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteFactura) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
-                                    @else
+                                            {{-- ESTA CONDICIONAL ES PARA PONER EL SIGNO DE ! SI NO HAY Datos subidos en base de datos --}}
+                                    @else 
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
@@ -170,6 +171,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteRegistroInvima) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
+                                            @else
+                                    <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
                             <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
@@ -178,6 +181,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteCertificadoCalibracion) }}"
                                         target="_blank"><i class="bi bi-eye-fill "></i></a>
+                                        @else
+                                    <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
                             <td style="font-size: 22px;padding: 0px; margin: 0px; color:rgb(13, 110, 253);"
@@ -186,6 +191,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteManua) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
+                                            @else
+                                    <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
                             <td style="font-size: 22px;padding: 0px; margin: 0px; " class="text-center">
@@ -193,6 +200,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteLimpiezaDesinfeccion) }}"
                                         target="_blank"><i class="bi bi-eye-fill "></i></a>
+                                        @else
+                                    <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
 
