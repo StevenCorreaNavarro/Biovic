@@ -94,7 +94,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::put('/admin/prop/{prop}', [PanelAdminController::class, 'updateprop'])->name('propiedad.updateprop');
     Route::get('/admin/prop/{prop}/edit', [PanelAdminController::class, 'editpropiedad'])->name('propiedad.editpropiedad');
 
-    // Route::get('tiendas_oficiales',[UnitController::class,'listar'])->name('unit.listar');  
+    // Route::get('tiendas_oficiales',[UnitController::class,'listar'])->name('unit.listar');
     // Route::get('unidad/create',[UnitController::class,'create'])->name('unit.create');
     // Route::post('unidad/store', [UnitController::class,'store'])->name('unit.store');
     // Route::get('unidad/{unit}', [UnitController::class, 'show'])->name('unit.show');

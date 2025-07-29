@@ -168,7 +168,7 @@
 
                         value="{{ isset($propiedad->nombreempresa) ? $propiedad->nombreempresa : old('nombreempresa') }}">
                         </div>
-                       
+
 
                         <div class="form-group ">
 
@@ -188,7 +188,7 @@
                         </div>
                          </div>
 
-                   
+
                          `;
         }
 
@@ -362,7 +362,7 @@
                     </div>
 
                     {{-- ESTADO --}}
-                    {{--  Mostrar valores de `$estadoequipo` para depuración     
+                    {{--  Mostrar valores de `$estadoequipo` para depuración
                         <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv">
@@ -386,7 +386,7 @@
                         <div class="form-group" id="miDiv2">
                             <label for="ubifisica_id">Ubicación Física</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="ubifisica()"></i>
-                            {{--  Mostrar valores de `$ubifisicas` para depuración  
+                            {{--  Mostrar valores de `$ubifisicas` para depuración
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
                             <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
                                 <option value="" class>Seleccione una opción</option>
