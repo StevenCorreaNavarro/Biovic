@@ -408,6 +408,14 @@ class HojadevidaController extends Controller
             // Guardar nuevo estado
             $pro = new propiedad();
             $pro->nombreempresa = $request->propiedad;
+            $pro->nitempresa = $request->nitempresa;
+            $pro->direccionempre = $request->direccionempre;
+            $pro->telefonoempre = $request->telefonoempre;
+            $pro->ciudadempre = $request->ciudadempre;
+            $pro->sedeempresa = $request->sedeempresa;
+            
+            $pro->emailWebempre = $request->emailWebempre;
+            $pro->representanteempresa = $request->representanteempresa;
 
             // Verifica si se ha subido una imagen
             if ($request->hasFile('fotos')) {

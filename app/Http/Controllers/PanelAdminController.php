@@ -20,6 +20,7 @@ use App\Models\user;
 use App\Models\modelo;
 use App\Models\hojadevida;
 use App\Models\PanelAdmin;
+// use App\Models\Auth;
 use App\Models\equipoMarca;
 use Dompdf\Dompdf;
 
@@ -331,6 +332,16 @@ class PanelAdminController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $user = User::findOrFail($user);
+        if ($user->id === 1) {
+            return back()->with('error', 'No puedes modificar al usuario principal del sistema.');
+        }
+        if (Auth::id() === $user->id && $user->role === 'Admin') {
+            if ($request->input('role') !== $user->role) {
+                return back()->with('error', 'No puedes cambiar tu propio rol si eres administrador.');
+            }
+        }
+
         $user->role = $request->role;
         $user->name = $request->name;
         $user->identity = $request->identity;
@@ -344,6 +355,7 @@ class PanelAdminController extends Controller
         $user->profession = $request->profession;
         $user->post = $request->post;
         $user->email = $request->email;
+        $user->role = $request->input('role');
         $user->save();
 
         return redirect()->route('user.listausers');
@@ -357,6 +369,7 @@ class PanelAdminController extends Controller
 
     public function updateprop(Request $request, Propiedad $prop)
     {
+
         // $user->foto = $request->foto;
         if ($request->hasFile('foto')) {
             $prop->foto = $request->file('foto')->store('public/fotos');

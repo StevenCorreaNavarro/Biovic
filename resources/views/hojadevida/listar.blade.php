@@ -58,9 +58,9 @@
 
 <body>
     @extends('layouts.header')
-    <br><br>
-    <div class="container py-4">
-        <h1 class="text-center mb-4">Lista hoja de vida</h1>
+    <br>
+    <div class="p-2 py-4">
+        <h1 class="text-center mb-0">Lista hoja de vida</h1>
 
         @if(Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
             <form class="d-flex mb-3" method="GET" action="{{ route('hojadevida.listar') }}">

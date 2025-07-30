@@ -37,10 +37,6 @@
 </head>
 
 <body>
-
-
-
-
     <script>
         let contenidoOriginal;
         let contenidoOriginal2;
@@ -158,19 +154,50 @@
         function propiedad() {
             const div = document.getElementById("miDivpropiedad");
             contenidoOriginalpropiedad = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
-            div.innerHTML = `
+            div.innerHTML =  `
+
+            
                         <div class="form-group">
-                        <label for="propiedad">Nueva propiedad</label>
 
-                        <i class="fa-solid fa-xmark" onclick="restpropiedad() " style="cursor:pointer; margin-left:10px;"></i>
+                            <br><br>
+                         
+                            <label for="propiedad"  class="form-label fw-bold" >Registra nueva propiedad</label> <i class="fa-solid fa-xmark" onclick="restpropiedad() " style="cursor:pointer; margin-left:10px;"></i>
 
-                        <input name="propiedad" type="text" id="propiedad" class="form-control dv"
+                            <br>
+                            
+                            
+                            <label for="propiedad">Nombre empresa</label>
+                            <input name="propiedad" type="text" id="propiedad" class="form-control dv"
+                            value="{{ isset($propiedad->nombreempresa) ? $propiedad->nombreempresa : old('nombreempresa') }}">
+                            
+                            <label for="nitempresa">Nit Empresa</label>
+                            <input type="text" name="nitempresa" id="nitempresa"  class="form-control dv"
+                            value="{{ isset($propiedad->nitempresa) ? $propiedad->nitempresa : old('nitempresa') }}">
 
-                        value="{{ isset($propiedad->nombreempresa) ? $propiedad->nombreempresa : old('nombreempresa') }}">
-                        </div>
+                            <label for="direccionempre">Direccion</label>
+                            <input type="text" name="direccionempre" id="direccionempre"  class="form-control dv"
+                            value="{{ isset($propiedad->direccionempre) ? $propiedad->direccionempre : old('direccionempre') }}">
 
 
-                        <div class="form-group ">
+                            <label for="telefonoempre" >Telefono</label>
+                            <input type="text" class="form-control dv" name="telefonoempre" id="telefonoempre"
+                            value="{{ isset($propiedad->telefonoempre) ? $propiedad->telefonoempre : old('telefonoempre') }}"> 
+
+                            <label for="ciudadempre">Ciudad</label>
+                            <input type="text" class="form-control dv" name="ciudadempre" id="ciudadempre"
+                            value="{{isset($propiedad->ciudadempre) ? $propiedad->ciudadempre : old('ciudadempre')}}">
+
+                            <label for="sedeempresa">Sede</label>
+                            <input type="text" class="form-control dv" name="sedeempresa" id="sedeempresa"
+                            value="{{isset($propiedad->sedeempresa)  ? $propiedad->sedeempresa :old('sedeempresa') }}">
+
+                            <label for="representanteempresa">Representante</label>
+                            <input type="text" class="form-control dv" name="representanteempresa" id="representanteempresa"
+                            value="{{isset($propiedad->representanteempresa) ? $propiedad->representanteempresa : old('representanteempresa')}}">
+                            
+                            <label for="emailWebempre">Email o sitio web</label>
+                            <input type="text" class="form-control dv" name="emailWebempre" id="emailWebempre"
+                            value="{{isset($propiedad->emailWebempre) ? $propiedad->emailWebempre : old('emailWebempre') }}" >
 
                             <label for="fotos">Selecciona una imagen:</label>
                             <input type="file" name="fotos" id="fotos"
@@ -180,17 +207,31 @@
                                 <div class="invalid-feedback">El campo es obligatorio</div>
                             @enderror
 
-                            {{-- Vista previa de la imagen --}}
 
                         </div>
+                        
+                        {{-- Vista previa de la imagen --}}
+
                         <img id="previews" class="img-thumbnail m-2 img-fluid mt-3" src="" width="120"
                             style="display: none;" alt="Vista previa">
                         </div>
-                         </div>
+                       
+                         
+                         
+
+
+                  
+
+
+
+
+
+
 
 
                          `;
         }
+
 
         function previewImagen(event) {
             let reader = new FileReader();
@@ -250,6 +291,7 @@
         function restpropiedad() {
             document.getElementById("miDivpropiedad").innerHTML = contenidoOriginalpropiedad;
         }
+
         function restadqui() {
             document.getElementById("miDiv8").innerHTML = contenidoOriginal8;
         }
@@ -644,9 +686,12 @@
                 </div>
 
                 {{-- FIN DESCRIPCION DE EQUIPO  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO REGISTRO HISTORICO                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
-
-                {{-- INICIO REGISTRO HISTORICO --}}
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation mb-4  formu p-5">
                     {{--  Seleccion Fondo Blan --}}
                     <h1 class="text-white"
@@ -821,7 +866,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 position-relative">
+                    <div class="col-md-3 ">
                         <div class="form-group" id="miDivpropiedad">
                             <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>

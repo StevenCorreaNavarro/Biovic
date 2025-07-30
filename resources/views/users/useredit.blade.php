@@ -68,9 +68,9 @@
                                 <select name="role" id="role" class="form-control" required>
                                     <option value="{{ old('role', $user->role) }}">{{ Auth::user()->role }}</option>
                                     <br>
-                                    <option value="User">User</option>
+                                    {{-- <option value="User">User</option>
                                     <option value="Empleado">Empleado</option>
-                                    <option value="Admin">Admin</option>
+                                    <option value="Admin">Admin</option> --}}
                                 </select>
                             </label>
                         @else
