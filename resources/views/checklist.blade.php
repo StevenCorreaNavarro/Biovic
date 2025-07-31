@@ -74,7 +74,7 @@
                 </datalist>
 
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
-                    href="{{ route('check_list.propiedadbuscarchecklist') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
+                    href="{{ route('check_list.propiedad') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
                 {{-- <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                 Registrar Nueva hoja de vida
@@ -160,8 +160,8 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteFactura) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
-                                            {{-- ESTA CONDICIONAL ES PARA PONER EL SIGNO DE ! SI NO HAY Datos subidos en base de datos --}}
-                                    @else 
+                                    {{-- ESTA CONDICIONAL ES PARA PONER EL SIGNO DE ! SI NO HAY Datos subidos en base de datos --}}
+                                @else
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
@@ -171,7 +171,7 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteRegistroInvima) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
-                                            @else
+                                @else
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
@@ -181,7 +181,7 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteCertificadoCalibracion) }}"
                                         target="_blank"><i class="bi bi-eye-fill "></i></a>
-                                        @else
+                                @else
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
@@ -191,7 +191,7 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteManua) }}" target="_blank"><i
                                             class="bi bi-eye-fill "></i></a>
-                                            @else
+                                @else
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>
@@ -200,7 +200,7 @@
                                     <a style="color:rgb(13, 110, 253);"
                                         href="{{ asset('storage/' . $hdv->soporteLimpiezaDesinfeccion) }}"
                                         target="_blank"><i class="bi bi-eye-fill "></i></a>
-                                        @else
+                                @else
                                     <i class="bi bi-exclamation text-warning"></i>
                                 @endif
                             </td>

@@ -332,15 +332,15 @@ class PanelAdminController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($user);
-        if ($user->id === 1) {
-            return back()->with('error', 'No puedes modificar al usuario principal del sistema.');
-        }
-        if (Auth::id() === $user->id && $user->role === 'Admin') {
-            if ($request->input('role') !== $user->role) {
-                return back()->with('error', 'No puedes cambiar tu propio rol si eres administrador.');
-            }
-        }
+        // $user = User::findOrFail($user);
+        // if ($user->id === 1) {
+        //     return back()->with('error', 'No puedes modificar al usuario principal del sistema.');
+        // }
+        // if (Auth::id() === $user->id && $user->role === 'Admin') {
+        //     if ($request->input('role') !== $user->role) {
+        //         return back()->with('error', 'No puedes cambiar tu propio rol si eres administrador.');
+        //     }
+        // }
 
         $user->role = $request->role;
         $user->name = $request->name;

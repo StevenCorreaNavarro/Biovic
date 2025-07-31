@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista Hoja de Vida</title>
@@ -59,17 +60,27 @@
 <body>
     @extends('layouts.header')
     <br>
-    <div class="p-2 py-4">
-        <h1 class="text-center mb-0">Lista hoja de vida</h1>
+    <div >
+        <br>
+        
 
-        @if(Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
-            <form class="d-flex mb-3" method="GET" action="{{ route('hojadevida.listar') }}">
-                <input class="form-control me-2" style="max-width: 400px;" type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}">
-                <button class="btn btn-primary me-2" type="submit"><i class="bi bi-search"></i></button>
-                <a href="{{ route('hojadevida.listar') }}" class="btn btn-primary me-2">Reiniciar</a>
-                <a href="{{ url('hojadevida/create') }}" class="btn btn-primary">Registrar Nueva hoja de vida</a>
-            </form>
-        @endif
+        <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
+            <h1 class="text-center mb-0">LISTA HOJA DE VIDA</h1>
+            @if (Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
+
+                <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
+                    action="{{ route('hojadevida.listar') }}">
+                    @csrf {{-- token o seguridad  --}}
+                    <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text" name="search"
+                        placeholder="Buscar..." value="{{ request('search') }}">
+                    <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button>
+                    <a href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
+                    <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">Registrar nueva Hoja de Vida</a>
+
+                    
+                </form>
+            @endif
+        </div>
 
         <table id="tablaEquipos" class="table table-striped table-bordered w-100">
             <thead class="table-dark">
@@ -87,14 +98,27 @@
                     <th>Acciones</th>
                 </tr>
                 <tr>
-                    <th></th><th></th><th></th>
-                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
-                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
-                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
-                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
                     <th></th>
-                    <th><select class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
-                    <th></th><th></th>
+                    <th></th>
+                    <th></th>
+                    <th><select class="form-select form-select-sm filtro-select">
+                            <option value="">Todas</option>
+                        </select></th>
+                    <th><select class="form-select form-select-sm filtro-select">
+                            <option value="">Todas</option>
+                        </select></th>
+                    <th><select class="form-select form-select-sm filtro-select">
+                            <option value="">Todas</option>
+                        </select></th>
+                    <th><select class="form-select form-select-sm filtro-select">
+                            <option value="">Todas</option>
+                        </select></th>
+                    <th></th>
+                    <th><select class="form-select form-select-sm filtro-select">
+                            <option value="">Todas</option>
+                        </select></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -103,13 +127,15 @@
                         <td>{{ $hdv->id }}</td>
                         <td>
                             @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
-                                <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50" class="rounded"
-                                    data-bs-toggle="modal" data-bs-target="#imagenModal{{ $hdv->id }}" style="cursor: pointer;">
+                                <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50"
+                                    class="rounded" data-bs-toggle="modal"
+                                    data-bs-target="#imagenModal{{ $hdv->id }}" style="cursor: pointer;">
                                 <div class="modal fade" id="imagenModal{{ $hdv->id }}" tabindex="-1">
                                     <div class="modal-dialog modal-xl modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
-                                                <img src="{{ asset('storage/' . $hdv->foto) }}" class="img-fluid" style="max-height: 90vh;">
+                                                <img src="{{ asset('storage/' . $hdv->foto) }}" class="img-fluid"
+                                                    style="max-height: 90vh;">
                                             </div>
                                         </div>
                                     </div>
@@ -128,8 +154,10 @@
                         <td>{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ url('hojadevida/' . $hdv->id . '/show') }}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
-                                <a href="{{ url('descargar-pdf/' . $hdv->id) }}" class="btn btn-sm btn-warning" target="_blank"><i class="bi bi-download"></i></a>
+                                <a href="{{ url('hojadevida/' . $hdv->id . '/show') }}"
+                                    class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{{ url('descargar-pdf/' . $hdv->id) }}" class="btn btn-sm btn-warning"
+                                    target="_blank"><i class="bi bi-download"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -154,7 +182,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             const table = $('#tablaEquipos').DataTable({
                 dom: 'lrtip', // sin botones arriba
                 orderCellsTop: true,
@@ -165,12 +193,13 @@
                     zeroRecords: "No se encontraron resultados",
                     info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
                     paginate: {
-                        first: "Primero", last: "Último",
-                        next: "Siguiente", previous: "Anterior"
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Anterior"
                     }
                 },
-                buttons: [
-                    {
+                buttons: [{
                         extend: 'excelHtml5',
                         text: 'Exportar a Excel',
                         className: 'btn btn-primary btn-sm'
@@ -189,7 +218,7 @@
             table.buttons().container().appendTo('#exportButtons');
 
             // Filtros por columna
-            table.columns().every(function () {
+            table.columns().every(function() {
                 const column = this;
                 const index = column.index();
                 const headerCell = $('#tablaEquipos thead tr:eq(1) th').eq(index);
@@ -197,16 +226,16 @@
 
                 if (select.length > 0) {
                     const uniqueValues = new Set();
-                    column.data().each(function (d) {
+                    column.data().each(function(d) {
                         const text = $('<div>').html(d).text().trim();
                         if (text !== '') uniqueValues.add(text);
                     });
 
-                    Array.from(uniqueValues).sort().forEach(function (val) {
+                    Array.from(uniqueValues).sort().forEach(function(val) {
                         select.append(`<option value="${val}">${val}</option>`);
                     });
 
-                    select.on('change', function () {
+                    select.on('change', function() {
                         const val = $.fn.dataTable.util.escapeRegex($(this).val());
                         column.search(val ? '^' + val + '$' : '', true, false).draw();
                     });
@@ -215,4 +244,5 @@
         });
     </script>
 </body>
+
 </html>

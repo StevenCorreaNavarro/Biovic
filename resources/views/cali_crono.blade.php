@@ -77,7 +77,7 @@
                     </datalist>
 
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
-                    href="{{ route('cronocali.propiedadbuscarcali') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
+                    href="{{ route('cronocali.propiedad') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
                 {{-- <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                 Registrar Nueva hoja de vida
