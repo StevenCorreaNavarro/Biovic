@@ -25,7 +25,7 @@
         }
 
         .ln {
-            border: 1px solid rgb(235, 235, 235);
+            border: 0px solid rgb(235, 235, 235);
             padding: 0;
             margin: 0;
 
@@ -110,7 +110,7 @@
         <br>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);  background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);  background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">DESCRIPCION DEL EQUIPO</h4>
                 </th>
             </tr>
@@ -183,7 +183,7 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">REGISTRO HISTORICO</h4>
                 </th>
             </tr>
@@ -226,7 +226,7 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255);">REGISTRO TÉCNICO</h4>
                 </th>
             </tr>
@@ -290,22 +290,22 @@
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
                 <th
-                    style="text-align: center; border-top: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                    style="text-align: center; border-top: 0px solid rgb(0, 0, 0); border-left: 0px solid rgb(0, 0, 0); border-right: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255);">ACCESORIOS</h4>
                 </th>
             </tr>
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style=" border:1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255);width: 20%; color:white;">
+                <th style=" border:1px solid rgb(255, 255, 255);background-color:rgb(0, 64, 255);width: 20%; color:white;">
                     NOMBRE</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                <th style="border: 1px solid rgb(254, 254, 254);background-color:rgb(0, 64, 255); width: 20%;color:white;">
                     MARCA</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                <th style="border: 1px solid rgb(255, 255, 255);background-color:rgb(0, 64, 255); width: 20%;color:white;">
                     MODELO</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                <th style="border: 1px solid rgb(255, 255, 255);background-color:rgb(0, 64, 255); width: 20%;color:white;">
                     SERIE</th>
-                <th style="border: 1px solid rgb(0, 0, 0);background-color:rgb(0, 64, 255); width: 20%;color:white;">
+                <th style="border: 1px solid rgb(255, 255, 255);background-color:rgb(0, 64, 255); width: 20%;color:white;">
                     COSTO</th>
             </tr>
             <tr>
@@ -358,7 +358,7 @@
         </table>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">DATOS DEL PROVEEDOR Y/O FABRICANTE</h4>
                 </th>
             </tr>
@@ -408,7 +408,7 @@
 
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255); ">RECOMENDACIONES</h4>
                 </th>
             </tr>
@@ -428,7 +428,7 @@
 
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr>
-                <th style="text-align: center; border: 2px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
+                <th style="text-align: center; border: 0px solid rgb(0, 0, 0);   background-color:rgb(0, 64, 255) ">
                     <h4 style="padding:0%;margin:0; color: rgb(255, 255, 255)">NR: NO REGISTRA NA: NO APLICA</h4>
                 </th>
             </tr>
