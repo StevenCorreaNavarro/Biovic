@@ -44,7 +44,7 @@
         td {
             font-size: 9px;
             text-align: left;
-            padding: 1px;
+            /* padding: 1px; */
             /* margin: 1px; */
 
         }
@@ -55,27 +55,27 @@
 <body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
     <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255); ">
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
-            <tr style=" background-color:rgb(0, 64, 255); overflow: hidden;  padding: 0px;">
-                <td rowspan="3"
-                    style=" background-color: rgb(0, 0, 0); border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
+            <tr style=" background-color:rgb(0, 64, 255); overflow: hidden;  padding: 0px;margin: 0px;">
+                <td style=" background-color: rgb(255, 255, 255); border: 0px solid rgb(0, 0, 0); text-align: center;padding: 0px;
                         margin: 0px;">
                     <img src="{{ $hdvs->propiedad?->foto ? asset('storage/' . $hdvs->propiedad->foto) : asset('IMG/logotipohancho.png') }}"
-                        style="width:auto;  height: 90px;padding: 0px;
-                        margin: 0px;">
+                        style="width:auto;  height: 90px;padding: 0px; margin: 0px;">
 
                 </td>
 
-                <td style="text-align: center; border: 1px solid rgb(0, 0, 0);" width="100%">
-                    <h4 style="padding:0%;margin:0;  color:white">HOJA DE VIDA EQUIPO MÉDICO</h4>
+                <td style="text-align: center; border: 0px solid rgb(255, 255, 255); padding: 0px;margin: 0px; " width="100%;" >
+                    <h2 style="padding:0%;margin:0;  color:white">HOJA DE VIDA EQUIPO MÉDICO</h2>
+                    <h4 style="padding:0%;margin:0;  color:white">DATO UNO</h4>
+                    <h4 style="padding:0%;margin:0;  color:white">DATO DOS</h4>
                 </td>
-                <td rowspan="3"
-                    style=" background-color:rgb(0, 0, 0);border: 1px solid rgb(0, 0, 0); text-align: center;padding: 0px;
+                <td 
+                    style=" background-color:rgb(255, 255, 255);border: 0px solid rgb(0, 0, 0); text-align: center;padding: 0px;
                         margin: 0px;">
                     {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" height="100px"> --}}
                     <img src="{{ asset('IMG/logotipohancho.png') }}"
-                        style="width:auto;  height: 90px;padding: 0px;
+                        style="width:auto;  height: 90px; padding: 0px;
                         margin: 0px;">
-                    {{-- <span class="user-level
+                    <span class="user-level"></span>
                 </td>
 
                 {{-- NO BOOORRAAAAAAAAAAAAAAAARRR NI POR EL PTAS --}}
@@ -96,7 +96,7 @@
                 @endif --}}
 
             </tr>
-            <tr style=" background-color:rgb(0, 64, 255) ">
+            {{-- <tr style=" background-color:rgb(0, 64, 255) ">
                 <td style="text-align: center; border: 1px solid rgb(0, 0, 0);">
                     <h4 style="padding:0%;margin:0;  color:white">DATO 2</h4>
                 </td>
@@ -105,7 +105,7 @@
                 <td style="text-align: center; border: 1px solid rgb(0, 0, 0);">
                     <h4 style="padding:0%;margin:0; color:white">DATO 3</h4>
                 </td>
-            </tr>
+            </tr> --}}
         </table>
         <br>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
@@ -217,7 +217,7 @@
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VIDA UTIL</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->vidaUtil ?? '---' }}</td>
                 
-                {{-- <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>
+                {{-- <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>ZZZ
                 <td style="border: 1px solid rgb(255, 255, 255);"></td> --}}
 
                       <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">estado</td>

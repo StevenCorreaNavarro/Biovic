@@ -33,25 +33,57 @@
             color: #198754;
             font-weight: bold;
         }
+
+        label,
+        .form-control {
+            opacity: 0;
+            transform: translateY(0px);
+            animation: entrada .9s ease-out forwards;
+        }
+
+        i {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: entrada 0.5s ease-out forwards;
+        }
+
+        @keyframes entrada {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/hojadevida.js') }}"></script>
     <!-- Modal -->
     <div class="modal fade" id="exampleModalparam" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Nuevo Parametro</h1>
+            <div class="modal-content"><br>
+                <div class="modal ">
+
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">Nuevo Parametro</h1>
                 <div class="modal-body">
-                    Se creara nuevo parametro para la hoja de vida y se guardara en base de datos para seleccionar en el
-                    siguiente formulario.
+                    <p>
+                        Se creara nuevo parametro para la hoja de vida y se guardara en base de datos para seleccionar
+                        en el
+                        siguiente formulario.
+                    </p>
+                    {{-- <button type="button" class="btn btn-primary">ACEPTARn> --}}
+                    <div class="d-grid gap-2 col-6 mx-auto">
+
+                        <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Aceptar</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
+
+                <div class="modal">
                     {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
                     <button type="button" class="btn btn-primary"data-bs-dismiss="modal">cerrar</button>
                 </div>
@@ -69,26 +101,39 @@
             {{-- MDAL PARA ASEGURAR QUE GUARDA DATOS --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguro quieres guardar los datos?</h1>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content"><br>
+                        <div class="modal">
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
+                         <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">¿Seguro quieres guardar los datos?</h1>
+                           
                         <div class="modal-body">
-                            los datos se guardaran permanentemente
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <p class="text-center">
+                                Los datos se guardaran permanentemente
+                            </p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
                                 class="btn btn-primary">
+                                </div>
                         </div>
+                        
+                            
+                       
                     </div>
                 </div>
             </div>
 
-            {{-- Inicio descripcion --}}
+
+
+            {{-- ----------------------------------------------------------------------------------------------------------- --}}
+            {{--  --}}
+            {{--                                       INICIO DESCRIPCION DE EQUIPO                                            --}}
+            {{--  --}}
+            {{-- ----------------------------------------------------------------------------------------------------------- --}}
             <div style="background-color: #e2e2e2;" class="row g-2 needs-validation formu p-5">
 
                 <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
@@ -414,9 +459,8 @@
                             style="display: none;" alt="Vista previa">
                     </div>
 
-
                 </div>
-
+                <div></div>
                 {{-- FIN DESCRIPCION DE EQUIPO  --}}
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
                 {{--  --}}
@@ -578,6 +622,15 @@
                 </div>
                 {{-- FIN REGISTRO HISTORICO --}}
 
+
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO REGISTRO TECNICO                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+
+
                 {{-- INICIO REGISTRO TECNICO --}}
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
@@ -586,8 +639,9 @@
                     </h1>
 
                     <div class="col-md-4 position-relative">
-                        <div class="form-group">
-                            <label for="mag_fuen_alimen_id">Fuente de Alimentación</label>
+                        <div class="form-group" id="miDiv9">
+                            <label for="mag_fuen_alimen_id">Fuente de Alimentación</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="fuenteali()"></i>
                             <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
                                 class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
@@ -611,8 +665,10 @@
                     </div>
 
                     <div class="col-md-4 position-relative">
-                        <div class="form-group">
-                            <label for="mag_fre_id">Unidad de Frecuencia</label>
+                        <div class="form-group" id="miDiv10">
+                            <label for="mag_fre_id">Unidad de Frecuencia</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="ufrecuencia()"></i>
                             <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($magFrec as $frecuencia)
@@ -644,8 +700,10 @@
                     </div>
 
                     <div class="col-md-4 position-relative">
-                        <div class="form-group">
-                            <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
+                        <div class="form-group" id="miDiv11">
+                            <label for="mag_fuen_ali_id">Unidad de Alimentación</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="ualimentacion()"></i>
                             <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($fuentesAli as $fuente)
@@ -874,6 +932,13 @@
                 </div>
                 {{-- FIN REGISTRO TECNICO --}}
 
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO ACCESORIOS                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+
                 <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
@@ -884,8 +949,7 @@
                     <div class="row g-3 mt-4">
                         <div class="col-md-6">
                             <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
-                            <select id="accesorio_id" name="accesorio_id"
-                                class="form-select shadow-sm">
+                            <select id="accesorio_id" name="accesorio_id" class="form-select shadow-sm">
                                 <option value="">Seleccione un accesorio</option>
                                 @foreach ($accesorios as $accesorio)
                                     <option value="{{ $accesorio->id }}"
@@ -1045,7 +1109,8 @@
                     {{-- Soporte de Factura --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteFactura" style="font-size: 90%">Selecciona el Soporte de Factura (PDF)</label>
+                            <label for="soporteFactura" style="font-size: 90%">Selecciona el Soporte de Factura
+                                (PDF)</label>
                             <input type="file" name="soporteFactura" id="soporteFactura"
                                 class="form-control @error('soporteFactura') is-invalid @enderror"
                                 accept="application/pdf">
@@ -1058,7 +1123,8 @@
                     {{-- Soporte de Registro Invima --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteRegistroInvima" style="font-size: 90%">Selecciona el Soporte de Registro Invima (PDF)</label>
+                            <label for="soporteRegistroInvima" style="font-size: 90%">Selecciona el Soporte de
+                                Registro Invima (PDF)</label>
                             <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
                                 class="form-control @error('soporteRegistroInvima') is-invalid @enderror"
                                 accept="application/pdf">
@@ -1071,8 +1137,9 @@
                     {{-- Soporte de Certificado de Calibración --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteCertificadoCalibracion" style="font-size: 90%">Selecciona el Soporte de Certificado de
-                                Calibración (PDF)           </label>
+                            <label for="soporteCertificadoCalibracion" style="font-size: 90%">Selecciona el Soporte de
+                                Certificado de
+                                Calibración (PDF) </label>
                             <input type="file" name="soporteCertificadoCalibracion"
                                 id="soporteCertificadoCalibracion"
                                 class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror"
@@ -1086,7 +1153,8 @@
                     {{-- Soporte de Manual --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteManual" style="font-size: 90%">Selecciona el Soporte de Manual (PDF)</label>
+                            <label for="soporteManual" style="font-size: 90%">Selecciona el Soporte de Manual
+                                (PDF)</label>
                             <input type="file" name="soporteManual" id="soporteManual"
                                 class="form-control @error('soporteManual') is-invalid @enderror"
                                 accept="application/pdf">
@@ -1099,7 +1167,8 @@
                     {{-- Soporte de Limpieza y Desinfección --}}
                     <div class="col-md-6 position-relative d-flex">
                         <div class="form-group">
-                            <label for="soporteLimpiezaDesinfeccion" style="font-size: 90%">Selecciona el Soporte de Limpieza y Desinfección
+                            <label for="soporteLimpiezaDesinfeccion" style="font-size: 90%">Selecciona el Soporte de
+                                Limpieza y Desinfección
                                 (PDF)</label>
                             <input type="file" name="soporteLimpiezaDesinfeccion" id="soporteLimpiezaDesinfeccion"
                                 class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror"

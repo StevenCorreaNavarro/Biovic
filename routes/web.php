@@ -22,19 +22,25 @@ use App\Models\PanelAdmin;
 
 
 
+// Route::get('/ma', function () {
+//     Alert::success('Bienvenido!', 'Ingreso exitoso');
+//     return view('main');
+// })->name('menu');
+
+
 // guardado hoy 4 abril 11:11
-Route::get('main', function () {
-    // Alert::success(' Titulo de la alerta','mensaje de la alerta');
+Route::get('/main', function () {
+    Alert::success(' Titulo de la alerta','mensaje de la alerta');
     // toast('Ejemplo del toast')->success('ejemplo del tost');
     return view('main');
     // return View('admin.layouts.app');
 });
-Route::get('/', function () {
-    Alert::success(' Titulo de la alerta', 'mensaje de la alerta');
-    // toast('Ejemplo del toast')->success('ejemplo del tost');
+
+Route::get('/principal', function () {
+    Alert::success('Bienvenido!', 'Ingreso exitoso');
     return view('main');
-    // return View('admin.layouts.app');
-});
+})->name('menu');
+
 
 Route::get('/empleados', function () {
     return view('empleips.form');

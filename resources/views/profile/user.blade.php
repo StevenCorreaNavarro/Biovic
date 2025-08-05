@@ -79,14 +79,14 @@
         <center>
             <div class="cajon" id="formulario" action="{{ route('hojadevida.listar') }}">
                 @if (Auth::check() && Auth::user()->foto)
-                <div
-                    style=" position: relative;  width: 150px;  height: 150px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
-                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
-                        style=" width: 100%; height: 100%; object-fit: cover; "><br>
-                </div><br>
-                <h2 class=""> {{ Auth::user()->name }}</h2>
+                    <div
+                        style=" position: relative;  width: 150px;  height: 150px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
+                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
+                            style=" width: 100%; height: 100%; object-fit: cover; "><br>
+                    </div><br>
+                    <h2 class=""> {{ Auth::user()->name }}</h2>
                 @else
-                <h2 class="bi bi-person-circle bi bi bi bi "> {{ Auth::user()->name }}</h2>
+                    <h2 class="bi bi-person-circle bi bi bi bi "> {{ Auth::user()->name }}</h2>
                 @endif
             </div>
         </center>
@@ -103,58 +103,67 @@
         <span class="user-level">Direccion: {{ Auth::user()->adress }}</span><br>
         <span class="user-level">Profesion: {{ Auth::user()->profession }}</span><br>
         <span class="user-level">Cargo: {{ Auth::user()->post }}</span><br> <br> --}}
-        
-        <table class="table table-borderless">
-            
+
+        <table class="table table-borderless table-striped">
+
             <tbody>
+                <thead>
+                    {{-- <tr >
+                        <th colspan="4">{{ Auth::user()->name }}</th>
+                        <th ></th>
+                    
+
+                       
+                    </tr> --}}
+                </thead>
                 <tr>
                     <th></th>
-                    <th >E-mail: </th>
+                    <th>E-mail: </th>
                     <td> {{ Auth::user()->email }}</td>
                     <th></th>
-                   
+
                 </tr>
                 <tr>
                     <th></th>
                     <th>Rol: </th>
                     <td>{{ Auth::user()->role }}</td>
                     <th></th>
-                
+
                 </tr>
                 <tr>
                     <th></th>
-                    <th >Identificacion: </th>
+                    <th>Identificacion: </th>
                     <td>{{ Auth::user()->identity }}</td>
                     <th></th>
-                   
+
                 </tr>
                 <tr>
                     <th></th>
-                    <th >Contacto: : </th>
+                    <th>Contacto: : </th>
                     <td>{{ Auth::user()->contact }}</td>
                     <th></th>
-                   
+
                 </tr>
                 <tr>
                     <th></th>
-                    <th >Direcccion: </th>
+                    <th>Direcccion: </th>
                     <td>{{ Auth::user()->adress }}</td>
                     <th></th>
-                   
+
                 </tr>
                 <tr>
                     <th></th>
-                    <th >Profesion: </th>
+                    <th>Profesion: </th>
                     <td>{{ Auth::user()->profession }}</td>
                     <th></th>
-                   
+
                 </tr>
                 <tr>
                     <th></th>
-                    <th >Cargo:  </th>
+                    <th>Cargo: </th>
                     <td>{{ Auth::user()->post }}</td>
                     <th></th>
-                   
+
                 </tr>
             </tbody>
         </table>
@@ -198,6 +207,20 @@
         }, false);
     });
 </script>
+<!-- SweetAlert2 desde CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Hecho',
+        text: '{{ session('success') }}',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+
 </body>
 
 </html>

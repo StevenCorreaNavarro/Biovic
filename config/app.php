@@ -69,7 +69,10 @@ return [
     |
     */
 
-    'timezone' => 'America/Bogota', 
+    'timezone' => 'America/Bogota',
+    'locale' => 'es',
+    'fallback_locale' => 'es',
+    'faker_locale' => 'es_CO',
 
     /*
     |--------------------------------------------------------------------------
@@ -214,6 +217,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        
 
     ])->toArray(),
 

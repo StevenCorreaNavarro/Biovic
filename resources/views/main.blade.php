@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+@include('sweetalert::alert')
 
 
 </head>
@@ -485,6 +485,8 @@
             body.classList.toggle('open');
         })
     </script> -->
+    @include('sweetalert::alert')
+
 
 </body>
 

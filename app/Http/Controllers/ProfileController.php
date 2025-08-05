@@ -19,7 +19,8 @@ class ProfileController extends Controller
         // $hdvs = hojadevida::with('equipo')->get();
 
 
-        return view('profile.user', compact('hdvs'));
+        return view('profile.user', compact('hdvs'))->with('success', '¡Registro creado exitosamente!');
+        
 
 
         // $hdvs = Hojadevida::orderBy('id', 'desc')->get();

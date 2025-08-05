@@ -60,24 +60,24 @@
 <body>
     @extends('layouts.header')
     <br>
-    <div >
+    <div>
         <br>
-        
+
 
         <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
             <h1 class="text-center mb-0">LISTA HOJA DE VIDA</h1>
             @if (Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
-
                 <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
                     action="{{ route('hojadevida.listar') }}">
                     @csrf {{-- token o seguridad  --}}
-                    <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text" name="search"
-                        placeholder="Buscar..." value="{{ request('search') }}">
+                    <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px"
+                        type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}">
                     <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button>
                     <a href="{{ route('hojadevida.listar') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
-                    <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">Registrar nueva Hoja de Vida</a>
+                    <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">Registrar nueva Hoja de
+                        Vida</a>
 
-                    
+
                 </form>
             @endif
         </div>
@@ -121,6 +121,7 @@
                     <th></th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach ($hdvs as $hdv)
                     <tr>
@@ -180,6 +181,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <!-- SweetAlert2 desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Hecho',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'Aceptar'
+            });
+        </script>
+    @endif
+
 
     <script>
         $(document).ready(function() {

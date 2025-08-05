@@ -57,7 +57,7 @@ class HojadevidaController extends Controller
 
     public function listar(Request $request)
     {
-        $hdvs = hojadevida::orderBy('id', 'desc')->get();
+        $hdvs = hojadevida::orderBy('id', 'Asc')->get();
         // $hdvs = hojadevida::with('equipo')->get();
         $query = Hojadevida::with('equipo', 'servicio', 'propiedad');
 
@@ -413,7 +413,7 @@ class HojadevidaController extends Controller
             $pro->telefonoempre = $request->telefonoempre;
             $pro->ciudadempre = $request->ciudadempre;
             $pro->sedeempresa = $request->sedeempresa;
-            
+
             $pro->emailWebempre = $request->emailWebempre;
             $pro->representanteempresa = $request->representanteempresa;
 
@@ -443,6 +443,45 @@ class HojadevidaController extends Controller
             $hdv->forma_adqui_id = $request->forma_adqui_id;
         }
 
+        if ($request->filled('nombrealimentacion')) {
+            // Guardar nuevo estado
+            $fuentgali = new magFuenAlimen();
+            // nombre columna-----------creates
+            $fuentgali->nombrealimentacion = $request->nombrealimentacion;
+            $fuentgali->save();
+            $hdv->mag_fuen_alimen_id = $fuentgali->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('mag_fuen_alimen_id')) {
+            // Asignar estado existente
+            $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
+        }
+
+        if ($request->filled('nombrefrecuencia')) {
+            // Guardar nuevo estado
+            $ufre = new magFre();
+            // nombre columna-----------creates
+            $ufre->nombrefrecuencia = $request->nombrefrecuencia;
+            $ufre->abreviacionfrecuencia = $request->abreviacionfrecuencia;
+            $ufre->save();
+            $hdv->mag_fre_id = $ufre->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('mag_fre_id')) {
+            // Asignar estado existente
+            $hdv->mag_fre_id = $request->mag_fre_id;
+        }
+
+        if ($request->filled('abrefuentealimen')) {
+            // Guardar nuevo estado
+            $uali = new  magFuenAli();
+            // nombre columna-----------creates
+            $uali->abrefuentealimen= $request->abrefuentealimen; 
+            // $uali->abrefuentealimen= $request->abrefuentealimen;
+       
+            $uali->save();
+            $hdv->mag_fuen_ali_id = $uali->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('mag_fuen_ali_id')) {
+            // Asignar estado existente
+            $hdv->mag_fuen_ali_id = $request->mag_fuen_ali_id;
+        }
+
 
         //  $ubi = new ubiFisica();
         //             $ubi->ubicacionfisica = $request->ubifisicas;
@@ -463,7 +502,7 @@ class HojadevidaController extends Controller
 
 
 
-        return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
+        return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
 
     }
 
@@ -582,7 +621,7 @@ class HojadevidaController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.edit')->with('success', '¡Registro creado exitosamente!');
     }
 
 

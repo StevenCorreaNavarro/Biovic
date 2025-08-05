@@ -8,6 +8,9 @@ let contenidoOriginal7;
 let contenidoOriginalpropiedad;
 
 let contenidoOriginal8;
+let contenidoOriginal9;
+let contenidoOrigina20;
+let contenidoOrigina21;
 
 function transformarDiv() {
     const div = document.getElementById("miDiv");
@@ -15,9 +18,7 @@ function transformarDiv() {
     div.innerHTML = `<div class="form-group">
                         <label for="estadoequipo">Nuevo estado de equipo</label>
                         <i class="fa-solid fa-xmark" onclick="restaurarDiv()" style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="estadoequipo" type="text" id="estadoequipo" class="form-control dv"
-
                     </div> `;
 }
 
@@ -26,11 +27,8 @@ function ubifisica() {
     contenidoOriginal2 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
     div.innerHTML = `<div class="form-group">
                         <label for="ubifisicas">Nueva ubicacion fisica</label>
-
                         <i class="fa-solid fa-xmark" onclick="restubifisica() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="ubifisicas" type="text" id="ubifisicas" class="form-control dv"
-
                         </div> `;
 }
 
@@ -40,11 +38,8 @@ function servicio() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="nombreservicios">Nuevo servicio</label>
-
                         <i class="fa-solid fa-xmark" onclick="restservicio() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="nombreservicios" type="text" id="nombreservicios" class="form-control dv"
-
                         </div> `;
 }
 
@@ -54,11 +49,8 @@ function predo() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="tecPredos">Nueva Tecnologia Predominate</label>
-
                         <i class="fa-solid fa-xmark" onclick="restpredo() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="tecPredos" type="text" id="tecPredos" class="form-control dv"
-
                         </div> `;
 }
 
@@ -68,11 +60,8 @@ function riesgo() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="clariesgo">Nuevo Clasificacion de riesgo</label>
-
                         <i class="fa-solid fa-xmark" onclick="restriesgo() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="clariesgo" type="text" id="clariesgo" class="form-control dv"
-
                         </div> `;
 }
 
@@ -82,11 +71,8 @@ function biom() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="clabiomedica">Nueva Clasificacion Biometrica</label>
-
                         <i class="fa-solid fa-xmark" onclick="restbiom() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="clabiomedica" type="text" id="clabiomedica" class="form-control dv"
-
                         </div> `;
 }
 
@@ -96,11 +82,8 @@ function uso() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="clauso">Nueva Clasificacion por uso</label>
-
                         <i class="fa-solid fa-xmark" onclick="restuso() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="clauso" type="text" id="clauso" class="form-control dv"
-
                         </div> `;
 }
 function propiedad() {
@@ -165,14 +148,57 @@ function adqui() {
     div.innerHTML = `
                         <div class="form-group">
                         <label for="formaadqui">Nueva Clasificacion por uso</label>
-
                         <i class="fa-solid fa-xmark" onclick="restadqui() " style="cursor:pointer; margin-left:10px;"></i>
-
                         <input name="formaadqui" type="text" id="formaadqui" class="form-control dv"
-
                         </div> `;
 }
 
+function fuenteali() {
+    const div = document.getElementById("miDiv9");
+    contenidoOriginal9 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+    div.innerHTML = `
+                        <div class="form-group">
+                        <label for="mag_fuen_alimen_id">Nueva Fuente de alimentacion</label>
+                        <i class="fa-solid fa-xmark" onclick="restfuenteali() " style="cursor:pointer; margin-left:10px;"></i>
+                        <input name="nombrealimentacion" type="text" id="nombrealimentacion" class="form-control dv"
+                        </div> `;
+}
+
+
+function ufrecuencia() {
+    const div = document.getElementById("miDiv10");
+    contenidoOrigina20 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+    div.innerHTML = `
+                        <div >
+                            <div >
+                                <div >
+                                <label "  for="mag_fre_id">Nueva Unidad de frecuencia</label><i class="fa-solid fa-xmark" onclick="restufrecuencia() " style="cursor:pointer; margin-left:10px;"></i>
+                                </div>
+                                <input name="nombrefrecuencia" type="text" id="nombrefrecuencia" class="form-control dv c">
+                            
+                            </div>
+                            <div >
+                                <label "  for="mag_fre_id">Nueva abreviacion de frecuencia</label>
+                                <input name="abreviacionfrecuencia" type="text" id="abreviacionfrecuencia" class="form-control dv ">
+                            </div>
+                        </div>
+                      
+                       `;
+}
+function ualimentacion() {
+    const div = document.getElementById("miDiv11");
+    contenidoOrigina21 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+    div.innerHTML = `
+                        <div>
+                            <div style="position: relative;">
+                                <div >
+                                <label " for="mag_fuen_ali_id" >Nueva Unidad de alimentacion</label><i class="fa-solid  fa-xmark" onclick="restualimentacion()" style="cursor:pointer; margin-left:10px;"></i>
+                                </div>
+                                <input name="abrefuentealimen" type="text" id="abrefuentealimen" class="form-control dv c ">
+                            </div>
+                          
+                        </div>`;
+}
 
 
 function restaurarDiv() {
@@ -210,6 +236,19 @@ function restpropiedad() {
 function restadqui() {
     document.getElementById("miDiv8").innerHTML = contenidoOriginal8;
 }
+
+function restfuenteali() {
+    document.getElementById("miDiv9").innerHTML = contenidoOriginal9;
+}
+
+function restufrecuencia() {
+    document.getElementById("miDiv10").innerHTML = contenidoOrigina20;
+}
+function restualimentacion() {
+    document.getElementById("miDiv11").innerHTML = contenidoOrigina21;
+}
+
+
 
 
 
@@ -379,3 +418,6 @@ document.addEventListener('scroll', function () {
         navbar.classList.remove('navbar-scrolled');
     }
 });
+
+
+

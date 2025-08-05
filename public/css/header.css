@@ -16,9 +16,24 @@
     margin: 0 auto;
     /* Centra la imagen horizontalmente */
     margin-top: 6%;
+    
    
 
 }
+
+.f{
+       font-size: 13px;
+    color: #888888;
+    margin-left: 5%;
+
+}
+
+.f:hover{
+    font-size: 20px;
+    color:#e60000;
+    transition: 0.3s;
+}
+
 
 .fab{
    
@@ -32,6 +47,13 @@
     
     /* box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.193); */
 }
+.dv{
+  background-color: rgb(236, 241, 251);
+  border: 1px solid #4079ff;
+    
+    /* box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.193); */
+}
+
 
 .fab:hover{
     font-size: 18px;
