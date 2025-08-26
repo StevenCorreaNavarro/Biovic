@@ -108,21 +108,21 @@
                                 aria-label="Close"></button>
                         </div>
                          <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">¿Seguro quieres guardar los datos?</h1>
-                           
+
                         <div class="modal-body">
                             <p class="text-center">
                                 Los datos se guardaran permanentemente
                             </p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            
+
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
                                 class="btn btn-primary">
                                 </div>
                         </div>
-                        
-                            
-                       
+
+
+
                     </div>
                 </div>
             </div>
@@ -460,7 +460,7 @@
                     </div>
 
                 </div>
-                <div></div>
+
                 {{-- FIN DESCRIPCION DE EQUIPO  --}}
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
                 {{--  --}}
@@ -604,7 +604,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5 ">
+                    <div class="col-md-3 ">
                         <div class="form-group" id="miDivpropiedad">
                             <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>
@@ -992,96 +992,147 @@
                     </div>
 
 
+                </div>       {{-- FIN ACCESORIOS --}}
+
+<div class="row g-2 mb-4 needs-validation formu p-5" style="background-color: rgb(255, 255, 255); border-radius: 10px;">
+    <h1 class="text-white text-center py-3" style="background: linear-gradient(45deg, #0062E6, #33AEFF); border-radius: 10px;">
+        Fabricantes y Proveedor
+    </h1>
+
+
+
+            <!-- COLUMNA IZQUIERDA - FABRICANTE -->
+            <div class="col-md-6 mb-4" style="background-color: rgb(255, 255, 255)">
+                <div class="mb-3">
+                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
+                    <select id="fabricante_id" name="fabricante_id" class="form-select border border-2 rounded-3">
+                        <option value="">Seleccione un fabricante</option>
+                        @foreach ($fabricantes as $fabricante)
+                            <option value="{{ $fabricante->id }}"
+                                    data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
+                                    data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
+                                    data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
+                                    data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
+                                    data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
+                                {{ $fabricante->nombreFabri ?? 'No disponible' }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                {{-- FIN ACCESORIOS --}}
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
-                    {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
-                    <div class="container-fluid my-4">
-                        <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                            <h1 class="text-white text-center py-2 rounded"
-                                style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
-                                Datos del fabricante y proveedor
-                            </h1>
 
-                            <!-- COLUMNA IZQUIERDA - FABRICANTE -->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un
-                                        fabricante:</label>
-                                    <select id="fabricante_id" name="fabricante_id"
-                                        class="form-select border border-3">
-                                        <option value="">Seleccione un fabricante</option>
-                                        @foreach ($fabricantes as $fabricante)
-                                            <option value="{{ $fabricante->id }}"
-                                                data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
-                                                data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
-                                                data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
-                                                data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
-                                                data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
-                                                {{ $fabricante->nombreFabri ?? 'No disponible' }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- INFO FABRICANTE -->
-                                <div id="info_fabricante" style="display: none;">
-                                    <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
-                                    <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
-                                    <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
-                                    <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
-                                    <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
-                                    <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
-                                </div>
-
-                                <!-- SIN FABRICANTES -->
-                                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3"
-                                    style="display: none;">
-                                    No hay fabricantes disponibles.
-                                </div>
-                            </div>
-
-                            <!-- COLUMNA DERECHA - PROVEEDOR -->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un
-                                        proveedor:</label>
-                                    <select id="proveedor_id" name="proveedor_id"
-                                        class="form-select border border-3">
-                                        <option value="">Seleccione un proveedor</option>
-                                        @foreach ($proveedores as $proveedor)
-                                            <option value="{{ $proveedor->id }}"
-                                                data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
-                                                data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
-                                                data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
-                                                data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
-                                                data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
-                                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} -
-                                                {{ $proveedor->ciudadProvee ?? 'No disponible' }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- INFO PROVEEDOR -->
-                                <div id="info_proveedor" style="display: none;">
-                                    <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
-                                    <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
-                                    <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
-                                    <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
-                                    <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
-                                    <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
-                                </div>
-
-                                <!-- SIN PROVEEDORES -->
-                                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3"
-                                    style="display: none;">
-                                    No hay proveedores disponibles.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Info del Fabricante -->
+                <div id="info_fabricante" style="display: none;">
+                    <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
+                    <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
+                    <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
+                    <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
+                    <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
                 </div>
+
+                <!-- Mensaje sin Fabricantes -->
+                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
+                    No hay fabricantes disponibles.
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA - PROVEEDOR -->
+            <div class="col-md-6 mb-4">
+                <div class="mb-3">
+                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
+                    <select id="proveedor_id" name="proveedor_id" class="form-select border border-2 rounded-3">
+                        <option value="">Seleccione un proveedor</option>
+                        @foreach ($proveedores as $proveedor)
+                            <option value="{{ $proveedor->id }}"
+                                    data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
+                                    data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
+                                    data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
+                                    data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
+                                    data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
+                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} - {{ $proveedor->ciudadProvee ?? 'No disponible' }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Info del Proveedor -->
+                <div id="info_proveedor" style="display: none;">
+                    <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
+                    <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
+                    <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
+                    <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
+                    <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
+                </div>
+
+                <!-- Mensaje sin Proveedores -->
+                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
+                    No hay proveedores disponibles.
+                </div>
+            </div>
+
+</div>
+
+<!-- Script para mostrar los detalles -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Mostrar detalles del fabricante
+    document.getElementById('fabricante_id').addEventListener('change', function () {
+        var fabricanteId = this.value;
+
+        // Si se selecciona un fabricante
+        if (fabricanteId) {
+            // Obtener los atributos data del fabricante seleccionado
+            var fabricante = document.querySelector(`#fabricante_id option[value="${fabricanteId}"]`);
+
+            document.getElementById('nombre_fabricante').textContent = fabricante.getAttribute('data-nombre-fabri');
+            document.getElementById('direccion_fabricante').textContent = fabricante.getAttribute('data-direccion-fabri');
+            document.getElementById('telefono_fabricante').textContent = fabricante.getAttribute('data-telefono-fabri');
+            document.getElementById('ciudad_fabricante').textContent = fabricante.getAttribute('data-ciudad-fabri');
+            document.getElementById('email_fabricante').textContent = fabricante.getAttribute('data-email-fabri');
+
+            // Mostrar detalles y ocultar el mensaje de "no fabricantes"
+            document.getElementById('info_fabricante').style.display = 'block';
+            document.getElementById('mensaje_no_fabricantes').style.display = 'none';
+        } else {
+            // Si no se selecciona un fabricante, ocultar detalles
+            document.getElementById('info_fabricante').style.display = 'none';
+            document.getElementById('mensaje_no_fabricantes').style.display = 'block';
+        }
+    });
+
+    // Mostrar detalles del proveedor
+    document.getElementById('proveedor_id').addEventListener('change', function () {
+        var proveedorId = this.value;
+
+        // Si se selecciona un proveedor
+        if (proveedorId) {
+            // Obtener los atributos data del proveedor seleccionado
+            var proveedor = document.querySelector(`#proveedor_id option[value="${proveedorId}"]`);
+
+            document.getElementById('nombre_proveedor').textContent = proveedor.getAttribute('data-nombre-proveedor');
+            document.getElementById('direccion_proveedor').textContent = proveedor.getAttribute('data-direccion-proveedor');
+            document.getElementById('telefono_proveedor').textContent = proveedor.getAttribute('data-telefono-proveedor');
+            document.getElementById('ciudad_proveedor').textContent = proveedor.getAttribute('data-ciudad-proveedor');
+            document.getElementById('email_proveedor').textContent = proveedor.getAttribute('data-email-proveedor');
+
+            // Mostrar detalles y ocultar el mensaje de "no proveedores"
+            document.getElementById('info_proveedor').style.display = 'block';
+            document.getElementById('mensaje_no_proveedores').style.display = 'none';
+        } else {
+            // Si no se selecciona un proveedor, ocultar detalles
+            document.getElementById('info_proveedor').style.display = 'none';
+            document.getElementById('mensaje_no_proveedores').style.display = 'block';
+        }
+    });
+});
+</script>
+
+
+
+
+
+
 
                 {{--  RECOMENDACIONES --}}
 
@@ -1090,7 +1141,7 @@
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Recomendaciones
                     </h1>
-                    <div class="col-md-12 position-relative">
+                    <div class="col-md-12 position-relative border solid 1px" >
                         <div class="form-group">
                             <label for="recomendaciones"></label>
                             <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
