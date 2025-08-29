@@ -136,7 +136,8 @@
             {{-- ----------------------------------------------------------------------------------------------------------- --}}
             <div style="background-color: #e2e2e2;" class="row g-2 needs-validation formu p-5">
 
-                <div style="background-color: rgb(245, 245, 245);" class="row g-2 mb-4 needs-validation formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
@@ -145,7 +146,10 @@
                         style="background-color: #a6a6a630; border-radius:10px;">
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select border border-3">
+                            {{-- border border-3 --}}
+                            <select id="equipo_id" name="equipo_id" class="form-control form-select "  style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
+    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
                                 <option value="">Selecciona un equipo</option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
@@ -155,14 +159,18 @@
 
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
-                            <select id="marca" name="marca_id" class="form-control form-select border border-3"
+                            <select id="marca" name="marca_id" class="form-control form-select "style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
+    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona una marca</option>
                             </select>
                         </div>
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                            <select id="modelo" name="modelo_id" class="form-control form-select border border-3"
+                            <select id="modelo" name="modelo_id" class="form-control form-select "style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
+    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona un modelo</option>
                             </select>
@@ -174,7 +182,8 @@
                     <div class="col-md-3 position-relative ">
                         <div class="form-group ">
                             <label for="serie"> Serie </label>
-                            <input type="text" name="serie" class="form-control"
+                            <input type="text" name="serie" class="form-control" style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),"  
                                 value="{{ isset($hojadevida->serie) ? $hojadevida->serie : old('serie') }}"
                                 id="serie">
                         </div>
@@ -468,7 +477,8 @@
                 {{--  --}}
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
-                <div style="background-color: rgb(245, 245, 245);" class="row g-2 needs-validation mb-4  formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     {{--  Seleccion Fondo Blan --}}
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
@@ -632,7 +642,8 @@
 
 
                 {{-- INICIO REGISTRO TECNICO --}}
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Registro tecnico
@@ -939,7 +950,8 @@
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
 
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Accesorios
@@ -994,7 +1006,8 @@
 
                 </div>
                 {{-- FIN ACCESORIOS --}}
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4  formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
                     <div class="container-fluid my-4">
                         <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
@@ -1085,7 +1098,8 @@
 
                 {{--  RECOMENDACIONES --}}
 
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 mb-4 needs-validation formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Recomendaciones
@@ -1101,7 +1115,8 @@
 
 
                 {{--  SOPORTES --}}
-                <div style="background-color: rgb(245, 245, 245)" class="row g-2 needs-validation mb-4 formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4 formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Soportes Legales
