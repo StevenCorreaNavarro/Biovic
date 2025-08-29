@@ -107,7 +107,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                         <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">¿Seguro quieres guardar los datos?</h1>
+                        <h1 class="modal-title fs-4 text-center" id="exampleModalLabel">¿Seguro quieres guardar los
+                            datos?</h1>
 
                         <div class="modal-body">
                             <p class="text-center">
@@ -115,10 +116,11 @@
                             </p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
 
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
-                                class="btn btn-primary">
-                                </div>
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn btn-primary" Value="Guardar" type="button"
+                                    class="btn btn-primary">
+                            </div>
                         </div>
 
 
@@ -136,8 +138,8 @@
             {{-- ----------------------------------------------------------------------------------------------------------- --}}
             <div style="background-color: #e2e2e2;" class="row g-2 needs-validation formu p-5">
 
-                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;  border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
@@ -147,9 +149,10 @@
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                             {{-- border border-3 --}}
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select "  style="
+                            <select id="equipo_id" name="equipo_id" class="form-control form-select "
+                                style="
                             box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
-    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
+                                                                    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
                                 <option value="">Selecciona un equipo</option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
@@ -159,18 +162,18 @@
 
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
-                            <select id="marca" name="marca_id" class="form-control form-select "style="
-                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
-    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
+                            <select id="marca" name="marca_id"
+                                class="form-control form-select "style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona una marca</option>
                             </select>
                         </div>
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                            <select id="modelo" name="modelo_id" class="form-control form-select "style="
-                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
-    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
+                            <select id="modelo" name="modelo_id"
+                                class="form-control form-select "style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona un modelo</option>
                             </select>
@@ -182,8 +185,9 @@
                     <div class="col-md-3 position-relative ">
                         <div class="form-group ">
                             <label for="serie"> Serie </label>
-                            <input type="text" name="serie" class="form-control" style="
-                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),"  
+                            <input type="text" name="serie" class="form-control"
+                                style="
+                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),"
                                 value="{{ isset($hojadevida->serie) ? $hojadevida->serie : old('serie') }}"
                                 id="serie">
                         </div>
@@ -478,7 +482,8 @@
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
                 <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     {{--  Seleccion Fondo Blan --}}
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
@@ -643,7 +648,8 @@
 
                 {{-- INICIO REGISTRO TECNICO --}}
                 <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Registro tecnico
@@ -950,8 +956,8 @@
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
 
-                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                     <h1 class="text-white"
                         style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Accesorios
@@ -1006,265 +1012,286 @@
 
                 </div>
                 {{-- FIN ACCESORIOS --}}
-                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
-                    {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
-                    <div class="container-fluid my-4">
-                        <div class="row g-4 p-4 rounded" style="background-color: rgb(245, 245, 245);">
-                            <h1 class="text-white text-center py-2 rounded"
-                                style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
-                                Datos del fabricante y proveedor
-                            </h1>
 
-            <!-- COLUMNA IZQUIERDA - FABRICANTE -->
-            <div class="col-md-6 mb-4" style="background-color: rgb(255, 255, 255)">
-                <div class="mb-3">
-                    <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
-                    <select id="fabricante_id" name="fabricante_id" class="form-select border border-2 rounded-3">
-                        <option value="">Seleccione un fabricante</option>
-                        @foreach ($fabricantes as $fabricante)
-                            <option value="{{ $fabricante->id }}"
-                                    data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
-                                    data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
-                                    data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
-                                    data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
-                                    data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
-                                {{ $fabricante->nombreFabri ?? 'No disponible' }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
+                
+                    <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                        <h1 class="text-white text-center py-2 rounded"
+                            style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px;">
+                            Datos del fabricante y proveedor
+                        </h1>
 
-                <!-- Info del Fabricante -->
-                <div id="info_fabricante" style="display: none;">
-                    <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
-                    <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
-                    <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
-                    <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
-                    <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
-                    <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
-                </div>
+                        <!-- COLUMNA IZQUIERDA - FABRICANTE -->
+                        <div class="col-md-6 mb-4" >
+                            <div class="mb-3">
+                                <label for="fabricante_id" class="form-label fw-bold">Selecciona un
+                                    fabricante:</label>
+                                <select id="fabricante_id" name="fabricante_id"
+                                    class="form-select border border-2 rounded-3">
+                                    <option value="">Seleccione un fabricante</option>
+                                    @foreach ($fabricantes as $fabricante)
+                                        <option value="{{ $fabricante->id }}"
+                                            data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
+                                            data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
+                                            data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
+                                            data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
+                                            data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
+                                            {{ $fabricante->nombreFabri ?? 'No disponible' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                <!-- Mensaje sin Fabricantes -->
-                <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
-                    No hay fabricantes disponibles.
-                </div>
-            </div>
+                            <!-- Info del Fabricante -->
+                            <div id="info_fabricante" style="display: none;">
+                                <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
+                                <p><strong>Nombre:</strong> <span id="nombre_fabricante"></span></p>
+                                <p><strong>Dirección:</strong> <span id="direccion_fabricante"></span></p>
+                                <p><strong>Teléfono:</strong> <span id="telefono_fabricante"></span></p>
+                                <p><strong>Ciudad:</strong> <span id="ciudad_fabricante"></span></p>
+                                <p><strong>Email:</strong> <span id="email_fabricante"></span></p>
+                            </div>
 
-            <!-- COLUMNA DERECHA - PROVEEDOR -->
-            <div class="col-md-6 mb-4">
-                <div class="mb-3">
-                    <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
-                    <select id="proveedor_id" name="proveedor_id" class="form-select border border-2 rounded-3">
-                        <option value="">Seleccione un proveedor</option>
-                        @foreach ($proveedores as $proveedor)
-                            <option value="{{ $proveedor->id }}"
-                                    data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
-                                    data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
-                                    data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
-                                    data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
-                                    data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
-                                {{ $proveedor->nombreProveedor ?? 'No disponible' }} - {{ $proveedor->ciudadProvee ?? 'No disponible' }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <!-- Info del Proveedor -->
-                <div id="info_proveedor" style="display: none;">
-                    <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
-                    <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
-                    <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
-                    <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
-                    <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
-                    <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
-                </div>
-
-                <!-- Mensaje sin Proveedores -->
-                <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
-                    No hay proveedores disponibles.
-                </div>
-            </div>
-
-</div>
-
-<!-- Script para mostrar los detalles -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Mostrar detalles del fabricante
-    document.getElementById('fabricante_id').addEventListener('change', function () {
-        var fabricanteId = this.value;
-
-        // Si se selecciona un fabricante
-        if (fabricanteId) {
-            // Obtener los atributos data del fabricante seleccionado
-            var fabricante = document.querySelector(`#fabricante_id option[value="${fabricanteId}"]`);
-
-            document.getElementById('nombre_fabricante').textContent = fabricante.getAttribute('data-nombre-fabri');
-            document.getElementById('direccion_fabricante').textContent = fabricante.getAttribute('data-direccion-fabri');
-            document.getElementById('telefono_fabricante').textContent = fabricante.getAttribute('data-telefono-fabri');
-            document.getElementById('ciudad_fabricante').textContent = fabricante.getAttribute('data-ciudad-fabri');
-            document.getElementById('email_fabricante').textContent = fabricante.getAttribute('data-email-fabri');
-
-            // Mostrar detalles y ocultar el mensaje de "no fabricantes"
-            document.getElementById('info_fabricante').style.display = 'block';
-            document.getElementById('mensaje_no_fabricantes').style.display = 'none';
-        } else {
-            // Si no se selecciona un fabricante, ocultar detalles
-            document.getElementById('info_fabricante').style.display = 'none';
-            document.getElementById('mensaje_no_fabricantes').style.display = 'block';
-        }
-    });
-
-    // Mostrar detalles del proveedor
-    document.getElementById('proveedor_id').addEventListener('change', function () {
-        var proveedorId = this.value;
-
-        // Si se selecciona un proveedor
-        if (proveedorId) {
-            // Obtener los atributos data del proveedor seleccionado
-            var proveedor = document.querySelector(`#proveedor_id option[value="${proveedorId}"]`);
-
-            document.getElementById('nombre_proveedor').textContent = proveedor.getAttribute('data-nombre-proveedor');
-            document.getElementById('direccion_proveedor').textContent = proveedor.getAttribute('data-direccion-proveedor');
-            document.getElementById('telefono_proveedor').textContent = proveedor.getAttribute('data-telefono-proveedor');
-            document.getElementById('ciudad_proveedor').textContent = proveedor.getAttribute('data-ciudad-proveedor');
-            document.getElementById('email_proveedor').textContent = proveedor.getAttribute('data-email-proveedor');
-
-            // Mostrar detalles y ocultar el mensaje de "no proveedores"
-            document.getElementById('info_proveedor').style.display = 'block';
-            document.getElementById('mensaje_no_proveedores').style.display = 'none';
-        } else {
-            // Si no se selecciona un proveedor, ocultar detalles
-            document.getElementById('info_proveedor').style.display = 'none';
-            document.getElementById('mensaje_no_proveedores').style.display = 'block';
-        }
-    });
-});
-</script>
-
-
-
-
-
-
-
-                {{--  RECOMENDACIONES --}}
-
-                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 mb-4 needs-validation formu p-5">
-                    <h1 class="text-white"
-                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
-                        Recomendaciones
-                    </h1>
-                    <div class="col-md-12 position-relative border solid 1px" >
-                        <div class="form-group">
-                            <label for="recomendaciones"></label>
-                            <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
+                            <!-- Mensaje sin Fabricantes -->
+                            <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
+                                No hay fabricantes disponibles.
+                            </div>
                         </div>
+
+                        <!-- COLUMNA DERECHA - PROVEEDOR -->
+                        <div class="col-md-6 mb-4">
+                            <div class="mb-3">
+                                <label for="proveedor_id" class="form-label fw-bold">Selecciona un
+                                    proveedor:</label>
+                                <select id="proveedor_id" name="proveedor_id"
+                                    class="form-select border border-2 rounded-3">
+                                    <option value="">Seleccione un proveedor</option>
+                                    @foreach ($proveedores as $proveedor)
+                                        <option value="{{ $proveedor->id }}"
+                                            data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
+                                            data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
+                                            data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
+                                            data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
+                                            data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
+                                            {{ $proveedor->nombreProveedor ?? 'No disponible' }} -
+                                            {{ $proveedor->ciudadProvee ?? 'No disponible' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Info del Proveedor -->
+                            <div id="info_proveedor" style="display: none;">
+                                <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
+                                <p><strong>Nombre:</strong> <span id="nombre_proveedor"></span></p>
+                                <p><strong>Dirección:</strong> <span id="direccion_proveedor"></span></p>
+                                <p><strong>Teléfono:</strong> <span id="telefono_proveedor"></span></p>
+                                <p><strong>Ciudad:</strong> <span id="ciudad_proveedor"></span></p>
+                                <p><strong>Email:</strong> <span id="email_proveedor"></span></p>
+                            </div>
+
+                            <!-- Mensaje sin Proveedores -->
+                            <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
+                                No hay proveedores disponibles.
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+
+                    <!-- Script para mostrar los detalles -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Mostrar detalles del fabricante
+                            document.getElementById('fabricante_id').addEventListener('change', function() {
+                                var fabricanteId = this.value;
+
+                                // Si se selecciona un fabricante
+                                if (fabricanteId) {
+                                    // Obtener los atributos data del fabricante seleccionado
+                                    var fabricante = document.querySelector(
+                                        `#fabricante_id option[value="${fabricanteId}"]`);
+
+                                    document.getElementById('nombre_fabricante').textContent = fabricante.getAttribute(
+                                        'data-nombre-fabri');
+                                    document.getElementById('direccion_fabricante').textContent = fabricante.getAttribute(
+                                        'data-direccion-fabri');
+                                    document.getElementById('telefono_fabricante').textContent = fabricante.getAttribute(
+                                        'data-telefono-fabri');
+                                    document.getElementById('ciudad_fabricante').textContent = fabricante.getAttribute(
+                                        'data-ciudad-fabri');
+                                    document.getElementById('email_fabricante').textContent = fabricante.getAttribute(
+                                        'data-email-fabri');
+
+                                    // Mostrar detalles y ocultar el mensaje de "no fabricantes"
+                                    document.getElementById('info_fabricante').style.display = 'block';
+                                    document.getElementById('mensaje_no_fabricantes').style.display = 'none';
+                                } else {
+                                    // Si no se selecciona un fabricante, ocultar detalles
+                                    document.getElementById('info_fabricante').style.display = 'none';
+                                    document.getElementById('mensaje_no_fabricantes').style.display = 'block';
+                                }
+                            });
+
+                            // Mostrar detalles del proveedor
+                            document.getElementById('proveedor_id').addEventListener('change', function() {
+                                var proveedorId = this.value;
+
+                                // Si se selecciona un proveedor
+                                if (proveedorId) {
+                                    // Obtener los atributos data del proveedor seleccionado
+                                    var proveedor = document.querySelector(`#proveedor_id option[value="${proveedorId}"]`);
+
+                                    document.getElementById('nombre_proveedor').textContent = proveedor.getAttribute(
+                                        'data-nombre-proveedor');
+                                    document.getElementById('direccion_proveedor').textContent = proveedor.getAttribute(
+                                        'data-direccion-proveedor');
+                                    document.getElementById('telefono_proveedor').textContent = proveedor.getAttribute(
+                                        'data-telefono-proveedor');
+                                    document.getElementById('ciudad_proveedor').textContent = proveedor.getAttribute(
+                                        'data-ciudad-proveedor');
+                                    document.getElementById('email_proveedor').textContent = proveedor.getAttribute(
+                                        'data-email-proveedor');
+
+                                    // Mostrar detalles y ocultar el mensaje de "no proveedores"
+                                    document.getElementById('info_proveedor').style.display = 'block';
+                                    document.getElementById('mensaje_no_proveedores').style.display = 'none';
+                                } else {
+                                    // Si no se selecciona un proveedor, ocultar detalles
+                                    document.getElementById('info_proveedor').style.display = 'none';
+                                    document.getElementById('mensaje_no_proveedores').style.display = 'block';
+                                }
+                            });
+                        });
+                    </script>
 
 
 
-                {{--  SOPORTES --}}
-                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
-                     border:none;" class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4 formu p-5">
-                    <h1 class="text-white"
-                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
-                        Soportes Legales
-                    </h1>
-                    {{-- Soporte de Factura --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteFactura" style="font-size: 90%">Selecciona el Soporte de Factura
-                                (PDF)</label>
-                            <input type="file" name="soporteFactura" id="soporteFactura"
-                                class="form-control @error('soporteFactura') is-invalid @enderror"
-                                accept="application/pdf">
-                            @error('soporteFactura')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
+
+
+
+
+                    {{--  RECOMENDACIONES --}}
+
+                    <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                        <h1 class="text-white"
+                            style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
+                            Recomendaciones
+                        </h1>
+                        <div class="col-md-12 position-relative border solid 1px">
+                            <div class="form-group">
+                                <label for="recomendaciones"></label>
+                                <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
+                            </div>
                         </div>
                     </div>
 
-                    {{-- Soporte de Registro Invima --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteRegistroInvima" style="font-size: 90%">Selecciona el Soporte de
-                                Registro Invima (PDF)</label>
-                            <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
-                                class="form-control @error('soporteRegistroInvima') is-invalid @enderror"
-                                accept="application/pdf">
-                            @error('soporteRegistroInvima')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
+
+
+                    {{--  SOPORTES --}}
+                    <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                        <h1 class="text-white"
+                            style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
+                            Soportes Legales
+                        </h1>
+                        {{-- Soporte de Factura --}}
+                        <div class="col-md-6 position-relative d-flex">
+                            <div class="form-group">
+                                <label for="soporteFactura" style="font-size: 90%">Selecciona el Soporte de
+                                    Factura
+                                    (PDF)</label>
+                                <input type="file" name="soporteFactura" id="soporteFactura"
+                                    class="form-control @error('soporteFactura') is-invalid @enderror"
+                                    accept="application/pdf">
+                                @error('soporteFactura')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Soporte de Registro Invima --}}
+                        <div class="col-md-6 position-relative d-flex">
+                            <div class="form-group">
+                                <label for="soporteRegistroInvima" style="font-size: 90%">Selecciona el Soporte de
+                                    Registro Invima (PDF)</label>
+                                <input type="file" name="soporteRegistroInvima" id="soporteRegistroInvima"
+                                    class="form-control @error('soporteRegistroInvima') is-invalid @enderror"
+                                    accept="application/pdf">
+                                @error('soporteRegistroInvima')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Soporte de Certificado de Calibración --}}
+                        <div class="col-md-6 position-relative d-flex">
+                            <div class="form-group">
+                                <label for="soporteCertificadoCalibracion" style="font-size: 90%">Selecciona el
+                                    Soporte de
+                                    Certificado de
+                                    Calibración (PDF) </label>
+                                <input type="file" name="soporteCertificadoCalibracion"
+                                    id="soporteCertificadoCalibracion"
+                                    class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror"
+                                    accept="application/pdf">
+                                @error('soporteCertificadoCalibracion')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Soporte de Manual --}}
+                        <div class="col-md-6 position-relative d-flex">
+                            <div class="form-group">
+                                <label for="soporteManual" style="font-size: 90%">Selecciona el Soporte de Manual
+                                    (PDF)</label>
+                                <input type="file" name="soporteManual" id="soporteManual"
+                                    class="form-control @error('soporteManual') is-invalid @enderror"
+                                    accept="application/pdf">
+                                @error('soporteManual')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Soporte de Limpieza y Desinfección --}}
+                        <div class="col-md-6 position-relative d-flex">
+                            <div class="form-group">
+                                <label for="soporteLimpiezaDesinfeccion" style="font-size: 90%">Selecciona el
+                                    Soporte de
+                                    Limpieza y Desinfección
+                                    (PDF)</label>
+                                <input type="file" name="soporteLimpiezaDesinfeccion"
+                                    id="soporteLimpiezaDesinfeccion"
+                                    class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror"
+                                    accept="application/pdf">
+                                @error('soporteLimpiezaDesinfeccion')
+                                    <div class="invalid-feedback">El campo es obligatorio</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
-                    {{-- Soporte de Certificado de Calibración --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteCertificadoCalibracion" style="font-size: 90%">Selecciona el Soporte de
-                                Certificado de
-                                Calibración (PDF) </label>
-                            <input type="file" name="soporteCertificadoCalibracion"
-                                id="soporteCertificadoCalibracion"
-                                class="form-control @error('soporteCertificadoCalibracion') is-invalid @enderror"
-                                accept="application/pdf">
-                            @error('soporteCertificadoCalibracion')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
+                    {{-- FIN CARGA DE SOPORTES --}}
+
+
+                    {{-- ACCION DE GUARDAR  --}}
+                    <div class="d-flex gap-3 col-3 mx-auto">
+                        <button style="width: 500px" type="button" class="btn btn-primary w-10"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Guardar
+                        </button>
+                        {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
+                        {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
+
+                            </button> --}}
+
                     </div>
 
-                    {{-- Soporte de Manual --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteManual" style="font-size: 90%">Selecciona el Soporte de Manual
-                                (PDF)</label>
-                            <input type="file" name="soporteManual" id="soporteManual"
-                                class="form-control @error('soporteManual') is-invalid @enderror"
-                                accept="application/pdf">
-                            @error('soporteManual')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- Soporte de Limpieza y Desinfección --}}
-                    <div class="col-md-6 position-relative d-flex">
-                        <div class="form-group">
-                            <label for="soporteLimpiezaDesinfeccion" style="font-size: 90%">Selecciona el Soporte de
-                                Limpieza y Desinfección
-                                (PDF)</label>
-                            <input type="file" name="soporteLimpiezaDesinfeccion" id="soporteLimpiezaDesinfeccion"
-                                class="form-control @error('soporteLimpiezaDesinfeccion') is-invalid @enderror"
-                                accept="application/pdf">
-                            @error('soporteLimpiezaDesinfeccion')
-                                <div class="invalid-feedback">El campo es obligatorio</div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-
-                {{-- FIN CARGA DE SOPORTES --}}
 
 
-                {{-- ACCION DE GUARDAR  --}}
-                <div class="d-flex gap-3 col-3 mx-auto">
-                    <button style="width: 500px" type="button" class="btn btn-primary w-10" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                        Guardar
-                    </button>
-                    {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
-                    {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
-
-                    </button> --}}
-
-                </div>
-
-            </div>
         </form>
     </main>
 

@@ -49,11 +49,11 @@
 
         }
     </style>
-    <title>PDF hoja de vida</title>
+    <title>PDF hoja de vida</title>1
 </head>
 
 <body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
-    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255); ">
+    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);border: 1px solid gray; ">
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr style=" background-color:rgb(0, 64, 255); overflow: hidden;  padding: 0px;margin: 0px;">
                 <td style=" background-color: rgb(255, 255, 255); border: 0px solid rgb(0, 0, 0); text-align: center;padding: 0px;
