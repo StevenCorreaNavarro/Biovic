@@ -346,10 +346,20 @@ header .textos-header {
 
 form .formu {
 
-    box-shadow: 0 0 20px rgba(58, 58, 58, 0.315);
+    /* box-shadow: 0 0 20px rgba(255, 255, 255, 1); */
+    /* background-color: #ffffffff;
+    box-shadow: 4px 4px 8px rgba(255, 255, 255, 1),
+    -4px -4px 8px rgba(70, 70, 70, 0.81); */
     border-radius: 10px;
 }
+.formus {
 
+    /* box-shadow: 0 0 20px rgba(255, 255, 255, 1); */
+    /* background-color: #e2e2e2; */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3),
+    -4px -4px 8px rgba(251, 251, 251, 1);
+    border-radius: 10px;
+}
 .navbar .navbar-brander {
     text-decoration: none;
     display: flex;

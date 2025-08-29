@@ -27,6 +27,16 @@
         .active {
             color: #ffffff;
         }
+        .animated-dropdown {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown.show .animated-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+}
     </style>
 
 </head>
@@ -126,7 +136,7 @@
                         </li>
                         @if (Auth::check() && Auth::user()->role === 'Admin')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('adminad.dashboard') }}">Panel de Administración</a>
+                                <a class="nav-link" href="{{ route('adminlistaR.lista_registrada') }}">Panel de Administración</a>
                             </li>
                         @endif
                         {{-- <li class="nav-item dropdown">
