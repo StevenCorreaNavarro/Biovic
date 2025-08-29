@@ -24,7 +24,8 @@
   <br>
 
   <div class="d-flex flex-column justify-content-center align-items-center text-center">
-    <h1 class="text-center mb-0">LISTA HOJA DE VIDA</h1>
+    <br>
+    {{-- <h1 class="text-center mb-0">LISTA HOJA DE VIDA</h1> --}}
 
     @if (Auth::check() && (Auth::user()->role === 'Admin' || Auth::user()->role === 'Empleado'))
     <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET" action="{{ route('hojadevida.listar') }}">
@@ -52,48 +53,18 @@
         <th>Ubicación Física</th>
         <th>Acciones</th>
       </tr>
-      <!-- Fila de filtros: SOLO Equipo (2), Servicio (7), Ubicación (9) -->
+      <!-- Fila de filtros (sin filtro en Imagen) -->
       <tr>
+        <th><select id="filter-id" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th></th>
-        <th></th>
-        <th>
-          <select id="filter-equipo" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
-        <th>
-            <select id="filter-marca" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select></th>
-        <th>
-            <select id="filter-modelo" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
-        <th>
-            <select id="filter-propiedad" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
-        <th>
-            <select id="filter-serie" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
-        <th>
-          <select id="filter-servicio" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
-        <th>
-            <select id="filter-actfijo" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select></th>
-        <th>
-          <select id="filter-ubicacion" class="form-select form-select-sm filtro-select">
-            <option value="">Todas</option>
-          </select>
-        </th>
+        <th><select id="filter-equipo" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-marca" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-modelo" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-propiedad" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-serie" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-servicio" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-actfijo" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-ubicacion" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th></th>
       </tr>
     </thead>
@@ -165,8 +136,8 @@
 
   <script>
   // ===== Configura rutas de logos =====
-  const LOGO_IPS_URL    = "{{ asset('img/logo_ips.png') }}";
-  const LOGO_BIOVIC_URL = "{{ asset('img/biovic_logo.png') }}";
+  const LOGO_IPS_URL = "{{ asset('IMG/Logo_VitalTech.png') }}";
+  const LOGO_BIOVIC_URL = "{{ asset('IMG/biovic_logo.png') }}";
 
   // Utilidades
   async function toDataURL(url) {
@@ -264,7 +235,7 @@
     saveAs(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), 'Inventario_Fisico.xlsx');
   }
 
-  // -------- PDF (formato IPS) --------
+  // -------- PDF (formato IPS) con logos grandes y VERSIÓN/CÓDIGO en stack --------
   async function exportPdfIPS(dt) {
     try {
       if (typeof pdfMake === 'undefined' || !pdfMake || !pdfMake.createPdf) {
@@ -275,22 +246,34 @@
       const [logoIPS64, logoBIO64] = await Promise.all([toDataURL(LOGO_IPS_URL), toDataURL(LOGO_BIOVIC_URL)]);
 
       const blue = '#0070C0';
-      const leftCell  = { border:[true,true,true,true], rowSpan:3, alignment:'center', fillColor: blue, margin:[0,8,0,8] };
-      const midTop    = { text:'INVENTARIO FÍSICO', bold:true, fontSize:16, color:'#fff', alignment:'center', fillColor: blue, border:[true,true,true,true] };
-      const midMid    = { columns:[ {text:'VERSIÓN: 01', color:'#fff', alignment:'left'}, {text:'CÓDIGO: DM-FIF-045', color:'#fff', alignment:'right'} ],
-                           fillColor: blue, border:[true,false,true,false] };
-      const midBot    = { text:'PROCESO: MANTENIMIENTO', color:'#fff', alignment:'center', fillColor: blue, border:[true,false,true,true] };
-      const rightCell = { border:[true,true,true,true], rowSpan:3, alignment:'center', fillColor: blue, margin:[0,8,0,8] };
+      const leftCell  = { border:[true,true,true,true], rowSpan:3, alignment:'center', fillColor: blue, margin:[0,6,0,6] };
+      const midTop    = { text:'INVENTARIO FÍSICO', bold:true, fontSize:16, color:'#fff', alignment:'center', fillColor: blue, border:[true,true,true,true], margin:[0,10,0,6] };
+      /* VERSIÓN y CÓDIGO uno debajo del otro */
+      const midMid    = {
+        stack: [
+          { text:'VERSIÓN: 01',        color:'#fff', alignment:'center', margin:[0,0,0,2] },
+          { text:'CÓDIGO: DM-FIF-045', color:'#fff', alignment:'center' }
+        ],
+        fillColor: blue,
+        border:[true,false,true,false],
+        margin:[8,2,8,2]
+      };
+      const midBot    = { text:'PROCESO: MANTENIMIENTO', color:'#fff', alignment:'center', fillColor: blue, border:[true,false,true,true], margin:[0,2,0,8] };
+      const rightCell = { border:[true,true,true,true], rowSpan:3, alignment:'center', fillColor: blue, margin:[0,6,0,6] };
 
-      if (logoIPS64)  { leftCell.image  = logoIPS64;  leftCell.fit  = [120,60]; } else { leftCell.text  = ' '; }
-      if (logoBIO64)  { rightCell.image = logoBIO64; rightCell.fit = [140,60]; } else { rightCell.text = ' '; }
+      /* Logos más grandes mediante width/height */
+      if (logoIPS64)  { leftCell.image  = logoIPS64;  leftCell.width  = 230; leftCell.height = 100; } else { leftCell.text  = ' '; }
+      if (logoBIO64)  { rightCell.image = logoBIO64; rightCell.width = 250; rightCell.height = 100; } else { rightCell.text = ' '; }
 
       const headerTable = {
-        table: { widths: ['*','*','*'], body: [
-          [ leftCell, midTop, rightCell ],
-          [ '',       midMid, ''        ],
-          [ '',       midBot, ''        ]
-        ]},
+        table: {
+          widths: [250, '*', 270],
+          body: [
+            [ leftCell, midTop, rightCell ],
+            [ '',       midMid, ''        ],
+            [ '',       midBot, ''        ]
+          ]
+        },
         layout: { hLineWidth:()=>1, vLineWidth:()=>1, hLineColor:()=>'#000', vLineColor:()=>'#000' },
         margin: [0,0,0,8]
       };
@@ -355,8 +338,9 @@
       ]
     });
 
-    // ==== Filtros SOLO en columnas: Equipo(2), Servicio(7), Ubicación(9) ====
+    // Filtros (todas excepto Imagen y Acciones)
     const filterCols = [
+      { idx: 0, sel: '#filter-id' },
       { idx: 2, sel: '#filter-equipo' },
       { idx: 3, sel: '#filter-marca' },
       { idx: 4, sel: '#filter-modelo' },
@@ -379,11 +363,9 @@
 
       Array.from(set).sort().forEach(v => $select.append(`<option value="${v}">${v}</option>`));
 
-      // Reaplicar estado guardado si existe
       const cur = column.search();
       if (cur) $select.val(cur.replace(/^\^|\$$/g, ''));
 
-      // Cambio de filtro (coincidencia exacta)
       $select.on('change', function () {
         const val = $.fn.dataTable.util.escapeRegex($(this).val());
         column.search(val ? '^' + val + '$' : '', true, false).draw();
