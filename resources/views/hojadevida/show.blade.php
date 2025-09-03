@@ -9,6 +9,7 @@
     <title>Document</title>
     <style>
         .b {
+            width: 20%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -66,13 +67,28 @@
                 </a>
             </div> -->
 
-        <div class="b" style="padding-left: 850px">
-            <h1>Hoja de Vida PDF</h1>
-            <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"
-                target="_blank">Descargar PDF
+        <div class="b" style="padding-left: 650px">
+
+            <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">Descargar PDF
                 <i class="bi bi-download"></i>
             </a>
         </div>
+        @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')
+            <div class="b" style="padding-left: 780px; ">
+                <!-- <h1>Hoja de Vida PDF</h1> -->
+                <a href="#" target="_blank">Editar
+                    <i class="bi bi-download"></i>
+                </a>
+            </div>
+        @endif
+        @if (Auth::check() && Auth::user()->role === 'Admin')
+            <div class="b" style="padding-left: 880px;">
+                <!-- <h1>Hoja de Vida PDF</h1> -->
+                <a href=" #" target="_blank">Eliminiar
+                    <i class="bi bi-download"></i>
+                </a>
+            </div>
+        @endif
 
     </div>
 

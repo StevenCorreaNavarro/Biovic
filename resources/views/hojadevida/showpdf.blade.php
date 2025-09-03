@@ -14,7 +14,7 @@
         }
 
         body {
-            width: 100vw;
+            width: 50vw;
             box-sizing: border-box;
             font-size: 11px;
             padding: 0%;

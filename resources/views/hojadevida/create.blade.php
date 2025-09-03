@@ -1167,23 +1167,23 @@
                                         <input name="nombreFabri" type="text" id="nombreFabri"      class="form-control dv c">
                                     </div>
                                     <div>
-                                        <label for="direccion_frecuencia">Direccion</label>
-                                        <input name="direccion_frecuencia" type="text" id="direccion_frecuencia"
+                                        <label for="fabricante_id">Direccion</label>
+                                        <input name="direccionFabri" type="text" id="direccionFabri"
                                             class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="telefono_frecuencia">Telefono</label>
-                                        <input name="telefono_frecuencia" type="text" id="telefono_frecuencia"
+                                        <label for="fabricante_id">Telefono</label>
+                                        <input name="telefonoFabri" type="text" id="telefonoFabri"
                                             class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="ciudad_frecuencia">Ciudad</label>
-                                        <input name="ciudad_frecuencia" type="text" id="ciudad_frecuencia"
+                                        <label for="fabricante_id">Ciudad</label>
+                                        <input name="ciudadFabri" type="text" id="ciudadFabri"
                                             class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="email_frecuencia">Correo electronico</label>
-                                        <input name="email_frecuencia" type="text" id="email_frecuencia"
+                                        <label for="fabricante_id">Correo electronico</label>
+                                        <input name="emailWebFabri" type="text" id="emailWebFabri"
                                             class="form-control dv ">
                                     </div>
                                 </div>
@@ -1235,29 +1235,29 @@
                                         style="cursor:pointer; margin-left:10px;"></i>
 
                                     <div>
-                                        <label for="nombre_proveedor_nuevo">Nombre</label>
-                                        <input name="nombre_proveedor_nuevo" type="text"
-                                            id="nombre_proveedor_nuevo" class="form-control dv c"
+                                        <label for="proveedor_id">Nombre</label>
+                                        <input name="nombreProveedor" type="text"
+                                            id="nombreProveedor" class="form-control dv c"
                                             >
                                     </div>
                                     <div>
-                                        <label for="direccion_proveedor_nuevo">Direccion</label>
-                                        <input name="direccion_proveedor_nuevo" type="text"
-                                            id="direccion_proveedor_nuevo" class="form-control dv ">
+                                        <label for="proveedor_id">Direccion</label>
+                                        <input name="direccionProvee" type="text"
+                                            id="direccionProvee" class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="telefono_proveedor_nuevo">Telefono</label>
-                                        <input name="telefono_proveedor_nuevo" type="text"
-                                            id="telefono_proveedor_nuevo" class="form-control dv ">
+                                        <label for="proveedor_id">Telefono</label>
+                                        <input name="telefonoProvee" type="text"
+                                            id="telefonoProvee" class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="ciudad_proveedor_nuevo">Ciudad</label>
-                                        <input name="ciudad_proveedor_nuevo" type="text"
-                                            id="ciudad_proveedor_nuevo" class="form-control dv ">
+                                        <label for="proveedor_id">Ciudad</label>
+                                        <input name="ciudadProvee"type="text"
+                                            id="ciudadProvee" class="form-control dv ">
                                     </div>
                                     <div>
-                                        <label for="email_proveedor_nuevo">Correo electronico</label>
-                                        <input name="email_proveedor_nuevo" type="text" id="email_proveedor_nuevo"
+                                        <label for="proveedor_id">Correo electronico</label>
+                                        <input name="emailWebProve" type="text" id="emailWebProve"
                                             class="form-control dv ">
                                     </div>
                                 </div>
@@ -1327,6 +1327,8 @@
                             // Código para mostrar detalles del fabricante (sin cambios, ya que los elementos no se eliminan)
                             document.getElementById('fabricante_id').addEventListener('change', function() {
                                 var fabricanteId = this.value;
+                                document.getElementById('fabricante_id').value = fabricanteId;
+
                                 if (fabricanteId) {
                                     var fabricante = document.querySelector(
                                         `#fabricante_id option[value="${fabricanteId}"]`);

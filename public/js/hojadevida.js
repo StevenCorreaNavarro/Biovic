@@ -13,8 +13,8 @@ let contenidoOrigina20;
 let contenidoOrigina21;
 let contenidoOrigina22;
 let contenidoOrigina23;
-let contenidoOrigina24;
-let contenidoOrigina25;
+// let contenidoOrigina24;
+// let contenidoOrigina25;
 
 function transformarDiv() {
     const div = document.getElementById("miDiv");

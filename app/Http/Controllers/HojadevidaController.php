@@ -335,7 +335,6 @@ class HojadevidaController extends Controller
             // Asignar estado existente
             $hdv->ubifisica_id = $request->ubifisica_id;
         }
-
         if ($request->filled('nombreservicios')) {
             // Guardar nuevo estado
             $serv = new servicio();
@@ -519,49 +518,53 @@ class HojadevidaController extends Controller
                 $hdv->accesorios()->create($datosAccesorio);
             }
         }
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        //
+        //                                  guardar fabricante y proveedor
+        //
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        $nuevoFabricante = fabricante::create([
+            'nombreFabri' => $request->nombreFabri,
+            'direccionFabri' => $request->direccionFabri,
+            // ... otros campos del fabricante
+            'telefonoFabri' => $request->telefonoFabri,
+            'ciudadFabri' => $request->ciudadFabri,
+            'emailWebFabri' => $request->emailWebFabri,
+        ]);
 
-        if ($request->filled('nombreFabri')) {
-            // Guardar nuevo estado
-            $fab = new fabricante();
-            // nombre columna-----------creates
-            $fab->nombreFabri = $request->nombreFabri;
-            $fab->direccionFabri = $request->direccionFabri;
-            $fab->telefonoFabri = $request->telefonoFabri;
-            $fab->ciudadFabri = $request->ciudadFabri;
-            $fab->emailWebFabri = $request->emailWebFabri;
-            // $uali->abrefuentealimen= $request->abrefuentealimen;
+        $hdv->fabricante_id = $nuevoFabricante->id;
 
-            $fab->save();
-            $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
-        } elseif ($request->filled('fabricante_id')) {
-            // Asignar estado existente
-            $hdv->fabricante_id = $request->fabricante_id;
-        }
+        $nuevoProveedor = proveedor::create([
+            'nombreProveedor' => $request->nombreProveedor,
+            'direccionProvee' => $request->direccionProvee,
+            // ... otros campos del fabricante
+            'telefonoProvee' => $request->telefonoProvee,
+            'ciudadProvee' => $request->ciudadProvee,
+            'emailWebProve' => $request->emailWebProve,
+        ]);
 
+        $hdv->proveedor_id = $nuevoProveedor->id;
 
+        // if ($request->filled('nombreFabri')) {
+        //     // Guardar nuevo estado
+        //     $fab = new fabricante();
+        //     // nombre columna-----------creates
+        //     $fab->nombreFabri = $request->nombreFabri;
+        //     // $fab->direccionFabri = $request->direccionFabri;
+        //     // $fab->telefonoFabri = $request->telefonoFabri;
+        //     // $fab->ciudadFabri = $request->ciudadFabri;
+        //     // $fab->emailWebFabri = $request->emailWebFabri;
+        //     // $uali->abrefuentealimen= $request->abrefuentealimen;
 
+        //     $fab->save();
+        //     $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        // } elseif ($request->filled('fabricante_id')) {
+        //     // Asignar estado existente
+        //     $hdv->fabricante_id = $request->fabricante_id;
+        // }
+        // $hdv->fabricante_id = $request->fabricante_id_seleccionado;
 
-
-
-        //  $ubi = new ubiFisica();
-        //             $ubi->ubicacionfisica = $request->ubifisicas;
-        //             $ubi->save();
-
-
-
-
-
-
-
-        // $hdv->save();
-
-
-
-
-
-
-
-
+        $hdv->save();
         return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
 
     }
