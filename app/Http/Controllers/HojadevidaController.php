@@ -183,9 +183,6 @@ class HojadevidaController extends Controller
     //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
     public function store(Request $request)
     {
-
-
-
         // dd($request->all()); // Se pone para ver los datos que llegan del formulario
         $hdv = new Hojadevida();
         $request->validate([
@@ -283,6 +280,7 @@ class HojadevidaController extends Controller
         $hdv->dimAlto = $request->dimAlto;
         $hdv->mag_dimension_id = $request->mag_dimension_id;
 
+        // $hdv->accesorio = $request->accesorio;
         $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
 
         $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
@@ -468,19 +466,81 @@ class HojadevidaController extends Controller
             $hdv->mag_fre_id = $request->mag_fre_id;
         }
 
-        if ($request->filled('abrefuentealimen')) {
+        if ($request->filled('nombrecorriente')) {
             // Guardar nuevo estado
-            $uali = new  magFuenAli();
+            $uco = new   magCorriente();
             // nombre columna-----------creates
-            $uali->abrefuentealimen= $request->abrefuentealimen; 
+            $uco->nombrecorriente = $request->nombrecorriente;
+            $uco->abreviacioncorriente = $request->abreviacioncorriente;
             // $uali->abrefuentealimen= $request->abrefuentealimen;
-       
-            $uali->save();
-            $hdv->mag_fuen_ali_id = $uali->id; // Asignar el ID del nuevo estado al modelo hoja de vida
-        } elseif ($request->filled('mag_fuen_ali_id')) {
+
+            $uco->save();
+            $hdv->mag_corriente_id = $uco->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('mag_corriente_id')) {
             // Asignar estado existente
-            $hdv->mag_fuen_ali_id = $request->mag_fuen_ali_id;
+            $hdv->mag_corriente_id = $request->mag_corriente_id;
         }
+
+        if ($request->filled('nombrepeso')) {
+            // Guardar nuevo estado
+            $upeso = new magPeso();
+            // nombre columna-----------creates
+            $upeso->nombrepeso = $request->nombrepeso;
+            $upeso->abreviacionpeso = $request->abreviacionpeso;
+            // $uali->abrefuentealimen= $request->abrefuentealimen;
+
+            $upeso->save();
+            $hdv->mag_peso_id = $upeso->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+
+        } elseif ($request->filled('mag_peso_id')) {
+            // Asignar estado existente
+            $hdv->mag_peso_id = $request->mag_peso_id;
+        }
+
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        //
+        //                                  guardar accesorios
+        //
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        // Validación de la Hoja de Vida, si la necesitas
+        // 7. Guarda la Hoja de Vida en la base de datos
+        $hdv->save();
+
+        // 8. Guarda los accesorios asociados
+        if ($request->filled('nombreAccesorio')) {
+            foreach ($request->nombreAccesorio as $index => $nombre) {
+                $datosAccesorio = [
+                    'nombreAccesorio' => $nombre,
+                    'marcaAccesorio' => $request->marcaAccesorio[$index] ?? null,
+                    'modeloAccesorio' => $request->modeloAccesorio[$index] ?? null,
+                    'serieAccesorio' => $request->serieAccesorio[$index] ?? null,
+                    'costoAccesorio' => $request->costoAccesorio[$index] ?? null,
+                ];
+                $hdv->accesorios()->create($datosAccesorio);
+            }
+        }
+
+        if ($request->filled('nombreFabri')) {
+            // Guardar nuevo estado
+            $fab = new fabricante();
+            // nombre columna-----------creates
+            $fab->nombreFabri = $request->nombreFabri;
+            $fab->direccionFabri = $request->direccionFabri;
+            $fab->telefonoFabri = $request->telefonoFabri;
+            $fab->ciudadFabri = $request->ciudadFabri;
+            $fab->emailWebFabri = $request->emailWebFabri;
+            // $uali->abrefuentealimen= $request->abrefuentealimen;
+
+            $fab->save();
+            $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('fabricante_id')) {
+            // Asignar estado existente
+            $hdv->fabricante_id = $request->fabricante_id;
+        }
+
+
+
+
 
 
         //  $ubi = new ubiFisica();
@@ -493,7 +553,7 @@ class HojadevidaController extends Controller
 
 
 
-        $hdv->save();
+        // $hdv->save();
 
 
 
@@ -577,20 +637,23 @@ class HojadevidaController extends Controller
 
 
 
-
-
-    /**
-     * Display the specified resource.
-     */
-
-
-    public function show($hdvs)
+    public function showS($hdvs, Request $request)
     {
         // $query = Hojadevida::with('equipo','servicio');
         $hdvs = Hojadevida::findOrFail($hdvs);
 
+
+
         return view('hojadevida.show', compact('hdvs'));
     }
+
+    //     public function shows($id, Request $request)
+    // {
+    //     $hdvs = Hojadevida::with('accesorios')->findOrFail($id);
+    //     $accesorios = accesorio::with('accesorios')->findOrFail($id);
+
+    //     return view('hojadevida.showpdf', compact('hdvs', 'accesorios'));
+    // }
 
 
     /**

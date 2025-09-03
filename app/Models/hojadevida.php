@@ -13,6 +13,15 @@ class hojadevida extends Model
     public function estadoequipo (){
         return $this->belongsTo('App\Models\estadoequipo');
     }
+//     public function accesorios()
+// {
+//     return $this->hasMany(Accesorio::class, 'hojadevida_id'); // hdv_id debe existir en la tabla accesorios
+// }
+   public function accesorios()
+{
+    return $this->hasMany(Accesorio::class);
+}
+
 
     public function accesorio (){
         return $this->belongsTo('App\Models\Accesorio');

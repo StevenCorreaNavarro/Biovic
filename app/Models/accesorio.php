@@ -11,19 +11,28 @@ class accesorio extends Model
 
 
     
-    protected $fillable = [
-        'nombreAccesorio',
-        'marcaAccesorio',
-        'modeloAccesorio',
-        'serieAccesorio',
-        'costoAccesorio',
-        'equipo_id',
-    ];
+ protected $fillable = [
+    'nombreAccesorio',
+    'marcaAccesorio',
+    'modeloAccesorio',
+    'serieAccesorio',
+    'costoAccesorio',
+    'hojadevida_id', // 👈 importante
+];
+    
+  public function hojadevida()
+{
+    return $this->belongsTo(Hojadevida::class);
+}
+
+
+
 
     public function equipo()
     {
         return $this->belongsTo(Equipo::class);
     }
+    
 
     
     public function hojadevidas(){

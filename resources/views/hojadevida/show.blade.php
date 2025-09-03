@@ -17,6 +17,7 @@
             position: absolute;
             top: 250px;
         }
+
         .b h1 {
             font-size: 30px;
             font-weight: bold;
@@ -25,7 +26,8 @@
             margin-top: 20px;
             /* top: 300px; */
         }
-        a{
+
+        a {
             margin-top: 20px;
 
             background-color: blue;
@@ -40,6 +42,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.189);
 
         }
+
         a:hover {
             background-color: #0056b3;
             color: white;
@@ -51,28 +54,27 @@
 
 <body>
 
-        <div  >
-            <div>
-                @include('hojadevida.showpdf')
-            </div>
+    <div>
+        <div>
+            @include('hojadevida.showpdf')
+        </div>
 
-            <!-- <div class="a" style="padding-left: 890px">
+        <!-- <div class="a" style="padding-left: 890px">
                 <h1> Registrar </h1>
                 <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                     Ingresar Nueva hoja de vida
                 </a>
             </div> -->
 
-            <div class="b" style="padding-left: 850px">
-
-                <h1>Hoja de Vida PDF</h1>
-                <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"
-                    target="_blank">Descargar PDF
-                    <i class="bi bi-download"></i>
-                </a>
-
-
+        <div class="b" style="padding-left: 850px">
+            <h1>Hoja de Vida PDF</h1>
+            <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"
+                target="_blank">Descargar PDF
+                <i class="bi bi-download"></i>
+            </a>
         </div>
+
+    </div>
 
 
 </body>

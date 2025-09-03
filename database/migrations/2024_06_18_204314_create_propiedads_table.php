@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('propiedads', function (Blueprint $table) {
             $table->id();
-//  $table->string('foto')->nullable();
+            // $table -> string('foto')->nullable();
             $table -> string('nombreempresa')->nullable(); 
             $table -> string('nitempresa')->nullable(); 
             $table -> string('direccionempre')->nullable(); 

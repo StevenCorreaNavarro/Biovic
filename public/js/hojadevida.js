@@ -11,6 +11,10 @@ let contenidoOriginal8;
 let contenidoOriginal9;
 let contenidoOrigina20;
 let contenidoOrigina21;
+let contenidoOrigina22;
+let contenidoOrigina23;
+let contenidoOrigina24;
+let contenidoOrigina25;
 
 function transformarDiv() {
     const div = document.getElementById("miDiv");
@@ -93,8 +97,10 @@ function propiedad() {
     div.innerHTML = `
         <div class="form-group">
             <br><br>
-            <label for="propiedad" class="form-label fw-bold">Registra nueva propiedad</label> 
+
+            <label for="propiedad" class="form-label fw-bold">Registra nueva propiedad</label>
             <i class="fa-solid fa-xmark" onclick="restpropiedad()" style="cursor:pointer; margin-left:10px;"></i>
+
             <br>
 
             <label for="propiedad">Nombre empresa</label>
@@ -121,11 +127,17 @@ function propiedad() {
             <label for="emailWebempre">Email o sitio web</label>
             <input type="text" class="form-control dv" name="emailWebempre" id="emailWebempre">
 
-            <label for="fotos">Selecciona una imagen:</label>
-            <input type="file" name="fotos" id="fotos" class="form-control" accept="image/*" onchange="previewImagen(event)">
-            <div id="errorFotos" class="invalid-feedback" style="display:none;">El campo es obligatorio</div>
+            
+            
 
-            <img id="previews" class="img-thumbnail m-2 img-fluid mt-3" src="" width="120" style="display: none;" alt="Vista previa">
+            <label for="fotos ">Selecciona una imagen:</label>
+            <input type="file" name="fotos" id="fotos" accept="image/*"
+            class="form-control" onchange="previewImagen(event, 'preview2')">
+            <div class="invalid-feedback">El campo es obligatorio</div>
+            
+            </div>
+            <img id="preview2" class="img-thumbnail m-2 img-fluid mt-3" src="" width="220"
+            style="display: none;" alt="Vista previa 2">
         </div>
     `;
 }
@@ -182,8 +194,7 @@ function ufrecuencia() {
                                 <input name="abreviacionfrecuencia" type="text" id="abreviacionfrecuencia" class="form-control dv ">
                             </div>
                         </div>
-                      
-                       `;
+                    `;
 }
 function ualimentacion() {
     const div = document.getElementById("miDiv11");
@@ -196,9 +207,85 @@ function ualimentacion() {
                                 </div>
                                 <input name="abrefuentealimen" type="text" id="abrefuentealimen" class="form-control dv c ">
                             </div>
-                          
+                        
                         </div>`;
 }
+function ucorriente() {
+    const div = document.getElementById("miDiv12");
+    contenidoOrigina22 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+    div.innerHTML = `
+                        <div style="">
+                            <div style="position: relative;">
+                                <div style="background: linear-gradient(45deg, #0062E6, #33AEFF); color:red">
+                                
+                                <label " for="mag_corriente_id" >Nueva Unidad de corriente</label><i class="fa-solid  fa-xmark" onclick="restucorriente()" style="cursor:pointer; margin-left:10px;"></i>
+                                </div>
+                                <input name="nombrecorriente" type="text" id="no" class="form-control dv c ">
+                            </div>
+                            <div style="position: relative;">
+                                <div >
+                                <label " for="mag_corriente_id" >Nueva abreviacion de corriente</label>
+                                </div>
+                                <input name="abreviacioncorriente" type="text" id="abreviacioncorriente" class="form-control dv c ">
+                            </div>
+                        
+                        </div>`;
+}
+function upeso() {
+    const div = document.getElementById("miDiv13");
+    contenidoOrigina23 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar       style="background: linear-gradient(45deg, #0062E6, #33AEFF); color:red; padding-left:5px; padding-right:5px; padding-button:5px; border-radius:5px;"
+    div.innerHTML = `
+                        <div >
+                            <div style="position: relative;">
+                                <div >
+                                <label " for="mag_peso_id" >Nuevo Nombre Unidad de Peso</label><i class="fa-solid  fa-xmark" onclick="restupeso()" style="cursor:pointer; margin-left:10px;"></i>
+                                </div>
+                                <input name="nombrepeso" type="text" id="nombrepeso" class="form-control dv c ">
+                            </div>
+                            <div style="position: relative;">
+                                <div >
+                                <label " for="mag_peso_id" >Nueva abreviacion de Peso</label>
+                                </div>
+                                <input name="abreviacionpeso" type="text" id="abreviacionpeso" class="form-control dv c ">
+                            </div>
+                            <br>
+                        </div>`;
+}
+
+
+// function fab() {
+//     const div = document.getElementById("miDiv14");
+//     contenidoOrigina24 = div.innerHTML; // Guardamos el contenido original solo una vez    cambiar
+//     div.innerHTML = `
+//                         <div>
+//                                 <label for="" class="form-label fw-bold">Registra nuevo fabricante</label>
+//                                 <i class="fa-solid fa-xmark" onclick="restfab() " style="cursor:pointer; margin-left:10px;"></i>
+                                
+//                             <div>
+                               
+//                                 <label  for="mag_fre_id">Nombre</label>
+//                                 <input name="nombrefrecuencia" type="text" id="nombrefrecuencia" class="form-control dv c">
+//                             </div>
+
+//                             <div >
+//                                 <label  for="mag_fre_id">Direccion</label>
+//                                 <input name="abreviacionfrecuencia" type="text" id="abreviacionfrecuencia" class="form-control dv ">
+//                             </div>
+//                             <div >
+//                                 <label  for="mag_fre_id">Telefono</label>
+//                                 <input name="abreviacionfrecuencia" type=Telefono "text" id="abreviacionfrecuencia" class="form-control dv ">
+//                             </div>
+//                             <div >
+//                                 <label  for="mag_fre_id">Ciudad</label>
+//                                 <input name="abreviacionfrecuencia" type="text" id="abreviacionfrecuencia" class="form-control dv ">
+//                             </div>
+//                             <div >
+//                                 <label  for="mag_fre_id">Correo electronico</label>
+//                                 <input name="abreviacionfrecuencia" type="text" id="abreviacionfrecuencia" class="form-control dv ">
+//                             </div>
+//                         </div>
+//                     `;
+// }
 
 
 function restaurarDiv() {
@@ -247,7 +334,19 @@ function restufrecuencia() {
 function restualimentacion() {
     document.getElementById("miDiv11").innerHTML = contenidoOrigina21;
 }
+function restucorriente() {
+    document.getElementById("miDiv12").innerHTML = contenidoOrigina22;
+}
+function restupeso() {
+    document.getElementById("miDiv13").innerHTML = contenidoOrigina23;
+}
+function restfab() {
+    document.getElementById("miDiv14").innerHTML = contenidoOrigina24;
+}
 
+function restprove() {
+    document.getElementById("miDiv15").innerHTML = contenidoOrigina25;
+}
 
 
 

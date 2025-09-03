@@ -308,18 +308,21 @@
                 <th style="border: 1px solid rgb(255, 255, 255);background-color:rgb(0, 64, 255); width: 20%;color:white;">
                     COSTO</th>
             </tr>
+            {{-- Repetir filas según la cantidad de accesorios asociados al equipo --}}
+            @foreach ($hdvs->accesorios as $hdv) 
             <tr>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->nombreAccesorio ?? '---' }}
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdv->nombreAccesorio ?? '---' }}
                 </td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdv->marcaAccesorio ?? '---' }}
                 </td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->modeloAccesorio ?? '---' }}
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdv->modeloAccesorio ?? '---' }}
                 </td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->serieAccesorio ?? '---' }}
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdv->serieAccesorio ?? '---' }}
                 </td>
-                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->costoAccesorio ?? '---' }}
+                <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdv->costoAccesorio ?? '---' }}
                 </td>
             </tr>
+            @endforeach
             {{-- <tr class="f">
                 <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
                 <td style="border: 1px solid  rgb(196, 196, 196);">{{ $hdvs->accesorio?->marcaAccesorio ?? '---' }}</td>
