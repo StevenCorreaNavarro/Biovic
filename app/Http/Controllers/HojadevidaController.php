@@ -137,8 +137,55 @@ class HojadevidaController extends Controller
         }
 
         // Por defecto, retornamos la vista de listado con el término de búsqueda $q (si se usa en la vista)
-        return view('hojadevida.listar', compact('hdvs', 'q'));
+        return view('hojadevida.mostrarbusqueda', compact('hdvs', 'q'));
     }
+
+    /**
+     * Devuelve el HTML parcial (partial) con la hoja de vida para inyectar en el modal. ingresadi 3/09/2025
+     */
+    public function fetch($id)
+{
+    // Cargar relaciones que realmente existen en el modelo 'hojadevida'
+    $hdvs = Hojadevida::with([
+        'equipo',
+        'marca',
+        'modelo',
+        'servicio',
+        'propiedad',
+        'ubifisica',
+        'estadoequipo',
+        'nombreEquipo',   // si lo usas en la vista
+        'tecPredo',
+        'codEcri',
+        'claRiesgo',
+        'claBiome',
+        'ClaUso',         // el nombre que tienes en el modelo (PHP es case-insensitive)
+        'formaAdqui',
+
+        // relaciones técnicas (usar los nombres tal como las definiste en el modelo)
+        'magFuenAlimen',
+        'magFre',
+        'magFuenAli',
+        'magCorriente',
+        'magPeso',
+        'magPre',
+        'magPot',
+        'magTemp',
+        'magVel',
+        'magDimension',
+
+        // accesorios / fabricantes / proveedores
+        'accesorio',
+        'fabricante',
+        'proveedor',
+    ])->findOrFail($id);
+
+    // Renderiza el partial (o la vista completa si así lo deseas)
+    $html = view('hojadevida.showpdf', compact('hdvs'))->render();
+
+    return response()->json(['html' => $html]);
+}
+
 
     /**
      * Muestra la paginación simple (no usada en la lista principal, mantenida por compatibilidad).

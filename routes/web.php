@@ -29,6 +29,9 @@ use App\Models\Modelo;
 |
 */
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Rutas públicas / generales
@@ -69,6 +72,9 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
 });
 
+// Ruta para devolver el HTML de una hoja de vida vía AJAX agregado 3/09/2025 para mostrar en modal la hoja de vida
+
+Route::get('/hojadevida/fetch/{id}', [HojadevidaController::class, 'fetch'])->name('hojadevida.fetch');
 /*
 |--------------------------------------------------------------------------
 | Rutas para administradores (middleware 'Admin')
