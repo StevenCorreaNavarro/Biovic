@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\estadoequipo; // 1. agregar aqui para mostrar valores
+use App\Models\estadoequipo;
 use App\Models\servicio;
 use App\Models\nombreEquipo;
 use App\Models\Ubifisica;
@@ -13,11 +13,11 @@ use App\Models\claBiome;
 use App\Models\claUso;
 use App\Models\formaAdqui;
 use App\Models\propiedad;
-use App\Models\magFuenAlimen; // para la alimentacion de los equipos con que trabajan 
+use App\Models\magFuenAlimen;
 use App\Models\magVol;
 use App\Models\equipo;
 use App\Models\magFre;
-use App\Models\magFuenAli; // para la alimentacion de los voltages 
+use App\Models\magFuenAli;
 use App\Models\magCorriente;
 use App\Models\magPeso;
 use App\Models\magPre;
@@ -29,94 +29,199 @@ use App\Models\accesorio;
 use App\Models\fabricante;
 use App\Models\proveedor;
 use App\Models\user;
-
-
 use App\Models\hojadevida;
+
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Carbon\Carbon; // para calcular fecha futura 
+use Carbon\Carbon;
 
-
+/**
+ * Controlador principal para gestionar las hojas de vida (HV) de equipos biomédicos.
+ * Contiene métodos para:
+ *  - listar y buscar (mostrarbusqueda)
+ *  - ver detalle (show)
+ *  - crear/guardar (create, store, stores)
+ *  - generar PDF por ID (downloadPDF)
+ *
+ * NOTA: Se dejó la lógica original de creación de relaciones/creación de entidades auxiliares
+ * (ej. crear nueva propiedad, servicio, etc.) para no romper la funcionalidad existente.
+ */
 class HojadevidaController extends Controller
 {
+    /**
+     * Genera y devuelve un PDF (stream) de la hoja de vida indicada por $id.
+     * Usa Dompdf con isRemoteEnabled para permitir imágenes remotas.
+     */
     public function downloadPDF($id)
     {
-        // Buscar los datos de la tabla Hdvs usando el ID
         $hdvs = Hojadevida::findOrFail($id);
+
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
-        $options->set('isRemoteEnabled', true); // Habilita imágenes remotas
+        $options->set('isRemoteEnabled', true); // Permite cargar imágenes remotas
         $pdf = new Dompdf($options);
+
+        // Renderiza la vista 'hojadevida.showpdf' con los datos y genera el PDF
         $pdf->loadHtml(view('hojadevida.showpdf', compact('hdvs'))->render());
-        $pdf->setPaper('A4', 'portrait'); // Tamaño A4 vertical
+        $pdf->setPaper('A4', 'portrait'); // A4 vertical
         $pdf->render();
+
         return $pdf->stream('documento.pdf');
     }
 
-
+    /**
+     * Listado principal de hojas de vida.
+     * - Soporta búsqueda básica por 'search' (equipo.nombre_equipo, serie, actFijo o propiedad.nombreempresa).
+     * - Retorna la vista 'hojadevida.listar' con la colección $hdvs.
+     */
     public function listar(Request $request)
     {
-        $hdvs = hojadevida::orderBy('id', 'Asc')->get();
-        // $hdvs = hojadevida::with('equipo')->get();
+        // Query base con relaciones utilizadas en la vista
         $query = Hojadevida::with('equipo', 'servicio', 'propiedad');
 
         if ($request->has('search')) {
             $search = $request->input('search');
 
             $query->where(function ($q) use ($search) {
-                // Búsqueda por equipo relacionado
+                // Busca en la relación equipo y en la relación propiedad
                 $q->whereHas('equipo', function ($eq) use ($search) {
                     $eq->where('nombre_equipo', 'LIKE', "%$search%")
                         ->orWhere('serie', 'LIKE', "%$search%")
                         ->orWhere('actFijo', 'LIKE', "%$search%");
-                })
-                    // Búsqueda por nombre de propiedad (desde la relación en hojadevida)
-                    ->orWhereHas('propiedad', function ($p) use ($search) {
-                        $p->where('nombreempresa', 'LIKE', "%$search%");
-                    });
+                })->orWhereHas('propiedad', function ($p) use ($search) {
+                    $p->where('nombreempresa', 'LIKE', "%$search%");
+                });
             });
         }
 
         $hdvs = $query->orderBy('id', 'desc')->get();
+
         return view('hojadevida.listar', compact('hdvs'));
-
-
-        // $hdvs = Hojadevida::orderBy('id', 'desc')->get();
-        // return view('hojadevida.listar', compact('hdvs'));
     }
 
+    /**
+     * Buscar/mostrar resultados (ruta que pediste: mostrarbusqueda).
+     * Hace búsqueda de texto libre (serie, actFijo, id, equipo, servicio, propiedad).
+     * Retorna la misma vista de listado con resultados filtrados.
+     */
+    public function mostrarbusqueda(Request $request)
+    {
+        $q = trim($request->input('search', ''));
+
+        // Query base con relaciones que usa la vista
+        $query = hojadevida::with(['equipo', 'servicio', 'propiedad', 'marca', 'modelo', 'ubifisica']);
+
+        if ($q !== '') {
+            $query->where(function ($wr) use ($q) {
+                $wr->where('serie', 'LIKE', "%{$q}%")
+                   ->orWhere('actFijo', 'LIKE', "%{$q}%")
+                   ->orWhere('id', $q)
+                   ->orWhereHas('equipo', function ($qe) use ($q) {
+                       $qe->where('nombre_equipo', 'LIKE', "%{$q}%");
+                   })
+                   ->orWhereHas('servicio', function ($qs) use ($q) {
+                       $qs->where('nombreservicio', 'LIKE', "%{$q}%");
+                   })
+                   ->orWhereHas('propiedad', function ($qp) use ($q) {
+                       $qp->where('nombreempresa', 'LIKE', "%{$q}%");
+                   });
+            });
+        }
+
+        $hdvs = $query->orderBy('id', 'desc')->get();
+
+        // Si la petición espera JSON (ej. llamada AJAX) devolvemos JSON
+        if ($request->wantsJson()) {
+            return response()->json($hdvs);
+        }
+
+        // Por defecto, retornamos la vista de listado con el término de búsqueda $q (si se usa en la vista)
+        return view('hojadevida.mostrarbusqueda', compact('hdvs', 'q'));
+    }
+
+    /**
+     * Devuelve el HTML parcial (partial) con la hoja de vida para inyectar en el modal. ingresadi 3/09/2025
+     */
+    public function fetch($id)
+{
+    // Cargar relaciones que realmente existen en el modelo 'hojadevida'
+    $hdvs = Hojadevida::with([
+        'equipo',
+        'marca',
+        'modelo',
+        'servicio',
+        'propiedad',
+        'ubifisica',
+        'estadoequipo',
+        'nombreEquipo',   // si lo usas en la vista
+        'tecPredo',
+        'codEcri',
+        'claRiesgo',
+        'claBiome',
+        'ClaUso',         // el nombre que tienes en el modelo (PHP es case-insensitive)
+        'formaAdqui',
+
+        // relaciones técnicas (usar los nombres tal como las definiste en el modelo)
+        'magFuenAlimen',
+        'magFre',
+        'magFuenAli',
+        'magCorriente',
+        'magPeso',
+        'magPre',
+        'magPot',
+        'magTemp',
+        'magVel',
+        'magDimension',
+
+        // accesorios / fabricantes / proveedores
+        'accesorio',
+        'fabricante',
+        'proveedor',
+    ])->findOrFail($id);
+
+    // Renderiza el partial (o la vista completa si así lo deseas)
+    $html = view('hojadevida.showpdf', compact('hdvs'))->render();
+
+    return response()->json(['html' => $html]);
+}
+
+
+    /**
+     * Muestra la paginación simple (no usada en la lista principal, mantenida por compatibilidad).
+     */
     public function index()
     {
-        $datos['hojadevida'] = Hojadevida::paginate(10); //
+        $datos['hojadevida'] = Hojadevida::paginate(10);
         return view('hojadevida.index', $datos);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Método auxiliar que redirige a la vista de creación (mantener por compatibilidad).
      */
-
-    public function creates() // por que hay dos create ?
+    public function creates()
     {
         return view('hojadevida.create');
     }
 
+    /**
+     * Muestra el formulario para crear una nueva Hoja de Vida.
+     * Carga colecciones que se necesitan en selects del formulario (servicios, equipos, marcas, etc.).
+     */
     public function create()
-    { // 2. Agregar el modelo aqui para mostrar valores
+    {
+        // Cargar catálogos/relaciones necesarias para el formulario de creación
         $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
         $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
 
-        $estadoequipo = estadoequipo::all(); // usar el modelo estadoequipo Obtiene todos los estados de equipo. $estadoequipo, copiar en compact
-        $ubifisicas = Ubifisica::all(); // Obtiene todas las ubicaciones físicas
-        $nombreservicios = Servicio::all();
-
+        $estadoequipo = estadoequipo::all();
+        $ubifisicas = Ubifisica::all();
         $tecPredos = TecPredo::all();
         $clariesgo = Clariesgo::all();
         $clabiomedica = ClaBiome::all();
         $clauso = ClaUso::all();
         $codiecri = codEcri::all();
-
         $formaadqui = Formaadqui::all();
         $propiedad = Propiedad::all();
 
@@ -135,62 +240,41 @@ class HojadevidaController extends Controller
         $fabricantes = fabricante::all();
         $proveedores = proveedor::all();
 
-
-        // 3. enviar los datos a la vista
-        return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen', 'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones', 'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios', 'fabricantes', 'proveedores')); // pasar las variables  a la vista
+        // Pasamos todos los catálogos que la vista pueda necesitar
+        return view('hojadevida.create', compact(
+            'nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica',
+            'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen',
+            'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones',
+            'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios', 'fabricantes', 'proveedores'
+        ));
     }
-    public function edituser(User $user)
-    {
-
-        return view('users.useredit', compact('user'));
-    }
-    // public function create()
-    // {
-
-    //     $estadoequipo = estadoequipo::all(); // usar el modelo estadoequipo Obtiene todos los estados de equipo. $estadoequipo, copiar en compact
-    //     $ubifisicas = Ubifisica::all(); // Obtiene todas las ubicaciones físicas
-
-
-    //     $nombreservicios = Servicio::all();
-    //     $nombreEquipos = NombreEquipo::all();
-    //     $equipos = Equipo::all();
-    //     $tecPredos = TecPredo::all();
-    //     $codiecri = codEcri::all();
-    //     $clariesgo = Clariesgo::all();
-    //     $clabiomedica = ClaBiome::all();
-    //     $clauso = ClaUso::all();
-    //     $formaadqui = Formaadqui::all();
-    //     $nombreempresa = Propiedad::all();
-    //     $nombrealimentacion = magFuenAlimen::all(); //
-    //     $abreviacionvolumen = magVol::all(); //
-    //     return view('hojadevida.create', compact('nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica', 'clauso', 'formaadqui', 'equipos', 'nombreempresa', 'nombrealimentacion', 'abreviacionvolumen','ubifisicas', 'estadoequipo'));
-    // }
-
 
     /**
-     * Store a newly created resource in storage.
+     * Vista auxiliar para obtener equipos con modelos (mantener por compatibilidad).
      */
     public function stores()
     {
-        // Obtener todos los equipos con sus modelos
         $equipos = Equipo::with('modelos')->get();
-        // $modelos = Modelo::with('equipo')->get();
-        // $equipos = Equipo::all();
-
         return view('hojadevida.create', compact('equipos'));
     }
 
-    //+++++++++++++++++++++++++++++++++++++++++++aqui se guarda todos los datos delformulario hoja de vida
+    /**
+     * Almacena una nueva Hoja de Vida.
+     * - Valida los inputs (archivos, fechas).
+     * - Crea o asigna relaciones auxiliares (estadoequipo, ubifisica, servicio, propiedad, etc.) si vienen en texto.
+     * - Guarda archivos (foto, soportes) en storage/app/public y almacena la ruta en la BD.
+     */
     public function store(Request $request)
     {
         // dd($request->all()); // Se pone para ver los datos que llegan del formulario
         $hdv = new Hojadevida();
+
         $request->validate([
-            'perioMto' => 'nullable|string|max:255', // agregado para periodo de mantenimiento
+            'perioMto' => 'nullable|string|max:255',
             'perioCali' => 'nullable|in:trimestre,cuatrimestre,anual',
-            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable', // validacion y fecha no  posterior a la actual 
+            // Nota: 'required_if:perioCali,ANUAL' se mantiene como estaba en tu código original.
+            'fechaCali' => 'required_if:perioCali,ANUAL|date|before_or_equal:today|nullable',
             'foto' => 'nullable|max:10000|mimes:jpeg,png,jpg,gif,svg',
-            // Nueva funcionalidad para validar  pdf 
             'soporteFactura' => 'nullable|mimes:pdf|max:10000',
             'soporteRegistroInvima' => 'nullable|mimes:pdf|max:10000',
             'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
@@ -198,33 +282,38 @@ class HojadevidaController extends Controller
             'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
         ]);
 
-        $fecha = Carbon::parse($request->fechaCali);
+        // Cálculo de mes final según periodo de calibración (lógica original)
+        if ($request->filled('fechaCali')) {
+            $fecha = Carbon::parse($request->fechaCali);
+        } else {
+            $fecha = Carbon::now();
+        }
         $tipoPeriodo = $request->perioCali;
         $mesesASumar = match ($tipoPeriodo) {
-            'trimestre' => 3,    // 6to mes (inicio + 5), agregada ahora
-            'cuatrimestre' => 4,   // 3er mes (inicio + 2)
-            'anual' => 12,       // 12avo mes (inicio + 11)
-            default => 0, // Si no es ninguno de los anteriores, no sumar meses
+            'trimestre' => 3,
+            'cuatrimestre' => 4,
+            'anual' => 12,
+            default => 0,
         };
 
-        // Calcular el mes final
         $mesFinal = $fecha->copy()->addMonths($mesesASumar)->format('F');
         $mesTraducido = $this->traducirMes(strtolower($mesFinal));
 
         $hdv->fechaCali = $request->fechaCali;
         $hdv->perioCali = $tipoPeriodo;
-        // Solo marcar una X en el mes correspondiente
-        $hdv->$mesTraducido = 'X';
 
+        // Si se pudo traducir el mes, marca la columna correspondiente con 'X' (mantener lógica original)
+        if ($mesTraducido) {
+            $hdv->$mesTraducido = 'X';
+        }
 
-        // DESCRIPCION DE EQUIPO
-        // 4. se hace uno por uno de los datos para que sean guardados
+        // Asignación de campos básicos/descripciones
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
         $hdv->serie = $request->serie;
         $hdv->actFijo = $request->actFijo;
-        $hdv->estadoequipo_id = $request->estadoequipo_id; // para estado poder guardar  original $hdv->estadoequipo = $request->estadoequipo; 
+        $hdv->estadoequipo_id = $request->estadoequipo_id;
         $hdv->ubifisica_id = $request->ubifisica_id;
         $hdv->servicio_id = $request->servicio_id;
         $hdv->tec_predo_id = $request->tec_predo_id;
@@ -232,29 +321,26 @@ class HojadevidaController extends Controller
         $hdv->cla_riesgo_id = $request->cla_riesgo_id;
         $hdv->cla_biome_id = $request->cla_biome_id;
         $hdv->cla_uso_id = $request->cla_uso_id;
-        $hdv->perioMto = $request->perioMto; // agregado para periodo de mantenimiento
+        $hdv->perioMto = $request->perioMto;
         $hdv->cod_ecri_id = $request->cod_ecri_id;
 
+        // Guardar foto (si existe) y normalizar ruta para BD
         if ($request->hasFile('foto')) {
-            $hdv->foto = $request->file('foto')->store('public/fotos');
-            $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
+            $path = $request->file('foto')->store('public/fotos');
+            $hdv->foto = str_replace('public/', '', $path);
         }
 
-        $hdv->perioCali = $request->input('perioCali');
-
-        // REGISTRO HISTORICO
+        // Registro histórico
         $hdv->fechaAdquisicion = $request->fechaAdquisicion;
         $hdv->fechaInstalacion = $request->fechaInstalacion;
         $hdv->garantia = $request->garantia;
-
         $hdv->factura = $request->factura;
         $hdv->forma_adqui_id = $request->forma_adqui_id;
         $hdv->vidaUtil = $request->vidaUtil;
-
         $hdv->costo = $request->costo;
         $hdv->propiedad_id = $request->propiedad_id;
 
-        // REGISTRO TECNICO
+        // Registro técnico
         $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
         $hdv->frecuencia = $request->frecuencia;
         $hdv->mag_fre_id = $request->mag_fre_id;
@@ -268,10 +354,8 @@ class HojadevidaController extends Controller
         $hdv->mag_peso_id = $request->mag_peso_id;
         $hdv->presion = $request->presion;
         $hdv->mag_pre_id = $request->mag_pre_id;
-        $hdv->peso = $request->peso; // Asignamos el valor de 'peso'
-        $hdv->mag_peso_id = $request->mag_peso_id; // Asignamos el ID del peso
         $hdv->temperatura = $request->temperatura;
-        $hdv->mag_temp_id = $request->mag_temp_id; // ID de la temperatura seleccionada
+        $hdv->mag_temp_id = $request->mag_temp_id;
         $hdv->velocidad = $request->velocidad;
         $hdv->mag_vel_id = $request->mag_vel_id;
         $hdv->humedad = $request->humedad;
@@ -287,122 +371,92 @@ class HojadevidaController extends Controller
         $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
         $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
 
-        // Cargar y guardar los archivos PDF
+        // Guardar PDFs de soporte (si existen) y normalizar rutas para BD
         if ($request->hasFile('soporteFactura')) {
-            $hdv->soporteFactura = $request->file('soporteFactura')->store('public/soportes');
-            $hdv->soporteFactura = str_replace('public/', '', $hdv->soporteFactura); // Eliminar 'public/' para la base de datos
+            $p = $request->file('soporteFactura')->store('public/soportes');
+            $hdv->soporteFactura = str_replace('public/', '', $p);
         }
-
         if ($request->hasFile('soporteRegistroInvima')) {
-            $hdv->soporteRegistroInvima = $request->file('soporteRegistroInvima')->store('public/soportes');
-            $hdv->soporteRegistroInvima = str_replace('public/', '', $hdv->soporteRegistroInvima);
+            $p = $request->file('soporteRegistroInvima')->store('public/soportes');
+            $hdv->soporteRegistroInvima = str_replace('public/', '', $p);
         }
-
         if ($request->hasFile('soporteCertificadoCalibracion')) {
-            $hdv->soporteCertificadoCalibracion = $request->file('soporteCertificadoCalibracion')->store('public/soportes');
-            $hdv->soporteCertificadoCalibracion = str_replace('public/', '', $hdv->soporteCertificadoCalibracion);
+            $p = $request->file('soporteCertificadoCalibracion')->store('public/soportes');
+            $hdv->soporteCertificadoCalibracion = str_replace('public/', '', $p);
         }
-
         if ($request->hasFile('soporteManual')) {
-            $hdv->soporteManual = $request->file('soporteManual')->store('public/soportes');
-            $hdv->soporteManual = str_replace('public/', '', $hdv->soporteManual);
+            $p = $request->file('soporteManual')->store('public/soportes');
+            $hdv->soporteManual = str_replace('public/', '', $p);
         }
-
         if ($request->hasFile('soporteLimpiezaDesinfeccion')) {
-            $hdv->soporteLimpiezaDesinfeccion = $request->file('soporteLimpiezaDesinfeccion')->store('public/soportes');
-            $hdv->soporteLimpiezaDesinfeccion = str_replace('public/', '', $hdv->soporteLimpiezaDesinfeccion);
+            $p = $request->file('soporteLimpiezaDesinfeccion')->store('public/soportes');
+            $hdv->soporteLimpiezaDesinfeccion = str_replace('public/', '', $p);
         }
 
-
+        // Creación/Asignación de entidades auxiliares si llegan como texto (mantengo la lógica original)
         if ($request->filled('estadoequipo')) {
-            // Guardar nuevo estado
             $estado = new estadoequipo();
             $estado->estadoequipo = $request->estadoequipo;
             $estado->save();
-            $hdv->estadoequipo_id = $estado->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->estadoequipo_id = $estado->id;
         } elseif ($request->filled('estadoequipo_id')) {
-            // Asignar estado existente
             $hdv->estadoequipo_id = $request->estadoequipo_id;
         }
 
         if ($request->filled('ubifisicas')) {
-            // Guardar nuevo estado
             $ubi = new ubiFisica();
             $ubi->ubicacionfisica = $request->ubifisicas;
             $ubi->save();
-            $hdv->ubifisica_id = $ubi->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->ubifisica_id = $ubi->id;
         } elseif ($request->filled('ubifisica_id')) {
-            // Asignar estado existente
             $hdv->ubifisica_id = $request->ubifisica_id;
         }
         if ($request->filled('nombreservicios')) {
-            // Guardar nuevo estado
             $serv = new servicio();
-            // nombre columna-----------creates
             $serv->nombreservicio = $request->nombreservicios;
             $serv->save();
-            $hdv->servicio_id = $serv->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->servicio_id = $serv->id;
         } elseif ($request->filled('servicio_id')) {
-            // Asignar estado existente
             $hdv->servicio_id = $request->servicio_id;
         }
+
         if ($request->filled('tecPredos')) {
-            // Guardar nuevo estado
             $pre = new tecPredo();
-            // nombre columna-----------creates
             $pre->tecpredo = $request->tecPredos;
             $pre->save();
-            $hdv->tec_predo_id = $pre->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->tec_predo_id = $pre->id;
         } elseif ($request->filled('tec_predo_id')) {
-            // Asignar estado existente
-            $hdv->servicio_id = $request->tec_predo_id;
+            $hdv->tec_predo_id = $request->tec_predo_id;
         }
+
         if ($request->filled('clariesgo')) {
-            // Guardar nuevo estado
             $rie = new clariesgo();
-            // nombre columna-----------creates
             $rie->clariesgo = $request->clariesgo;
             $rie->save();
-            $hdv->cla_riesgo_id = $rie->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->cla_riesgo_id = $rie->id;
         } elseif ($request->filled('cla_riesgo_id')) {
-            // Asignar estado existente
             $hdv->cla_riesgo_id = $request->cla_riesgo_id;
         }
+
         if ($request->filled('clabiomedica')) {
-            // Guardar nuevo estado
             $bio = new clabiome();
-            // nombre columna-----------creates
             $bio->clabiomedica = $request->clabiomedica;
             $bio->save();
-            $hdv->cla_biome_id = $bio->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->cla_biome_id = $bio->id;
         } elseif ($request->filled('cla_biome_id')) {
-            // Asignar estado existente
             $hdv->cla_biome_id = $request->cla_biome_id;
         }
+
         if ($request->filled('clauso')) {
-            // Guardar nuevo estado
             $uso = new clauso();
-            // nombre columna-----------creates
             $uso->clauso = $request->clauso;
             $uso->save();
-            $hdv->cla_uso_id = $uso->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->cla_uso_id = $uso->id;
         } elseif ($request->filled('cla_uso_id')) {
-            // Asignar estado existente
             $hdv->cla_uso_id = $request->cla_uso_id;
         }
-        // if ($request->filled('propiedad')) {
-        //     // Guardar nuevo estado
-        //     $pro = new propiedad ();
-        //     // nombre columna-----------creates
-        //     $pro->nombreempresa  = $request->propiedad ;
-        //     $pro->save();
-        //     $hdv->propiedad_id = $pro->id; // Asignar el ID del nuevo estado al modelo hoja de vida
-        // } elseif ($request->filled('propiedad_id')) {
-        //     // Asignar estado existente
-        //     $hdv->propiedad_id = $request->propiedad_id;
-        // }
+
         if ($request->filled('propiedad')) {
-            // Guardar nuevo estado
             $pro = new propiedad();
             $pro->nombreempresa = $request->propiedad;
             $pro->nitempresa = $request->nitempresa;
@@ -410,15 +464,13 @@ class HojadevidaController extends Controller
             $pro->telefonoempre = $request->telefonoempre;
             $pro->ciudadempre = $request->ciudadempre;
             $pro->sedeempresa = $request->sedeempresa;
-
             $pro->emailWebempre = $request->emailWebempre;
             $pro->representanteempresa = $request->representanteempresa;
 
-            // Verifica si se ha subido una imagen
             if ($request->hasFile('fotos')) {
                 $file = $request->file('fotos');
                 $fotoprop = time() . '_' . $file->getClientOriginalName();
-                $ruta = $file->storeAs('propiedadfotos', $fotoprop, 'public'); // se guarda en storage/app/public/estadofotos
+                $ruta = $file->storeAs('propiedadfotos', $fotoprop, 'public');
                 $pro->foto = $ruta;
             }
 
@@ -429,39 +481,30 @@ class HojadevidaController extends Controller
         }
 
         if ($request->filled('formaadqui')) {
-            // Guardar nuevo estado
             $adqui = new formaadqui();
-            // nombre columna-----------creates
             $adqui->formaadqui = $request->formaadqui;
             $adqui->save();
-            $hdv->forma_adqui_id = $adqui->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->forma_adqui_id = $adqui->id;
         } elseif ($request->filled('forma_adqui_id')) {
-            // Asignar estado existente
             $hdv->forma_adqui_id = $request->forma_adqui_id;
         }
 
         if ($request->filled('nombrealimentacion')) {
-            // Guardar nuevo estado
             $fuentgali = new magFuenAlimen();
-            // nombre columna-----------creates
             $fuentgali->nombrealimentacion = $request->nombrealimentacion;
             $fuentgali->save();
-            $hdv->mag_fuen_alimen_id = $fuentgali->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->mag_fuen_alimen_id = $fuentgali->id;
         } elseif ($request->filled('mag_fuen_alimen_id')) {
-            // Asignar estado existente
             $hdv->mag_fuen_alimen_id = $request->mag_fuen_alimen_id;
         }
 
         if ($request->filled('nombrefrecuencia')) {
-            // Guardar nuevo estado
             $ufre = new magFre();
-            // nombre columna-----------creates
             $ufre->nombrefrecuencia = $request->nombrefrecuencia;
             $ufre->abreviacionfrecuencia = $request->abreviacionfrecuencia;
             $ufre->save();
-            $hdv->mag_fre_id = $ufre->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+            $hdv->mag_fre_id = $ufre->id;
         } elseif ($request->filled('mag_fre_id')) {
-            // Asignar estado existente
             $hdv->mag_fre_id = $request->mag_fre_id;
         }
 
@@ -642,7 +685,6 @@ class HojadevidaController extends Controller
 
     public function showS($hdvs, Request $request)
     {
-        // $query = Hojadevida::with('equipo','servicio');
         $hdvs = Hojadevida::findOrFail($hdvs);
 
 
@@ -660,28 +702,29 @@ class HojadevidaController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Edición (placeholder si se necesita implementar edición completa).
      */
     public function edit(hojadevida $hojadevida)
     {
-        //
+        // Implementar si se requiere editar HV desde interfaz
     }
 
     
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza datos del usuario (usado para perfil/usuarios; se mantiene la lógica original).
      */
     public function update(Request $request, User $user)
     {
         $user->role = $request->role;
         $user->name = $request->name;
         $user->identity = $request->identity;
-        // $user->foto = $request->foto;
+
         if ($request->hasFile('foto')) {
             $user->foto = $request->file('foto')->store('public/fotos');
-            $user->foto = str_replace('public/', '', $user->foto); // Eliminar 'public/' para la BD
+            $user->foto = str_replace('public/', '', $user->foto);
         }
+
         $user->contact = $request->contact;
         $user->adress = $request->adress;
         $user->profession = $request->profession;
@@ -689,15 +732,14 @@ class HojadevidaController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->route('profile.edit')->with('success', '¡Registro creado exitosamente!');
+        return redirect()->route('profile.edit')->with('success', '¡Registro actualizado exitosamente!');
     }
 
-
     /**
-     * Remove the specified resource from storage.
+     * Eliminar (placeholder).
      */
     public function destroy(hojadevida $hojadevida)
     {
-        //
+        // Si necesitas soportar eliminación, implementar aquí.
     }
 }

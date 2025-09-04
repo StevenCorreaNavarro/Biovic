@@ -68,7 +68,7 @@
                     <h4 style="padding:0%;margin:0;  color:white">DATO UNO</h4>
                     <h4 style="padding:0%;margin:0;  color:white">DATO DOS</h4>
                 </td>
-                <td 
+                <td
                     style=" background-color:rgb(255, 255, 255);border: 0px solid rgb(0, 0, 0); text-align: center;padding: 0px;
                         margin: 0px;">
                     {{-- <img src="{{ asset('storage/' . Auth::user()->foto) }}" height="100px"> --}}
@@ -84,14 +84,14 @@
                         style=" background-color:rgb(0, 64, 255);border: 1px solid rgb(0, 0, 0); text-align: center;"
                         width="200">
                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" height="100px">
-                        {{-- <img src="{{ asset('IMG/logotipohancho.png') }}" width="" height="100px"> 
+                        {{-- <img src="{{ asset('IMG/logotipohancho.png') }}" width="" height="100px">
                 @else
                     <td rowspan="3"
                         style=" background-color:rgb(0, 64, 255);border: 1px solid rgb(0, 0, 0); text-align: center;"
                         width="200">
 
                         <img src="{{ asset('IMG/logotipohancho.png') }}" width="" height="100px">
-                        {{-- <span class="user-level">No se ha subido una foto</span> 
+                        {{-- <span class="user-level">No se ha subido una foto</span>
                     </td>
                 @endif --}}
 
@@ -213,10 +213,10 @@
             <tr>
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">GARANTIA</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->garantia ?? '---' }}</td>
-                
+
                 <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);">VIDA UTIL</td>
                 <td style="border: 1px solid rgb(255, 255, 255);">{{ $hdvs->vidaUtil ?? '---' }}</td>
-                
+
                 {{-- <td style="font-weight: bold;border: 1px solid rgb(255, 255, 255);"></td>ZZZ
                 <td style="border: 1px solid rgb(255, 255, 255);"></td> --}}
 

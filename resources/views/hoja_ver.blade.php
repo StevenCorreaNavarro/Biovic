@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
 </head>
 @extends('layouts.header')
-<!-- 
+<!--
 <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
                 <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
                     action="{{ route('user.listausers') }}">
@@ -26,21 +26,21 @@
                     <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
                         href="{{ route('user.listausers') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
-    
+
             </a> --}}
                 </form>
             </div> -->
 <main>
     <div class="form-container">
         <h1>Ver hoja de vida</h1>
-        <form class="cajon" id="formulario" action="{{ route('hojadevida.listar') }}">
+        <form class="cajon" id="formulario" action="{{ route('hojadevida.mostrarbusqueda') }}">
             <label>Nombre equipo</label>
             <input type="text" class="news-input" name="search" value="{{ request('search') }}">
 
 
             <!-- <input class="form-control m-2" class="form-control" style="width: 400px" type="text" name="search"
                 placeholder="Buscar..." value="{{ request('search') }}"> -->
-            <!-- 
+            <!--
             <label for="registroInvima">Registro Invima</label>
             <input type="text" class="news-input" name="registroInvima" id="registroInvima">
             <label for="activoFijo">Activo fijo</label>

@@ -82,7 +82,7 @@
             transition: 0.3s;
         }
 
-        /* From Uiverse.io by vinodjangid07 */ 
+        /* From Uiverse.io by vinodjangid07 */
 .Btn {
   position: relative;
   width: 380px;
@@ -168,7 +168,7 @@
   fill: #fff;
 }
 /* svg colors */
-        
+
     </style>
 </head>
 
@@ -671,7 +671,7 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for=factura> Factura </label>
+                            <label for=factura> Factura / Contrato</label>
                             <input type="text" name="factura" class="form-control"
                                 value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}"
                                 id="factura">
@@ -956,7 +956,7 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for="temperatura">Temperatura</label>
+                            <label for="temperatura">Temperatura de Trabajo</label>
                             <input type="text" name="temperatura" class="form-control"
                                 value="{{ old('temperatura') }}" id="temperatura">
                         </div>
@@ -1206,6 +1206,9 @@
                 </div>
                 {{-- FIN ACCESORIOS --}}
 
+                {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
+
+                    <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
 
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
