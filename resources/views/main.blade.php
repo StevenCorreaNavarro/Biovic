@@ -138,9 +138,9 @@
                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                     alt="Foto de perfil"
                                                     style="width: 100%; height: auto; position: relative; ">
-                                                
+
                                             </div> --}}
-                                            {{-- <div> 
+                                            {{-- <div>
                                                 {{ Auth::user()->name }}
                                             </div> --}}
                                             {{ Auth::user()->name }}

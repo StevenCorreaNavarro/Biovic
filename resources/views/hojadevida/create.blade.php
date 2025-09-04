@@ -562,7 +562,7 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for=factura> Factura </label>
+                            <label for=factura> Factura / Contrato</label>
                             <input type="text" name="factura" class="form-control"
                                 value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}"
                                 id="factura">
@@ -843,7 +843,7 @@
 
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
-                            <label for="temperatura">Temperatura</label>
+                            <label for="temperatura">Temperatura de Trabajo</label>
                             <input type="text" name="temperatura" class="form-control"
                                 value="{{ old('temperatura') }}" id="temperatura">
                         </div>
@@ -1014,7 +1014,7 @@
                 {{-- FIN ACCESORIOS --}}
 
                 {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
-                
+
                     <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
                     class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
                         <h1 class="text-white text-center py-2 rounded"
