@@ -139,7 +139,11 @@ class HojadevidaController extends Controller
         // Por defecto, retornamos la vista de listado con el término de búsqueda $q (si se usa en la vista)
         return view('hojadevida.mostrarbusqueda', compact('hdvs', 'q'));
     }
+ public function edituser(User $user)
+    {
 
+        return view('users.useredit', compact('user'));
+    }
     /**
      * Devuelve el HTML parcial (partial) con la hoja de vida para inyectar en el modal. ingresadi 3/09/2025
      */
