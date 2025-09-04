@@ -13,6 +13,15 @@ class hojadevida extends Model
     public function estadoequipo (){
         return $this->belongsTo('App\Models\estadoequipo');
     }
+//     public function accesorios()
+// {
+//     return $this->hasMany(Accesorio::class, 'hojadevida_id'); // hdv_id debe existir en la tabla accesorios
+// }
+   public function accesorios()
+{
+    return $this->hasMany(Accesorio::class);
+}
+
 
     public function accesorio (){
         return $this->belongsTo('App\Models\Accesorio');
@@ -29,9 +38,13 @@ class hojadevida extends Model
     public function codEcri (){
         return $this->belongsTo('App\Models\CodEcri');
     }
-    public function fabricante (){
-        return $this->belongsTo('App\Models\Fabricante');
-    }
+    // public function fabricante (){
+    //     return $this->belongsTo('App\Models\Fabricante');
+    // }
+    public function fabricante()
+{
+    return $this->belongsTo(Fabricante::class, 'fabricante_id');
+}
     public function formaAdqui (){
         return $this->belongsTo('App\Models\FormaAdqui');
     }
@@ -116,6 +129,7 @@ class hojadevida extends Model
     {
         return $this->belongsTo(Modelo::class, 'modelo_id');
     }
+    
 
 
     protected $fillable = ['foto', 'codecris','estadoequipo_id']; // Agregamos 'foto' para que se pueda asignar masivamente

@@ -266,6 +266,7 @@ class HojadevidaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all()); // Se pone para ver los datos que llegan del formulario
         $hdv = new Hojadevida();
 
         $request->validate([
@@ -363,10 +364,12 @@ class HojadevidaController extends Controller
         $hdv->dimAlto = $request->dimAlto;
         $hdv->mag_dimension_id = $request->mag_dimension_id;
 
-        $hdv->recomendaciones = $request->recomendaciones;
-        $hdv->accesorio_id = $request->accesorio_id;
-        $hdv->fabricante_id = $request->fabricante_id;
-        $hdv->proveedor_id = $request->proveedor_id;
+        // $hdv->accesorio = $request->accesorio;
+        $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
+
+        $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
+        $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
+        $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
 
         // Guardar PDFs de soporte (si existen) y normalizar rutas para BD
         if ($request->hasFile('soporteFactura')) {
@@ -408,7 +411,6 @@ class HojadevidaController extends Controller
         } elseif ($request->filled('ubifisica_id')) {
             $hdv->ubifisica_id = $request->ubifisica_id;
         }
-
         if ($request->filled('nombreservicios')) {
             $serv = new servicio();
             $serv->nombreservicio = $request->nombreservicios;
@@ -506,24 +508,111 @@ class HojadevidaController extends Controller
             $hdv->mag_fre_id = $request->mag_fre_id;
         }
 
-        if ($request->filled('abrefuentealimen')) {
-            $uali = new magFuenAli();
-            $uali->abrefuentealimen = $request->abrefuentealimen;
-            $uali->save();
-            $hdv->mag_fuen_ali_id = $uali->id;
-        } elseif ($request->filled('mag_fuen_ali_id')) {
-            $hdv->mag_fuen_ali_id = $request->mag_fuen_ali_id;
+        if ($request->filled('nombrecorriente')) {
+            // Guardar nuevo estado
+            $uco = new   magCorriente();
+            // nombre columna-----------creates
+            $uco->nombrecorriente = $request->nombrecorriente;
+            $uco->abreviacioncorriente = $request->abreviacioncorriente;
+            // $uali->abrefuentealimen= $request->abrefuentealimen;
+
+            $uco->save();
+            $hdv->mag_corriente_id = $uco->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('mag_corriente_id')) {
+            // Asignar estado existente
+            $hdv->mag_corriente_id = $request->mag_corriente_id;
         }
 
-        // Guardar el registro HV
+        if ($request->filled('nombrepeso')) {
+            // Guardar nuevo estado
+            $upeso = new magPeso();
+            // nombre columna-----------creates
+            $upeso->nombrepeso = $request->nombrepeso;
+            $upeso->abreviacionpeso = $request->abreviacionpeso;
+            // $uali->abrefuentealimen= $request->abrefuentealimen;
+
+            $upeso->save();
+            $hdv->mag_peso_id = $upeso->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+
+        } elseif ($request->filled('mag_peso_id')) {
+            // Asignar estado existente
+            $hdv->mag_peso_id = $request->mag_peso_id;
+        }
+
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        //
+        //                                  guardar accesorios
+        //
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        // Validación de la Hoja de Vida, si la necesitas
+        // 7. Guarda la Hoja de Vida en la base de datos
         $hdv->save();
 
-        return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');
+        // 8. Guarda los accesorios asociados
+        if ($request->filled('nombreAccesorio')) {
+            foreach ($request->nombreAccesorio as $index => $nombre) {
+                $datosAccesorio = [
+                    'nombreAccesorio' => $nombre,
+                    'marcaAccesorio' => $request->marcaAccesorio[$index] ?? null,
+                    'modeloAccesorio' => $request->modeloAccesorio[$index] ?? null,
+                    'serieAccesorio' => $request->serieAccesorio[$index] ?? null,
+                    'costoAccesorio' => $request->costoAccesorio[$index] ?? null,
+                ];
+                $hdv->accesorios()->create($datosAccesorio);
+            }
+        }
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        //
+        //                                  guardar fabricante y proveedor
+        //
+        //++++++++++++++++++++++++++++++++++++++++++++++
+        $nuevoFabricante = fabricante::create([
+            'nombreFabri' => $request->nombreFabri,
+            'direccionFabri' => $request->direccionFabri,
+            // ... otros campos del fabricante
+            'telefonoFabri' => $request->telefonoFabri,
+            'ciudadFabri' => $request->ciudadFabri,
+            'emailWebFabri' => $request->emailWebFabri,
+        ]);
+
+        $hdv->fabricante_id = $nuevoFabricante->id;
+
+        $nuevoProveedor = proveedor::create([
+            'nombreProveedor' => $request->nombreProveedor,
+            'direccionProvee' => $request->direccionProvee,
+            // ... otros campos del fabricante
+            'telefonoProvee' => $request->telefonoProvee,
+            'ciudadProvee' => $request->ciudadProvee,
+            'emailWebProve' => $request->emailWebProve,
+        ]);
+
+        $hdv->proveedor_id = $nuevoProveedor->id;
+
+        // if ($request->filled('nombreFabri')) {
+        //     // Guardar nuevo estado
+        //     $fab = new fabricante();
+        //     // nombre columna-----------creates
+        //     $fab->nombreFabri = $request->nombreFabri;
+        //     // $fab->direccionFabri = $request->direccionFabri;
+        //     // $fab->telefonoFabri = $request->telefonoFabri;
+        //     // $fab->ciudadFabri = $request->ciudadFabri;
+        //     // $fab->emailWebFabri = $request->emailWebFabri;
+        //     // $uali->abrefuentealimen= $request->abrefuentealimen;
+
+        //     $fab->save();
+        //     $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        // } elseif ($request->filled('fabricante_id')) {
+        //     // Asignar estado existente
+        //     $hdv->fabricante_id = $request->fabricante_id;
+        // }
+        // $hdv->fabricante_id = $request->fabricante_id_seleccionado;
+
+        $hdv->save();
+        return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
+
     }
 
-    /**
-     * Traduce mes en inglés a nombre en español (se usa para marca de mes X en calendario).
-     */
+
     private function traducirMes($mesIngles)
     {
         $traducciones = [
@@ -543,15 +632,74 @@ class HojadevidaController extends Controller
 
         return $traducciones[$mesIngles] ?? null;
     }
+    // public function store(Request $request)
+    // {
+    //     $hdv = new Hojadevida();
 
-    /**
-     * Muestra la hoja de vida en la vista de detalle.
-     */
-    public function show($hdvs)
+    //     $request->validate([
+    //         'perioCali' => 'required|string',
+    //         'fechaCali' => 'nullable|date',
+    //         'foto' => 'required|max:10000|mimes:jpeg,png,jpg,gif,svg',
+    //     ]);
+
+    //     $hdv->equipo_id = $request->equipo_id;
+    //     $hdv->modelo_id = $request->modelo_id;
+    //     $hdv->marca_id = $request->marca_id;
+    //     $hdv->servicio_id = $request->servicio_id;
+    //     $hdv->serie = $request->serie;
+    //     $hdv->tec_predo_id = $request->tec_predo_id;
+    //     // $hdv->perioCali = $request->perioCali;
+    //     // $hdv->fechaCali = $request->fechaCali;
+    //     // $hdv->cod_ecris = $request->cod_ecris;
+    //     $hdv->actFijo = $request->actFijo;
+    //     // $hdv->regInvimai = $request->regInvimai;
+    //     $hdv->Estado = $request->Estado;
+    //     // $hdv->cla_riesgos = $request->cla_riesgos;
+    //     // $hdv->cla_biomes = $request->cla_biomes;
+    //     // $hdv->foto = $request->foto;
+    //     // $hdv->foto = $request->file('foto')->store('public/fotos');
+    //     if ($request->hasFile('foto')) {
+    //         $hdv->foto = $request->file('foto')->store('public/fotos');
+    //         $hdv->foto = str_replace('public/', '', $hdv->foto); // Eliminar 'public/' para la BD
+    //     }
+    //     // Hojadevida::create([
+    //     //     // 'nombre' => $request->nombre,
+    //     //     'foto' => $nombreImagen ?? null
+    //     // ]);
+    //     // $hojadevida = new Hojadevida();
+    //     $hdv->perioCali = $request->input('perioCali');
+
+    //     // Solo establecer fechaCali si perioCali es 'anual'
+    //     if (strtolower($request->input('perioCali')) === 'Anual') {
+    //         $hdv->fechaCali = $request->input('fechaCali');
+    //     } else {
+    //         $hdv->fechaCali = null;
+    //     }
+    //     $hdv->save();
+    //     // return $curso;
+    //     return redirect()->route('hojadevida.listar');        // para llevar al la lista o direccionar
+    //     // return view('hojadevida.listar');
+    // }
+
+
+
+    public function showS($hdvs, Request $request)
     {
         $hdvs = Hojadevida::findOrFail($hdvs);
+
+
+
         return view('hojadevida.show', compact('hdvs'));
     }
+
+    //     public function shows($id, Request $request)
+    // {
+    //     $hdvs = Hojadevida::with('accesorios')->findOrFail($id);
+    //     $accesorios = accesorio::with('accesorios')->findOrFail($id);
+
+    //     return view('hojadevida.showpdf', compact('hdvs', 'accesorios'));
+    // }
+
 
     /**
      * Edición (placeholder si se necesita implementar edición completa).

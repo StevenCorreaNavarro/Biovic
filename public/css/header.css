@@ -41,6 +41,19 @@
     color: #888888;
     margin-left: 5%;
 }
+
+i .fabe{
+   
+    font-size: 20px;
+    color: #888888;
+    margin-left: 5%;
+}
+i .faber{
+   
+    font-size: 20px;
+    color: #888888;
+    margin-left: 5%;
+}
 .dv{
   background-color: rgb(236, 241, 251);
   border: 1px solid #4079ff;
@@ -58,6 +71,19 @@
 .fab:hover{
     font-size: 18px;
     color:#0062E6;
+    transition: 0.3s;
+}
+
+
+i .fabe:hover{
+    font-size: 20px;
+    color:#0062E6;
+    transition: 0.3s;
+}
+
+i .faber:hover{
+    font-size: 20px;
+    color:#e60000;
     transition: 0.3s;
 }
 

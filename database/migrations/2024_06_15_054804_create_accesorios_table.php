@@ -17,11 +17,13 @@ return new class extends Migration
             $table -> string('marcaAccesorio')->nullable();   
             $table -> string('modeloAccesorio')->nullable();   
             $table -> string('serieAccesorio')->nullable();   
-            $table -> integer('costoAccesorio')->nullable();   
+            $table -> integer('costoAccesorio')->nullable();
+               
             
             // Relación con la tabla equipos
-            $table->unsignedBigInteger('equipo_id');
-            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
+            // $table->unsignedBigInteger('equipo_id');
+            // $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
+            
                                    
             $table->timestamps();
 

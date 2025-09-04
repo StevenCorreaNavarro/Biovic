@@ -70,16 +70,11 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
+
 });
 
-// Ruta para devolver el HTML de una hoja de vida vía AJAX agregado 3/09/2025 para mostrar en modal la hoja de vida
 
-Route::get('/hojadevida/fetch/{id}', [HojadevidaController::class, 'fetch'])->name('hojadevida.fetch');
-/*
-|--------------------------------------------------------------------------
-| Rutas para administradores (middleware 'Admin')
-|--------------------------------------------------------------------------
-*/
+//######################################################################################################## GRUPOS RUTAS ADMINISTRADOR COMIENZO
 Route::middleware(['auth', 'Admin'])->group(function () {
 
     // Dashboard admin
@@ -160,9 +155,8 @@ Route::middleware('auth')->group(function () {
 
     // Ruta auxiliar para listar equipos (se usa en formulario)
     Route::get('/equipos', [EquipoController::class, 'stores']);
-
-    // Hoja de vida: mostrar / descargar / listar
-    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
+    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'shows'])->name('hojadevida.show');
 
     // Resource para empleados
     Route::resource('empleips', EmpleipsController::class);
