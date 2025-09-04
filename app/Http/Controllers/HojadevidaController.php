@@ -667,6 +667,8 @@ class HojadevidaController extends Controller
         //
     }
 
+    
+
     /**
      * Update the specified resource in storage.
      */
