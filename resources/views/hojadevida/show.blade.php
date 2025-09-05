@@ -35,7 +35,7 @@
             background-color: blue;
             color: white;
             padding: 10px; */
-             color: white;
+            color: white;
             text-decoration: none;
             /* border-radius: 5px;
             font-size: 20px;
@@ -61,9 +61,10 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            
         }
 
-        .cards .red {
+        /* .cards .red {
             background-color: #f43f5e;
         }
 
@@ -76,9 +77,11 @@
         }
         .cards .yellow {
             background-color: #e0c009;
-        }
+        } */
 
         .cards .card {
+            margin-bottom: 12px;
+            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,10 +109,101 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.336);
         }
 
-        .cards:hover>.card:not(:hover) {
-            filter: blur(5px);
+        /* .cards:hover>.card:not(:hover) {
+            filter: blur(1px);
             transform: scale(0.9, 0.9);
             
+        } */
+
+
+
+
+
+
+
+        button {
+            width: 250px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            background: #183153;
+            font-family: "Montserrat", sans-serif;
+            /* box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2); */
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.336);
+        }
+
+        button:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #0062E6, #33AEFF);
+            color: #fff;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+        .buttonr:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #c70000, #ff3333);
+            color: #fff;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+        .buttonv:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #3cc700, #41ff33);
+            color: #fff;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+
+        button:hover::after {
+            right: auto;
+            left: 0;
+            width: 100%;
+        }
+
+        button span {
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            padding: 18px 25px;
+            color: #fff;
+            font-size: 1.125em;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            z-index: 20;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover span {
+            color: #ffffff;
+            animation: scaleUp 0.3s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
@@ -132,41 +226,150 @@
 
 
             <div class="cards">
-                  <div class="card yellow">
-                     <a   href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}"  target="_blank">
-                        {{-- <i class="bi bi-download"></i> --}}
-                        <p class="tip">Descargar PDF</p>
+              
+           
+               
+                <div class="card">
+                    <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
+                    <button class="buttonv">
+                      
+                        <span class="tip">Descargar</span>
                         {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                    </button>
                     </a>
                 </div>
-                
-                
+                <div class="card">
+                    <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
+                    <button class="button">
+                      
+                        <span class="tip">Editar</span>
+                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                    </button>
+                    </a>
+                </div>
+                 <div class="card">
+                    <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
+                    <button class="button">
+                      
+                        <span class="tip">Nuevo</span>
+                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                    </button>
+                    </a>
+                </div>
+                <div class="card">
+                    <a  href="{{ url('hojadevida/listar') }}">
+                    <button class="button">
+                      
+                        <span class="tip">Lista</span>
+                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                    </button>
+                    </a>
+                </div>
 
+
+
+
+               
+
+                  
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a >
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
                 
-                <div class="card green">
-                    
-                     <a {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}}>
-                        <i class="bi bi-download"></i>
-                        <p class="tip">Editar</p>
+                <div class="">
+                    <a >
+                    <button class="buttonr">
+                      
+                        <span class="tip">Eliminar</span>
+                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                    </button>
                     </a>
                 </div>
-               <div class="card red">
-                    
-                    <a  {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}}>
-                        <i class="bi bi-download"></i>
-                        <p class="tip">Eliminar</p>
-                    </a>
-                    
-                </div>
-                <div class="card blue">
-                    
-                    <a  href="{{ url('hojadevida/create') }}" >
-                        <i class="bi bi-download"></i>
-                        <p class="tip">Nueva hoja de vida</p>
-                    </a>
-                    
-                </div>
-            </div>
         </div>
 
 
