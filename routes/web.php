@@ -156,7 +156,7 @@ Route::middleware('auth')->group(function () {
     // Ruta auxiliar para listar equipos (se usa en formulario)
     Route::get('/equipos', [EquipoController::class, 'stores']);
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
-    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'shows'])->name('hojadevida.show');
+    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
 
     // Resource para empleados
     Route::resource('empleips', EmpleipsController::class);

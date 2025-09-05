@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="{{ asset('IMG/logo.png') }}">
 
-    <title>Document</title>
+    <title>Hoja de vida PDF</title>
     <style>
         /* .b {
             width: 20%;
@@ -144,14 +145,14 @@
                 
                 <div class="card green">
                     
-                     <a {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}}target="_blank">
+                     <a {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}}>
                         <i class="bi bi-download"></i>
                         <p class="tip">Editar</p>
                     </a>
                 </div>
                <div class="card red">
                     
-                    <a  {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}} target="_blank">
+                    <a  {{--  href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" --}}>
                         <i class="bi bi-download"></i>
                         <p class="tip">Eliminar</p>
                     </a>
@@ -159,7 +160,7 @@
                 </div>
                 <div class="card blue">
                     
-                    <a  href="{{ url('hojadevida/create') }}" target="_blank">
+                    <a  href="{{ url('hojadevida/create') }}" >
                         <i class="bi bi-download"></i>
                         <p class="tip">Nueva hoja de vida</p>
                     </a>

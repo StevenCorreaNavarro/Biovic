@@ -592,27 +592,51 @@ class HojadevidaController extends Controller
 
         $hdv->proveedor_id = $nuevoProveedor->id;
 
-        // if ($request->filled('nombreFabri')) {
-        //     // Guardar nuevo estado
-        //     $fab = new fabricante();
-        //     // nombre columna-----------creates
-        //     $fab->nombreFabri = $request->nombreFabri;
-        //     // $fab->direccionFabri = $request->direccionFabri;
-        //     // $fab->telefonoFabri = $request->telefonoFabri;
-        //     // $fab->ciudadFabri = $request->ciudadFabri;
-        //     // $fab->emailWebFabri = $request->emailWebFabri;
-        //     // $uali->abrefuentealimen= $request->abrefuentealimen;
+        if ($request->filled('nombreFabri')) {
+            // Guardar nuevo estado
+            $fab = new fabricante();
+            // nombre columna-----------creates
+            $fab->nombreFabri = $request->nombreFabri;
+            $fab->direccionFabri = $request->direccionFabri;
+            $fab->telefonoFabri = $request->telefonoFabri;
+            $fab->ciudadFabri = $request->ciudadFabri;
+            $fab->emailWebFabri = $request->emailWebFabri;
+            // $fab->abrefuentealimen= $request->abrefuentealimen;
 
-        //     $fab->save();
-        //     $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
-        // } elseif ($request->filled('fabricante_id')) {
-        //     // Asignar estado existente
-        //     $hdv->fabricante_id = $request->fabricante_id;
-        // }
-        // $hdv->fabricante_id = $request->fabricante_id_seleccionado;
+            $fab->save();
+            $hdv->fabricante_id = $fab->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('fabricante_id')) {
+            // Asignar estado existente
+            $hdv->fabricante_id = $request->fabricante_id;
+        }
+        if ($request->filled('nombreProveedor')) {
+            // Guardar nuevo estado
+            $prove = new proveedor();
+            // nombre columna-----------creates
+            $prove->nombreProveedor = $request->nombreProveedor;
+            $prove->direccionProvee = $request->direccionProvee;
+            $prove->telefonoProvee = $request->telefonoProvee;
+            $prove->ciudadProvee = $request->ciudadProvee;
+            $prove->emailWebProve = $request->emailWebProve;
+            // $fab->abrefuentealimen= $request->abrefuentealimen;
 
+            $prove->save();
+            $hdv->proveedor_id = $prove->id; // Asignar el ID del nuevo estado al modelo hoja de vida
+        } elseif ($request->filled('proveedor_id')) {
+            // Asignar estado existente
+            $hdv->proveedor_id = $request->proveedor_id;
+        }
+        // $hdv->fabricante_id = $request->fabricante_id;
+        // $hdv->proveedor_id = $request->proveedor_id;
+        
         $hdv->save();
-        return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
+        // return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
+
+        
+
+        // 3. Redirigir al método show con el ID del nuevo registro
+        return redirect()->route('hojadevida.show',  ['hdv' => $hdv->id])
+        ->with('success', 'Hoja de vida creada exitosamente.');
 
     }
 
@@ -687,7 +711,7 @@ class HojadevidaController extends Controller
 
 
 
-    public function showS($hdvs, Request $request)
+    public function show($hdvs, Request $request)
     {
         $hdvs = Hojadevida::findOrFail($hdvs);
 

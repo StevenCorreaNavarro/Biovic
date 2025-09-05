@@ -1208,7 +1208,7 @@
 
                 {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
 
-                    <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                  
 
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
