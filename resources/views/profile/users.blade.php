@@ -107,7 +107,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <th>Contacto: : </th>
+                    <th>Contacto:</th>
                     <td>{{ $hdvs->contact ?? '---' }}</td>
                     <th></th>
 
@@ -129,7 +129,7 @@
                 <tr>
                     <th></th>
                     <th>Cargo: </th>
-                    <td>{{ $hdvs->contact ?? '---' }}</td>
+                    <td>{{ $hdvs->post ?? '---' }}</td>
                     <th></th>
 
                 </tr>
