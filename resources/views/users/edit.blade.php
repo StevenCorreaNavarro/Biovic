@@ -102,14 +102,39 @@
 
                     <div class="col-md-12 position-relative">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" id="name">
                                 <span>Nombre</span>
                                 <br>
                                 <input class="form-control" type="text" name="name"
                                     value="{{ old('name', $user->name) }}">
                             </label>
+                            @error('name')
+                                <div class=" alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+                    <div class="col-md-12 position-relative">
+                        <div class="form-group">
+                            <label class="form-label" for="codigo">
+                                <span>Codigo</span>
+                                <br>
+                                <input class="form-control" type="text" name="codigo"
+                                    value="{{ old('codigo', $user->codigo) }}">
+                            </label>
+
+                            {{-- @error('codigo')
+                                <div class="invalid-feedback" style="color: red; font-size:12px;">
+                                    Ingrese codigo unico
+                                </div>
+                            @enderror --}}
+                            @error('codigo')
+                                <div class=" alert-danger">{{ $message }}</div>
+                            @enderror
+
+
+                        </div>
+                    </div>
+
 
 
                     {{-- <label class="form-label">
@@ -127,6 +152,9 @@
                                 <input class="form-control " type="text" name="email"
                                     value="{{ old('email', $user->email) }}">
                             </label>
+                            @error('email')
+                                <div class=" alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

@@ -70,7 +70,12 @@ class MantoCronoController extends BaseController
                 // Búsqueda por equipo relacionado
                 $q->whereHas('propiedad', function ($eq) use ($search) {
                     $eq->where('nombreempresa', 'LIKE', "%$search%");
-                });
+
+
+                    
+                })
+                ;
+                
             });
         }
         $hdvs = $query->orderBy('id', 'desc')->get();

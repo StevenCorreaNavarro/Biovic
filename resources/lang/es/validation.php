@@ -15,5 +15,8 @@ return [
         'name' => [
             'unique' => 'El nombre de usuario no está disponible.',
         ],
+        'codigo' => [
+            'unique' => 'Codigo no esta disponible, utiliza otro.',
+        ],
     ],
 ];

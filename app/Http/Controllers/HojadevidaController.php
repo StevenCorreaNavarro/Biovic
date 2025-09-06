@@ -91,10 +91,16 @@ class HojadevidaController extends Controller
                 $q->whereHas('equipo', function ($eq) use ($search) {
                     $eq->where('nombre_equipo', 'LIKE', "%$search%")
                         ->orWhere('serie', 'LIKE', "%$search%")
-                        ->orWhere('name', 'LIKE', "%$search%")
+                        // ->orWhere('name', 'LIKE', "%$search%")
                         ->orWhere('actFijo', 'LIKE', "%$search%");
-                })->orWhereHas('propiedad', function ($p) use ($search) {
+                })
+                ->orWhereHas('propiedad', function ($p) use ($search) {
                     $p->where('nombreempresa', 'LIKE', "%$search%");
+                })
+                ->orWhereHas('user', function ($p) use ($search) {
+                    $p->where('name', 'LIKE', "%$search%")
+                    ->orWhere('codigo', 'LIKE', "%$search%")
+                    ->orWhere('contact', 'LIKE', "%$search%");
                 });
             });
         }
@@ -114,7 +120,7 @@ class HojadevidaController extends Controller
         $q = trim($request->input('search', ''));
 
         // Query base con relaciones que usa la vista
-        $query = hojadevida::with(['equipo', 'servicio', 'propiedad', 'marca', 'modelo', 'ubifisica']);
+        $query = hojadevida::with(['equipo', 'servicio', 'propiedad', 'marca', 'modelo', 'ubifisica','user']);
 
         if ($q !== '') {
             $query->where(function ($wr) use ($q) {
@@ -127,9 +133,16 @@ class HojadevidaController extends Controller
                    ->orWhereHas('servicio', function ($qs) use ($q) {
                        $qs->where('nombreservicio', 'LIKE', "%{$q}%");
                    })
+                   
                    ->orWhereHas('propiedad', function ($qp) use ($q) {
                        $qp->where('nombreempresa', 'LIKE', "%{$q}%");
-                   });
+                       
+                   })
+                    ->orWhereHas('user', function ($tr) use ($q) {
+                    $tr->where('codigo', 'LIKE', "%$q%");
+                    // ->orWhere('codigo', 'LIKE', "%$$q%")
+                    // ->orWhere('contact', 'LIKE', "%$$q%")
+                });
             });
         }
 
