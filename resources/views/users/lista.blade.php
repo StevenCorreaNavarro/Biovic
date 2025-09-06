@@ -125,7 +125,7 @@
             <table class="w-100 cajon table-striped bg-white">
                 <thead class="table-dark ">
                     <tr>
-                        <th>Item</th>
+                        <th>Código</th>
                         <th>Foto</th>
                         <th>Rol</th>
                         <th>Nombre</th>
@@ -146,7 +146,8 @@
 
                     <tr>
                         @foreach ($users as $user)
-                            <td>{{ $user->id }}</td>
+                        
+                            <td>{{ $user->codigo ?? 'Sin código' }}</td>
                             <td class="dropend" style="padding: 0%" width="50">
                                     @if ($user->foto)
                                         <img style="padding: 0%; background-color:white " src="{{ asset('storage/' . $user->foto) }}" width="50"

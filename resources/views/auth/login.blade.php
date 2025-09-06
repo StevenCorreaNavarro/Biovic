@@ -18,7 +18,7 @@
 
                 <span>Nombre de usuario y correo unicos</span>
                 <x-input-label for="name" />
-                <x-text-input id="name" placeholder="Nombre" class="block mt-1 w-full" type="text"
+                <x-text-input id="name" placeholder="Nombre de usuario" class="block mt-1 w-full" type="text"
                     name="name" :value="old('name')" required autofocus autocomplete="name" />
                 {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                     @error('name')
@@ -45,7 +45,7 @@
                 <x-text-input id="password" placeholder="Contraseña" class="block mt-1 w-full" type="password"
                     name="password" requiredautocomplete="new-password" />
                 @error('password')
-                    <div class="invalid-feedback" style="color: red">
+                    <div class="invalid-feedback" style="color: red;font-size:12px;">
                         agregar minimo 8 caracteres
                     </div>
                 @enderror
@@ -57,11 +57,12 @@
                     type="password" name="password_confirmation" required autocomplete="new-password" />
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
 
-                @error('password_confirmation')
-                    <div class="invalid-feedback" style="color: red">
+                @error('password')
+                    <div class="invalid-feedback" style="color: red;font-size:12px;">
                         agregar minimo 8 caracteres
                     </div>
                 @enderror
+
                 <button class="custom-button">
                     {{ __('Registrar') }}
                 </button>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('role')->default('user')->nullable(); // Puede ser 'admin' o 'user'
             $table->string('name') ->unique();   
-            $table->string('codigo') ->unique()->nullable(); 
+            $table->string('codigo')->nullable()->unique(); 
 
             $table->string('identity')->nullable();
             $table->string('foto')->nullable();
