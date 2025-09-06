@@ -21,7 +21,12 @@ class hojadevida extends Model
 {
     return $this->hasMany(Accesorio::class);
 }
-
+public function user()
+{
+    // El modelo HojaDeVida 'belongsTo' a un solo User.
+    // Esto es el inverso de la relación hasOne.
+    return $this->belongsTo(User::class);
+}
 
     public function accesorio (){
         return $this->belongsTo('App\Models\Accesorio');

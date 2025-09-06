@@ -61,7 +61,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            
+
         }
 
         /* .cards .red {
@@ -81,7 +81,7 @@
 
         .cards .card {
             margin-bottom: 12px;
-            
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,6 +147,7 @@
             transition: all 0.4s ease-in-out;
             right: 0;
         }
+
         .buttonr:after {
             content: " ";
             width: 0%;
@@ -157,6 +158,7 @@
             transition: all 0.4s ease-in-out;
             right: 0;
         }
+
         .buttonv:after {
             content: " ";
             width: 0%;
@@ -205,6 +207,78 @@
                 transform: scale(1);
             }
         }
+
+        /* Estilos básicos de la página */
+        /* body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+} */
+
+        .boton-abrir {
+            padding: 10px 20px;
+            /* background-color: #007bff; */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* El contenedor del modal (fondo oscuro) */
+        .modal-container {
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: visibility 0.3s, opacity 0.3s;
+            z-index: 1000;
+        }
+
+        /* Estilos del modal en sí */
+        .modal {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+
+        /* La magia: mostrar el modal cuando el URL apunta a su ID */
+        .modal-container:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Animación de entrada para el modal */
+        .modal-container:target .modal {
+            transform: scale(1);
+        }
+
+        /* Estilos para el botón de cerrar */
+        .boton-cerrar {
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+            color: #ffffff;
+            text-decoration: none;
+            background: #0062E6;
+        }
     </style>
 </head>
 
@@ -215,87 +289,92 @@
             @include('hojadevida.showpdf')
         </div>
 
+
         {{-- <div class="a" style="padding-left: 890px">
                 <h1> Registrar </h1>
                 <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
                     Ingresar Nueva hoja de vida
                 </a>
             </div>  --}}
+        {{-- <a >Abrir Modal</a> --}}
+
+        <div id="modal-abierto" class="modal-container">
+            <div class="modal">
+                <h2>¡Eliminar HOJA DE VIDA!</h2>
+                <p>¿Seguro que deseas eliminar esta Hoja de Vida?</p>
+                <div style="display: flex;justify-content: center;
+            align-items: center;
+            text-align: center;" class="">
+                    {{-- <a href="#" class="boton-cerrar">Cancelar</a>
+                    <a href="#" class="boton-cerrar">Eliminar</a> --}}
+                    <a href="#">
+                        <button style="width: 120px; height: 40px; margin:10px;"  class="button">
+                        <span class="tip">Cancelar</span>
+                        
+                    </button >
+                    </a>
+                    <a href="#">
+                          <button style="width: 120px; height: 40px; margin:10px;"  class="buttonr">
+                        <span class="tip">Eliminar</span>
+                    </button>
+                    </a>
+                  
+                    
+                </div>
+
+            </div>
+        </div>
 
         <div class="b" style="padding-left: 850px">
 
 
             <div class="cards">
-              
-           
-               
+
+
+
                 <div class="card">
                     <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
-                    <button class="buttonv">
-                      
-                        <span class="tip">Descargar</span>
-                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
-                    </button>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
-                    <button class="button">
-                      
-                        <span class="tip">Editar</span>
-                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
-                    </button>
-                    </a>
-                </div>
-                 <div class="card">
-                    <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
-                    <button class="button">
-                      
-                        <span class="tip">Nuevo</span>
-                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
-                    </button>
+                        <button class="buttonv">
+
+                            <span class="tip">Descargar</span>
+                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                        </button>
                     </a>
                 </div>
                 <div class="card">
-                    <a  href="{{ url('hojadevida/listar') }}">
-                    <button class="button">
-                      
-                        <span class="tip">Lista</span>
-                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
-                    </button>
+                    <a href="#" >
+                        <button class="button">
+
+                            <span class="tip">Editar</span>
+                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                        </button>
+                    </a>
+                </div>
+                <div class="card">
+                    <a  href="{{ url('hojadevida/create') }}">
+                        <button class="button">
+
+                            <span class="tip">Nuevo</span>
+                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                        </button>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="{{ url('hojadevida/listar') }}">
+                        <button class="button">
+
+                            <span class="tip">Lista</span>
+                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                        </button>
                     </a>
                 </div>
 
 
 
 
-               
 
-                  
-                <div class="">
 
-                    <a >
-                        <i class="bi bi-download"></i>
-                        <span class="tip"></span>
-                    </a>
 
-                </div>
-                <div class="">
-
-                    <a>
-                        <i class="bi bi-download"></i>
-                        <span class="tip"></span>
-                    </a>
-
-                </div>
-                <div class="">
-
-                    <a >
-                        <i class="bi bi-download"></i>
-                        <span class="tip"></span>
-                    </a>
-
-                </div>
                 <div class="">
 
                     <a>
@@ -330,7 +409,7 @@
                 </div>
                 <div class="">
 
-                    <a >
+                    <a>
                         <i class="bi bi-download"></i>
                         <span class="tip"></span>
                     </a>
@@ -338,7 +417,7 @@
                 </div>
                 <div class="">
 
-                    <a >
+                    <a>
                         <i class="bi bi-download"></i>
                         <span class="tip"></span>
                     </a>
@@ -346,7 +425,7 @@
                 </div>
                 <div class="">
 
-                    <a >
+                    <a>
                         <i class="bi bi-download"></i>
                         <span class="tip"></span>
                     </a>
@@ -354,27 +433,51 @@
                 </div>
                 <div class="">
 
-                    <a >
+                    <a>
                         <i class="bi bi-download"></i>
                         <span class="tip"></span>
                     </a>
 
                 </div>
-                
                 <div class="">
-                    <a >
-                    <button class="buttonr">
-                      
-                        <span class="tip">Eliminar</span>
-                        {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
-                    </button>
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+                <div class="">
+
+                    <a>
+                        <i class="bi bi-download"></i>
+                        <span class="tip"></span>
+                    </a>
+
+                </div>
+
+                <div class="">
+                    <a href="#modal-abierto" class="boton-abrir">
+                        <button class="buttonr">
+
+                            <span class="tip">Eliminar</span>
+                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+                        </button>
                     </a>
                 </div>
-        </div>
+            </div>
 
 
 
-        {{-- @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')
+            {{-- @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')
             <div class="b" style="padding-left: 780px; ">
                 <!-- <h1>Hoja de Vida PDF</h1> -->
                 <a href="#" target="_blank">Editar
@@ -391,7 +494,7 @@
             </div>
         @endif --}}
 
-    </div>
+        </div>
 
 
 </body>

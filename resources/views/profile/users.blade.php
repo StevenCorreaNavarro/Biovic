@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de hoja de vida</title>
+    <link rel="shortcut icon" href="/img/Logo_VitalTech2.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/central.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="/IMG/logotipo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+    <style>
+        .form-containers {
+            width: 540px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+@extends('layouts.header')
+<!--
+<div class=" d-flex flex-column justify-content-center align-items-center text-center ">
+                <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
+                    action="{{ route('user.listausers') }}">
+
+                    <input class="form-control m-2" class="form-control" style="width: 400px" type="text" name="search"
+                        placeholder="Buscar..." value="{{ request('search') }}">
+
+                    <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
+                        href="{{ route('user.listausers') }}"class="bi bi-arrow-repeat btn btn-primary m-2"></a>
+            </a> --}}
+                </form>
+            </div> -->
+<main>
+    <div class="form-containers">
+
+        <center>
+            <div class="cajon" id="formulario" action="{{ route('hojadevida.listar') }}">
+                 @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
+                    <div
+                        style=" position: relative;  width: 150px;  height: 150px;  overflow: hidden;  border-radius: 50%; overflow: hidden; border-radius: 50%; box-shadow: 0px 0px 10px 0px #333333e0; ">
+                        <img src="{{ asset('storage/' . $hdvs->foto) }}" alt="Foto de perfil"
+                            style=" width: 100%; height: 100%; object-fit: cover; "><br>
+                    </div><br>
+                    <h2 class=""> {{ $hdvs->name ?? '---' }}</h2>
+                @else
+                    <h2 class="bi bi-person-circle bi bi bi bi "> {{ $hdvs->name ?? '---' }}</h2>
+                @endif
+            </div>
+        </center>
+
+
+        <br>
+
+        {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
+        {{-- <span class="user-level">E-mail: {{ Auth::user()->email }}</span><br>
+
+        <span class="user-level">Rol: {{ Auth::user()->role }}</span><br>
+        <span class="user-level">Identificacion: {{ Auth::user()->identity }}</span><br>
+        <span class="user-level">Contacto: {{ Auth::user()->contact }}</span><br>
+        <span class="user-level">Direccion: {{ Auth::user()->adress }}</span><br>
+        <span class="user-level">Profesion: {{ Auth::user()->profession }}</span><br>
+        <span class="user-level">Cargo: {{ Auth::user()->post }}</span><br> <br> --}}
+
+        <table class="table table-borderless table-striped">
+
+            <tbody>
+                <thead>
+                    {{-- <tr >
+                        <th colspan="4">{{ Auth::user()->name }}</th>
+                        <th ></th>
+                    
+
+                       
+                    </tr> --}}
+                </thead>
+                <tr>
+                    <th></th>
+                    <th>E-mail: </th>
+                    <td> {{ $hdvs->email ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Rol: </th>
+                    <td>{{ $hdvs->role ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Identificacion: </th>
+                    <td>{{ $hdvs->identity ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Contacto: : </th>
+                    <td>{{ $hdvs->contact ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Direcccion: </th>
+                    <td>{{ $hdvs->adress ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Profesion: </th>
+                    <td>{{ $hdvs->profession ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Cargo: </th>
+                    <td>{{ $hdvs->contact ?? '---' }}</td>
+                    <th></th>
+
+                </tr>
+            </tbody>
+        </table>
+        @if (Auth::check() && Auth::user()->role === 'Admin')
+            <a href="{{ route('user.editusers', ['user' => Auth::id()]) }}" class="btn btn-primary">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+        @endif
+
+    </div>
+
+</main>
+
+<footer class="bg-primary text-white text-center py-4" style="margin-top: 5%;">
+    <div class="container">
+        <h4>Vitalsoft</h4>
+        <p>&copy; Soluciones biomedicas a la medida</p>
+        <div class="my-3">
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+</script>
+<script>
+    // Esperar a que el DOM se cargue
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('.needs-validation');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            // Añadir la clase 'was-validated' al formulario
+            form.classList.add('was-validated');
+        }, false);
+    });
+</script>
+<!-- SweetAlert2 desde CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Hecho',
+            text: '{{ session('success') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+</body>
+
+</html>

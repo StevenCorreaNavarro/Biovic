@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth; 
 
 use App\Models\estadoequipo;
 use App\Models\servicio;
@@ -30,8 +31,10 @@ use App\Models\fabricante;
 use App\Models\proveedor;
 use App\Models\user;
 use App\Models\hojadevida;
+// use App\Models\
 
 use Illuminate\Http\Request;
+
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Carbon\Carbon;
@@ -78,7 +81,7 @@ class HojadevidaController extends Controller
     public function listar(Request $request)
     {
         // Query base con relaciones utilizadas en la vista
-        $query = Hojadevida::with('equipo', 'servicio', 'propiedad');
+        $query = Hojadevida::with('equipo', 'servicio', 'propiedad',);
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -88,6 +91,7 @@ class HojadevidaController extends Controller
                 $q->whereHas('equipo', function ($eq) use ($search) {
                     $eq->where('nombre_equipo', 'LIKE', "%$search%")
                         ->orWhere('serie', 'LIKE', "%$search%")
+                        ->orWhere('name', 'LIKE', "%$search%")
                         ->orWhere('actFijo', 'LIKE', "%$search%");
                 })->orWhereHas('propiedad', function ($p) use ($search) {
                     $p->where('nombreempresa', 'LIKE', "%$search%");
@@ -284,6 +288,7 @@ class HojadevidaController extends Controller
             'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
             'soporteManual' => 'nullable|mimes:pdf|max:10000',
             'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
+           
         ]);
 
         // Cálculo de mes final según periodo de calibración (lógica original)
@@ -550,7 +555,7 @@ class HojadevidaController extends Controller
         //++++++++++++++++++++++++++++++++++++++++++++++
         // Validación de la Hoja de Vida, si la necesitas
         // 7. Guarda la Hoja de Vida en la base de datos
-        $hdv->save();
+        // $hdv->save();
 
         // 8. Guarda los accesorios asociados
         if ($request->filled('nombreAccesorio')) {
@@ -626,6 +631,8 @@ class HojadevidaController extends Controller
             // Asignar estado existente
             $hdv->proveedor_id = $request->proveedor_id;
         }
+
+        $hdv->user_id = Auth::user()->id; 
         // $hdv->fabricante_id = $request->fabricante_id;
         // $hdv->proveedor_id = $request->proveedor_id;
         
@@ -719,6 +726,7 @@ class HojadevidaController extends Controller
 
         return view('hojadevida.show', compact('hdvs'));
     }
+    
 
     //     public function shows($id, Request $request)
     // {

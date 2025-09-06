@@ -247,6 +247,8 @@ Route::middleware('auth')->group(function () {
 */
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [ProfileController::class, 'ver'])->name('profile.edit');
+
+    Route::get('/profiles/{user}/verperfiles', [ProfileController::class, 'verperfiles'])->name('profiles.users');
     Route::patch('/profiless', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profilesss', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

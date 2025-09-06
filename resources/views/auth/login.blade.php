@@ -1,5 +1,5 @@
 <head>
-<link rel="icon" type="image/x-icon" href="IMG/logo.png">
+    <link rel="icon" type="image/x-icon" href="IMG/logo.png">
 </head>
 <x-guest-layout>
     <!-- Session Status -->
@@ -16,19 +16,27 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
 
-                <span>O usa tu Email para registrarte</span>
+                <span>Nombre de usuario y correo unicos</span>
                 <x-input-label for="name" />
                 <x-text-input id="name" placeholder="Nombre" class="block mt-1 w-full" type="text"
                     name="name" :value="old('name')" required autofocus autocomplete="name" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
+                    @error('name')
+                    <div class="invalid-feedback" style="color: red;font-size:12px;">
+                        Este nombre ya esta registrado, utiliza otro
+                    </div>
+                @enderror
+                {{-- @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror --}}
 
                 <x-input-label for="email" />
                 <x-text-input id="email" placeholder="E-mail" class="block mt-1 w-full" type="email"
                     name="email" :value="old('email')" required autocomplete="username" />
                 {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
                 @error('email')
-                    <div class="invalid-feedback" style="color: red">
-                        Este correo esta registrado
+                    <div class="invalid-feedback" style="color: red; font-size:12px;">
+                        Este correo esta registrado, utiliza otro
                     </div>
                 @enderror
 
@@ -48,7 +56,7 @@
                 <x-text-input id="password_confirmation" placeholder="Confirmar contraseña" class="block mt-1 w-full"
                     type="password" name="password_confirmation" required autocomplete="new-password" />
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    
+
                 @error('password_confirmation')
                     <div class="invalid-feedback" style="color: red">
                         agregar minimo 8 caracteres
@@ -93,7 +101,7 @@
                 {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
 
                 @error('email')
-                    <div class="invalid-feedback"  style="color: red">
+                    <div class="invalid-feedback" style="color: red">
                         Correo o contraseña incorrectos
                     </div>
                 @enderror
@@ -130,14 +138,16 @@
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>¡Bienvenido de nuevo!</h1>
-                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="" width="90" height="auto">
+                    <img src="IMG/logobiomed.png" alt="" width="90"
+                        height="auto">
 
                     <p>Ingrese sus datos personales para utilizar todas las funciones del sitio</p>
                     <button class="hidden" id="login">Login</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Biovic</h1>
-                    <img src="IMG/CutPaste_2024-08-02_10-48-31-556.png" alt="" width="90" height="auto">
+                    <h1>Biovimedic</h1>
+                    <img src="IMG/logobiomed.png" alt="" width="90"
+                        height="auto">
                     <p>Regístrate para explorar y conocer todos los beneficios que nuestra plataforma tiene para
                         ofrecerte. </p>
 

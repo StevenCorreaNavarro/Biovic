@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'codigo',
         'email',
         'password',
     ];
@@ -44,4 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password'=> 'hashed',  // en esta parte es lo mismo que esto   Hash::make(value:'123456789');
     ];
+    public function hojadevida()
+{
+ 
+    return $this->hasOne(HojaDeVida::class);
+}
 }

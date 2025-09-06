@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lista Hoja de Vida</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('IMG/logo.png') }}">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- DataTables + Bootstrap CSS -->
@@ -42,6 +43,7 @@
     <thead class="table-dark">
       <tr>
         <th>ID</th>
+        <th>Responsable</th>
         <th>Imagen</th>
         <th>Equipo</th>
         <th>Marca</th>
@@ -55,7 +57,9 @@
       </tr>
       <!-- Fila de filtros (sin filtro en Imagen) -->
       <tr>
+        
         <th><select id="filter-id" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
+        <th><select id="filter-user" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th></th>
         <th><select id="filter-equipo" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th><select id="filter-marca" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
@@ -73,6 +77,8 @@
       @foreach ($hdvs as $hdv)
       <tr>
         <td>{{ $hdv->id }}</td>
+        
+        <td><a href="{{ url('profiles/' . $hdv->user->id . '/verperfiles') }}">{{ $hdv->user?->name ?? '----' }}</a></td>
         <td>
           @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
             <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50" class="rounded"
@@ -341,6 +347,7 @@
     // Filtros (todas excepto Imagen y Acciones)
     const filterCols = [
       { idx: 0, sel: '#filter-id' },
+      { idx: 1, sel: '#filter-user' },
       { idx: 2, sel: '#filter-equipo' },
       { idx: 3, sel: '#filter-marca' },
       { idx: 4, sel: '#filter-modelo' },
