@@ -568,7 +568,7 @@ class HojadevidaController extends Controller
         //++++++++++++++++++++++++++++++++++++++++++++++
         // Validación de la Hoja de Vida, si la necesitas
         // 7. Guarda la Hoja de Vida en la base de datos
-        // $hdv->save();
+        $hdv->save();
 
         // 8. Guarda los accesorios asociados
         if ($request->filled('nombreAccesorio')) {

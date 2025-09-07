@@ -1153,10 +1153,6 @@
                             }
                         }
                     </script>
-
-
-
-
                     {{-- <div class="row g-3 mt-4">
                         <div class="col-md-6">
                             <label for="accesorio_id" class="form-label fw-bold">Selecciona un accesorio:</label>
@@ -1201,8 +1197,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 {{-- FIN ACCESORIOS --}}
 
