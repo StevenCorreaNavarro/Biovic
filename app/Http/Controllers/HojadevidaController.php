@@ -556,7 +556,7 @@ class HojadevidaController extends Controller
             $upeso->save();
             $hdv->mag_peso_id = $upeso->id; // Asignar el ID del nuevo estado al modelo hoja de vida
 
-        } elseif ($request->filled('mag_peso_id')) {
+        } elseif ($request->filled('acce')) {
             // Asignar estado existente
             $hdv->mag_peso_id = $request->mag_peso_id;
         }
@@ -574,7 +574,7 @@ class HojadevidaController extends Controller
         if ($request->filled('nombreAccesorio')) {
             foreach ($request->nombreAccesorio as $index => $nombre) {
                 $datosAccesorio = [
-                    'nombreAccesorio' => $nombre,
+                    // 'nombreAccesorio' => $nombre,
                     'marcaAccesorio' => $request->marcaAccesorio[$index] ?? null,
                     'modeloAccesorio' => $request->modeloAccesorio[$index] ?? null,
                     'serieAccesorio' => $request->serieAccesorio[$index] ?? null,
@@ -582,6 +582,9 @@ class HojadevidaController extends Controller
                 ];
                 $hdv->accesorios()->create($datosAccesorio);
             }
+        }elseif ($request->filled('accesorio_id')) {
+            // Asignar estado existente
+            $hdv->accesorio_id = $request->accesorio_id;
         }
         //++++++++++++++++++++++++++++++++++++++++++++++
         //
