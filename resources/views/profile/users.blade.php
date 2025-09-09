@@ -323,7 +323,15 @@
                     </svg>
                 </button>
             </div>
-            <button class="cta-button">Message</button>
+            <div style="display: flex">
+                <button class="cta-button">Message</button>
+                 @if (Auth::check() && Auth::user()->role === 'Admin')
+            <a href="{{ route('user.editusers', ['user' => Auth::id()]) }}" class="cta-button">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+        @endif
+            </div>
+            
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-value">15k</div>
@@ -358,7 +366,7 @@
         </center> --}}
 
 
-        <br>
+
 
         {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
         {{-- <span class="user-level">E-mail: {{ Auth::user()->email }}</span><br>
@@ -427,11 +435,7 @@
                 </tr>
             </tbody>
         </table> --}}
-        @if (Auth::check() && Auth::user()->role === 'Admin')
-            <a href="{{ route('user.editusers', ['user' => Auth::id()]) }}" class="btn btn-primary">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-        @endif
+       
 
     </div>
 
