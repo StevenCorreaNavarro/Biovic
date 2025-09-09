@@ -8,6 +8,7 @@
 
     <style>
         .centro {
+             margin-top:120px;
             /* visibility: hidden; */
             /* opacity: 0; */
             position: absolute;
@@ -33,7 +34,7 @@
 
         }
         .papel{
-             z-index: 1000;
+                        z-index: 1000;
              background-color: white;
             height: 279.4mm;
             padding: 55px;
