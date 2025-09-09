@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <style>
-        /* .form-containers {
+        .form-containers {
             width: 540px;
             padding: 30px;
             background-color: #fff;
@@ -24,25 +24,25 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             align-items: center;
             text-align: center;
-        } */
+        }
 
         .profile-card {
+            margin-top: 70px;
             position: relative;
-            width: 520px;
+            width: 420px;
             background: rgba(255, 255, 255, 0.9);
             -webkit-backdrop-filter: blur(48px);
             backdrop-filter: blur(48px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 12px 12px 12px -20px rgba(0, 0, 0, 0.3);
-            transform: perspective(1000px) scale(0.8);
-            /*adjust the scale to view properly*/
+            box-shadow: 12px 12px 12px -20px rgba(0, 0, 0, 0.645);
+            /* transform: perspective(1000px) scale(0.8); adjust the scale to view properly */
             transform-style: preserve-3d;
         }
 
         .profile-image {
-            width: 130px;
-            height: 130px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background-color: #f0f2f5;
             margin: 0 auto 1rem;
@@ -81,7 +81,7 @@
         .profile-title {
             font-size: 0.9rem;
             color: #666;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.0rem;
         }
 
         .profile-bio {
@@ -160,7 +160,7 @@
         }
 
         .cta-button:hover {
-            background:#0062E6;
+            background: linear-gradient(45deg, #004298, #216d9f);
             transform: translateY(-2px);
         }
 
@@ -204,7 +204,13 @@
             </a> --}}
                 </form>
             </div> -->
-    <main>
+    <div style="        display: flex;
+            justify-content: center;
+            align-items: center;">
+
+
+
+
         <div class="profile-card">
             <div class="profile-image">
                 @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
@@ -248,19 +254,44 @@
             </div>
             <div class="profile-info">
                 <p class="profile-name">{{ $hdvs->name ?? '' }}</p>
-                <div class="profile-title">{{ $hdvs->email ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->role ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->codigo ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->identity ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->contact ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->adress ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->profession ?? '' }}</div>
-                <div class="profile-title">{{ $hdvs->post  ?? '' }}</div>
-                
-                <div class="profile-bio">
-                    Creative design and web enthusiast. Building digital experiences that
-                    matter.
-                </div>
+                @if (!empty($hdvs->email))
+                    <div class="profile-title"><i class="bi bi-envelope-fill"></i> {{ $hdvs->email ?? '' }}</div>
+                @endif
+
+                @if (!empty($hdvs->contact))
+                    <div class="profile-title"><i class="bi bi-whatsapp"></i> {{ $hdvs->contact ?? '' }}</div>
+                @endif
+
+                @if (!empty($hdvs->identity))
+                    <div class="profile-title"><i class="bi bi-person-vcard"></i> {{ $hdvs->identity ?? '' }}</div>
+                @endif
+                @if (!empty($hdvs->adress))
+                    <div class="profile-title"><i class="bi bi-house"></i> {{ $hdvs->adress ?? '' }}</div>
+                @endif
+                <br>
+
+                <div class="profile-title"> Rol: {{ $hdvs->role ?? '' }}</div>
+
+                <div class="profile-title">Codigo: {{ $hdvs->codigo ?? '' }}</div>
+
+
+
+                @if (!empty($hdvs->profession))
+                    <div class="profile-title">Profesion: {{ $hdvs->profession ?? '' }}</div>
+                @endif
+
+
+                @if (!empty($hdvs->post))
+                    <div class="profile-title">Cargo: {{ $hdvs->post ?? '' }}</div>
+                @endif
+                <br>
+                {{--                                                                 cambiar cuando se ponga                --}}
+                @if (!empty($hdvs->email))
+                    <div class="profile-bio">
+                        Creative design and web enthusiast. Building digital experiences that
+                        matter.
+                    </div>
+                @endif
             </div>
             <div class="social-links">
                 <button class="social-btn twitter">
@@ -309,9 +340,9 @@
             </div>
         </div>
 
-        {{-- <div class="form-containers"> --}}
+        {{-- <div class="form-containers">
 
-        {{-- <center>
+        <center>
             <div class="cajon" id="formulario" action="{{ route('hojadevida.listar') }}">
                  @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
                     <div
@@ -327,7 +358,7 @@
         </center> --}}
 
 
-       
+        <br>
 
         {{-- <span class="caret">Nombre: {{ Auth::user()->name }}</span><br> --}}
         {{-- <span class="user-level">E-mail: {{ Auth::user()->email }}</span><br>
@@ -338,12 +369,12 @@
         <span class="user-level">Direccion: {{ Auth::user()->adress }}</span><br>
         <span class="user-level">Profesion: {{ Auth::user()->profession }}</span><br>
         <span class="user-level">Cargo: {{ Auth::user()->post }}</span><br> <br> --}}
-        {{-- 
-        <table class="table table-borderless table-striped">
+
+        {{-- <table class="table table-borderless table-striped">
 
             <tbody>
                 <thead>
-              
+
                 </thead>
                 <tr>
                     <th></th>
@@ -402,9 +433,9 @@
             </a>
         @endif
 
-        </div>
+    </div>
 
-    </main>
+    </div>
 
     <footer class="bg-primary text-white text-center py-4" style="margin-top: 5%;">
         <div class="container">
