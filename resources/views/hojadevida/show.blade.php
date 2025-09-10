@@ -222,6 +222,17 @@
             transition: all 0.4s ease-in-out;
             right: 0;
         }
+                .buttone:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #c79f00, #ffd633);
+            color: #fff;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+
 
         button:hover::after {
             right: auto;
@@ -331,18 +342,13 @@
 
     <div class="centro pdf">
         <div class="papel">
-@include('hojadevida.showpdf')
+        @include('hojadevida.showpdf')
         </div>
         
     </div>
 
     <div class="b" style="padding-left: 850px">
-
-
         <div class="cards">
-
-
-
             <div class="card">
                 <a href="{{ url('descargar-pdf' . '/' . $hdvs->id) }}" target="_blank">
                     <button class="buttonv">
@@ -352,15 +358,17 @@
                     </button>
                 </a>
             </div>
+              @if (Auth::check() && Auth::user()->role === 'Admin')
             <div class="card">
-                <a href="#">
-                    <button class="button">
+                <a href="{{ url('hojadevida/' . $hdvs->id . '/edit') }}">
+                    <button class="buttone">
 
                         <span class="tip">Editar</span>
                         {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
                     </button>
                 </a>
             </div>
+            @endif
             <div class="card">
                 <a href="{{ url('hojadevida/create') }}">
                     <button class="button">
@@ -474,6 +482,7 @@
                 </a>
 
             </div>
+              @if (Auth::check() && Auth::user()->role === 'Admin')
 
             <div class="">
                 <a href="#modal-abierto" class="boton-abrir">
@@ -484,7 +493,9 @@
                     </button>
                 </a>
             </div>
+            @endif
         </div>
+          @if (Auth::check() && Auth::user()->role === 'Admin')
         <div id="modal-abierto" class="modal-container">
             <div class="modal">
                 <h2>¡Eliminar HOJA DE VIDA!</h2>
@@ -511,7 +522,7 @@
 
             </div>
         </div>
-
+@endif
 
 
         {{-- @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')
@@ -532,6 +543,8 @@
         @endif --}}
 
     </div>
+
+ 
 
 </body>
 

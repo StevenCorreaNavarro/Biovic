@@ -43,6 +43,7 @@
         }
 
         td {
+            height:15px;
             font-size: 9px;
             text-align: left;
             /* padding: 1px; */
@@ -129,7 +130,7 @@
                 <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); ">
                     @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
                         <center>
-                            <img src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px"
+                            <img src="{{ asset('storage') . '/' . $hdvs->foto }}" style="width: 100%; max-height:150px ;object-fit: cover;" 
                                 alt="145px">
                         </center>
                     @else

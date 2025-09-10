@@ -272,7 +272,7 @@
 
                 <div class="profile-title"> Rol: {{ $hdvs->role ?? '' }}</div>
 
-                <div class="profile-title">Codigo: {{ $hdvs->codigo ?? '' }}</div>
+                <div class="profile-title">Codigo: {{ $hdvs->codigo ?? 'Sin código' }}</div>
 
 
 

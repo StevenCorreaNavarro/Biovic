@@ -203,7 +203,7 @@
 
         <div class="profile-card">
             <div class="profile-image">
-                @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
+                @if(Auth::check() && Auth::user()->foto)
                     <img  src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto de perfil"
                         style=" width: 100%; height: 100%; object-fit: cover; ">
                 @else
