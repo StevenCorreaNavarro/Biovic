@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('modelos', function (Blueprint $table) {
             $table->id(); // entero grande sin signo 
-            $table->string('nombre_modelo');
+            $table->string('nombre_modelo')->nullable();
             $table->unsignedBigInteger('marca_id')->nullable();;
             $table->foreign('marca_id')
                 ->references('id')

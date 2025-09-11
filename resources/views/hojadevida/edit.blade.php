@@ -240,7 +240,7 @@
                 <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;  border:none;"
                     class="row g-2 mb-4 needs-validation formu p-5">
                     <h1 class="text-white" {{-- background: linear-gradient(45deg, #ffa200, #ffdd00); --}}
-                        style="background: linear-gradient(90deg, #000000, #000000,#000000);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
                     </h1>
                     <div class="row g-0 needs-validation border border-dark-subtle py-3"
@@ -249,32 +249,60 @@
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                             {{-- border border-3 --}}
                             <select id="equipo_id" name="equipo_id" class="form-control form-select "
-                                style="
-                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),-6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
-                                {{-- <option value="{{old('equipo',$hdv->equipos)}}"> Selecciona un equipo </option> --}}
-                                {{-- <option value="{{ old('equipo', $hdv->equipos) }}">
-                                    {{ old('equipo', $hdv->equipo?->nombre_equipo) }}</option> --}}
+                                style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),-6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
+
+                                <option value="{{ old('equipo', $hdv->equipo?->id) }}">
+                                    {{ old('equipo', $hdv->equipo?->nombre_equipo ?? '---') }}
+                                </option>
                                 @foreach ($equipos as $equipo)
-                                    <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
+                                    <option value="{{ $equipo->id }}">
+                                        {{ old('equipo_id', $hdv->equipo_id) == $equipo->id ? 'selected------->' : '' }}
+                                        {{ $equipo->nombre_equipo }}
+                                    </option>
                                 @endforeach
                             </select>
+
                         </div>
+
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
                             <select id="marca" name="marca_id"
                                 class="form-control form-select "style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3), -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
-                                <option value="">{{ old('marca', $hdv->marca?->nombre_marca) }}</option>
+
+                                {{-- <option value="{{ old('marca_id', $hdv->marca_id) }}">
+                                    {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
+                                </option> --}}
+                                @foreach ($marcas as $marca)
+                                    <option value="{{ $marca->id }}">
+                                        {{ old('marca_id', $equipo->marca_id) == $marca->id ? 'selected----->' : '' }}
+                                        {{ $marca->nombre_marca }}
+                                    </option>
+                                @endforeach
                             </select>
+                            {{-- <input type="hidden" name="marca_id" value="{{ old('marca_id', $hdv->marca_id) }}"> --}}
                         </div>
+
+
+
+
+
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                            <select id="modelo" name="modelo_id"
-                                class="form-control form-select "style="
+                            <select id="modelo" name="modelo_id"class="form-control form-select "style="
                             box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
-                                <option value="">{{ old('modelo', $hdv->modelo?->nombre_modelo) }}</option>
+                                {{-- <option value="{{ old('modelo', $hdv->modelo?->nombre_modelo) }}">{{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
+                                </option> --}}
+                                  @foreach ($modelos as $modelo)
+                                <option value="{{ $modelo->id }}"
+                                    {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'selected------->' : '' }}>
+                                    {{ $modelo->nombre_modelo }}
+                                </option>
+                                @endforeach
                             </select>
+                            {{-- <input type="hidden" name="modelo_id" value="{{ old('modelo_id', $hdv->modelo_id) }}"> --}}
+    
                         </div>
                     </div>
 
@@ -304,13 +332,17 @@
                         <pre>{{ print_r($estadoequipo->toArray()) }}</pre>   --}}
                     <div class="col-md-3 position-relative">
                         <div class="form-group" id="miDiv">
-                           
 
-                            
+
                             <label for="estadoequipo_id">Estado del Equipo</label>
                             <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="transformarDiv()"></i>
                             <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
+                                <option value="{{ old('estadoequipo', $hdv->estadoequipo?->estadoequipo) }} ">
+                                    {{ old('estadoequipo', $hdv->estadoequipo?->estadoequipo ?? '---') }}
+                                </option>
+
+
                                 @foreach ($estadoequipo as $estadoequi)
                                     <option value="{{ $estadoequi->id }}"
                                         {{ (isset($hdv) && $hdv->estadoequipo_id == $estadoequi->id) || old('estadoequipo_id') == $estadoequi->id ? 'selected' : '' }}>
@@ -330,9 +362,12 @@
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
                             <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
 
-                                {{-- <option value="{{ old('ubicacionfisica', $hdv->ubifisica) }}">
+                                <option value="{{ old('ubicacionfisica', $hdv->ubifisica) }}">
+                                    {{ old('ubicacionfisica', $hdv->ubifisica?->ubicacionfisica ?? '---') }}</option>
 
-                                    {{ old('ubicacionfisica', $hdv->ubifisica?->ubicacionfisica) }}</option> --}}
+
+
+
                                 @foreach ($ubifisicas as $ubicacion)
                                     <option value="{{ $ubicacion->id }}"
                                         {{ isset($hdv) && $hdv->ubifisica_id == $ubicacion->id ? 'selected' : '' }}>
@@ -352,8 +387,10 @@
                                 data-bs-target="#exampleModalparam" onclick="servicio()"></i>
                             {{--  Mostrar valores de `$servicios` para depuración <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}}
                             <select name="servicio_id" id="servicio_id" class="form-control form-select">
-                                {{-- <option value="{{ old('servicio', $hdv->servicio?->nombreservicio) }} ">
-                                    {{ old('servicio', $hdv->servicio?->nombreservicio) }} </option> --}}
+
+                                <option value="{{ old('servicio', $hdv->servicio?->nombreservicio) }} ">
+                                    {{ old('servicio', $hdv->servicio?->nombreservicio ?? '---') }} </option>
+
                                 @foreach ($nombreservicios as $servicio)
                                     <option value="{{ $servicio->id }}"
                                         {{ isset($hdv) && $hdv->servicio_id == $servicio->id ? 'selected' : '' }}>
@@ -370,8 +407,8 @@
                             <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="predo()"></i>
                             <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
-                                {{-- <option value="{{ old('tecPredo', $hdv->tecPredo?->tecpredo) }}">
-                                    {{ old('tecPredo', $hdv->tecPredo?->tecpredo) }}</option> --}}
+                                <option value="{{ old('tecPredo', $hdv->tecPredo?->tecpredo) }}">
+                                    {{ old('tecPredo', $hdv->tecPredo?->tecpredo ?? '---') }}</option>
                                 @foreach ($tecPredos as $tecnopredominante)
                                     <option value="{{ $tecnopredominante->id }}"
                                         {{ isset($hdv) && $hdv->tec_predo_id == $tecnopredominante->id ? 'selected' : '' }}>
@@ -396,8 +433,10 @@
                             <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="riesgo()"></i>
                             <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
-                                {{-- <option value="{{ old('claRiego', $hdv->claRiesgo?->clariesgo) }}">
-                                    {{ old('claRiego', $hdv->claRiesgo?->clariesgo) }}</option> --}}
+
+                                <option value="{{ old('claRiego', $hdv->claRiesgo?->clariesgo) }}">
+                                    {{ old('claRiego', $hdv->claRiesgo?->clariesgo ?? '---') }}</option>
+
                                 @foreach ($clariesgo as $clasiriesgo)
                                     <option value="{{ $clasiriesgo->id }}"
                                         {{ isset($hdv) && $hdv->cla_riesgo_id == $clasiriesgo->id ? 'selected' : '' }}>
@@ -413,8 +452,8 @@
                             <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="biom()"></i>
                             <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
-                                {{-- <option value="{{ old('claBiome', $hdv->claBiome?->clabiomedica) }}">
-                                    {{ old('claBiome', $hdv->claBiome?->clabiomedica) }}</option> --}}
+                                <option value="{{ old('claBiome', $hdv->claBiome?->clabiomedica) }}">
+                                    {{ old('claBiome', $hdv->claBiome?->clabiomedica ?? '---') }}</option>
                                 @foreach ($clabiomedica as $clasibiomedica)
                                     <option value="{{ $clasibiomedica->id }}"
                                         {{ isset($hdv) && $hdv->cla_biome_id == $clasibiomedica->id ? 'selected' : '' }}>
@@ -430,12 +469,15 @@
                             <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="uso()"></i>
                             <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
-                                {{-- <option value="{{ old('claUsa', $hdv->claUso?->clauso) }}">
-                                    {{ old('claUsa', $hdv->claUso?->clauso) }}</option> --}}
+                                <option value="{{ old('claUso', $hdv->claUso?->clauso) }}">
+
+                                </option>
+
                                 @foreach ($clauso as $clasiuso)
                                     <option value="{{ $clasiuso->id }}"
                                         {{ isset($hdv) && $hdv->cla_uso_id == $clasiuso->id ? 'selected' : '' }}>
                                         {{ $clasiuso->clauso }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -446,21 +488,25 @@
                         <label for="search-codiecri">Código Ecri</label>
                         <div style="display: flex; align-items: center;">
                             <!-- Input para buscar -->
-                            <input type="text" id="search-codiecri" class="form-control" placeholder="Buscar código" style="margin-right: 10px;" />
+                            <input type="text" id="search-codiecri" class="form-control"
+                                placeholder="Buscar código" style="margin-right: 10px;" />
 
                             <!-- Select con opciones de la tabla -->
                             <select name="cod_ecri_id" id="codecris" class="form-control">
-                                {{-- <option value="{{ old('codiecri', $hdv->codecri?->codiecri) }}">
-                                    {{ old('codiecri', $hdv->codecri?->codiecri) }}</option> --}}
+                                {{-- <option value="{{ old('codecri', $hdv->codecri?->codiecri) }}">
+        {{ old('codecri', $hdv->codecri?->codiecri ?? '---') }}
+    </option> --}}
+
                                 @foreach ($codiecri as $codigoecri)
-                                    <option value="{{  $codigoecri->id }}"
+                                    <option value="{{ $codigoecri->id }}"
+                                        {{ (isset($hdv) && $hdv->cod_ecri_id == $codigoecri->id) || old('cod_ecri_id') == $codigoecri->id ? 'selected' : '' }}
                                         data-codiecri="{{ strtolower($codigoecri->codiecri) }}"
                                         data-nombrecodiecri="{{ strtolower($codigoecri->nombrecodiecri) }}">
                                         {{ $codigoecri->codiecri }} - {{ $codigoecri->nombrecodiecri }}
                                     </option>
                                 @endforeach
                             </select>
-                            
+
                         </div>
                     </div>
 
@@ -513,7 +559,7 @@
                         <select name="perioCali" id="perioCali" class="form-control form-select" required
                             onchange="mostrarFechaCali()">
                             <option value="{{ old('periCali', $hdv->perioCali) }}">
-                                {{ old('periCali', $hdv->perioCali) }}</option>
+                                {{ old('periCali', $hdv->perioCali ?? '---') }}</option>
                             <option value="">No Aplica</option>
                             <option value="anual">Anual</option>
                         </select>

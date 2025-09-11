@@ -226,7 +226,7 @@
             content: " ";
             width: 0%;
             height: 100%;
-            background: linear-gradient(45deg, #c79f00, #ffd633);
+            background: linear-gradient(45deg, #eabc02, #fcd01c);
             color: #fff;
             position: absolute;
             transition: all 0.4s ease-in-out;

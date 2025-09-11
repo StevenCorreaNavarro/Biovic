@@ -31,6 +31,8 @@ use App\Models\fabricante;
 use App\Models\proveedor;
 use App\Models\user;
 use App\Models\hojadevida;
+use App\Models\Marca;
+use App\Models\Modelo;
 // use App\Models\
 
 use Illuminate\Http\Request;
@@ -762,6 +764,8 @@ class HojadevidaController extends Controller
         $nombreEquipos = NombreEquipo::all();
         $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
         $estadoequipo = estadoequipo::all();
+        $marcas= Marca::all();
+        $modelos= Modelo::all();
 
         //   $estadoequipo = estadoequipo::all();
         $ubifisicas = Ubifisica::all();
@@ -787,7 +791,7 @@ class HojadevidaController extends Controller
         $accesorios = accesorio::all();
         $fabricantes = fabricante::all();
         $proveedores = proveedor::all();
-         return view('hojadevida.edit',compact('hdv',
+         return view('hojadevida.edit',compact('hdv','marcas','modelos',
             'nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica',
             'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen',
             'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones',

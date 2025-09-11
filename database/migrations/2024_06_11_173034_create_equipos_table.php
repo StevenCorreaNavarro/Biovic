@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->id(); // entero grande sin signo 
-            $table->string('nombre_equipo')->unique();
+            $table->string('nombre_equipo')->nullable();
             
             $table->timestamps();
         });
