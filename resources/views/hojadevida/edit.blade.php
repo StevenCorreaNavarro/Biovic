@@ -268,11 +268,11 @@
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
                             <select id="marca" name="marca_id"
                                 class="form-control form-select "style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3), -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
-                                disabled>
+                                enable>
 
-                                {{-- <option value="{{ old('marca_id', $hdv->marca_id) }}">
-                                    {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
-                                </option> --}}
+                                <option value="{{ old('marca_id', $hdv->marca_id) }}">
+                                               {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
+                                </option>
                                 @foreach ($marcas as $marca)
                                     <option value="{{ $marca->id }}">
                                         {{ old('marca_id', $equipo->marca_id) == $marca->id ? 'selected----->' : '' }}
@@ -283,17 +283,13 @@
                             {{-- <input type="hidden" name="marca_id" value="{{ old('marca_id', $hdv->marca_id) }}"> --}}
                         </div>
 
-
-
-
-
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                            <select id="modelo" name="modelo_id"class="form-control form-select "style="
-                            box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
-                                disabled>
-                                {{-- <option value="{{ old('modelo', $hdv->modelo?->nombre_modelo) }}">{{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
-                                </option> --}}
+                            <select id="modelo" name="modelo_id"class="form-control form-select "style="                     box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
+                                enable>
+                                <option value="{{ old('modelo_id', $hdv->modelo_id) }}">
+                                               {{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
+                                </option>
                                   @foreach ($modelos as $modelo)
                                 <option value="{{ $modelo->id }}"
                                     {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'selected------->' : '' }}>
