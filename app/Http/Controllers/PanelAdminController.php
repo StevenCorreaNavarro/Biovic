@@ -97,6 +97,7 @@ class PanelAdminController extends Controller
                     ->orWhere('email', 'LIKE', "%$search%")
                     ->orWhere('contact', 'LIKE', "%$search%")
                     ->orWhere('role', 'LIKE', "%$search%")
+                    ->orWhere('codigo', 'LIKE', "%$$search%")
                     ->orWhere('identity', 'LIKE', "%$search%");
             });
         }
@@ -142,6 +143,7 @@ class PanelAdminController extends Controller
         $hdvs = Modelo::orderBy('id', 'desc')->get();
         return view('equipos.listar_tres', compact('hdvs'));
     }
+    
     public function lista_Registrada()
     {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();

@@ -483,7 +483,7 @@
                 icon: 'success',
                 title: 'Hecho',
                 text: '{{ session('success') }}',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
             });
         </script>
     @endif

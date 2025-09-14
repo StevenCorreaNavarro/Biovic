@@ -25,7 +25,14 @@
         .form-select.filled {
             background-color: rgb(236, 241, 251);
             border-color: #4079ff !important;
+            color:black;
+            /* font-weight:500; */
+            /* color:rgb(0, 0, 0); */
 
+        }
+
+        select{
+            color:black;
         }
 
         /* Estilo para el label */
@@ -167,6 +174,18 @@
 .cls-6 {
   fill: #fff;
 }
+
+/* /* .se{
+    color:green;
+} */
+.se{
+    color:rgba(0, 0, 0, 0.234);
+} 
+
+
+
+
+
 /* svg colors */
 
     </style>
@@ -213,6 +232,7 @@
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
         <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf {{-- LLave de seguridad obligatoria --}}
+            
 
             {{-- MDAL PARA ASEGURAR QUE GUARDA DATOS --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -265,7 +285,7 @@
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                             {{-- border border-3 --}}
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select "
+                            <select id="equipo_id" name="equipo_id" class="form-control form-select se"
                                 style="
                             box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),
                                                                     -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
@@ -279,7 +299,7 @@
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
                             <select id="marca" name="marca_id"
-                                class="form-control form-select "style="
+                                class="form-control form-select se "style="
                             box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona una marca</option>
@@ -288,13 +308,14 @@
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
                             <select id="modelo" name="modelo_id"
-                                class="form-control form-select "style="
+                                class="form-control form-select se"style="
                             box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 disabled>
                                 <option value="">Selecciona un modelo</option>
                             </select>
                         </div>
                     </div>
+                    
 
                     {{-- SEGUNDA PARTE --}}
                     {{-- SERIE --}}
@@ -327,12 +348,12 @@
                             <label for="estadoequipo_id">Estado del Equipo</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="transformarDiv()"></i>
-                            <select name="estadoequipo_id" id="estadoequipo_id " class="form-control form-select ">
-                                <option value="">Seleccione una opción</option>
+                            <select   name="estadoequipo_id" id="estadoequipo_id " class="form-control form-select se ">
+                                <option  value="">Seleccione una opción</option>
                                 @foreach ($estadoequipo as $estadoequi)
-                                    <option value="{{ $estadoequi->id }}"
+                                    <option  value="{{ $estadoequi->id }}"
                                         {{ (isset($hojadevida) && $hojadevida->estadoequipo_id == $estadoequi->id) || old('estadoequipo_id') == $estadoequi->id ? 'selected' : '' }}>
-                                        <p>{{ $estadoequi->estadoequipo }}</p>
+                                        <p >{{ $estadoequi->estadoequipo }}</p>
                                     </option>
                                 @endforeach
                             </select>
@@ -346,7 +367,7 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="ubifisica()"></i>
                             {{--  Mostrar valores de `$ubifisicas` para depuración
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
-                            <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
+                            <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select se">
                                 <option value="" class>Seleccione una opción</option>
                                 @foreach ($ubifisicas as $ubicacion)
                                     <option value="{{ $ubicacion->id }}"
@@ -364,7 +385,7 @@
                             <label for="servicio_id">Servicio</label><i class="bi fab bi-pen" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalparam" onclick="servicio()"></i>
                             {{--  Mostrar valores de `$servicios` para depuración <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}}
-                            <select name="servicio_id" id="servicio_id" class="form-control form-select">
+                            <select name="servicio_id" id="servicio_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($nombreservicios as $servicio)
                                     <option value="{{ $servicio->id }}"
@@ -381,7 +402,7 @@
                         <div class="form-group" id="miDiv4">
                             <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="predo()"></i>
-                            <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
+                            <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($tecPredos as $tecnopredominante)
                                     <option value="{{ $tecnopredominante->id }}"
@@ -407,7 +428,7 @@
                         <div class="form-group" id="miDiv5">
                             <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="riesgo()"></i>
-                            <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
+                            <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clariesgo as $clasiriesgo)
                                     <option value="{{ $clasiriesgo->id }}"
@@ -423,7 +444,7 @@
                         <div class="form-group" id="miDiv6">
                             <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="biom()"></i>
-                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
+                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($clabiomedica as $clasibiomedica)
                                     <option value="{{ $clasibiomedica->id }}"
@@ -439,7 +460,7 @@
                         <div class="form-group" id="miDiv7">
                             <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="uso()"></i>
-                            <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
+                            <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($clauso as $clasiuso)
                                     <option value="{{ $clasiuso->id }}"
@@ -518,7 +539,7 @@
                     {{--  Calibracion  --}}
                     <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
-                        <select name="perioCali" id="perioCali" class="form-control form-select" required
+                        <select name="perioCali" id="perioCali" class="form-control form-select se" required
                             onchange="mostrarFechaCali()">
                             <option value="">Selecciona...</option>
                             <option value="">No Aplica</option>
@@ -602,7 +623,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaAdquisicion> Fecha de Adquisicion </label>
-                            <input type="date" name="fechaAdquisicion" class="form-control"
+                            <input type="date" name="fechaAdquisicion" class="form-control se" 
                                 value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}"
                                 id="fechaAdquisicion">
                         </div>
@@ -661,7 +682,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaInstalacion> Fecha de Instalacion </label>
-                            <input type="date" name="fechaInstalacion" class="form-control"
+                            <input type="date" name="fechaInstalacion" class="form-control  se"
                                 value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}"
                                 id="fechaInstalacion">
                         </div>
@@ -682,7 +703,7 @@
                         <div class="form-group" id="miDiv8">
                             <label for="forma_adqui_id">Forma de Adquisicion</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="adqui()"></i>
-                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
+                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($formaadqui as $formaadquisicion)
                                     <option value="{{ $formaadquisicion->id }}"
@@ -732,7 +753,7 @@
                         <div class="form-group" id="miDivpropiedad">
                             <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>
-                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
+                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($propiedad as $nombreempre)
                                     <option value="{{ $nombreempre->id }}"
@@ -768,7 +789,7 @@
                             <label for="mag_fuen_alimen_id">Fuente de Alimentación</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="fuenteali()"></i>
                             <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
-                                class="form-control form-select">
+                                class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($nombrealimentacion as $fuente)
                                     <option value="{{ $fuente->id }}"
@@ -794,7 +815,7 @@
                             <label for="mag_fre_id">Unidad de Frecuencia</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="ufrecuencia()"></i>
-                            <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select">
+                            <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($magFrec as $frecuencia)
                                     <option value="{{ $frecuencia->id }}"
@@ -830,7 +851,7 @@
                             <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="ualimentacion()">
                             </i>
-                            <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select">
+                            <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($fuentesAli as $fuente)
                                     {{-- Asi se recibe desde  hojadevidaController --}}
@@ -867,7 +888,7 @@
                             <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="ucorriente()">
                             </i>
-                            <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select">
+                            <select name="mag_corriente_id" id="mag_corriente_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($corrientes as $corriente)
                                     <option value="{{ $corriente->id }}"
@@ -894,7 +915,7 @@
                             <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="upeso()">
                             </i>
-                            <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select">
+                            <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($pesos as $peso)
                                     <option value="{{ $peso->id }}"
@@ -918,7 +939,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_pres_id">Unidad de Presión</label>
-                            <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select">
+                            <select name="mag_pres_id" id="mag_pres_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($presiones as $presion)
                                     <option value="{{ $presion->id }}"
@@ -942,7 +963,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_pot_id">Unidad de Potencia</label>
-                            <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select">
+                            <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($potencias as $potencia)
                                     <option value="{{ $potencia->id }}"
@@ -966,7 +987,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_temp_id">Unidad de Temperatura</label>
-                            <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select">
+                            <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($temperaturas as $temp)
                                     <option value="{{ $temp->id }}"
@@ -991,7 +1012,7 @@
                     <div class="col-md-4 position-relative">
                         <div class="form-group">
                             <label for="mag_vel_id">Unidad de Velocidad</label>
-                            <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select">
+                            <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($velocidad as $vel)
                                     <option value="{{ $vel->id }}"
@@ -1043,7 +1064,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for="mag_dimension_id">Unidad de Dimensión</label>
-                            <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select">
+                            <select name="mag_dimension_id" id="mag_dimension_id" class="form-control form-select se">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($dimensiones as $dim)
                                     <option value="{{ $dim->id }}"
@@ -1222,11 +1243,11 @@
                     <div class="col-md-6 mb-4">
                         <div class="mb-3" id="miDiv14">
 
-                            <div id="select-fabricante-container">
+                            <div id="select-fabricante-container se">
                                 <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
                                 <i class="bi fab bi-pen" onclick="toggleFormulario('fabricante')"></i>
                                 <select id="fabricante_id" name="fabricante_id"
-                                    class="form-select border border-2 rounded-3">
+                                    class="form-select border border-2 rounded-3  se">
                                     <option value="">Seleccione un fabricante</option>
                                     @foreach ($fabricantes as $fabricante)
                                         <option value="{{ $fabricante->id }}"
@@ -1294,8 +1315,8 @@
                                 <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
                                 <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                     onclick="toggleFormulario('proveedor')"></i>
-                                <select id="proveedor_id" name="proveedor_id"
-                                    class="form-select border border-2 rounded-3">
+                                <select id="proveedor_id" name="proveedor_id se"
+                                    class="form-select border border-2 rounded-3  se">
                                     <option value="">Seleccione un proveedor</option>
                                     @foreach ($proveedores as $proveedor)
                                         <option value="{{ $proveedor->id }}"

@@ -84,7 +84,7 @@
                                     <span>Rol (User, Empleado, Admin)</span><br>
 
                                     <select name="role" id="role" class="form-control"
-                                        @if ($user->id === 1) disabled @endif required>
+                                        @if ($user->id === 1) enable @endif required>
 
                                         <option value="{{ old('role', $user->role) }}">{{ $user->role }}</option>
 

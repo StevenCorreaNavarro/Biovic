@@ -34,7 +34,7 @@
     <div class="form-container">
         <h1>Ver hoja de vida</h1>
         <form class="cajon" id="formulario" action="{{ route('hojadevida.mostrarbusqueda') }}">
-            <label>Nombre equipo</label>
+            <label>Ingrese credenciales</label>
             <input type="text" class="news-input" name="search" value="{{ request('search') }}" required="">
           
             @csrf

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth; 
+
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\estadoequipo;
 use App\Models\servicio;
@@ -93,17 +94,18 @@ class HojadevidaController extends Controller
                 $q->whereHas('equipo', function ($eq) use ($search) {
                     $eq->where('nombre_equipo', 'LIKE', "%$search%")
                         ->orWhere('serie', 'LIKE', "%$search%")
+                        ->orWhere('codigo', 'LIKE', "%$search%")
                         // ->orWhere('name', 'LIKE', "%$search%")
                         ->orWhere('actFijo', 'LIKE', "%$search%");
                 })
-                ->orWhereHas('propiedad', function ($p) use ($search) {
-                    $p->where('nombreempresa', 'LIKE', "%$search%");
-                })
-                ->orWhereHas('user', function ($p) use ($search) {
-                    $p->where('name', 'LIKE', "%$search%")
-                    ->orWhere('codigo', 'LIKE', "%$search%")
-                    ->orWhere('contact', 'LIKE', "%$search%");
-                });
+                    ->orWhereHas('propiedad', function ($p) use ($search) {
+                        $p->where('nombreempresa', 'LIKE', "%$search%");
+                    })
+                    ->orWhereHas('user', function ($p) use ($search) {
+                        $p->where('name', 'LIKE', "%$search%")
+                            ->orWhere('codigo', 'LIKE', "%$search%")
+                            ->orWhere('contact', 'LIKE', "%$search%");
+                    });
             });
         }
 
@@ -122,29 +124,30 @@ class HojadevidaController extends Controller
         $q = trim($request->input('search', ''));
 
         // Query base con relaciones que usa la vista
-        $query = hojadevida::with(['equipo', 'servicio', 'propiedad', 'marca', 'modelo', 'ubifisica','user']);
+        $query = hojadevida::with(['equipo', 'servicio', 'propiedad', 'marca', 'modelo', 'ubifisica', 'user']);
 
         if ($q !== '') {
             $query->where(function ($wr) use ($q) {
+
                 $wr->where('serie', 'LIKE', "%{$q}%")
-                   ->orWhere('actFijo', 'LIKE', "%{$q}%")
-                   ->orWhere('id', $q)
-                   ->orWhereHas('equipo', function ($qe) use ($q) {
-                       $qe->where('nombre_equipo', 'LIKE', "%{$q}%");
-                   })
-                   ->orWhereHas('servicio', function ($qs) use ($q) {
-                       $qs->where('nombreservicio', 'LIKE', "%{$q}%");
-                   })
-                   
-                   ->orWhereHas('propiedad', function ($qp) use ($q) {
-                       $qp->where('nombreempresa', 'LIKE', "%{$q}%");
-                       
-                   })
+                    ->orWhere('actFijo', 'LIKE', "%{$q}%")
+                    ->orWhere('codigo', 'LIKE', "%{$q}%")
+                    ->orWhere('id', $q)
+                    ->orWhereHas('equipo', function ($qe) use ($q) {
+                        $qe->where('nombre_equipo', 'LIKE', "%{$q}%");
+                    })
+                    ->orWhereHas('servicio', function ($qs) use ($q) {
+                        $qs->where('nombreservicio', 'LIKE', "%{$q}%");
+                    })
+
+                    ->orWhereHas('propiedad', function ($qp) use ($q) {
+                        $qp->where('nombreempresa', 'LIKE', "%{$q}%");
+                    })
                     ->orWhereHas('user', function ($tr) use ($q) {
-                    $tr->where('codigo', 'LIKE', "%$q%");
-                    // ->orWhere('codigo', 'LIKE', "%$$q%")
-                    // ->orWhere('contact', 'LIKE', "%$$q%")
-                });
+                        $tr->where('codigo', 'LIKE', "%$q%");
+                        // ->orWhere('codigo', 'LIKE', "%$$q%")
+                        // ->orWhere('contact', 'LIKE', "%$$q%")
+                    });
             });
         }
 
@@ -158,7 +161,7 @@ class HojadevidaController extends Controller
         // Por defecto, retornamos la vista de listado con el término de búsqueda $q (si se usa en la vista)
         return view('hojadevida.mostrarbusqueda', compact('hdvs', 'q'));
     }
- public function edituser(User $user)
+    public function edituser(User $user)
     {
 
         return view('users.useredit', compact('user'));
@@ -167,47 +170,47 @@ class HojadevidaController extends Controller
      * Devuelve el HTML parcial (partial) con la hoja de vida para inyectar en el modal. ingresadi 3/09/2025
      */
     public function fetch($id)
-{
-    // Cargar relaciones que realmente existen en el modelo 'hojadevida'
-    $hdvs = Hojadevida::with([
-        'equipo',
-        'marca',
-        'modelo',
-        'servicio',
-        'propiedad',
-        'ubifisica',
-        'estadoequipo',
-        'nombreEquipo',   // si lo usas en la vista
-        'tecPredo',
-        'codEcri',
-        'claRiesgo',
-        'claBiome',
-        'ClaUso',         // el nombre que tienes en el modelo (PHP es case-insensitive)
-        'formaAdqui',
+    {
+        // Cargar relaciones que realmente existen en el modelo 'hojadevida'
+        $hdvs = Hojadevida::with([
+            'equipo',
+            'marca',
+            'modelo',
+            'servicio',
+            'propiedad',
+            'ubifisica',
+            'estadoequipo',
+            'nombreEquipo',   // si lo usas en la vista
+            'tecPredo',
+            'codEcri',
+            'claRiesgo',
+            'claBiome',
+            'ClaUso',         // el nombre que tienes en el modelo (PHP es case-insensitive)
+            'formaAdqui',
 
-        // relaciones técnicas (usar los nombres tal como las definiste en el modelo)
-        'magFuenAlimen',
-        'magFre',
-        'magFuenAli',
-        'magCorriente',
-        'magPeso',
-        'magPre',
-        'magPot',
-        'magTemp',
-        'magVel',
-        'magDimension',
+            // relaciones técnicas (usar los nombres tal como las definiste en el modelo)
+            'magFuenAlimen',
+            'magFre',
+            'magFuenAli',
+            'magCorriente',
+            'magPeso',
+            'magPre',
+            'magPot',
+            'magTemp',
+            'magVel',
+            'magDimension',
 
-        // accesorios / fabricantes / proveedores
-        'accesorio',
-        'fabricante',
-        'proveedor',
-    ])->findOrFail($id);
+            // accesorios / fabricantes / proveedores
+            'accesorio',
+            'fabricante',
+            'proveedor',
+        ])->findOrFail($id);
 
-    // Renderiza el partial (o la vista completa si así lo deseas)
-    $html = view('hojadevida.showpdf', compact('hdvs'))->render();
+        // Renderiza el partial (o la vista completa si así lo deseas)
+        $html = view('hojadevida.showpdf', compact('hdvs'))->render();
 
-    return response()->json(['html' => $html]);
-}
+        return response()->json(['html' => $html]);
+    }
 
 
     /**
@@ -265,10 +268,32 @@ class HojadevidaController extends Controller
 
         // Pasamos todos los catálogos que la vista pueda necesitar
         return view('hojadevida.create', compact(
-            'nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica',
-            'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen',
-            'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones',
-            'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios', 'fabricantes', 'proveedores'
+            'nombreEquipos',
+            'nombreservicios',
+            'tecPredos',
+            'codiecri',
+            'clariesgo',
+            'clabiomedica',
+            'clauso',
+            'formaadqui',
+            'equipos',
+            'propiedad',
+            'nombrealimentacion',
+            'abreviacionvolumen',
+            'ubifisicas',
+            'estadoequipo',
+            'magFrec',
+            'fuentesAli',
+            'corrientes',
+            'pesos',
+            'presiones',
+            'potencias',
+            'temperaturas',
+            'velocidad',
+            'dimensiones',
+            'accesorios',
+            'fabricantes',
+            'proveedores'
         ));
     }
 
@@ -303,7 +328,7 @@ class HojadevidaController extends Controller
             'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
             'soporteManual' => 'nullable|mimes:pdf|max:10000',
             'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
-           
+
         ]);
 
         // Cálculo de mes final según periodo de calibración (lógica original)
@@ -336,6 +361,7 @@ class HojadevidaController extends Controller
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
         $hdv->serie = $request->serie;
+        $hdv->codigo = $request->codigo;
         $hdv->actFijo = $request->actFijo;
         $hdv->estadoequipo_id = $request->estadoequipo_id;
         $hdv->ubifisica_id = $request->ubifisica_id;
@@ -584,7 +610,7 @@ class HojadevidaController extends Controller
                 ];
                 $hdv->accesorios()->create($datosAccesorio);
             }
-        }elseif ($request->filled('accesorio_id')) {
+        } elseif ($request->filled('accesorio_id')) {
             // Asignar estado existente
             $hdv->accesorio_id = $request->accesorio_id;
         }
@@ -650,19 +676,18 @@ class HojadevidaController extends Controller
             $hdv->proveedor_id = $request->proveedor_id;
         }
 
-        $hdv->user_id = Auth::user()->id; 
+        $hdv->user_id = Auth::user()->id;
         // $hdv->fabricante_id = $request->fabricante_id;
         // $hdv->proveedor_id = $request->proveedor_id;
-        
+
         $hdv->save();
         // return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
 
-        
+
 
         // 3. Redirigir al método show con el ID del nuevo registro
         return redirect()->route('hojadevida.show',  ['hdv' => $hdv->id])
-        ->with('success', 'Hoja de vida creada exitosamente.');
-
+            ->with('success', 'Hoja de vida creada exitosamente.');
     }
 
 
@@ -744,7 +769,7 @@ class HojadevidaController extends Controller
 
         return view('hojadevida.show', compact('hdvs'));
     }
-    
+
 
     //     public function shows($id, Request $request)
     // {
@@ -758,14 +783,14 @@ class HojadevidaController extends Controller
     /**
      * Edición (placeholder si se necesita implementar edición completa).
      */
-    public function edit( hojadevida $hdv)
+    public function edit(hojadevida $hdv)
     {
-         $nombreservicios = Servicio::all();
+        $nombreservicios = Servicio::all();
         $nombreEquipos = NombreEquipo::all();
         $equipos = Equipo::orderBy('nombre_equipo', 'asc')->get();
         $estadoequipo = estadoequipo::all();
-        $marcas= Marca::all();
-        $modelos= Modelo::all();
+        $marcas = Marca::all();
+        $modelos = Modelo::all();
 
         //   $estadoequipo = estadoequipo::all();
         $ubifisicas = Ubifisica::all();
@@ -791,23 +816,49 @@ class HojadevidaController extends Controller
         $accesorios = accesorio::all();
         $fabricantes = fabricante::all();
         $proveedores = proveedor::all();
-         return view('hojadevida.edit',compact('hdv','marcas','modelos',
-            'nombreEquipos', 'nombreservicios', 'tecPredos', 'codiecri', 'clariesgo', 'clabiomedica',
-            'clauso', 'formaadqui', 'equipos', 'propiedad', 'nombrealimentacion', 'abreviacionvolumen',
-            'ubifisicas', 'estadoequipo', 'magFrec', 'fuentesAli', 'corrientes', 'pesos', 'presiones',
-            'potencias', 'temperaturas', 'velocidad', 'dimensiones', 'accesorios', 'fabricantes', 'proveedores'));
+        return view('hojadevida.edit', compact(
+            'hdv',
+            'marcas',
+            'modelos',
+            'nombreEquipos',
+            'nombreservicios',
+            'tecPredos',
+            'codiecri',
+            'clariesgo',
+            'clabiomedica',
+            'clauso',
+            'formaadqui',
+            'equipos',
+            'propiedad',
+            'nombrealimentacion',
+            'abreviacionvolumen',
+            'ubifisicas',
+            'estadoequipo',
+            'magFrec',
+            'fuentesAli',
+            'corrientes',
+            'pesos',
+            'presiones',
+            'potencias',
+            'temperaturas',
+            'velocidad',
+            'dimensiones',
+            'accesorios',
+            'fabricantes',
+            'proveedores'
+        ));
     }
 
-    
+
 
     /**
      * Actualiza datos del usuario (usado para perfil/usuarios; se mantiene la lógica original).
      */
-    public function update(Request $request,Hojadevida $hdv)
+    public function update(Request $request, Hojadevida $hdv)
     {
-         // dd($request->all()); // Se pone para ver los datos que llegan del formulario
-      
-        
+        // dd($request->all()); // Se pone para ver los datos que llegan del formulario
+
+
 
         $request->validate([
             'perioMto' => 'nullable|string|max:255',
@@ -820,7 +871,8 @@ class HojadevidaController extends Controller
             'soporteCertificadoCalibracion' => 'nullable|mimes:pdf|max:10000',
             'soporteManual' => 'nullable|mimes:pdf|max:10000',
             'soporteLimpiezaDesinfeccion' => 'nullable|mimes:pdf|max:10000',
-           
+            // 'codigo'=>'nullable|string|max:255',
+
         ]);
 
         // Cálculo de mes final según periodo de calibración (lógica original)
@@ -852,6 +904,7 @@ class HojadevidaController extends Controller
         $hdv->equipo_id = $request->equipo_id;
         $hdv->modelo_id = $request->modelo_id;
         $hdv->marca_id = $request->marca_id;
+        $hdv->codigo = $request->codigo;
         $hdv->serie = $request->serie;
         $hdv->actFijo = $request->actFijo;
         $hdv->estadoequipo_id = $request->estadoequipo_id;
@@ -1101,7 +1154,7 @@ class HojadevidaController extends Controller
                 ];
                 $hdv->accesorios()->create($datosAccesorio);
             }
-        }elseif ($request->filled('accesorio_id')) {
+        } elseif ($request->filled('accesorio_id')) {
             // Asignar estado existente
             $hdv->accesorio_id = $request->accesorio_id;
         }
@@ -1167,18 +1220,18 @@ class HojadevidaController extends Controller
             $hdv->proveedor_id = $request->proveedor_id;
         }
 
-        $hdv->user_id = Auth::user()->id; 
+        $hdv->user_id = Auth::user()->id;
         // $hdv->fabricante_id = $request->fabricante_id;
         // $hdv->proveedor_id = $request->proveedor_id;
-        
+
         $hdv->save();
         // return redirect()->route('hojadevida.listar')->with('success', '¡Registro creado exitosamente!');        // para llevar al la lista o direccionar
 
-        
+
 
         // 3. Redirigir al método show con el ID del nuevo registro
         return redirect()->route('hojadevida.show',  ['hdv' => $hdv->id])
-        ->with('success', 'Hoja de vida creada exitosamente.');
+            ->with('success', 'Hoja de vida creada exitosamente.');
     }
     //     public function update(Request $request, User $user,Hojadevida $hojadevida)
     // {

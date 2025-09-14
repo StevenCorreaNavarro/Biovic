@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 
             // $table->string('fechaMtto');
-            $table->string('serie')->nullable();;
+            $table->string('serie')->nullable();
+            $table->string('codigo')->nullable();
             $table->string('perioMto')->nullable();;
             $table->string('perioCali')->nullable();;// si, solicita fecha
             $table->date('fechaCali')->nullable();

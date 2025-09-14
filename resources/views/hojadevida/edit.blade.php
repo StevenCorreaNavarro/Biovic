@@ -239,10 +239,14 @@
 
                 <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;  border:none;"
                     class="row g-2 mb-4 needs-validation formu p-5">
+                    @if (Auth::check() && Auth::user()->role === 'Admin')
+                        {{-- codigo para busqueda de usuarios --}}
+                    @endif
                     <h1 class="text-white" {{-- background: linear-gradient(45deg, #ffa200, #ffdd00); --}}
                         style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
                         Descripción de equipo
                     </h1>
+
                     <div class="row g-0 needs-validation border border-dark-subtle py-3"
                         style="background-color: #a6a6a630; border-radius:10px;">
                         <div class="col-md-4 position-relative nnn px-2">
@@ -250,18 +254,16 @@
                             {{-- border border-3 --}}
                             <select id="equipo_id" name="equipo_id" class="form-control form-select "
                                 style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),-6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
-
                                 <option value="{{ old('equipo', $hdv->equipo?->id) }}">
                                     {{ old('equipo', $hdv->equipo?->nombre_equipo ?? '---') }}
                                 </option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">
-                                        {{ old('equipo_id', $hdv->equipo_id) == $equipo->id ? 'selected------->' : '' }}
+                                        {{ old('equipo_id', $hdv->equipo_id) == $equipo->id ? 'SELECCIONADO---------->' : '' }}
                                         {{ $equipo->nombre_equipo }}
                                     </option>
                                 @endforeach
                             </select>
-
                         </div>
 
                         <div class="col-md-4 position-relative px-2">
@@ -269,20 +271,18 @@
                             <select id="marca" name="marca_id"
                                 class="form-control form-select "style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3), -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 enable>
-
                                 <option value="{{ old('marca_id', $hdv->marca_id) }}">
-                                               {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
+                                    {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
                                 </option>
                                 @foreach ($marcas as $marca)
                                     <option value="{{ $marca->id }}">
-                                        {{ old('marca_id', $equipo->marca_id) == $marca->id ? 'selected----->' : '' }}
+                                        {{ old('marca_id', $equipo->marca_id) == $marca->id ? 'SELECCIONADO---------->' : '' }}
                                         {{ $marca->nombre_marca }}
                                     </option>
                                 @endforeach
                             </select>
                             {{-- <input type="hidden" name="marca_id" value="{{ old('marca_id', $hdv->marca_id) }}"> --}}
                         </div>
-
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
                             <select id="modelo" name="modelo_id"class="form-control form-select "style="                     box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
@@ -290,17 +290,27 @@
                                 <option value="{{ old('modelo_id', $hdv->modelo_id) }}">
                                                {{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
                                 </option>
-                                  @foreach ($modelos as $modelo)
+                                    @foreach ($modelos as $modelo)
                                 <option value="{{ $modelo->id }}"
-                                    {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'selected------->' : '' }}>
+                                    {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'SELECCIONADO---------->' : '' }}>
                                     {{ $modelo->nombre_modelo }}
                                 </option>
                                 @endforeach
                             </select>
                             {{-- <input type="hidden" name="modelo_id" value="{{ old('modelo_id', $hdv->modelo_id) }}"> --}}
-    
                         </div>
                     </div>
+                    <center>
+                        <div class="col-md-3 position-relative ">
+                            <div class="form-group ">
+                                <label for="codigo"> Codigo visitas </label>
+                                <input type="text" name="codigo" class="form-control"
+                                    style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),"
+                                    value="{{ old('codigo', $hdv->codigo) }}" {{-- value="{{old('descripcion',$curso->descripcion)}}" --}} id="serie">
+                            </div>
+                        </div>
+
+                    </center>
 
 
                     {{-- SEGUNDA PARTE --}}
@@ -404,7 +414,8 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="predo()"></i>
                             <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
                                 <option value="{{ old('tecPredo', $hdv->tecPredo?->tecpredo) }}">
-                                    {{ old('tecPredo', $hdv->tecPredo?->tecpredo ?? '---') }}</option>
+                                    {{ old('tecPredo', $hdv->tecPredo?->tecpredo ?? '---') }}
+                                </option>
                                 @foreach ($tecPredos as $tecnopredominante)
                                     <option value="{{ $tecnopredominante->id }}"
                                         {{ isset($hdv) && $hdv->tec_predo_id == $tecnopredominante->id ? 'selected' : '' }}>
@@ -486,13 +497,10 @@
                             <!-- Input para buscar -->
                             <input type="text" id="search-codiecri" class="form-control"
                                 placeholder="Buscar código" style="margin-right: 10px;" />
-
                             <!-- Select con opciones de la tabla -->
                             <select name="cod_ecri_id" id="codecris" class="form-control">
-                                {{-- <option value="{{ old('codecri', $hdv->codecri?->codiecri) }}">
-        {{ old('codecri', $hdv->codecri?->codiecri ?? '---') }}
-    </option> --}}
-
+                                <option value="{{ old('codecri', $hdv->codecri?->codiecri) }}">
+                                {{ old('codecri', $hdv->codecri?->codiecri ?? '---') }} </option>
                                 @foreach ($codiecri as $codigoecri)
                                     <option value="{{ $codigoecri->id }}"
                                         {{ (isset($hdv) && $hdv->cod_ecri_id == $codigoecri->id) || old('cod_ecri_id') == $codigoecri->id ? 'selected' : '' }}
@@ -502,7 +510,17 @@
                                     </option>
                                 @endforeach
                             </select>
-
+{{-- 
+                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
+                                <option value="{{ old('claBiome', $hdv->claBiome?->clabiomedica) }}">
+                                    {{ old('claBiome', $hdv->claBiome?->clabiomedica ?? '---') }}</option>
+                                @foreach ($clabiomedica as $clasibiomedica)
+                                    <option value="{{ $clasibiomedica->id }}"
+                                        {{ isset($hdv) && $hdv->cla_biome_id == $clasibiomedica->id ? 'selected' : '' }}>
+                                        {{ $clasibiomedica->clabiomedica }}
+                                    </option>
+                                @endforeach
+                            </select> --}}
                         </div>
                     </div>
 
@@ -628,6 +646,184 @@
 
                     </div>
                 </div>
+                {{-- FIN DESCRIPCION DE EQUIPO  --}}
+
+
+
+
+
+
+
+
+
+
+
+
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO REGISTRO HISTORICO                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                    {{--  Seleccion Fondo Blan --}}
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Registro
+                        historico
+                    </h1>
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=fechaAdquisicion> Fecha de Adquisicion </label>
+                            <input type="date" name="fechaAdquisicion" class="form-control"
+                                {{-- value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}" --}}
+                                  value="{{ old('fechaAdquisicion', $hdv->fechaAdquisicion) }}"
+                                id="fechaAdquisicion">
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=garantia> Garantía </label>
+                            <input type="date" name="garantia" class="form-control"
+                                value="{{ isset($hojadevida->garantia) ? $hojadevida->garantia : old('garantia') }}"
+                                id="garantia">
+                        </div>
+                    </div> --}}
+
+
+                    {{--  Fecha Garantia Calculada --}}
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="garantia">Garantía (1 año después)</label>
+                            <input type="text" id="garantiaCalculada" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const fechaAdquisicionInput = document.getElementById('fechaAdquisicion');
+                            const garantiaInput = document.getElementById('garantiaCalculada');
+
+                            function calcularGarantia() {
+                                const fechaAdquisicion = new Date(fechaAdquisicionInput.value);
+                                if (!isNaN(fechaAdquisicion)) {
+                                    const garantia = new Date(fechaAdquisicion);
+                                    garantia.setFullYear(garantia.getFullYear() + 1);
+
+                                    const dd = String(garantia.getDate()).padStart(2, '0');
+                                    const mm = String(garantia.getMonth() + 1).padStart(2, '0');
+                                    const yyyy = garantia.getFullYear();
+
+
+                                    garantiaInput.value = `${yyyy}-${mm}-${dd}`;
+                                } else {
+                                    garantiaInput.value = '';
+                                }
+                            }
+
+                            // Calcular al cargar si ya hay valor
+                            calcularGarantia();
+
+                            // Calcular cada vez que cambie la fecha de adquisición
+                            fechaAdquisicionInput.addEventListener('change', calcularGarantia);
+                        });
+                    </script>
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=fechaInstalacion> Fecha de Instalacion </label>
+                            <input type="date" name="fechaInstalacion" class="form-control"
+                                {{-- value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}" --}}
+                                value="{{ old('fechaInstalacion', $hdv->fechaInstalacion) }}"
+                                id="fechaInstalacion">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=factura> Factura / Contrato</label>
+                            <input type="text" name="factura" class="form-control"
+                                {{-- value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}" --}}
+                                value="{{ old('factura', $hdv->factura) }}"
+                                id="factura">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group" id="miDiv8">
+                            <label for="forma_adqui_id">Forma de Adquisicion</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="adqui()"></i>
+                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
+                                <option value="">Seleccione una opcion</option>
+                                @foreach ($formaadqui as $formaadquisicion)
+                                    <option value="{{ $formaadquisicion->id }}"
+                                        {{ isset($hdv) && $hdv->forma_adqui_id == $formaadquisicion->id ? 'selected' : '' }}>
+                                        {{ $formaadquisicion->formaadqui }}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!-- Selector de años de vida útil -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="aniosVida">Años de Vida Útil</label>
+                            <select id="aniosVida" class="form-control">
+                                <option value="5" selected>5 años</option>
+                                <option value="10">10 años</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vida Útil calculada (solo visible) -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="vidaUtil">Vida Útil</label>
+                            <input type="text" id="vidaUtilCalculada" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Campo oculto para enviar (guarda el valor calculado) -->
+                    <input type="hidden" name="vidaUtil" id="vidaUtil"
+                        value="{{ old('vidaUtil', $hojadevida->vidaUtil ?? '') }}">
+
+
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for=costo> Costo </label>
+                            <input type="text" name="costo" class="form-control"
+                                {{-- value="{{ isset($hojadevida->costo) ? $hojadevida->costo : old('costo') }}" --}}
+                                value="{{ old('costo', $hdv->costo) }}"
+                                id="costo">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 ">
+                        <div class="form-group" id="miDivpropiedad">
+                            <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>
+                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
+                                <option value="">Seleccione una opcion</option>
+                                @foreach ($propiedad as $nombreempre)
+                                    <option value="{{ $nombreempre->id }}"
+                                        {{ isset($hdv) && $hdv->propiedad_id == $nombreempre->id ? 'selected' : '' }}>
+                                        {{ $nombreempre->nombreempresa }}
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <br><br><br>
+                </div>
+                {{-- FIN REGISTRO HISTORICO --}}
 
                 {{-- FIN REGISTRO TECNICO --}}
 
