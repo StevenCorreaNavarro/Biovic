@@ -508,7 +508,7 @@
         <div class="cardss">
             @if (Auth::check() && Auth::user()->role === 'Admin')
                 <div onclick="copiarTexto()" class="card tooltip-container" >
-                    <span class="tooltip tip" id="textoACopiar"> {{ $hdvs->codigo  }} </span>
+                    <span class="tooltip tip" id="textoACopiar"> {{ $hdvs->codigo?? 'Sin código'  }} </span>
                     <span class="text tip" >Código</span>
                 </div>
                 {{-- <div class="card">

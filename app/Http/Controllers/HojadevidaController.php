@@ -204,6 +204,7 @@ class HojadevidaController extends Controller
             'accesorio',
             'fabricante',
             'proveedor',
+
         ])->findOrFail($id);
 
         // Renderiza el partial (o la vista completa si así lo deseas)
@@ -619,27 +620,33 @@ class HojadevidaController extends Controller
         //                                  guardar fabricante y proveedor
         //
         //++++++++++++++++++++++++++++++++++++++++++++++
-        $nuevoFabricante = fabricante::create([
-            'nombreFabri' => $request->nombreFabri,
-            'direccionFabri' => $request->direccionFabri,
-            // ... otros campos del fabricante
-            'telefonoFabri' => $request->telefonoFabri,
-            'ciudadFabri' => $request->ciudadFabri,
-            'emailWebFabri' => $request->emailWebFabri,
-        ]);
+        // $nuevoFabricante = fabricante::create([
+        //     'nombreFabri' => $request->nombreFabri,
+        //     'direccionFabri' => $request->direccionFabri,
+        //     // ... otros campos del fabricante
+        //     'telefonoFabri' => $request->telefonoFabri,
+        //     'ciudadFabri' => $request->ciudadFabri,
+        //     'emailWebFabri' => $request->emailWebFabri,
+        // ]);
 
-        $hdv->fabricante_id = $nuevoFabricante->id;
+        // $hdv->fabricante_id = $nuevoFabricante->id;
 
-        $nuevoProveedor = proveedor::create([
-            'nombreProveedor' => $request->nombreProveedor,
-            'direccionProvee' => $request->direccionProvee,
-            // ... otros campos del fabricante
-            'telefonoProvee' => $request->telefonoProvee,
-            'ciudadProvee' => $request->ciudadProvee,
-            'emailWebProve' => $request->emailWebProve,
-        ]);
+        // $nuevoProveedor = proveedor::create([
+        //     'nombreProveedor' => $request->nombreProveedor,
+        //     'direccionProvee' => $request->direccionProvee,
+        //     // ... otros campos del fabricante
+        //     'telefonoProvee' => $request->telefonoProvee,
+        //     'ciudadProvee' => $request->ciudadProvee,
+        //     'emailWebProve' => $request->emailWebProve,
+        // ]);
 
-        $hdv->proveedor_id = $nuevoProveedor->id;
+        // $hdv->proveedor_id = $nuevoProveedor->id;
+        // // $hdv->save();
+
+
+
+
+
 
         if ($request->filled('nombreFabri')) {
             // Guardar nuevo estado
@@ -658,6 +665,7 @@ class HojadevidaController extends Controller
             // Asignar estado existente
             $hdv->fabricante_id = $request->fabricante_id;
         }
+
         if ($request->filled('nombreProveedor')) {
             // Guardar nuevo estado
             $prove = new proveedor();
@@ -945,15 +953,18 @@ class HojadevidaController extends Controller
         $hdv->corrienteMin = $request->corrienteMin;
         $hdv->mag_corriente_id = $request->mag_corriente_id;
         $hdv->peso = $request->peso;
+
         $hdv->mag_peso_id = $request->mag_peso_id;
         $hdv->presion = $request->presion;
         $hdv->mag_pre_id = $request->mag_pre_id;
+        $hdv->mag_pot_id = $request->mag_pot_id;
         $hdv->temperatura = $request->temperatura;
         $hdv->mag_temp_id = $request->mag_temp_id;
         $hdv->velocidad = $request->velocidad;
         $hdv->mag_vel_id = $request->mag_vel_id;
         $hdv->humedad = $request->humedad;
         $hdv->dimLargo = $request->dimLargo;
+        $hdv->potencia = $request->potencia;
         $hdv->dimAncho = $request->dimAncho;
         $hdv->dimAlto = $request->dimAlto;
         $hdv->mag_dimension_id = $request->mag_dimension_id;
@@ -961,9 +972,9 @@ class HojadevidaController extends Controller
         // $hdv->accesorio = $request->accesorio;
         $hdv->recomendaciones = $request->recomendaciones; // establece un valor por defecto si no se proporciona
 
-        $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
-        $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
-        $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
+        // $hdv->accesorio_id = $request->accesorio_id; // accesorios mostrar
+        // $hdv->fabricante_id = $request->fabricante_id; // fabricante mostrar
+        // $hdv->proveedor_id = $request->proveedor_id; // proveedor mostrar
 
         // Guardar PDFs de soporte (si existen) y normalizar rutas para BD
         if ($request->hasFile('soporteFactura')) {
@@ -1143,47 +1154,46 @@ class HojadevidaController extends Controller
         $hdv->save();
 
         // 8. Guarda los accesorios asociados
-        if ($request->filled('nombreAccesorio')) {
-            foreach ($request->nombreAccesorio as $index => $nombre) {
-                $datosAccesorio = [
-                    // 'nombreAccesorio' => $nombre,
-                    'marcaAccesorio' => $request->marcaAccesorio[$index] ?? null,
-                    'modeloAccesorio' => $request->modeloAccesorio[$index] ?? null,
-                    'serieAccesorio' => $request->serieAccesorio[$index] ?? null,
-                    'costoAccesorio' => $request->costoAccesorio[$index] ?? null,
-                ];
-                $hdv->accesorios()->create($datosAccesorio);
+        // Actualiza datos generales del equipo
+        $hdv->update($request->all());
+        $idsEnviados = array_filter($request->accesorio_id ?? []);
+
+        // 1. Eliminar accesorios que ya no están en el formulario
+        $hdv->accesorios()
+            ->whereNotIn('id', $idsEnviados)
+            ->delete();
+
+
+        // Manejo de accesorios
+        foreach ($request->nombreAccesorio as $index => $nombre) {
+            $accesorioId = $request->accesorio_id[$index] ?? null;
+
+            if ($accesorioId) {
+                // Actualizar accesorio existente
+                $accesorio = Accesorio::find($accesorioId);
+                if ($accesorio) {
+                    $accesorio->update([
+                        'nombreAccesorio' => $nombre,
+                        'marcaAccesorio'  => $request->marcaAccesorio[$index],
+                        'modeloAccesorio' => $request->modeloAccesorio[$index],
+                        'serieAccesorio'  => $request->serieAccesorio[$index],
+                        'costoAccesorio'  => $request->costoAccesorio[$index],
+                    ]);
+                }
+            } else {
+                // Crear nuevo accesorio
+                $hdv->accesorios()->create([
+                    'nombreAccesorio' => $nombre,
+                    'marcaAccesorio'  => $request->marcaAccesorio[$index],
+                    'modeloAccesorio' => $request->modeloAccesorio[$index],
+                    'serieAccesorio'  => $request->serieAccesorio[$index],
+                    'costoAccesorio'  => $request->costoAccesorio[$index],
+                ]);
             }
-        } elseif ($request->filled('accesorio_id')) {
-            // Asignar estado existente
-            $hdv->accesorio_id = $request->accesorio_id;
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++
-        //
-        //                                  guardar fabricante y proveedor
-        //
-        //++++++++++++++++++++++++++++++++++++++++++++++
-        $nuevoFabricante = fabricante::create([
-            'nombreFabri' => $request->nombreFabri,
-            'direccionFabri' => $request->direccionFabri,
-            // ... otros campos del fabricante
-            'telefonoFabri' => $request->telefonoFabri,
-            'ciudadFabri' => $request->ciudadFabri,
-            'emailWebFabri' => $request->emailWebFabri,
-        ]);
 
-        $hdv->fabricante_id = $nuevoFabricante->id;
 
-        $nuevoProveedor = proveedor::create([
-            'nombreProveedor' => $request->nombreProveedor,
-            'direccionProvee' => $request->direccionProvee,
-            // ... otros campos del fabricante
-            'telefonoProvee' => $request->telefonoProvee,
-            'ciudadProvee' => $request->ciudadProvee,
-            'emailWebProve' => $request->emailWebProve,
-        ]);
 
-        $hdv->proveedor_id = $nuevoProveedor->id;
 
         if ($request->filled('nombreFabri')) {
             // Guardar nuevo estado
@@ -1233,26 +1243,28 @@ class HojadevidaController extends Controller
         return redirect()->route('hojadevida.show',  ['hdv' => $hdv->id])
             ->with('success', 'Hoja de vida creada exitosamente.');
     }
-    //     public function update(Request $request, User $user,Hojadevida $hojadevida)
-    // {
-    //     $user->role = $request->role;
-    //     $user->name = $request->name;
-    //     $user->identity = $request->identity;
 
-    //     if ($request->hasFile('foto')) {
-    //         $user->foto = $request->file('foto')->store('public/fotos');
-    //         $user->foto = str_replace('public/', '', $user->foto);
-    //     }
 
-    //     $user->contact = $request->contact;
-    //     $user->adress = $request->adress;
-    //     $user->profession = $request->profession;
-    //     $user->post = $request->post;
-    //     $user->email = $request->email;
-    //     $user->save();
+    public function updateuser(Request $request, User $user, Hojadevida $hojadevida)
+    {
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->identity = $request->identity;
 
-    //     return redirect()->route('profile.edit')->with('success', '¡Registro actualizado exitosamente!');
-    // }
+        if ($request->hasFile('foto')) {
+            $user->foto = $request->file('foto')->store('public/fotos');
+            $user->foto = str_replace('public/', '', $user->foto);
+        }
+
+        $user->contact = $request->contact;
+        $user->adress = $request->adress;
+        $user->profession = $request->profession;
+        $user->post = $request->post;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('profile.edit')->with('success', '¡Registro actualizado exitosamente!');
+    }
 
     /**
      * Eliminar (placeholder).

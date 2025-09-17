@@ -263,10 +263,10 @@
                 @endif
 
                 @if (!empty($hdvs->identity))
-                    <div class="profile-title"><i class="bi bi-person-vcard"></i> {{ $hdvs->identity ?? '' }}</div>
+                    <div class="profile-title"><i class="bi bi-person-vcard-fill"></i> {{ $hdvs->identity ?? '' }}</div>
                 @endif
                 @if (!empty($hdvs->adress))
-                    <div class="profile-title"><i class="bi bi-house"></i> {{ $hdvs->adress ?? '' }}</div>
+                    <div class="profile-title"><i class="bi bi-house-fill"></i> {{ $hdvs->adress ?? '' }}</div>
                 @endif
                 <br>
 

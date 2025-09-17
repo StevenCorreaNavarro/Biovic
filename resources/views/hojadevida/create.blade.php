@@ -1243,9 +1243,11 @@
                     <div class="col-md-6 mb-4">
                         <div class="mb-3" id="miDiv14">
 
-                            <div id="select-fabricante-container se">
+                            <div id="select-fabricante-container">
                                 <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
-                                <i class="bi fab bi-pen" onclick="toggleFormulario('fabricante')"></i>
+                                {{-- <i class="bi fab bi-pen" onclick="toggleFormulario('fabricante')"></i> --}}
+                                <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                    onclick="toggleFormulario('fabricante')"></i>
                                 <select id="fabricante_id" name="fabricante_id"
                                     class="form-select border border-2 rounded-3  se">
                                     <option value="">Seleccione un fabricante</option>
@@ -1264,7 +1266,8 @@
 
                             <div id="formulario-fabricante-container" style="display: none;">
                                 <div>
-                                    <label for="nombreFabri" class="form-label fw-bold">Registra nuevo fabricante</label><i class="fa-solid fa-xmark" onclick="toggleFormulario('fabricante')"
+                                    <label for="nombreFabri" class="form-label fw-bold">Registra nuevo fabricante</label>
+                                    <i class="fa-solid fa-xmark" onclick="toggleFormulario('fabricante')"
                                         style="cursor:pointer; margin-left:10px;"></i>
                                     <div>
                                         <label for="fabricante_id ">Nombre</label>
@@ -1315,9 +1318,8 @@
                                 <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
                                 <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                     onclick="toggleFormulario('proveedor')"></i>
-                                <select id="proveedor_id" name="proveedor_id se"
-                                    class="form-select border border-2 rounded-3  se">
-                                    <option value="">Seleccione un proveedor</option>
+                                <select id="proveedor_id" name="proveedor_id" class="form-select border border-2 rounded-3  se">
+                                     <option value="">Seleccione un proveedor</option>
                                     @foreach ($proveedores as $proveedor)
                                         <option value="{{ $proveedor->id }}"
                                             data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
@@ -1489,7 +1491,7 @@
                     <div class="col-md-12 position-relative ">
                         <div class="form-group">
                             <label for="recomendaciones"></label>
-                            <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
+                            <textarea name="recomendaciones" id="recomendaciones" class="form-control se" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>

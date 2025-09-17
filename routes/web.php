@@ -175,7 +175,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
     // Actualizar usuario (ruta reutilizada con HojadevidaController en tu proyecto original)
-    Route::put('/user/{user}', [HojadevidaController::class, 'update'])->name('user.updateusers');
+    Route::put('/user/{user}', [HojadevidaController::class, 'updateuser'])->name('user.updateusers');
     Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
 
     // Listado principal de hojas de vida

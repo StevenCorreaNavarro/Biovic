@@ -9,10 +9,12 @@ class proveedor extends Model
 {
     use HasFactory;
 
-    public function hojadevidas(){
+    public function hojadevidas()
+    {
         return $this->hasMany('App\Models\Hojadevida');
     }
-protected $fillable = [
+
+    protected $fillable = [
         'nombreProveedor',
         'direccionProvee',
         'telefonoProvee',

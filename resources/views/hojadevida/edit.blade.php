@@ -23,14 +23,20 @@
 
         .form-control.filled,
         .form-select.filled {
-            background-color: rgb(236, 241, 251);
-            border-color: #4079ff !important;
+            background-color: rgb(248, 250, 231);
+            /* border-color: rgb(183, 156, 118)!important; */
+            border-color: rgb(183, 156, 118)!important;
+            color: black;
 
+        }
+
+        select {
+            color: black;
         }
 
         /* Estilo para el label */
         .form-label.filled {
-            color: #198754;
+            color: #d4bd25;
             font-weight: bold;
         }
 
@@ -59,7 +65,7 @@
         .fabe {
 
             font-size: 20px;
-            color: #888888;
+            color: rgb(255, 0, 0);
             margin-left: 5%;
         }
 
@@ -143,6 +149,10 @@
             z-index: 2;
             transition-duration: .1s;
             /* font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; */
+        }
+
+        .se {
+            color: rgba(0, 0, 0, 0.234);
         }
 
 
@@ -252,7 +262,7 @@
                         <div class="col-md-4 position-relative nnn px-2">
                             <label for="equipo_id" class="form-label">Selecciona un equipo:</label>
                             {{-- border border-3 --}}
-                            <select id="equipo_id" name="equipo_id" class="form-control form-select "
+                            <select id="equipo_id" name="equipo_id" class="form-control form-select se"
                                 style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),-6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;">
                                 <option value="{{ old('equipo', $hdv->equipo?->id) }}">
                                     {{ old('equipo', $hdv->equipo?->nombre_equipo ?? '---') }}
@@ -269,7 +279,7 @@
                         <div class="col-md-4 position-relative px-2">
                             <label for="marca_id" class="form-label">Selecciona una marca:</label>
                             <select id="marca" name="marca_id"
-                                class="form-control form-select "style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3), -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
+                                class="form-control form-select se"style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3), -6px -6px 8px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 enable>
                                 <option value="{{ old('marca_id', $hdv->marca_id) }}">
                                     {{ old('marca', $hdv->marca?->nombre_marca ?? '---') }}
@@ -285,16 +295,17 @@
                         </div>
                         <div class="col-md-4 position-relative px-2">
                             <label for="modelo" class="form-label">Selecciona un modelo:</label>
-                            <select id="modelo" name="modelo_id"class="form-control form-select "style="                     box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
+                            <select id="modelo" name="modelo_id"class="form-control form-select se"
+                                style="                     box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),    -6px -6px 6px rgba(255, 255, 255, 1); border:none;border-radius:50px;"
                                 enable>
                                 <option value="{{ old('modelo_id', $hdv->modelo_id) }}">
-                                               {{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
+                                    {{ old('modelo', $hdv->modelo?->nombre_modelo ?? '---') }}
                                 </option>
-                                    @foreach ($modelos as $modelo)
-                                <option value="{{ $modelo->id }}"
-                                    {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'SELECCIONADO---------->' : '' }}>
-                                    {{ $modelo->nombre_modelo }}
-                                </option>
+                                @foreach ($modelos as $modelo)
+                                    <option value="{{ $modelo->id }}"
+                                        {{ old('modelo_id', $marca->modelo_id) == $modelo->id ? 'SELECCIONADO---------->' : '' }}>
+                                        {{ $modelo->nombre_modelo }}
+                                    </option>
                                 @endforeach
                             </select>
                             {{-- <input type="hidden" name="modelo_id" value="{{ old('modelo_id', $hdv->modelo_id) }}"> --}}
@@ -304,7 +315,7 @@
                         <div class="col-md-3 position-relative ">
                             <div class="form-group ">
                                 <label for="codigo"> Codigo visitas </label>
-                                <input type="text" name="codigo" class="form-control"
+                                <input type="text" name="codigo" class="form-control  se"
                                     style="box-shadow: 4px 4px 8px rgba(74, 74, 74, 0.3),"
                                     value="{{ old('codigo', $hdv->codigo) }}" {{-- value="{{old('descripcion',$curso->descripcion)}}" --}} id="serie">
                             </div>
@@ -343,7 +354,7 @@
                             <label for="estadoequipo_id">Estado del Equipo</label>
                             <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
                                 onclick="transformarDiv()"></i>
-                            <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select">
+                            <select name="estadoequipo_id" id="estadoequipo_id" class="form-control form-select se">
                                 <option value="{{ old('estadoequipo', $hdv->estadoequipo?->estadoequipo) }} ">
                                     {{ old('estadoequipo', $hdv->estadoequipo?->estadoequipo ?? '---') }}
                                 </option>
@@ -366,7 +377,7 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="ubifisica()"></i>
                             {{--  Mostrar valores de `$ubifisicas` para depuración
                         <pre>{{ print_r($ubifisicas->toArray()) }}</pre>  --}}
-                            <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select">
+                            <select name="ubifisica_id" id="ubifisica_id" class="form-control form-select se">
 
                                 <option value="{{ old('ubicacionfisica', $hdv->ubifisica) }}">
                                     {{ old('ubicacionfisica', $hdv->ubifisica?->ubicacionfisica ?? '---') }}</option>
@@ -392,7 +403,7 @@
                             <label for="servicio_id">Servicio</label><i class="bi fab bi-pen" data-bs-toggle="modal"
                                 data-bs-target="#exampleModalparam" onclick="servicio()"></i>
                             {{--  Mostrar valores de `$servicios` para depuración <pre>{{ print_r($nombreservicios->toArray()) }}</pre>   --}}
-                            <select name="servicio_id" id="servicio_id" class="form-control form-select">
+                            <select name="servicio_id" id="servicio_id" class="form-control form-select se">
 
                                 <option value="{{ old('servicio', $hdv->servicio?->nombreservicio) }} ">
                                     {{ old('servicio', $hdv->servicio?->nombreservicio ?? '---') }} </option>
@@ -412,7 +423,7 @@
                         <div class="form-group" id="miDiv4">
                             <label for="tec_predo_id">Tecnologia Predominante</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="predo()"></i>
-                            <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select">
+                            <select name="tec_predo_id" id="tec_predo_id" class="form-control form-select se">
                                 <option value="{{ old('tecPredo', $hdv->tecPredo?->tecpredo) }}">
                                     {{ old('tecPredo', $hdv->tecPredo?->tecpredo ?? '---') }}
                                 </option>
@@ -439,7 +450,7 @@
                         <div class="form-group" id="miDiv5">
                             <label for="cla_riesgo_id">Clasificacion de Riesgo</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="riesgo()"></i>
-                            <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control">
+                            <select name="cla_riesgo_id" id="cla_riesgo_id" class="form-select form-control se">
 
                                 <option value="{{ old('claRiego', $hdv->claRiesgo?->clariesgo) }}">
                                     {{ old('claRiego', $hdv->claRiesgo?->clariesgo ?? '---') }}</option>
@@ -458,7 +469,7 @@
                         <div class="form-group" id="miDiv6">
                             <label for="cla_biome_id">Clasificación Biomedica</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="biom()"></i>
-                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
+                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select se">
                                 <option value="{{ old('claBiome', $hdv->claBiome?->clabiomedica) }}">
                                     {{ old('claBiome', $hdv->claBiome?->clabiomedica ?? '---') }}</option>
                                 @foreach ($clabiomedica as $clasibiomedica)
@@ -475,7 +486,7 @@
                         <div class="form-group" id="miDiv7">
                             <label for="cla_uso_id">Clasificacion por Uso</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="uso()"></i>
-                            <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select">
+                            <select name="cla_uso_id" id="cla_uso_id" class="form-control form-select se ">
                                 <option value="{{ old('claUso', $hdv->claUso?->clauso) }}">
 
                                 </option>
@@ -498,9 +509,9 @@
                             <input type="text" id="search-codiecri" class="form-control"
                                 placeholder="Buscar código" style="margin-right: 10px;" />
                             <!-- Select con opciones de la tabla -->
-                            <select name="cod_ecri_id" id="codecris" class="form-control">
+                            <select name="cod_ecri_id" id="codecris" class="form-control form-select se">
                                 <option value="{{ old('codecri', $hdv->codecri?->codiecri) }}">
-                                {{ old('codecri', $hdv->codecri?->codiecri ?? '---') }} </option>
+                                    {{ old('codecri', $hdv->codecri?->codiecri ?? '---') }} </option>
                                 @foreach ($codiecri as $codigoecri)
                                     <option value="{{ $codigoecri->id }}"
                                         {{ (isset($hdv) && $hdv->cod_ecri_id == $codigoecri->id) || old('cod_ecri_id') == $codigoecri->id ? 'selected' : '' }}
@@ -510,17 +521,6 @@
                                     </option>
                                 @endforeach
                             </select>
-{{-- 
-                            <select name="cla_biome_id" id="cla_biome_id" class="form-control form-select">
-                                <option value="{{ old('claBiome', $hdv->claBiome?->clabiomedica) }}">
-                                    {{ old('claBiome', $hdv->claBiome?->clabiomedica ?? '---') }}</option>
-                                @foreach ($clabiomedica as $clasibiomedica)
-                                    <option value="{{ $clasibiomedica->id }}"
-                                        {{ isset($hdv) && $hdv->cla_biome_id == $clasibiomedica->id ? 'selected' : '' }}>
-                                        {{ $clasibiomedica->clabiomedica }}
-                                    </option>
-                                @endforeach
-                            </select> --}}
                         </div>
                     </div>
 
@@ -564,13 +564,10 @@
                     </script>
                     {{-- Fin Codigo ecri --}}
 
-
-
-
                     {{--  Calibracion  --}}
                     <div class="col-md-3 position-relative">
                         <label for="perioCali">Periodo de Calibracion</label>
-                        <select name="perioCali" id="perioCali" class="form-control form-select" required
+                        <select name="perioCali" id="perioCali" class="form-control form-select se" required
                             onchange="mostrarFechaCali()">
                             <option value="{{ old('periCali', $hdv->perioCali) }}">
                                 {{ old('periCali', $hdv->perioCali ?? '---') }}</option>
@@ -677,10 +674,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaAdquisicion> Fecha de Adquisicion </label>
-                            <input type="date" name="fechaAdquisicion" class="form-control"
-                                {{-- value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}" --}}
-                                  value="{{ old('fechaAdquisicion', $hdv->fechaAdquisicion) }}"
-                                id="fechaAdquisicion">
+                            <input type="date" name="fechaAdquisicion" class="form-control se" {{-- value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}" --}}
+                                value="{{ old('fechaAdquisicion', $hdv->fechaAdquisicion) }}" id="fechaAdquisicion">
                         </div>
                     </div>
 
@@ -737,10 +732,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaInstalacion> Fecha de Instalacion </label>
-                            <input type="date" name="fechaInstalacion" class="form-control"
-                                {{-- value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}" --}}
-                                value="{{ old('fechaInstalacion', $hdv->fechaInstalacion) }}"
-                                id="fechaInstalacion">
+                            <input type="date" name="fechaInstalacion" class="form-control se" {{-- value="{{ isset($hojadevida->fechaInstalacion) ? $hojadevida->fechaInstalacion : old('fechaInstalacion') }}" --}}
+                                value="{{ old('fechaInstalacion', $hdv->fechaInstalacion) }}" id="fechaInstalacion">
                         </div>
                     </div>
 
@@ -749,10 +742,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=factura> Factura / Contrato</label>
-                            <input type="text" name="factura" class="form-control"
-                                {{-- value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}" --}}
-                                value="{{ old('factura', $hdv->factura) }}"
-                                id="factura">
+                            <input type="text" name="factura" class="form-control" {{-- value="{{ isset($hojadevida->factura) ? $hojadevida->factura : old('factura') }}" --}}
+                                value="{{ old('factura', $hdv->factura) }}" id="factura">
                         </div>
                     </div>
 
@@ -760,7 +751,7 @@
                         <div class="form-group" id="miDiv8">
                             <label for="forma_adqui_id">Forma de Adquisicion</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="adqui()"></i>
-                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select">
+                            <select name="forma_adqui_id" id="forma_adqui_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($formaadqui as $formaadquisicion)
                                     <option value="{{ $formaadquisicion->id }}"
@@ -800,10 +791,8 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=costo> Costo </label>
-                            <input type="text" name="costo" class="form-control"
-                                {{-- value="{{ isset($hojadevida->costo) ? $hojadevida->costo : old('costo') }}" --}}
-                                value="{{ old('costo', $hdv->costo) }}"
-                                id="costo">
+                            <input type="text" name="costo" class="form-control" {{-- value="{{ isset($hojadevida->costo) ? $hojadevida->costo : old('costo') }}" --}}
+                                value="{{ old('costo', $hdv->costo) }}" id="costo">
                         </div>
                     </div>
 
@@ -811,7 +800,7 @@
                         <div class="form-group" id="miDivpropiedad">
                             <label for="propiedad_id">Propiedad</label><i class="bi fab bi-pen"
                                 data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="propiedad()"></i>
-                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select">
+                            <select name="propiedad_id" id="propiedad_id" class="form-control form-select se">
                                 <option value="">Seleccione una opcion</option>
                                 @foreach ($propiedad as $nombreempre)
                                     <option value="{{ $nombreempre->id }}"
@@ -825,18 +814,750 @@
                 </div>
                 {{-- FIN REGISTRO HISTORICO --}}
 
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO REGISTRO TECNICO                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+
+
+                {{-- INICIO REGISTRO TECNICO --}}
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;          border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Registro tecnico
+                    </h1>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group" id="miDiv9">
+                            <label for="mag_fuen_alimen_id">Fuente de Alimentación</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="fuenteali()"></i>
+                            <select name="mag_fuen_alimen_id" id="mag_fuen_alimen_id"
+                                class="form-control form-select se">
+                                {{-- <option value="">Seleccione una opción</option> --}}
+                                <option
+                                    value="{{ old('nombrealimentacion', $hdv->nombrealimentacion?->nombrealimentacion) }} ">
+                                    {{ old('nombrealimentacion', $hdv->nombrealimentacion?->nombrealimentacion ?? '---') }}
+                                </option>
+
+                                @foreach ($nombrealimentacion as $fuente)
+                                    <option value="{{ $fuente->id }}" {{-- {{ old('mag_fuen_alimen_id', $hdv->mag_fuen_alimen_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->nombrealimentacion }} --}}
+                                        {{ isset($hdv) && $hdv->mag_fuen_alimen_id == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->nombrealimentacion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=frecuencia> Frecuencia </label>
+                            <input type="number" name="frecuencia" class="form-control"
+                                value="{{ isset($hdv->frecuencia) ? $hdv->frecuencia : old('frecuencia') }}"
+                                id="frecuencia">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group" id="miDiv10">
+                            <label for="mag_fre_id">Unidad de Frecuencia</label><i class="bi fab bi-pen"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="ufrecuencia()"></i>
+                            <select name="mag_fre_id" id="mag_fre_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($magFrec as $frecuencia)
+                                    <option value="{{ $frecuencia->id }}"
+                                        {{ old('mag_fre_id', $hdv->mag_fre_id ?? '') == $frecuencia->id ? 'selected' : '' }}>
+                                        {{ $frecuencia->nombrefrecuencia }} ({{ $frecuencia->abreviacionfrecuencia }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMax> Voltaje Max </label>
+                            <input type="text" name="volMax" class="form-control"
+                                value="{{ isset($hdv->volMax) ? $hdv->volMax : old('volMax') }}" id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for=volMin> Voltaje Min </label>
+                            <input type="text" name="volMin" class="form-control"
+                                value="{{ isset($hdv->volMin) ? $hdv->volMin : old('volMin') }}" id="volMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group" id="miDiv11">
+                            <label for="mag_fuen_ali_id">Unidad de Alimentación</label>
+                            <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="ualimentacion()">
+                            </i>
+                            <select name="mag_fuen_ali_id" id="mag_fuen_ali_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($fuentesAli as $fuente)
+                                    {{-- Asi se recibe desde  hojadevidaController --}}
+                                    <option value="{{ $fuente->id }}"
+                                        {{ old('mag_fuen_ali_id', $hdv->mag_fuen_ali_id ?? '') == $fuente->id ? 'selected' : '' }}>
+                                        {{ $fuente->abrefuentealimen }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMax">Corriente Max</label>
+                            <input type="text" name="corrienteMax" class="form-control"
+                                value="{{ isset($hdv->corrienteMax) ? $hdv->corrienteMax : old('corrienteMax') }}"
+                                id="corrienteMax">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative ">
+                        <div class="form-group">
+                            <label for="corrienteMin">Corriente Min</label>
+                            <input type="text" name="corrienteMin" class="form-control"
+                                value="{{ isset($hdv->corrienteMin) ? $hdv->corrienteMin : old('corrienteMin') }}"
+                                id="corrienteMin">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group" id="miDiv12">
+                            <label for="mag_corriente_id">Unidad de Corriente</label>
+                            <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="ucorriente()">
+                            </i>
+                            <select name="mag_corriente_id" id="mag_corriente_id"
+                                class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($corrientes as $corriente)
+                                    <option value="{{ $corriente->id }}"
+                                        {{ old('mag_corriente_id', $hdv->mag_corriente_id ?? '') == $corriente->id ? 'selected' : '' }}>
+                                        {{ $corriente->abreviacioncorriente }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+
+
+
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="peso">Peso Equipo</label>
+                            <input type="text" name="peso" class="form-control"
+                                value="{{ isset($hdv->peso) ? $hdv->peso : old('peso') }}" id="peso">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group" id="miDiv13">
+                            <label for="mag_peso_id">Unidad de Peso</label>
+                            <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam"
+                                onclick="upeso()">
+                            </i>
+                            <select name="mag_peso_id" id="mag_peso_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($pesos as $peso)
+                                    <option value="{{ $peso->id }}"
+                                        {{ old('mag_peso_id', $hdv->mag_peso_id ?? '') == $peso->id ? 'selected' : '' }}>
+                                        {{ $peso->abreviacionpeso }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative ">
+                        <div class="form-group">
+                            <label for="presion">Presión</label>
+                            <input type="text" name="presion" class="form-control"
+                                value="{{ isset($hdv->presion) ? $hdv->presion : old('presion') }}" id="presion">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pre_id">Unidad de Presión</label>
+                            <select name="mag_pre_id" id="mag_pre_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($presiones as $presion)
+                                    <option value="{{ $presion->id }}"
+                                        {{ old('mag_pre_id', $hdv->mag_pre_id ?? '') == $presion->id ? 'selected' : '' }}>
+                                        {{ $presion->abreviacionpresion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="potencia">Potencia</label>
+                            <input type="text" name="potencia" class="form-control"
+                                value="{{ isset($hdv->potencia) ? $hdv->potencia : old('potencia') }}"
+                                id="potencia">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_pot_id">Unidad de Potencia</label>
+                            <select name="mag_pot_id" id="mag_pot_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($potencias as $potencia)
+                                    <option value="{{ $potencia->id }}"
+                                        {{ old('mag_pot_id', $hdv->mag_pot_id ?? '') == $potencia->id ? 'selected' : '' }}>
+                                        {{ $potencia->abreviacionpotencia }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="temperatura">Temperatura de Trabajo</label>
+                            <input type="text" name="temperatura" class="form-control" {{-- value="{{ old('temperatura',$hdv->temperatura)? $hdv->temperatura : old('temperatura') }} --}}
+                                value="{{ isset($hdv->temperatura) ? $hdv->temperatura : old('temperatura') }}"
+                                id="temperatura">
+                        </div>
+                    </div>
+
+                    <!-- Selección de Unidad de Temperatura -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_temp_id">Unidad de Temperatura</label>
+                            <select name="mag_temp_id" id="mag_temp_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($temperaturas as $temp)
+                                    <option value="{{ $temp->id }}"
+                                        {{ old('mag_temp_id', $hdv->mag_temp_id ?? '') == $temp->id ? 'selected' : '' }}>
+                                        {{ $temp->nombretemperatura }} <!-- Mostrar nombre de la temperatura -->
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Campo Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="velocidad">Velocidad</label>
+                            <input type="text" name="velocidad" class="form-control" {{-- value="{{ old('velocidad') }}" id="velocidad"> --}}
+                                value="{{ isset($hdv->velocidad) ? $hdv->velocidad : old('velocidad') }}">
+                        </div>
+                    </div>
+
+                    <!-- Select Unidad Velocidad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="mag_vel_id">Unidad de Velocidad</label>
+                            <select name="mag_vel_id" id="mag_vel_id" class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($velocidad as $vel)
+                                    <option value="{{ $vel->id }}"
+                                        {{ old('mag_vel_id', $hdv->mag_vel_id ?? '') == $vel->id ? 'selected' : '' }}>
+                                        {{ $vel->abreviacionvelocidad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Campo Humedad -->
+                    <div class="col-md-4 position-relative">
+                        <div class="form-group">
+                            <label for="humedad">Humedad (%)</label>
+                            <input type="text" name="humedad" class="form-control"
+                                value="{{ isset($hdv->humedad) ? $hdv->humedad : old('humedad') }}"
+                                {{-- value="{{ old('humedad') }}" --}} id="humedad">
+                        </div>
+                    </div>
+
+                    <!-- Tamaño Equipo -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimLargo">Largo</label>
+                            <input type="text" name="dimLargo" class="form-control"
+                                value="{{ isset($hdv->dimLargo) ? $hdv->dimLargo : old('dimLargo') }}"
+                                {{-- value="{{ old('dimLargo' ) }}"  --}} id="dimLargo">
+                        </div>
+                    </div>
+
+                    <!-- Campo Ancho -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAncho">Ancho</label>
+                            <input type="text" name="dimAncho" class="form-control"
+                                value="{{ isset($hdv->dimAncho) ? $hdv->dimAncho : old('dimAncho') }}"
+                                {{-- value="{{ old('dimAncho') }}"  --}} id="dimAncho">
+                        </div>
+                    </div>
+
+                    <!-- Campo Alto -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="dimAlto">Alto</label>
+                            <input type="text" name="dimAlto" class="form-control"
+                                value="{{ isset($hdv->dimAlto) ? $hdv->dimAlto : old('dimAlto') }}"
+                                {{-- value="{{ old('dimAlto') }}" --}} id="dimAlto">
+                        </div>
+                    </div>
+
+                    <!-- Seleccion Unidad Dimensión -->
+                    <div class="col-md-3 position-relative">
+                        <div class="form-group">
+                            <label for="mag_dimension_id">Unidad de Dimensión</label>
+                            <select name="mag_dimension_id" id="mag_dimension_id"
+                                class="form-control form-select se">
+                                <option value="">Seleccione una opción</option>
+                                @foreach ($dimensiones as $dim)
+                                    <option value="{{ $dim->id }}"
+                                        {{ old('mag_dimension_id', $hdv->mag_dimension_id ?? '') == $dim->id ? 'selected' : '' }}>
+                                        {{ $dim->abreviaciondimension }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                </div>
                 {{-- FIN REGISTRO TECNICO --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
+                {{--  --}}
+                {{--                                       INICIO ACCESORIOS                                            --}}
+                {{--  --}}
+                {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
 
-                {{-- FIN CARGA DE SOPORTES --}}
+                {{-- <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                    border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #0062E6, #33AEFF);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Accesorios
+                    </h1> --}}
+
+
+
+
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;
+                    border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5">
+
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Accesorios
+                    </h1>
+
+                    <!-- CONTENEDOR DE ACCESORIOS -->
+                    <div id="contenedorAccesorios">
+                        @foreach ($hdv->accesorios as $accesorio)
+                            <div class="row accesorio-item mb-2">
+                                <!-- id oculto para saber si este accesorio ya existe -->
+                                <input type="hidden" name="accesorio_id[]" value="{{ $accesorio->id }}">
+
+                                <div style="width: 20%" class="col-md-2">
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombreAccesorio[]" class="form-control"
+                                        value="{{ $accesorio->nombreAccesorio }}">
+                                </div>
+                                <div style="width: 20%" class="col-md-2">
+                                    <label>Marca</label>
+                                    <input type="text" name="marcaAccesorio[]" class="form-control"
+                                        value="{{ $accesorio->marcaAccesorio }}">
+                                </div>
+                                <div style="width: 20%" class="col-md-2">
+                                    <label>Modelo</label>
+                                    <input type="text" name="modeloAccesorio[]" class="form-control"
+                                        value="{{ $accesorio->modeloAccesorio }}">
+                                </div>
+                                <div style="width: 20%" class="col-md-2">
+                                    <label>Serie</label>
+                                    <input type="text" name="serieAccesorio[]" class="form-control"
+                                        value="{{ $accesorio->serieAccesorio }}">
+                                </div>
+                                <div style="width: 20%" class="col-md-2">
+                                    <label>Costo</label>
+                                    <input type="number" name="costoAccesorio[]" class="form-control"
+                                        value="{{ $accesorio->costoAccesorio }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <br>
+
+                    <div class="d-grid gap-2 d-md-block">
+                        <i class="btn btn-outline-primary" onclick="agregarAccesorio()">Agregar</i>
+                        <i class="btn btn-outline-danger" onclick="eliminarAccesorio()">Remover</i>
+                    </div>
+                </div>
+
+
+                <script>
+                    function agregarAccesorio() {
+                        let contenedor = document.getElementById("contenedorAccesorios");
+                        let item = contenedor.querySelector(".accesorio-item");
+
+                        if (!item) return; // por si no hay ninguno
+
+                        // Clonar bloque
+                        let nuevoItem = item.cloneNode(true);
+
+                        // Limpiar valores de inputs (incluyendo el hidden id)
+                        nuevoItem.querySelectorAll("input").forEach(input => input.value = "");
+
+                        contenedor.appendChild(nuevoItem);
+                    }
+
+                    function eliminarAccesorio() {
+                        let contenedor = document.getElementById("contenedorAccesorios");
+                        let items = contenedor.querySelectorAll(".accesorio-item");
+
+                        if (items.length > 1) {
+                            contenedor.removeChild(items[items.length - 1]);
+                        } else {
+                            alert("Debe haber al menos un accesorio.");
+                        }
+                    }
+                </script>
+
+                <!-- MENSAJE SI NO HAY ACCESORIOS -->
+                <div id="mensaje_no_accesorios" class="alert alert-warning mt-3 d-none">
+                    No hay accesorios disponibles para el equipo seleccionado.
+                </div>
+
+                <!-- INFO DEL ACCESORIO EN FORMATO DE FILAS -->
+                <div id="info_accesorio" class="container mt-4 d-none">
+                    <div class="row border rounded p-3 bg-light shadow-sm">
+                        <div class="col-12 mb-2">
+                            <h5 class="text-primary">Detalles del accesorio seleccionado:</h5>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Nombre:</strong> <span id="descripcion_accesorio"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Modelo:</strong> <span id="modelo_accesorio"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Serie:</strong> <span id="serie_accesorio"></span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <strong>Costo:</strong> <span id="costo_accesorio"></span>
+                        </div>
+                    </div>
+                </div>
+           
+            {{-- FIN ACCESORIOS --}}
+             {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
+
+                  
 
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 
-                {{-- ACCION DE GUARDAR  --}}
+                {{--                                     INICIO  FABRICANTE - PROVEEDOR                                          --}}
+
+                {{-- ------------------------------------------------------------------------------------------------------- --}}
+
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Datos del fabricante y proveedor
+                    </h1>
+
+                    <!-- COLUMNA IZQUIERDA - FABRICANTE -->
+                    <div class="col-md-6 mb-4">
+                        <div class="mb-3" id="miDiv14">
+
+                            <div id="select-fabricante-container">
+                                <label for="fabricante_id" class="form-label fw-bold">Selecciona un fabricante:</label>
+                                <i class="bi fab bi-pen" onclick="toggleFormulario('fabricante')"></i>
+                                <select id="fabricante_id" name="fabricante_id"
+                                    class="form-select border border-2 rounded-3  se">
+                                    <option value="">Seleccione un fabricante</option>
+
+                                    @foreach ($fabricantes as $fabricante)
+                                        <option value="{{ $fabricante->id }}"
+
+                                            data-nombre-fabri="{{ $fabricante->nombreFabri ?? 'No disponible' }}"
+                                            {{ old('fabricante_id', $hdv->fabricante_id ?? '') == $fabricante->id ? 'selected' : '' }}
+                                            
+                                            data-direccion-fabri="{{ $fabricante->direccionFabri ?? 'No disponible' }}"
+                                            data-telefono-fabri="{{ $fabricante->telefonoFabri ?? 'No disponible' }}"
+                                            data-ciudad-fabri="{{ $fabricante->ciudadFabri ?? 'No disponible' }}"
+                                            data-email-fabri="{{ $fabricante->emailWebFabri ?? 'No disponible' }}">
+                                            {{ $fabricante->nombreFabri ?? 'No disponible' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div id="formulario-fabricante-container" style="display: none;">
+                                <div>
+                                    <label for="nombreFabri" class="form-label fw-bold">Registra nuevo fabricante</label><i class="fa-solid fa-xmark" onclick="toggleFormulario('fabricante')"
+                                        style="cursor:pointer; margin-left:10px;"></i>
+                                    <div>
+                                        <label for="fabricante_id ">Nombre</label>
+                                        <input name="nombreFabri" type="text" id="nombreFabri"      class="form-control dv c">
+                                    </div>
+                                    <div>
+                                        <label for="fabricante_id">Direccion</label>
+                                        <input name="direccionFabri" type="text" id="direccionFabri"
+                                            class="form-control dv ">
+                                    </div>
+                                    <div>
+                                        <label for="fabricante_id">Telefono</label>
+                                        <input name="telefonoFabri" type="text" id="telefonoFabri"
+                                            class="form-control dv ">
+                                            
+                                            
+                                    </div>
+                                    <div>
+                                        <label for="fabricante_id">Ciudad</label>
+                                        <input name="ciudadFabri" type="text" id="ciudadFabri"
+                                            class="form-control dv ">
+                                    </div>
+                                    <div>
+                                        <label for="fabricante_id">Correo electronico</label>
+                                        <input name="emailWebFabri" type="text" id="emailWebFabri"
+                                            class="form-control dv ">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="info_fabricante" style="display:;">
+                                <h5 class="mt-3">Detalles del fabricante seleccionado:</h5>
+                                <p><strong>Nombre:</strong> <span id="nombre_fabricante">{{ $hdv->fabricante?->nombreFabri ?? '---' }}</span></p>
+                                <p><strong>Dirección:</strong> <span id="direccion_fabricante">{{ $hdv->fabricante?->direccionFabri ?? '---' }}</span></p>
+                                <p><strong>Teléfono:</strong> <span id="telefono_fabricante">  {{ $hdv->fabricante?->telefonoFabri ?? '---' }}</span></p>
+                                <p><strong>Ciudad:</strong> <span id="ciudad_fabricante">{{ $hdv->fabricante?->ciudadFabri ?? '---' }}</span></p>
+                                <p><strong>Email:</strong> <span id="email_fabricante">{{ $hdv->fabricante?->emailWebFabri ?? '---' }}</span></p>
+                            </div>
+                            <div id="mensaje_no_fabricantes" class="alert alert-warning mt-3" style="display: none;">
+                                No hay fabricantes disponibles.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA - PROVEEDOR -->
+                    <div class="col-md-6 mb-4">
+                        <div class="mb-3" id="miDiv15">
+
+                            <div id="select-proveedor-container">
+                                <label for="proveedor_id" class="form-label fw-bold">Selecciona un proveedor:</label>
+                                <i class="bi fab bi-pen" data-bs-toggle="modal" data-bs-target="#exampleModalparam" onclick="toggleFormulario('proveedor')"></i>
+                                <select id="proveedor_id" name="proveedor_id"  class="form-select border border-2 rounded-3  se">
+                                    <option value="">Seleccione un proveedor</option>
+                                    
+                                    @foreach ($proveedores as $proveedor)
+                                        <option value="{{old('proveedor', $proveedor->id) }}" 
+
+                                            data-nombre-proveedor="{{ $proveedor->nombreProveedor ?? 'No disponible' }}"
+                                            {{ old('proveedor_id', $hdv->proveedor_id ?? '') == $proveedor->id ? 'selected' : '' }}
+                                            
+
+                                            data-direccion-proveedor="{{ $proveedor->direccionProvee ?? 'No disponible' }}"
+                                            data-telefono-proveedor="{{ $proveedor->telefonoProvee ?? 'No disponible' }}"
+                                            data-ciudad-proveedor="{{ $proveedor->ciudadProvee ?? 'No disponible' }}"
+                                            data-email-proveedor="{{ $proveedor->emailWebProve ?? 'No disponible' }}">
+                                            {{old('proveedor', $proveedor->nombreProveedor ?? 'No disponible') }} - {{old('proveedor', $proveedor->ciudadProvee ?? 'No disponible') }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div id="formulario-proveedor-container" style="display: none;">
+                                <div>
+                                    <label for="" class="form-label fw-bold">Registra nuevo proveedor</label>
+                                    <i class="fa-solid fa-xmark" onclick="toggleFormulario('proveedor')"
+                                        style="cursor:pointer; margin-left:10px;"></i>
+
+                                    <div>
+                                        <label for="proveedor_id">Nombre</label>
+                                        <input name="nombreProveedor" type="text"
+                                            id="nombreProveedor" class="form-control dv c"
+                                            >
+                                    </div>
+                                    <div>
+                                        <label for="proveedor_id">Direccion</label>
+                                        <input name="direccionProvee" type="text"
+                                            id="direccionProvee" class="form-control dv ">
+                                    </div>
+                                    <div>
+                                        <label for="proveedor_id">Telefono</label>
+                                        <input name="telefonoProvee" type="text"
+                                            id="telefonoProvee" class="form-control dv ">
+                                    </div>
+                                    <div>
+                                        <label for="proveedor_id">Ciudad</label>
+                                        <input name="ciudadProvee"type="text"
+                                            id="ciudadProvee" class="form-control dv ">
+                                    </div>
+                                    <div>
+                                        <label for="proveedor_id">Correo electronico</label>
+                                        <input name="emailWebProve" type="text" id="emailWebProve"
+                                            class="form-control dv ">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="info_proveedor" style="display:;">
+                                <h5 class="mt-3">Detalles del proveedor seleccionado:</h5>
+                                <p><strong>Nombre:</strong> <span id="nombre_proveedor">{{ $hdv->proveedor?->nombreProveedor ?? '---' }}</span></p>
+                                <p><strong>Dirección:</strong> <span id="direccion_proveedor">{{ $hdv->proveedor?->direccionProvee ?? '---' }}</span></p>
+                                <p><strong>Teléfono:</strong> <span id="telefono_proveedor">{{ $hdv->proveedor?->telefonoProvee ?? '---' }}</span></p>
+                                <p><strong>Ciudad:</strong> <span id="ciudad_proveedor">{{ $hdv->proveedor?->ciudadProvee ?? '---' }}</span></p>
+                                <p><strong>Email:</strong> <span id="email_proveedor">{{ $hdv->proveedor?->emailWebProve ?? '---' }}</span></p>
+                            </div>
+                            <div id="mensaje_no_proveedores" class="alert alert-warning mt-3" style="display: none;">
+                                No hay proveedores disponibles.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Script para mostrar los detalles -->
+                    <script>
+                        // La función para mostrar/ocultar los formularios y los selects
+                        function toggleFormulario(tipo) {
+                            if (tipo === 'fabricante') {
+                                const selectContainer = document.getElementById('select-fabricante-container');
+                                const formContainer = document.getElementById('formulario-fabricante-container');
+                                const infoContainer = document.getElementById('info_fabricante'); // Nuevo
+                                const mensajeNoFabricantes = document.getElementById('mensaje_no_fabricantes'); // Nuevo
+
+                                // Alterna la visibilidad
+                                if (selectContainer.style.display !== 'none') {
+                                    // Se va a mostrar el formulario, así que ocultamos el select y los detalles
+                                    selectContainer.style.display = 'none';
+                                    formContainer.style.display = 'block';
+                                    infoContainer.style.display = 'none'; // Oculta los detalles
+                                    mensajeNoFabricantes.style.display = 'none'; // Oculta el mensaje
+                                } else {
+                                    // Se va a mostrar el select, así que ocultamos el formulario y los detalles
+                                    selectContainer.style.display = 'block';
+                                    formContainer.style.display = 'none';
+                                    infoContainer.style.display = 'none'; // Oculta los detalles (puedes mostrarlo si quieres)
+                                    mensajeNoFabricantes.style.display = 'block'; // Muestra el mensaje de no hay datos
+                                }
+                            } else if (tipo === 'proveedor') {
+                                const selectContainer = document.getElementById('select-proveedor-container');
+                                const formContainer = document.getElementById('formulario-proveedor-container');
+                                const infoContainer = document.getElementById('info_proveedor'); // Nuevo
+                                const mensajeNoProveedores = document.getElementById('mensaje_no_proveedores'); // Nuevo
+
+                                // Alterna la visibilidad
+                                if (selectContainer.style.display !== 'none') {
+                                    // Se va a mostrar el formulario, así que ocultamos el select y los detalles
+                                    selectContainer.style.display = 'none';
+                                    formContainer.style.display = 'block';
+                                    infoContainer.style.display = 'none'; // Oculta los detalles
+                                    mensajeNoProveedores.style.display = 'none'; // Oculta el mensaje
+                                } else {
+                                    // Se va a mostrar el select, así que ocultamos el formulario y los detalles
+                                    selectContainer.style.display = 'block';
+                                    formContainer.style.display = 'none';
+                                    infoContainer.style.display = 'none'; // Oculta los detalles (puedes mostrarlo si quieres)
+                                    mensajeNoProveedores.style.display = 'block'; // Muestra el mensaje de no hay datos
+                                }
+                            }
+                        }
+                        // El código que se ejecuta al cargar la página
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Código para mostrar detalles del fabricante (sin cambios, ya que los elementos no se eliminan)
+                            document.getElementById('fabricante_id').addEventListener('change', function() {
+                                var fabricanteId = this.value;
+                                document.getElementById('fabricante_id').value = fabricanteId;
+
+                                if (fabricanteId) {
+                                    var fabricante = document.querySelector(
+                                        `#fabricante_id option[value="${fabricanteId}"]`);
+                                    document.getElementById('nombre_fabricante').textContent = fabricante.getAttribute(
+                                        'data-nombre-fabri');
+                                    // ... (el resto del código del fabricante)
+                                    document.getElementById('info_fabricante').style.display = 'block';
+                                    document.getElementById('mensaje_no_fabricantes').style.display = 'none';
+                                } else {
+                                    document.getElementById('info_fabricante').style.display = 'none';
+                                    document.getElementById('mensaje_no_fabricantes').style.display = 'block';
+                                }
+                            });
+
+                            // Código para mostrar detalles del proveedor (sin cambios, ya que los elementos no se eliminan)
+                            document.getElementById('proveedor_id').addEventListener('change', function() {
+                                var proveedorId = this.value;
+                                if (proveedorId) {
+                                    var proveedor = document.querySelector(`#proveedor_id option[value="${proveedorId}"]`);
+                                    document.getElementById('nombre_proveedor').textContent = proveedor.getAttribute(
+                                        'data-nombre-proveedor');
+                                    // ... (el resto del código del proveedor)
+                                    document.getElementById('info_proveedor').style.display = 'block';
+                                    document.getElementById('mensaje_no_proveedores').style.display = 'none';
+                                } else {
+                                    document.getElementById('info_proveedor').style.display = 'none';
+                                    document.getElementById('mensaje_no_proveedores').style.display = 'block';
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+
+                   {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+                {{--                                      RECOMENDACIONES                                                        --}}
 
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
-                <div class="d-flex gap-3 col-2 mx-auto">
-                    {{-- <button type="button" class="Btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                <div style="background-color: rgb(245, 245, 245);box-shadow:  6px 6px 8px  #ccc;                     border:none;"
+                    class="row g-2 mb-4 needs-validation formu p-5" class="row g-2 needs-validation mb-4  formu p-5">
+
+                    <h1 class="text-white"
+                        style="background: linear-gradient(45deg, #edbd00, #ffd633);border-radius: 10px; margin-top: 0rem; text-align:center">
+                        Recomendaciones
+                    </h1>
+                    <div class="col-md-12 position-relative ">
+                        <div class="form-group">
+                            <label for="recomendaciones"></label>
+                            <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hdv->recomendaciones ?? '') }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            {{-- FIN CARGA DE SOPORTES --}}
+
+            {{-- ----------------------------------------------------------------------------------------------------------- --}}
+
+
+            {{-- ACCION DE GUARDAR  --}}
+            {{-- ----------------------------------------------------------------------------------------------------------- --}}
+            <div class="d-flex gap-3 col-2 mx-auto">
+                {{-- <button type="button" class="Btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <svg class="Layer" viewBox="0 0 1095.66 1095.63">
                             <path class="cls-1"
                                 d="M1298,749.62c.4,300.41-243,548-548.1,547.9C446.23,1297.4,201.92,1051.2,202.29,749c.37-301.52,244.49-547.41,548.34-547.12C1055.43,202.18,1298.25,449.6,1298,749.62Z"
@@ -859,38 +1580,38 @@
                         </svg>
                         <p class="text">Guardar</p>
                     </button> --}}
-                    <button type="submit">
-                        <svg class="layer" viewBox="0 0 734.93 1135.91">
-                            <defs></defs>
-                            <path class="cls-1"
-                                d="M1.25,0V1128.28c0,6.54,0,6.54,6.52,6.54H734.91c-.22.31.5,1-.5,1h-4q-362.83,0-725.67.09c-3.75,0-4.59-.84-4.59-4.59Q.32,567.92.37,4.52C.37,3-.83,1.11,1.25,0Z"
-                                transform="translate(-0.03)"></path>
-                            <path class="cls-2"
-                                d="M574.37,543.4C572.14,538,570,533,568,527.89c-1.14-3-2.79-4-6.06-3.28Q496.49,538.92,431,553.08a54.57,54.57,0,0,1-11.8,1.44c-32.76,0-65.53-.14-98.29.08-11.5.08-22.34-3.17-33.35-5.51q-56.28-12-112.46-24.4c-3.3-.72-5.2-.1-6.33,3.41-1.38,4.25-3.45,8.28-5.11,12.45-.86,2.15-1.56,3.07-3.65.89-4.83-5-9.93-9.84-14.8-14.84-2.73-2.8-3.53-6-2.52-10.07,3.57-14.17,7.83-28.17,9.67-42.76,1.11-8.78-.19-17.35-1.64-25.8-8.61-50.48-8.6-101.37-7.77-152.31.1-6.66.05-13.31.16-20a20.72,20.72,0,0,1,6.95-15.86c12.77-11.66,24.95-24,37.83-35.52,18.35-16.44,41-24.25,64.27-30.4,6.74-1.78,13.58-3.22,20.26-5.19,3.54-1,4.65.08,5.18,3.44,3.27,20.68,6.3,41.41,10.13,62,5,27.12,7.13,54.74,13.88,81.56a148.51,148.51,0,0,0,7.12,21.25c3.17,7.55,8.37,12.17,17,12.18,25,0,49.89.19,74.84.27,3.32,0,6.65-.09,10-.14,9.11-.15,14.71-4.94,18-13.21a179.88,179.88,0,0,0,10.88-40.85c5.45-38,12.37-75.77,18.43-113.68.55-3.44,1-6.9,1.56-10.35.3-2,.65-3.52,3.42-2.79,25.52,6.72,51.55,11.89,74.15,26.77,10.09,6.64,18.41,15.26,27.17,23.4,7.8,7.25,15.4,14.71,23.25,21.89a17.4,17.4,0,0,1,6.09,13.16c.47,49.06,3.21,98.17-4.15,147-2,13.3-3.43,26.7-5,40.07-1.52,12.87,2.26,25.06,5.18,37.33q2.31,9.7,4.82,19.36c.72,2.77.58,5.46-1.39,7.49C587,531.05,580.82,537,574.37,543.4Z"
-                                transform="translate(-0.03)"></path>
-                            <path class="cls-2"
-                                d="M278.88,806.78a13.6,13.6,0,0,0-9,9.92c-1.7,6.51-5.84,11.48-9.91,16.53-1,1.17-1.66,2-3.19.84C249.22,828.43,240.7,824,235,816c-3.43-4.85-6.24-10-6.45-16-1.18-33.61-15.46-62-34.05-89-19-27.67-37.83-55.51-54.92-84.45-6-10.12-10.47-20.73-12.25-32.42-.82-5.44.66-10.6,1.64-15.79,2.69-14.21,5.56-28.38,8.4-42.56a39.65,39.65,0,0,1,1.29-4l22.82,22.27c3.69,3.61,7.73,6.93,10.94,10.93,7.85,9.79,18.38,14,30.25,16.5,16.17,3.38,32.24,5.61,48.91,4.24,12.73-1,25.53-1.34,38.19-3.27a56,56,0,0,0,10.56-2.84,11.6,11.6,0,0,0,7.93-8.12c2.06-6.7,4.29-8.17,11.27-8.18q48.9-.09,97.8,0c7.09,0,9.08,1.33,11.11,8.2,1.92,6.5,7.11,8.44,12.63,9.86,8.39,2.15,17.07,2.71,25.65,3.52,27.51,2.6,54.76,1.93,81.27-7.19a22.34,22.34,0,0,0,8.78-5.37c12.67-12.5,25.46-24.88,38.13-37.38,2.6-2.57,3.75-3.23,4.59,1.31,2.62,14.22,5.58,28.38,8.53,42.53,3.43,16.49-1.25,31.21-9.45,45.27-14.92,25.58-31.53,50.07-47.88,74.74-10.54,15.92-22.09,31.24-30,48.82a138.26,138.26,0,0,0-12.27,50.08c-.51,10.61-5.56,18.68-13.21,25.31-4.38,3.79-9.41,6.83-14,10.34-1.92,1.45-3.22,1.76-4.86-.48-3.62-5-7.73-9.55-9.26-15.79A13.83,13.83,0,0,0,458.3,807c-1.67-1.43-3.68-1.3-5.68-1.3H283.53C281.91,805.67,280.16,805.28,278.88,806.78Z"
-                                transform="translate(-0.03)"></path>
-                            <path class="cls-2"
-                                d="M441.92,825.09c9.25,1.71,15.53,8,21.52,14.45,4.61,5,8.92,10.31,13.09,15.69,2,2.55,3.17,2.4,5.3.21,9.4-9.65,18.95-19.15,28.46-28.69,1.16-1.16,2.41-2.23,4.26-3.92,2.32,9.92,4.51,19.22,6.68,28.53,1.24,5.35,2.31,10.73,3.7,16,.85,3.22.35,5.56-2.25,8q-17.59,16.23-34.86,32.84c-2.58,2.47-4.79,2.5-7.39.41-6.87-5.51-14.19-10.55-20.53-16.62-8.62-8.25-18.83-11.37-30.29-11.9-4.48-.21-9-.93-13.42-.9-7.39,0-14.25-.91-19.23-7.16a2.31,2.31,0,0,0-.39-.31c-14.91-11.24-46.73-9.55-60.08,3.42-3.24,3.15-7,3.47-11,3.78-10.43.79-20.92.93-31.24,3a25,25,0,0,0-11.1,5.29c-8.81,7.08-17.72,14-26.51,21.14-3,2.4-5.14,2.34-8-.48q-16.67-16.14-33.83-31.75c-2.93-2.67-3.88-5.2-2.9-9.14,3.27-13.22,6.14-26.54,9.31-39.79.3-1.29,0-3.4,1.76-3.73,1.37-.25,2.1,1.42,3,2.34,9.58,9.71,19.21,19.37,28.64,29.22,2.48,2.6,3.89,2.54,6.12-.23,5.73-7.12,11.16-14.51,18-20.66,4.62-4.16,9.57-7.73,15.84-9,1.39-.84,2.92-.47,4.39-.47H437.46C439,824.66,440.51,824.38,441.92,825.09Z"
-                                transform="translate(-0.03)"></path>
-                            <path class="cls-3"
-                                d="M278.88,806.78c.91-2.46,3-1.6,4.71-1.6q84.56-.07,169.09,0c1.92,0,4.49-1.16,5.59,1.78-3.13-.28-6.25-.81-9.38-.81q-79.8-.07-159.6,0C285.81,806.12,282.31,805.92,278.88,806.78Z"
-                                transform="translate(-0.03)"></path>
-                            <path class="cls-4"
-                                d="M441.92,825.09H294.58c2.79-1.57,5.79-1.07,8.79-1.07q65.43-.09,130.86,0C436.77,824,439.51,823.52,441.92,825.09Z"
-                                transform="translate(-0.03)"></path>
-                        </svg>
-                        <p>Guardar edición</p>
-                    </button>
-                    {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
-                    {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
+                <button type="submit">
+                    <svg class="layer" viewBox="0 0 734.93 1135.91">
+                        <defs></defs>
+                        <path class="cls-1"
+                            d="M1.25,0V1128.28c0,6.54,0,6.54,6.52,6.54H734.91c-.22.31.5,1-.5,1h-4q-362.83,0-725.67.09c-3.75,0-4.59-.84-4.59-4.59Q.32,567.92.37,4.52C.37,3-.83,1.11,1.25,0Z"
+                            transform="translate(-0.03)"></path>
+                        <path class="cls-2"
+                            d="M574.37,543.4C572.14,538,570,533,568,527.89c-1.14-3-2.79-4-6.06-3.28Q496.49,538.92,431,553.08a54.57,54.57,0,0,1-11.8,1.44c-32.76,0-65.53-.14-98.29.08-11.5.08-22.34-3.17-33.35-5.51q-56.28-12-112.46-24.4c-3.3-.72-5.2-.1-6.33,3.41-1.38,4.25-3.45,8.28-5.11,12.45-.86,2.15-1.56,3.07-3.65.89-4.83-5-9.93-9.84-14.8-14.84-2.73-2.8-3.53-6-2.52-10.07,3.57-14.17,7.83-28.17,9.67-42.76,1.11-8.78-.19-17.35-1.64-25.8-8.61-50.48-8.6-101.37-7.77-152.31.1-6.66.05-13.31.16-20a20.72,20.72,0,0,1,6.95-15.86c12.77-11.66,24.95-24,37.83-35.52,18.35-16.44,41-24.25,64.27-30.4,6.74-1.78,13.58-3.22,20.26-5.19,3.54-1,4.65.08,5.18,3.44,3.27,20.68,6.3,41.41,10.13,62,5,27.12,7.13,54.74,13.88,81.56a148.51,148.51,0,0,0,7.12,21.25c3.17,7.55,8.37,12.17,17,12.18,25,0,49.89.19,74.84.27,3.32,0,6.65-.09,10-.14,9.11-.15,14.71-4.94,18-13.21a179.88,179.88,0,0,0,10.88-40.85c5.45-38,12.37-75.77,18.43-113.68.55-3.44,1-6.9,1.56-10.35.3-2,.65-3.52,3.42-2.79,25.52,6.72,51.55,11.89,74.15,26.77,10.09,6.64,18.41,15.26,27.17,23.4,7.8,7.25,15.4,14.71,23.25,21.89a17.4,17.4,0,0,1,6.09,13.16c.47,49.06,3.21,98.17-4.15,147-2,13.3-3.43,26.7-5,40.07-1.52,12.87,2.26,25.06,5.18,37.33q2.31,9.7,4.82,19.36c.72,2.77.58,5.46-1.39,7.49C587,531.05,580.82,537,574.37,543.4Z"
+                            transform="translate(-0.03)"></path>
+                        <path class="cls-2"
+                            d="M278.88,806.78a13.6,13.6,0,0,0-9,9.92c-1.7,6.51-5.84,11.48-9.91,16.53-1,1.17-1.66,2-3.19.84C249.22,828.43,240.7,824,235,816c-3.43-4.85-6.24-10-6.45-16-1.18-33.61-15.46-62-34.05-89-19-27.67-37.83-55.51-54.92-84.45-6-10.12-10.47-20.73-12.25-32.42-.82-5.44.66-10.6,1.64-15.79,2.69-14.21,5.56-28.38,8.4-42.56a39.65,39.65,0,0,1,1.29-4l22.82,22.27c3.69,3.61,7.73,6.93,10.94,10.93,7.85,9.79,18.38,14,30.25,16.5,16.17,3.38,32.24,5.61,48.91,4.24,12.73-1,25.53-1.34,38.19-3.27a56,56,0,0,0,10.56-2.84,11.6,11.6,0,0,0,7.93-8.12c2.06-6.7,4.29-8.17,11.27-8.18q48.9-.09,97.8,0c7.09,0,9.08,1.33,11.11,8.2,1.92,6.5,7.11,8.44,12.63,9.86,8.39,2.15,17.07,2.71,25.65,3.52,27.51,2.6,54.76,1.93,81.27-7.19a22.34,22.34,0,0,0,8.78-5.37c12.67-12.5,25.46-24.88,38.13-37.38,2.6-2.57,3.75-3.23,4.59,1.31,2.62,14.22,5.58,28.38,8.53,42.53,3.43,16.49-1.25,31.21-9.45,45.27-14.92,25.58-31.53,50.07-47.88,74.74-10.54,15.92-22.09,31.24-30,48.82a138.26,138.26,0,0,0-12.27,50.08c-.51,10.61-5.56,18.68-13.21,25.31-4.38,3.79-9.41,6.83-14,10.34-1.92,1.45-3.22,1.76-4.86-.48-3.62-5-7.73-9.55-9.26-15.79A13.83,13.83,0,0,0,458.3,807c-1.67-1.43-3.68-1.3-5.68-1.3H283.53C281.91,805.67,280.16,805.28,278.88,806.78Z"
+                            transform="translate(-0.03)"></path>
+                        <path class="cls-2"
+                            d="M441.92,825.09c9.25,1.71,15.53,8,21.52,14.45,4.61,5,8.92,10.31,13.09,15.69,2,2.55,3.17,2.4,5.3.21,9.4-9.65,18.95-19.15,28.46-28.69,1.16-1.16,2.41-2.23,4.26-3.92,2.32,9.92,4.51,19.22,6.68,28.53,1.24,5.35,2.31,10.73,3.7,16,.85,3.22.35,5.56-2.25,8q-17.59,16.23-34.86,32.84c-2.58,2.47-4.79,2.5-7.39.41-6.87-5.51-14.19-10.55-20.53-16.62-8.62-8.25-18.83-11.37-30.29-11.9-4.48-.21-9-.93-13.42-.9-7.39,0-14.25-.91-19.23-7.16a2.31,2.31,0,0,0-.39-.31c-14.91-11.24-46.73-9.55-60.08,3.42-3.24,3.15-7,3.47-11,3.78-10.43.79-20.92.93-31.24,3a25,25,0,0,0-11.1,5.29c-8.81,7.08-17.72,14-26.51,21.14-3,2.4-5.14,2.34-8-.48q-16.67-16.14-33.83-31.75c-2.93-2.67-3.88-5.2-2.9-9.14,3.27-13.22,6.14-26.54,9.31-39.79.3-1.29,0-3.4,1.76-3.73,1.37-.25,2.1,1.42,3,2.34,9.58,9.71,19.21,19.37,28.64,29.22,2.48,2.6,3.89,2.54,6.12-.23,5.73-7.12,11.16-14.51,18-20.66,4.62-4.16,9.57-7.73,15.84-9,1.39-.84,2.92-.47,4.39-.47H437.46C439,824.66,440.51,824.38,441.92,825.09Z"
+                            transform="translate(-0.03)"></path>
+                        <path class="cls-3"
+                            d="M278.88,806.78c.91-2.46,3-1.6,4.71-1.6q84.56-.07,169.09,0c1.92,0,4.49-1.16,5.59,1.78-3.13-.28-6.25-.81-9.38-.81q-79.8-.07-159.6,0C285.81,806.12,282.31,805.92,278.88,806.78Z"
+                            transform="translate(-0.03)"></path>
+                        <path class="cls-4"
+                            d="M441.92,825.09H294.58c2.79-1.57,5.79-1.07,8.79-1.07q65.43-.09,130.86,0C436.77,824,439.51,823.52,441.92,825.09Z"
+                            transform="translate(-0.03)"></path>
+                    </svg>
+                    <p>Guardar edición</p>
+                </button>
+                {{-- <input type="submit" class="btn btn-primary" Value="Guardar" > se pone value para eliminar el dato del envio name="Enviar" --}}
+                {{-- <button href="{{ url('hojadevida/listar') }}"  style="width: 200px" class="btn btn-primary w-10"> Lista
 
                             </button> --}}
 
-                </div>
-
             </div>
+             </div>
+
 
         </form>
     </main>

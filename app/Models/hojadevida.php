@@ -97,9 +97,13 @@ public function user()
         // return $this->belongsTo('App\Models\Propiedad');
         return $this->belongsTo(Propiedad::class);
     }
-    public function proveedor (){
-        return $this->belongsTo('App\Models\Proveedor');
-    }
+    // public function proveedor (){
+    //     return $this->belongsTo('App\Models\Proveedor');
+    // }
+        public function proveedor()
+{
+    return $this->belongsTo(Proveedor::class, 'proveedor_id');
+}
     public function servicio (){
         return $this->belongsTo('App\Models\Servicio');
     }

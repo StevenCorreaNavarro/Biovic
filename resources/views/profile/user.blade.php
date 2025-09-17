@@ -246,18 +246,18 @@
                 <p class="profile-name">{{ Auth::user()->name }}</p>
 
                 @if (!empty(Auth::user()->email))
-                    <div class="profile-title"><i class="bi bi-envelope-fill"></i> {{ Auth::user()->email}}</div>
+                    <div class="profile-title"><i class="bi bi-envelope-fill"></i> {{ Auth::user()->email}} </div>
                 @endif
 
                 @if (!empty(Auth::user()->contact))
-                    <div class="profile-title"><i class="bi bi-whatsapp"></i> {{ Auth::user()->contact }}</div>
+                    <div class="profile-title"><i class="bi bi-whatsapp"></i> {{ Auth::user()->contact }} </div>
                 @endif
 
                 @if (!empty(Auth::user()->identity))
-                    <div class="profile-title"><i class="bi bi-person-vcard"></i> {{ Auth::user()->identity }}</div>
+                    <div class="profile-title"><i class="bi bi-person-vcard-fill"></i> {{ Auth::user()->identity }} </div>
                 @endif
                 @if (!empty(Auth::user()->adress))
-                    <div class="profile-title"><i class="bi bi-house"></i>{{ Auth::user()->adress }}</div>
+                    <div class="profile-title"><i class="bi bi-house-fill"></i> {{ Auth::user()->adress }} </div>
                 @endif
                 <br>
 
@@ -275,7 +275,7 @@
                 @if (!empty(Auth::user()->post))
                     <div class="profile-title">Cargo: {{ Auth::user()->post }}</div>
                 @endif
-                <br>
+          
                 {{--                                                                 cambiar cuando se ponga                --}}
                 @if (!empty($hdvs->email))
                     <div class="profile-bio">
