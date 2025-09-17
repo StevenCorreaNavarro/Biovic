@@ -1491,7 +1491,7 @@
                     <div class="col-md-12 position-relative ">
                         <div class="form-group">
                             <label for="recomendaciones"></label>
-                            <textarea name="recomendaciones" id="recomendaciones" class="form-control se" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
+                            <textarea name="recomendaciones" id="recomendaciones" class="form-control" rows="4">{{ old('recomendaciones', $hojadevida->recomendaciones ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>
