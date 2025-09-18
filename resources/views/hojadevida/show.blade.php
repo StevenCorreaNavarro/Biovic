@@ -198,7 +198,7 @@
             text-align: center;
             height: 40px;
             width: 100px;
-            border-radius: 10px 0   0 10px;
+            border-radius: 10px 0 0 10px;
             color: white;
             cursor: pointer;
             transition: 400ms;
@@ -404,32 +404,35 @@
         /* This is an example, feel free to delete this code */
         .tooltip-container {
             /* --background: linear-gradient(45deg, #22d3ee, #1f9df5);
-             */background: #183153;
+             */
+            background: #183153;
             position: relative;
             /* background: var(--background); */
             cursor: pointer;
             transition: all 0.2s;
             font-size: 17px;
             padding: 0.7em 1.8em;
-            border-radius: 4px 0   0 4px;
+            border-radius: 4px 0 0 4px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             color: #fff;
         }
+
         .tooltip-container:hover {
             /* --background: linear-gradient(45deg, #22d3ee, #1f9df5);
-             */background: #18315300;
+             */
+            background: #18315300;
             position: relative;
             /* background: var(--background); */
             cursor: pointer;
             transition: all 0.2s;
             font-size: 17px;
             padding: 0.7em 1.8em;
-            border-radius: 4px 0   0 4px;
+            border-radius: 4px 0 0 4px;
             /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0); */
             color: #ffffff;
         }
 
-            /* background: #183153;
+        /* background: #183153;
             background: linear-gradient(45deg, #0062E6, #33AEFF); */
 
         .tooltip {
@@ -444,16 +447,17 @@
             pointer-events: none;
             transition: all 0.3s;
             /* background: var(--background); */
-            border-radius: 4px 0   0 4px;
+            border-radius: 4px 0 0 4px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .tooltip:hover{
-             position: absolute;
+
+        .tooltip:hover {
+            position: absolute;
             /* top: 10px; */
-            width:130px;
+            width: 130px;
             /* height: 150px; */
             align-content: center;
-            text-align:center;
+            text-align: center;
             left: 50%;
             /* font-size: 13px; */
             transform: translateX(50%) scale(0.8);
@@ -463,7 +467,7 @@
             /* pointer-events: none; */
             /* transition: all 0s; */
             /* background: var(--background); */
-            border-radius: 4px 0   0 4px;
+            border-radius: 4px 0 0 4px;
 
         }
 
@@ -484,15 +488,13 @@
             height: 50px;
             opacity: 1;
             align-content: center;
-            text-align:center;
+            text-align: center;
             visibility: visible;
-            border-radius: 4px 0   0 4px;
+            border-radius: 4px 0 0 4px;
             /* pointer-events: auto; */
             transform: translateX(-50%) scale(1);
             background: linear-gradient(45deg, #0062E6, #33AEFF);
         }
-
-      
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
@@ -507,9 +509,9 @@
     <div class="b" style="padding-left: 850px">
         <div class="cardss">
             @if (Auth::check() && Auth::user()->role === 'Admin')
-                <div onclick="copiarTexto()" class="card tooltip-container" >
-                    <span class="tooltip tip" id="textoACopiar"> {{ $hdvs->codigo?? 'Sin código'  }} </span>
-                    <span class="text tip" >Código</span>
+                <div onclick="copiarTexto()" class="card tooltip-container">
+                    <span class="tooltip tip" id="textoACopiar"> {{ $hdvs->codigo ?? 'Sin código' }} </span>
+                    <span class="text tip">Código</span>
                 </div>
                 {{-- <div class="card">
                     <a>
@@ -771,19 +773,27 @@
             </div>
             <div class="">
 
-                <a>
-                    {{-- <i class="bi bi-download"></i> --}}
-                    <span class="tip"></span>
-                </a>
-
+                {{-- @if ($hdvs)
+                    <form action="{{ route('hojadevida.destroy', $hdvs->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('¿Seguro desea borrar este registro?')"
+                            class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </form>
+                @endif --}}
             </div>
             @if (Auth::check() && Auth::user()->role === 'Admin')
+               
+
+
                 <div class="">
                     <a href="#modal-abierto" class="boton-abrir">
                         <button class="buttonr">
 
                             <span class="tip">Eliminar</span>
-                            {{-- <img src="{{ asset('IMG/pdf.png') }}" alt="" width="40px" height="40px"> --}}
+
                         </button>
                     </a>
                 </div>
@@ -805,15 +815,26 @@
                                 <span class="tip">Cancelar</span>
                             </button>
                         </a>
-                        <a href="#">
-                            <button style="width: 120px; height: 40px; margin:10px;" class="buttonr">
-                                <span class="tip">Eliminar</span>
-                            </button>
-                        </a>
+
+                        {{-- aquii esta la funcionalidad de borrar no quitar ni por el putas                                 --}}
+                    {{-- } --}}
+                        @if ($hdvs)
+                            <form action="{{ route('hojadevida.destroy', $hdvs->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#">
+                                    <button style="width: 120px; height: 40px; margin:10px;" class="buttonr">
+                                        <span class="tip">Eliminar</span>
+                                    </button>
+                                </a>
+                            </form>
+                        @endif
+
                     </div>
                 </div>
             </div>
         @endif
+
 
 
         {{-- @if ((Auth::check() && Auth::user()->role === 'Admin') || Auth::user()->role === 'Empleado')

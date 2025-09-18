@@ -43,7 +43,8 @@ Route::get('/', function () {
     return view('main');
 })->name('menu');
 
-// Rutas auxiliares públicas
+
+// Rutas auxiliares públicas             hojadevida/mostrarbusqueda
 Route::get('/main', function () {
     Alert::success(' Titulo de la alerta','mensaje de la alerta');
     return view('main');
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
     Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
+    Route::delete('/hojadevida/{hdvs}',[HojadevidaController::class,'destroy'])->name('hojadevida.destroy');
     Route::get('/hojadevida/{hdv}/edit',[HojadevidaController::class,'edit'])->name('hojadevida.edit'); 
     // Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
 
@@ -190,6 +192,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::get('hojadevida/mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])
         ->name('hojadevida.mostrarbusqueda');
+        
 
     // Ruta adicional con nombre corto por compatibilidad (si alguna vista la llama)
     Route::get('mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])

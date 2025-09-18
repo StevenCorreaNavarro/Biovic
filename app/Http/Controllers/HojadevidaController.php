@@ -158,6 +158,14 @@ class HojadevidaController extends Controller
             return response()->json($hdvs);
         }
 
+        
+        if (!$request->has('search')) {
+            // Si no hay parámetro de búsqueda, redirige
+            return redirect()->route('hoja_ver'); // o a donde quieras
+        }
+
+
+
         // Por defecto, retornamos la vista de listado con el término de búsqueda $q (si se usa en la vista)
         return view('hojadevida.mostrarbusqueda', compact('hdvs', 'q'));
     }
@@ -603,7 +611,7 @@ class HojadevidaController extends Controller
         if ($request->filled('nombreAccesorio')) {
             foreach ($request->nombreAccesorio as $index => $nombre) {
                 $datosAccesorio = [
-                    // 'nombreAccesorio' => $nombre,
+                    'nombreAccesorio' => $nombre,
                     'marcaAccesorio' => $request->marcaAccesorio[$index] ?? null,
                     'modeloAccesorio' => $request->modeloAccesorio[$index] ?? null,
                     'serieAccesorio' => $request->serieAccesorio[$index] ?? null,
@@ -1269,8 +1277,13 @@ class HojadevidaController extends Controller
     /**
      * Eliminar (placeholder).
      */
-    public function destroy(hojadevida $hojadevida)
+    // public function destroy(hojadevida $hojadevida)
+    // {
+    //     // Si necesitas soportar eliminación, implementar aquí.
+    // }
+    public function destroy(hojadevida $hdvs)
     {
-        // Si necesitas soportar eliminación, implementar aquí.
+        $hdvs->delete();
+        return redirect()->route('hojadevida.listar');
     }
 }

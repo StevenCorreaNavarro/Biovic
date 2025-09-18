@@ -70,11 +70,26 @@
           <tr>
             <td>{{ $hdv->id }}</td>
             <td>
-              @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
+              {{-- @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
                 <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50" class="rounded" style="object-fit:cover;">
               @else
                 <span class="text-muted">Sin imagen</span>
-              @endif
+              @endif --}}
+              @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))
+            <img src="{{ asset('storage/' . $hdv->foto) }}" width="50" height="50" class="rounded"
+                 data-bs-toggle="modal" data-bs-target="#imagenModal{{ $hdv->id }}" style="cursor: pointer;">
+            <div class="modal fade" id="imagenModal{{ $hdv->id }}" tabindex="-1">
+              <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <img src="{{ asset('storage/' . $hdv->foto) }}" class="img-fluid" style="max-height: 90vh;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          @else
+            <span class="text-muted">Sin imagen</span>
+          @endif
             </td>
             <td>{{ $hdv->equipo?->nombre_equipo ?? '---' }}</td>
             <td>{{ $hdv->marca?->nombre_marca ?? '---' }}</td>
