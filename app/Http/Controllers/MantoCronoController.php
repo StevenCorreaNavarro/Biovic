@@ -24,6 +24,10 @@ use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+
+use Barryvdh\DomPDF\Facade\Pdf as PDF; // ingresar pdf
+
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -184,4 +188,59 @@ class MantoCronoController extends BaseController
             return response()->json(['ok' => false, 'message' => 'Error al actualizar registros.'], 500);
         }
     }
+
+    public function downloadPdfLetter(Request $request)
+        {
+            // Obtener datos (ajusta la query si tu lógica es otra)
+            $query = Hojadevida::query()->orderBy('id','desc');
+
+            if ($request->filled('search')) {
+                // Si buscas por propiedad nombre (ajusta según tu modelo/relación)
+                $term = $request->search;
+                $query->whereHas('propiedad', function ($q) use ($term) {
+                    $q->where('nombreempresa', 'like', "%{$term}%");
+                });
+            }
+
+            $hdvs = $query->get();
+
+            $pdf = PDF::loadView('manto_crono_pdf', compact('hdvs'))
+                    ->setPaper('letter', 'portrait');
+
+            return $pdf->download('cronograma_letter_portrait.pdf');
+        }
+
+        /**
+         * Descargar PDF tamaño carta (landscape)
+         */
+         public function downloadPdfLetterPortrait(Request $request)
+            {
+                $query = Hojadevida::query()->orderBy('id','desc');
+                if ($request->filled('search')) {
+                    $term = $request->search;
+                    $query->whereHas('propiedad', fn($q) => $q->where('nombreempresa','like',"%{$term}%"));
+                }
+                $hdvs = $query->get();
+
+                $pdf = PDF::loadView('manto_crono_pdf', compact('hdvs'))
+                        ->setPaper('letter', 'portrait');
+
+                return $pdf->download('cronograma_letter_portrait.pdf');
+            }
+
+        public function downloadPdfLetterLandscape(Request $request)
+            {
+                $query = Hojadevida::query()->orderBy('id','desc');
+                if ($request->filled('search')) {
+                    $term = $request->search;
+                    $query->whereHas('propiedad', fn($q) => $q->where('nombreempresa','like',"%{$term}%"));
+                }
+                $hdvs = $query->get();
+
+                $pdf = PDF::loadView('manto_crono_pdf', compact('hdvs'))
+                        ->setPaper('letter', 'landscape');
+
+                return $pdf->download('cronograma_letter_landscape.pdf');
+            }
+
 }

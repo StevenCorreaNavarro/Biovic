@@ -211,6 +211,13 @@ Route::middleware('auth')->group(function () {
     Route::get('manto_crono', [MantoCronoController::class, 'propiedad'])->name('mantocrono.index')->middleware('auth');
     Route::post('manto_crono/bulk-mark', [MantoCronoController::class, 'bulkMark'])->name('mantocrono.bulk_mark')->middleware('auth');
 
+    Route::get('mantocrono/pdf/letter', [MantoCronoController::class, 'downloadPdfLetter'])
+    ->name('mantocrono.pdf_letter')->middleware('auth');
+
+    // PDF tamaño carta (landscape)
+    Route::get('mantocrono/pdf/letter-landscape', [MantoCronoController::class, 'downloadPdfLetterLandscape'])
+    ->name('mantocrono.pdf_letter_landscape')->middleware('auth');
+
 
     // rutas que ya tenías
     Route::get('manto_crono/listar', [MantoCronoController::class, 'listar'])->name('mantocrono.listar');

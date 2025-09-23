@@ -326,6 +326,20 @@
                     </script>
                     {{-- FIN TABLA CRONOGRAMA --}}
 
+                            <!-- BOTONES DESCARGA PDF (carta portrait / landscape) -->
+        <div class="d-flex justify-content-end gap-2 mt-3">
+        {{-- <a href="{{ route('mantocrono.pdf_letter', request()->only('search')) }}"
+            class="btn btn-outline-primary" target="_blank">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF (Carta - Vertical)
+        </a> --}}
+
+        <a href="{{ route('mantocrono.pdf_letter_landscape', request()->only('search')) }}"
+            class="btn btn-outline-secondary" target="_blank">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF (Carta - Horizontal)
+        </a>
+        </div>
+
+
         </div>
 
     </main>
