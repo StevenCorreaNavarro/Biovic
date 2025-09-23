@@ -213,12 +213,14 @@ class MantoCronoController extends BaseController
         /**
          * Descargar PDF tamaño carta (landscape)
          */
-         public function downloadPdfLetterPortrait(Request $request)
+       public function downloadPdfLetterPortrait(Request $request)
             {
                 $query = Hojadevida::query()->orderBy('id','desc');
                 if ($request->filled('search')) {
                     $term = $request->search;
-                    $query->whereHas('propiedad', fn($q) => $q->where('nombreempresa','like',"%{$term}%"));
+                    $query->whereHas('propiedad', function($q) use ($term) {
+                        $q->where('nombreempresa','like',"%{$term}%");
+                    });
                 }
                 $hdvs = $query->get();
 
@@ -228,12 +230,14 @@ class MantoCronoController extends BaseController
                 return $pdf->download('cronograma_letter_portrait.pdf');
             }
 
-        public function downloadPdfLetterLandscape(Request $request)
+       public function downloadPdfLetterLandscape(Request $request)
             {
                 $query = Hojadevida::query()->orderBy('id','desc');
                 if ($request->filled('search')) {
                     $term = $request->search;
-                    $query->whereHas('propiedad', fn($q) => $q->where('nombreempresa','like',"%{$term}%"));
+                    $query->whereHas('propiedad', function($q) use ($term) {
+                        $q->where('nombreempresa','like',"%{$term}%");
+                    });
                 }
                 $hdvs = $query->get();
 
