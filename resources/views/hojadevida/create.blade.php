@@ -1367,7 +1367,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Script para mostrar los detalles -->
+                    {{-- <!-- Script para mostrar los detalles -->   jum mk esta raro por que esta igual al mio --}}
                     <script>
                         // La función para mostrar/ocultar los formularios y los selects
                         function toggleFormulario(tipo) {

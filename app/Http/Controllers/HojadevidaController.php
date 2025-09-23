@@ -636,6 +636,8 @@ class HojadevidaController extends Controller
 
         return $traducciones[$mesIngles] ?? null;
     }
+
+    
     // public function store(Request $request)
     // {
     //     $hdv = new Hojadevida();
@@ -713,7 +715,7 @@ class HojadevidaController extends Controller
         // Implementar si se requiere editar HV desde interfaz
     }
 
-    
+
 
     /**
      * Actualiza datos del usuario (usado para perfil/usuarios; se mantiene la lógica original).

@@ -73,7 +73,6 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
 
 });
 
-
 //######################################################################################################## GRUPOS RUTAS ADMINISTRADOR COMIENZO
 Route::middleware(['auth', 'Admin'])->group(function () {
 
