@@ -64,7 +64,7 @@
 
 
         <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
-            <h1>CRONOGRAMA DE MANTENIMIENTO</h1>
+            <h1>CRONOGRAMA DE MANTENIMIENTO PRUEBA</h1>
             <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
                 action="{{ route('mantocrono.propiedad') }}">
 
@@ -89,16 +89,21 @@
         </div>
         <div>
             <div class="row p-0 m-0">
-                <div class="w-25  bg-black border border-light "><img src="{{ asset('IMG/logotipohancho.png') }}"
-                        height="100px" alt=""></div>
+                <div class="w-25  bg-primary border border-light ">
+                    <img src="{{ asset('IMG/logotipohancho.png') }}" height="100px" alt="">
+                </div>
                 <div class="w-25 p-3 bg-primary border fs-4 border-light text-center text-white">CRONOGRAMA DE
                     MANTENIMIENTO
+                    <div class="w-25 p-3 bg-primary" >
+                        <h5> version:</h5>
+                        <h5> codigo:</h5>
+                        <h5> proceso:</h5>
+                    </div>
                 </div>
-                <div class="w-25 p-3 bg-primary border border-light text-center">
-                    <h5> version:</h5>
-                    <h5> codigo:</h5>
-                    <h5> proceso:</h5>
+                 <div class="w-25  bg-primary border border-light ">
+                    <img src="{{ asset('IMG/logotipohancho.png') }}" height="100px" alt="">
                 </div>
+
                 @if (request()->filled('search'))
                     @if ($hdvs->count() > 0)
                         {{-- Mostrar el título solo una vez --}}
@@ -109,7 +114,7 @@
                         {{-- Mostrar los resultados --}}
                         @foreach ($hdvs as $hdv)
                             {{-- <div class="card my-2">
-                                {{-- Muestra los datos que quieras del $hdv 
+                                {{-- Muestra los datos que quieras del $hdv
                                 <p>{{ $hdv->campo_ejemplo }}</p>
                             </div> --}}
                         @endforeach
@@ -118,121 +123,209 @@
                     @endif
                 @endif
             </div>
-            <table class="table  table-striped table-hover">
+           {{--  --}}
+           {{-- TABLA CRONOGRAMA (pegar aquí) --}}
+                    <div class="table-wrap" style="overflow-x:auto; margin-top:.5rem;">
+                        <table class="table table-striped table-hover crono" role="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ITEM</th>
+                                    <th>UBICACACION</th>
+                                    <th>EQUIPO</th>
+                                    <th>MARCA</th>
+                                    <th>MODELO</th>
+                                    <th>SERIE</th>
+                                    <th class="month-header" data-month="enero">ENERO</th>
+                                    <th class="month-header" data-month="febrero">FEBRERO</th>
+                                    <th class="month-header" data-month="marzo">MARZO</th>
+                                    <th class="month-header" data-month="abril">ABRIL</th>
+                                    <th class="month-header" data-month="mayo">MAYO</th>
+                                    <th class="month-header" data-month="junio">JUNIO</th>
+                                    <th class="month-header" data-month="julio">JULIO</th>
+                                    <th class="month-header" data-month="agosto">AGOSTO</th>
+                                    <th class="month-header" data-month="septiembre">SEPTIEMBRE</th>
+                                    <th class="month-header" data-month="octubre">OCTUBRE</th>
+                                    <th class="month-header" data-month="noviembre">NOVIEMBRE</th>
+                                    <th class="month-header" data-month="diciembre">DICIEMBRE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+                                @endphp
 
-                <thead class="table-dark">
-                    <tr>
-                        <th>ITEM</th>
+                                @foreach ($hdvs as $index => $hdv)
+                                    <tr data-id="{{ $hdv->id }}" data-row-index="{{ $index }}">
+                                        <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->id }}</h6></td>
+                                        <td style="font-size: 8px"><h6 style="margin:0; white-space:nowrap">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6></td>
+                                        <td style="font-size:8px"><h6 style="margin:0;">{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6></td>
+                                        <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6></td>
+                                        <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</h6></td>
+                                        <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->serie ?? 'NO REGISTRA' }}</h6></td>
 
-                        <th>UBICACACION</th>
-                        <th>EQUIPO</th>
-                        <th>MARCA</th>
-                        <th>MODELO</th>
-                        <th>SERIE</th>
-                        <th>ENERO</th>
-                        <th>FEBRERO</th>
-                        <th>MARZO</th>
-                        <th>ABRIL</th>
-                        <th>MAYO</th>
-                        <th>JUNIO</th>
-                        <th>JULIO</th>
-                        <th>AGOSTO</th>
-                        <th>SEPTIEMBRE</th>
-                        <th>OCTUBRE</th>
-                        <th>NOVIEMBRE</th>
-                        <th>DICIEMBRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($hdvs as $hdv)
-                        <tr>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->id }}</h6>
-                            </td>
+                                        @foreach($meses as $mes)
+                                            @php $valor = $hdv->$mes; @endphp
+                                            <td class="month-cell" data-month="{{ $mes }}" data-value="{{ $valor ?? '' }}"
+                                                style="font-size:8px; border: 1px solid rgb(205,205,205); text-align:center;">
+                                                @if($valor === 'X')
+                                                    <span class="mark" aria-hidden="true">&#10004;</span>
+                                                @else
+                                                    <span style="display:inline-block; min-width:18px;">&nbsp;</span>
+                                                @endif
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
-                            <td style="font-size: 8px">
-                                <h6 style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
-                            </td>
-                            <td style="font-size:8px">
-                                <h6>{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</h6>
-                            </td>
+                    {{-- contenedor para toasts simples --}}
+                    <div id="toast-container" aria-live="polite" aria-atomic="true" style="position:fixed; top:1rem; right:1rem; z-index:3000;"></div>
 
-                            <td style="font-size: 8px; ">
-                                <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
-                            </td>
+                    {{-- estilos y script locales (no tocan layout global) --}}
+                    <style>
+                        .mark { display:inline-block; padding:.18rem .4rem; border-radius:3px; background:#ffeb3b; color:#000; font-weight:700; }
+                        .month-header { cursor:pointer; user-select:none; }
+                        .month-cell { cursor:pointer; }
+                        .toast-custom { background: rgba(0,0,0,0.85); color:#fff; padding:.5rem .9rem; border-radius:6px; margin-bottom:.4rem; box-shadow:0 6px 18px rgba(0,0,0,0.15); }
+                    </style>
 
-                            <td style="font-size: 8px; border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->enero == 'X') class="bg-yellow " @endif>
-                                <h6>{{ $hdv->enero }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->febrero == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->febrero }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->marzo == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->marzo }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->abril == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->abril }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->mayo == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->mayo }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->junio == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->junio }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->julio == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->julio }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->agosto == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->agosto }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->septiembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->septiembre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->octubre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->octubre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->noviembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->noviembre }}</h6>
-                            </td>
-                            <td style="font-size: 8px;border: 1px solid rgb(205, 205, 205);"
-                                @if ($hdv->diciembre == 'X') class="bg-yellow" @endif>
-                                <h6>{{ $hdv->diciembre }}</h6>
-                            </td>
+                    <script>
+                    (function () {
+                        // Referencia a la tabla
+                        const table = document.querySelector('table.crono');
+                        if (!table) return;
+                        const getRows = () => Array.from(table.querySelectorAll('tbody tr'));
 
-                            <!-- <td>{{ $hdv->enero }}</td>
-                        <td>{{ $hdv->febrero }}</td>
-                        <td>{{ $hdv->marzo }}</td>
-                        <td>{{ $hdv->abril }}</td>
-                        <td>{{ $hdv->mayo }}</td>
-                        <td>{{ $hdv->junio }}</td>
-                        <td>{{ $hdv->julio }}</td>
-                        <td>{{ $hdv->agosto }}</td>
-                        <td>{{ $hdv->septiembre }}</td>
-                        <td>{{ $hdv->octubre }}</td>
-                        <td>{{ $hdv->noviembre }}</td>
-                        <td>{{ $hdv->diciembre }}</td> -->
-                        </tr>
-                    @endforeach
-                </tbody>
+                        // Función para actualizar visualmente una celda
+                        function setCellMarked(cell, marked) {
+                            if (!cell) return;
+                            cell.dataset.value = marked ? 'X' : '';
+                            if (marked) {
+                                cell.innerHTML = '<span class="mark">✓</span>';
+                            } else {
+                                cell.innerHTML = '<span style="display:inline-block; min-width:18px;">&nbsp;</span>';
+                            }
+                        }
 
-            </table>
+                        // Toast sencillo
+                        function showToast(msg, ms = 2500) {
+                            const c = document.getElementById('toast-container');
+                            const el = document.createElement('div');
+                            el.className = 'toast-custom';
+                            el.textContent = msg;
+                            c.appendChild(el);
+                            setTimeout(()=> { el.remove(); }, ms);
+                        }
+
+                        // Enviar cambios por POST a la ruta bulk_mark
+                        async function persistBulk(month, ids, value) {
+                            const url = "{{ route('mantocrono.bulk_mark') }}";
+                            const tokenEl = document.querySelector('meta[name="csrf-token"]');
+                            const token = tokenEl ? tokenEl.getAttribute('content') : '';
+
+                            try {
+                                const res = await fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': token,
+                                        'Accept': 'application/json'
+                                    },
+                                    body: JSON.stringify({ month, ids, value })
+                                });
+                                return res;
+                            } catch (err) {
+                                console.error('Network error', err);
+                                throw err;
+                            }
+                        }
+
+                        // Click en celda: marcar/desmarcar desde esa fila hacia abajo
+                        table.addEventListener('click', function (ev) {
+                            const cell = ev.target.closest('.month-cell');
+                            if (!cell) return;
+                            const row = cell.closest('tr');
+                            const startIndex = parseInt(row.dataset.rowIndex, 10) || 0;
+                            const month = cell.dataset.month;
+                            const currentlyMarked = cell.dataset.value === 'X';
+                            const newValue = currentlyMarked ? '' : 'X';
+
+                            const rows = getRows().slice(startIndex);
+                            const ids = [];
+                            rows.forEach(r => {
+                                const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                if (c) setCellMarked(c, newValue === 'X');
+                                ids.push(r.dataset.id);
+                            });
+
+                            persistBulk(month, ids, newValue)
+                                .then(resp => {
+                                    if (!resp.ok) {
+                                        // revertir
+                                        rows.forEach(r => {
+                                            const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                            if (c) setCellMarked(c, currentlyMarked);
+                                        });
+                                        showToast('Error al guardar. Intenta de nuevo.');
+                                    } else {
+                                        showToast(`Actualizados ${ids.length} registros.`);
+                                    }
+                                })
+                                .catch(() => {
+                                    rows.forEach(r => {
+                                        const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                        if (c) setCellMarked(c, currentlyMarked);
+                                    });
+                                    showToast('Error de conexión. Cambios no guardados.');
+                                });
+                        });
+
+                        // Click en encabezado: marcar/desmarcar toda la columna
+                        table.querySelectorAll('.month-header').forEach(h => {
+                            h.addEventListener('click', function () {
+                                const month = this.dataset.month;
+                                const rows = getRows();
+                                if (!rows.length) return;
+
+                                const firstCell = rows[0].querySelector(`.month-cell[data-month="${month}"]`);
+                                const currentlyMarked = firstCell && firstCell.dataset.value === 'X';
+                                const newValue = currentlyMarked ? '' : 'X';
+                                const ids = rows.map(r => r.dataset.id);
+
+                                rows.forEach(r => {
+                                    const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                    if (c) setCellMarked(c, newValue === 'X');
+                                });
+
+                                persistBulk(month, ids, newValue)
+                                    .then(resp => {
+                                        if (!resp.ok) {
+                                            // revertir
+                                            rows.forEach(r => {
+                                                const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                                if (c) setCellMarked(c, currentlyMarked);
+                                            });
+                                            showToast('Error al guardar cambios masivos.');
+                                        } else {
+                                            showToast(`Actualizados ${ids.length} registros.`);
+                                        }
+                                    })
+                                    .catch(() => {
+                                        rows.forEach(r => {
+                                            const c = r.querySelector(`.month-cell[data-month="${month}"]`);
+                                            if (c) setCellMarked(c, currentlyMarked);
+                                        });
+                                        showToast('Error de conexión. Cambios no guardados.');
+                                    });
+                            });
+                        });
+
+                    })();
+                    </script>
+                    {{-- FIN TABLA CRONOGRAMA --}}
+
         </div>
 
     </main>

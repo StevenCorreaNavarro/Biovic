@@ -204,6 +204,15 @@ Route::middleware('auth')->group(function () {
     Route::get('check_list/propiedad', [CheckListController::class, 'propiedadchecklist'])->name('check_list.propiedad');
 
     // Mantenimientos / cronogramas
+
+
+    // rutas principales del cronograma
+
+    Route::get('manto_crono', [MantoCronoController::class, 'propiedad'])->name('mantocrono.index')->middleware('auth');
+    Route::post('manto_crono/bulk-mark', [MantoCronoController::class, 'bulkMark'])->name('mantocrono.bulk_mark')->middleware('auth');
+
+
+    // rutas que ya tenías
     Route::get('manto_crono/listar', [MantoCronoController::class, 'listar'])->name('mantocrono.listar');
     Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
     Route::get('manto_crono/propiedad', [MantoCronoController::class, 'propiedad'])->name('mantocrono.propiedad');
