@@ -74,20 +74,12 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
-    Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
-    Route::delete('/hojadevida/{hdvs}',[HojadevidaController::class,'destroy'])->name('hojadevida.destroy');
-    Route::get('/hojadevida/{hdv}/edit',[HojadevidaController::class,'edit'])->name('hojadevida.edit'); 
-    // Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
 
 });
-
-
 
 //######################################################################################################## GRUPOS RUTAS ADMINISTRADOR COMIENZO
 Route::middleware(['auth', 'Admin'])->group(function () {
 
-    // Dashboard admin
-    
     // Dashboard admin
     Route::get('/admin', function () {
         return view('admin.admin.layouts.app');
@@ -167,8 +159,7 @@ Route::middleware('auth')->group(function () {
     // Ruta auxiliar para listar equipos (se usa en formulario)
     Route::get('/equipos', [EquipoController::class, 'stores']);
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
-    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
-    
+    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'shows'])->name('hojadevida.show');
 
     // Resource para empleados
     Route::resource('empleips', EmpleipsController::class);
@@ -192,7 +183,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::get('hojadevida/mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])
         ->name('hojadevida.mostrarbusqueda');
-        
+
 
     // Ruta adicional con nombre corto por compatibilidad (si alguna vista la llama)
     Route::get('mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])
@@ -218,6 +209,20 @@ Route::middleware('auth')->group(function () {
     Route::get('check_list/propiedad', [CheckListController::class, 'propiedadchecklist'])->name('check_list.propiedad');
 
     // Mantenimientos / cronogramas
+
+
+    // rutas principales del cronograma
+
+    Route::get('manto_crono', [MantoCronoController::class, 'propiedad'])->name('mantocrono.index')->middleware('auth');
+    Route::post('manto_crono/bulk-mark', [MantoCronoController::class, 'bulkMark'])->name('mantocrono.bulk_mark')->middleware('auth');
+
+
+// rutas para descargar pdf en diferentes formatos (A4, Letter, Portrait, Landscape)
+    Route::get('mantocrono/pdf/letter-portrait', [MantoCronoController::class,'downloadPdfLetterPortrait'])->name('mantocrono.pdf_letter_portrait');
+    Route::get('mantocrono/pdf/letter-landscape', [MantoCronoController::class,'downloadPdfLetterLandscape'])->name('mantocrono.pdf_letter_landscape');
+
+
+    // rutas que ya tenías
     Route::get('manto_crono/listar', [MantoCronoController::class, 'listar'])->name('mantocrono.listar');
     Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
     Route::get('manto_crono/propiedad', [MantoCronoController::class, 'propiedad'])->name('mantocrono.propiedad');

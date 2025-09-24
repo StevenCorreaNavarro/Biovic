@@ -726,6 +726,8 @@ class HojadevidaController extends Controller
 
         return $traducciones[$mesIngles] ?? null;
     }
+
+    
     // public function store(Request $request)
     // {
     //     $hdv = new Hojadevida();
