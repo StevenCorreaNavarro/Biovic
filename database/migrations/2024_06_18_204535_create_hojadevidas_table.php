@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 
             // $table->string('fechaMtto');
-            $table->string('serie')->nullable();;
+            $table->string('serie')->nullable();
+            $table->string('codigo')->nullable();
             $table->string('perioMto')->nullable();;
             $table->string('perioCali')->nullable();;// si, solicita fecha
             $table->date('fechaCali')->nullable();
@@ -62,6 +63,9 @@ return new class extends Migration
             $table->string('octubre')->nullable();
             $table->string('noviembre')->nullable();
             $table->string('diciembre')->nullable();
+            
+            $table->unsignedBigInteger('user_id')->nullable();	 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('equipo_id')->nullable();	 // Datos del equipo
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
@@ -69,6 +73,8 @@ return new class extends Migration
             $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
             $table->unsignedBigInteger('marca_id')->nullable();	 
             $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
+
+        
 
             $table->unsignedBigInteger('estadoequipo_id')->nullable();	 
             $table->foreign('estadoequipo_id')->references('id')->on('estadoequipos')->onDelete('cascade');

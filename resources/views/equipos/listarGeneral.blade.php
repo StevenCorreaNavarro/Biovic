@@ -138,7 +138,7 @@
                                             target="_blank">
                                             <i class="bi bi-download"></i>
                                         </a>
-                                        <a href="#" class="p-1 btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ url('hojadevida' . '/' . $hdv->id . '/edit') }} " class="p-1 btn-warning"><i class="bi bi-pencil-square"></i></a>
 
                                         <form action="{{ route('adminlistarR.destroy', $hdv->id) }}" method="POST"  >
                                             @csrf

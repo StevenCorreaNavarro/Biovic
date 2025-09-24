@@ -98,7 +98,6 @@
                         <div class="w-25 p-3 bg-primary border border-light text-center text-white">
                             <h1 class="text-white">{{ $hdvs[0]->propiedad?->nombreempresa ?? '---' }}</h1>
                         </div>
-
                         {{-- Mostrar los resultados --}}
                         @foreach ($hdvs as $hdv)
                             {{-- <div class="card my-2">

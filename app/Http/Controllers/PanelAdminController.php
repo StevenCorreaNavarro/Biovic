@@ -97,6 +97,7 @@ class PanelAdminController extends Controller
                     ->orWhere('email', 'LIKE', "%$search%")
                     ->orWhere('contact', 'LIKE', "%$search%")
                     ->orWhere('role', 'LIKE', "%$search%")
+                    ->orWhere('codigo', 'LIKE', "%$$search%")
                     ->orWhere('identity', 'LIKE', "%$search%");
             });
         }
@@ -142,6 +143,7 @@ class PanelAdminController extends Controller
         $hdvs = Modelo::orderBy('id', 'desc')->get();
         return view('equipos.listar_tres', compact('hdvs'));
     }
+    
     public function lista_Registrada()
     {
         $hdvs = hojadevida::orderBy('id', 'desc')->get();
@@ -341,9 +343,15 @@ class PanelAdminController extends Controller
         //         return back()->with('error', 'No puedes cambiar tu propio rol si eres administrador.');
         //     }
         // }
+         $request->validate([           /////este codigo sirve para los errores de valores unicos
+        'name' => 'unique:users,name,'.$user->id,
+        'email' => 'unique:users,email,'.$user->id,
+        'codigo' => 'unique:users'
+    ]);
 
         $user->role = $request->role;
         $user->name = $request->name;
+        $user->codigo = $request->codigo;
         $user->identity = $request->identity;
         // $user->foto = $request->foto;
         if ($request->hasFile('foto')) {
@@ -358,11 +366,36 @@ class PanelAdminController extends Controller
         $user->role = $request->input('role');
         $user->save();
 
+       
+
         return redirect()->route('user.listausers');
     }
     //Update
-    public function edituser(User $user)
+    public function edituser(Request $request, User $user)
     {
+        // $user->validate([
+        //     'name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+        //     'codigo' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+           
+        // ]);
+        // $request->validate(
+        //     [
+        //          'name' => ['required', 'string', 'max:255', 'unique:'],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'],
+        //     'codigo' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'],
+        //     ],
+        //     [
+        //         'name.unique' => 'Solo se admite registro unico.',
+        //         'email.unique' => 'Solo se admite registro unico.',
+        //         'codigo.unique' => 'Solo se admite registro unico.',
+        //     ],
+        // );
+        // User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'codigo' => $request->codigo,
+        // ]);
 
         return view('users.edit', compact('user'));
     }

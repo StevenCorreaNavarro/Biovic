@@ -43,7 +43,8 @@ Route::get('/', function () {
     return view('main');
 })->name('menu');
 
-// Rutas auxiliares públicas
+
+// Rutas auxiliares públicas             hojadevida/mostrarbusqueda
 Route::get('/main', function () {
     Alert::success(' Titulo de la alerta','mensaje de la alerta');
     return view('main');
@@ -59,6 +60,9 @@ Route::get('/empleados', function () {
     return view('empleips.form');
 })->name('empleados');
 
+Route::get('/hoja/hoja', function () {
+        return view('firmas.hoja1');
+    });
 /*
 |--------------------------------------------------------------------------
 | Rutas accesibles para Admin y Empleado (grupo con rol)
@@ -164,7 +168,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/descargar-pdf/{id}', [HojadevidaController::class, 'downloadPDF'])->name('descargar.pdf');
 
     // Actualizar usuario (ruta reutilizada con HojadevidaController en tu proyecto original)
-    Route::put('/user/{user}', [HojadevidaController::class, 'update'])->name('user.updateusers');
+    Route::put('/user/{user}', [HojadevidaController::class, 'updateuser'])->name('user.updateusers');
     Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
 
     // Listado principal de hojas de vida
@@ -179,6 +183,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::get('hojadevida/mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])
         ->name('hojadevida.mostrarbusqueda');
+
 
     // Ruta adicional con nombre corto por compatibilidad (si alguna vista la llama)
     Route::get('mostrarbusqueda', [HojadevidaController::class, 'mostrarbusqueda'])
@@ -260,6 +265,8 @@ Route::middleware('auth')->group(function () {
 */
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [ProfileController::class, 'ver'])->name('profile.edit');
+
+    Route::get('/profiles/{user}/verperfiles', [ProfileController::class, 'verperfiles'])->name('profiles.users');
     Route::patch('/profiless', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profilesss', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="{{ asset('css/descargarpdf.css') }}">
+    
     <style>
         * {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -42,18 +43,20 @@
         }
 
         td {
+            height:15px;
             font-size: 9px;
             text-align: left;
             /* padding: 1px; */
             /* margin: 1px; */
 
         }
+       
     </style>
-    <title>PDF hoja de vida</title>1
+    <title>PDF hoja de vida</title>
 </head>
 
 <body style=" top: 0px; left: 0px;background-color: rgb(255, 255, 255);">
-    <div style="position: absolute; top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);border: 1px solid gray; ">
+    <div style=" top: 0px; left: 0px; width:700px; background-color: rgb(255, 255, 255);border: 1px solid gray; ">
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <tr style=" background-color:rgb(0, 64, 255); overflow: hidden;  padding: 0px;margin: 0px;">
                 <td style=" background-color: rgb(255, 255, 255); border: 0px solid rgb(0, 0, 0); text-align: center;padding: 0px;
@@ -127,7 +130,7 @@
                 <td rowspan="7" style="  border: 1px solid rgb(196, 196, 196); ">
                     @if (!empty($hdvs->foto) && Storage::exists('public/' . $hdvs->foto))
                         <center>
-                            <img src="{{ asset('storage') . '/' . $hdvs->foto }}" height="125px"
+                            <img src="{{ asset('storage') . '/' . $hdvs->foto }}" style="width: 100%; max-height:150px ;object-fit: cover;" 
                                 alt="145px">
                         </center>
                     @else

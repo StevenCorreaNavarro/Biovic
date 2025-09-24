@@ -36,16 +36,16 @@
 
 <body>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Esperar 1 segundo (1000 ms)
-        setTimeout(function () {
-            // Buscar el botón y simular un clic
-            const toggleBtn = document.querySelector(".toggle-sidebar");
-            if (toggleBtn) {
-                toggleBtn.click();
-            }
-        }, 1000);
-    });
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     // Esperar 1 segundo (1000 ms)
+    //     setTimeout(function () {
+    //         // Buscar el botón y simular un clic
+    //         const toggleBtn = document.querySelector(".toggle-sidebar");
+    //         if (toggleBtn) {
+    //             toggleBtn.click();
+    //         }
+    //     }, 1000);
+    // });
 </script>
 
     <div class="wrapper">

@@ -16,16 +16,18 @@ class UsersTableSeeder extends Seeder
     {
         $user = new User();
         $user->role = 'Admin';
-        $user->name = 'Admin';
+        $user->name = 'Super administrador';
+        $user->codigo = '0';
         $user->email = 'admin@gmail.com';
         $user->password =  '12345678' ;               //Hash::make(value:'123456789');
         $user->save();
 
         //ORM Object relationship Mapping
         User::create(attributes: [
-            
-            'name' => 'Admin2',
-            'email' => 'admin2@gmail.com',
+            'role' => 'Empleado',
+            'name' => 'Empleado',
+            'codigo' => '1',
+            'email' => 'empleado@gmail.com',
             'password' => '123456789',                    //Hash::make(value:'123456789');
         ]);
     }

@@ -20,12 +20,21 @@ class ProfileController extends Controller
 
 
         return view('profile.user', compact('hdvs'))->with('success', '¡Registro creado exitosamente!');
-        
+    }
+    // $hdvs = Hojadevida::orderBy('id', 'desc')->get();
+    // 
 
 
+    public function verperfiles($user,Request $request)
+    {
+        $hdvs = User::findOrFail($user);
+        // $hdvs = hojadevida::with('equipo')->get();
+        return view('profile.users', compact('hdvs'))->with('success', '¡Registro creado exitosamente!');
         // $hdvs = Hojadevida::orderBy('id', 'desc')->get();
         // return view('hojadevida.listar', compact('hdvs'));
+        // return view('hojadevida.listar', compact('hdvs'));
     }
+
 
 
 
