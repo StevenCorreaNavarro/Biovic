@@ -244,7 +244,7 @@ class MantoCronoController extends BaseController
                 $pdf = PDF::loadView('manto_crono_pdf', compact('hdvs'))
                         ->setPaper('letter', 'landscape');
 
-                return $pdf->download('cronograma_letter_landscape.pdf');
+                return $pdf->download('cronograma de mantenimiento.pdf');
             }
 
 }
