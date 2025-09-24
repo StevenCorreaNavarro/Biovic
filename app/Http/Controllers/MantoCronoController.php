@@ -247,4 +247,6 @@ class MantoCronoController extends BaseController
                 return $pdf->download('cronograma de mantenimiento.pdf');
             }
 
+
+
 }
