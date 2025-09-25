@@ -74,6 +74,12 @@ Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
+      Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
+    Route::delete('/hojadevida/{hdvs}',[HojadevidaController::class,'destroy'])->name('hojadevida.destroy');
+    Route::get('/hojadevida/{hdv}/edit',[HojadevidaController::class,'edit'])->name('hojadevida.edit'); 
+    Route::put('/hojadevida/{hdv}',[HojadevidaController::class,'update'])->name('hojadevida.update');
+
+    
 
 });
 
@@ -159,7 +165,8 @@ Route::middleware('auth')->group(function () {
     // Ruta auxiliar para listar equipos (se usa en formulario)
     Route::get('/equipos', [EquipoController::class, 'stores']);
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
-    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'shows'])->name('hojadevida.show');
+    Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
+
 
     // Resource para empleados
     Route::resource('empleips', EmpleipsController::class);
