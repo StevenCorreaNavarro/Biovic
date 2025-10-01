@@ -18,12 +18,11 @@
 <body>
 @extends('layouts.header')
     <main>
-        manto_crono_cal.blade
         <div class="image-hoja">
             <img src="IMG/M2-5 - Cronograma de Calibracion.jpg" alt="">
         </div>
     </main>
-
+    
     <footer class="bg-primary text-white text-center py-4">
         <div class="container">
             <h4>VitalSoft</h4>

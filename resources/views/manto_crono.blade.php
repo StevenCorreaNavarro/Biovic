@@ -38,7 +38,7 @@
     <main>
         <br><br>
         <div class="d-flex flex-column justify-content-center align-items-center text-center">
-            <h1>CRONOGRAMA DE MANTENIMIENTO PRUEBA manto_crono.blade</h1>
+            <h1>CRONOGRAMA DE MANTENIMIENTO PRUEBA</h1>
 
             {{-- Buscador por propiedad + filtro por UBICACIÓN (no rompe la estructura visual) --}}
             <form class="d-flex w-100 align-items-center" style="background:#efefef; padding:8px; border-radius:6px;" method="GET" action="{{ route('mantocrono.propiedad') }}">

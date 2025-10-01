@@ -87,28 +87,6 @@ class MantoCronoController extends BaseController
         return view('manto_crono', compact('hdvs','propiedads'));
     }
 
-     public function semaforo(Request $request)
-    {
-        // Eager load: ajusta los nombres de relación si en tu modelo son otros
-        $query = hojadevida::with(['propiedad','ubifisica','equipo','marca','modelo']);
-
-        // Lista para datalist
-        $propiedades = propiedad::select('id','nombreempresa')->orderBy('nombreempresa')->get();
-
-        // Filtrado por propiedad (search)
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-            $query->whereHas('propiedad', function ($q) use ($search) {
-                $q->where('nombreempresa', 'LIKE', "%{$search}%");
-            });
-        }
-
-        // Paginación (ajusta el valor si lo deseas)
-        $hdvs = $query->orderBy('id', 'desc')->paginate(50);
-
-        return view('Semaforo_crono_cal', compact('hdvs','propiedades'));
-    }
-
     /**
      * Página con tabla vacía (solo búsqueda)
      */

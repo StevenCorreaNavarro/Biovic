@@ -57,7 +57,7 @@
       </tr>
       <!-- Fila de filtros (sin filtro en Imagen) -->
       <tr>
-
+        
         <th><select id="filter-id" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th><select id="filter-user" class="form-select form-select-sm filtro-select"><option value="">Todas</option></select></th>
         <th></th>
@@ -77,7 +77,7 @@
       @foreach ($hdvs as $hdv)
       <tr>
         <td>{{ $hdv->id }}</td>
-
+        
         <td><a href="{{ url('profiles/' . $hdv->user->id . '/verperfiles') }}">{{ $hdv->user?->name ?? '----' }}</a></td>
         <td>
           @if (!empty($hdv->foto) && Storage::exists('public/' . $hdv->foto))

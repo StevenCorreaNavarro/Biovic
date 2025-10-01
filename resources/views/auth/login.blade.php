@@ -16,6 +16,8 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
 
+                
+
                 <span>Nombre de usuario y correo unicos</span>
                 <x-input-label for="name" />
                 <x-text-input id="name" placeholder="Nombre de usuario" class="block mt-1 w-full" type="text"

@@ -35,7 +35,7 @@
 <body>
 @extends('layouts.header')
     <main>
-        
+
         <!-- <div class="image-hoja">
             <img src="IMG/M2-5 - Cronograma de Mantenimiento.jpg" alt="">
         </div> -->
