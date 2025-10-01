@@ -158,7 +158,7 @@ class HojadevidaController extends Controller
             return response()->json($hdvs);
         }
 
-        
+
         if (!$request->has('search')) {
             // Si no hay parámetro de búsqueda, redirige
             return redirect()->route('hoja_ver'); // o a donde quieras
@@ -727,7 +727,7 @@ class HojadevidaController extends Controller
         return $traducciones[$mesIngles] ?? null;
     }
 
-    
+
     // public function store(Request $request)
     // {
     //     $hdv = new Hojadevida();
@@ -779,7 +779,7 @@ class HojadevidaController extends Controller
 
 
 
-    public function show($hdvs, Request $request)
+  public function show($hdvs, Request $request)
     {
         $hdvs = Hojadevida::findOrFail($hdvs);
 
@@ -789,7 +789,7 @@ class HojadevidaController extends Controller
     }
 
 
-    //     public function shows($id, Request $request)
+    // public function show($id, Request $request)
     // {
     //     $hdvs = Hojadevida::with('accesorios')->findOrFail($id);
     //     $accesorios = accesorio::with('accesorios')->findOrFail($id);

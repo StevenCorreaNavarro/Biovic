@@ -149,7 +149,7 @@
     </td>
 
     <td class="header-center">
-      <div class="title-main">CRONOGRAMA DE MANTENIMIENTO</div>
+      <div class="title-main">CRONOGRAMA DE MANTENIMIENTO manto_crono_pdf.blade</div>
       <div class="meta">
         <small>VERSIÓN: 01</small>
         <small>CÓDIGO: DM-FIF-045</small>

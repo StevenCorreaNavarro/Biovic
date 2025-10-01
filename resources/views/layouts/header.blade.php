@@ -83,7 +83,7 @@
                         <li class="nav-item dropdown">
                             {{-- <a class="nav-link {{ request()->routeIs(['hoja_vida', 'hojadevida.*']) ? 'po' : '' }}"
                                 href="{{ route('hoja_vida') }}">Hojas de Vida</a>  --}}
-                            <a class="nav-link dropdown dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.*', 'hoja_ver']) ? 'po' : '' }}"
+                            <a class="nav-link dropdown dropdown-toggle {{ request()->routeIs(['hoja_vida', 'hojadevida.creates','hojadevida.create', 'hoja_ver']) ? 'po' : '' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Hojas de Vida
                             </a>
@@ -110,7 +110,7 @@
                         {{-- <a class="nav-link {{ request()->routeIs(['mantenimiento']) ? 'po' : '' }}"
                                 href="{{ route('mantenimiento') }}">Gestión de Mantenimiento</a> --}}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ request()->routeIs(['mantocrono.*', 'alarma', 'check_list.*', 'cronocali.*', 'inventario']) ? 'po' : '' }}"
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs(['mantocrono.*', 'alarma', 'check_list.*', 'cronocali.*', 'inventario.*','hojadevida.listar',]) ? 'po' : '' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestión de Mantenimiento
                             </a>
@@ -118,11 +118,15 @@
                                 <li><a class="dropdown-item" href="{{ asset('manto_crono/propiedad') }}">Cronograma de
                                         Mantenimiento</a></li>
                                 {{-- <li><hr class="dropdown-divider"></li> --}}
+                                <li><a class="dropdown-item" href="{{ asset('Semaforo_crono_cal') }}">Semaforo de
+                                        Calibracion</a></li>
+
                                 <li><a class="dropdown-item" href="{{ asset('crono_cali/propiedad') }}">Cronograma de
                                         Calibracion</a></li>
+
                                 <li><a class="dropdown-item" href="{{ asset('check_list/propiedad') }}">Lista de
                                         verificacion</a></li>
-                                <li><a class="dropdown-item" href="{{ asset('alarma_calibracion') }}">Alarmas</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ asset('alarma_calibracion') }}">Alarmas</a></li> mientras tanto --}}
                                 <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Inventario Fisico</a></li>
                             </ul>
                         </li>

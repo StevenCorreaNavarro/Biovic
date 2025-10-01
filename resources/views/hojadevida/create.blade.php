@@ -867,7 +867,7 @@
                     <div class="col-md-4 position-relative ">
                         <div class="form-group">
                             <label for="corrienteMax">Corriente Max</label>
-                            <input type="text" name="corrienteMax" class="form-control"
+                            <input type="number" name="corrienteMax" class="form-control"
                                 value="{{ isset($hojadevida->corrienteMax) ? $hojadevida->corrienteMax : old('corrienteMax') }}"
                                 id="corrienteMax">
                         </div>
