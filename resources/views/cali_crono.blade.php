@@ -38,148 +38,255 @@
 
 <body>
     @extends('layouts.header')
+
+
+    {{-- borrar desde aqui @extends('layouts.header') --}}
+
     <main>
-        <!-- <div class="image-hoja">
-            <img src="IMG/M2-5 - Cronograma de Mantenimiento.jpg" alt="">
-        </div> -->
-
         <br><br>
-        {{-- <div>
-            <h1 class="text-center">Cronograma de Mantenimiento</h1>
-            <p class="text-center">El cronograma de mantenimiento es una herramienta que permite planificar y organizar
-                las actividades de mantenimiento de una empresa o institución. En este documento se detallan las tareas
-                de mantenimiento preventivo y correctivo que se deben realizar en un determinado periodo de tiempo.</p>
-            <p class="text-center">El objetivo del cronograma de mantenimiento es garantizar que los equipos,
-                maquinarias e instalaciones de una empresa funcionen de manera óptima y segura. Para ello, se establecen
-                las fechas en las que se deben realizar las tareas de mantenimiento, así como los recursos necesarios
-                para llevarlas a cabo.</p>
-            <p class="text-center">El cronograma de mantenimiento es una herramienta fundamental para la gestión del
-                mantenimiento de una empresa, ya que permite planificar las actividades de mantenimiento de forma
-                eficiente y ordenada. Además, facilita la asignación de recursos y la programación de las tareas de
-                mantenimiento, lo que contribuye a mejorar la eficiencia y la productividad de la empresa.</p>
-            <p class="text-center">En resumen, el cronograma de mantenimiento es una herramienta que permite planificar
-                y organizar las actividades de mantenimiento de una empresa de manera eficiente y ordenada, lo que
-                contribuye a mejorar la eficiencia y la productividad de la empresa.</p>
-        </div> --}}
+        <div class="d-flex flex-column justify-content-center align-items-center text-center">
+            <h1>CRONOGRAMA DE CALIBRACION PRUEBA</h1>
 
+            {{-- Buscador por propiedad + filtro por UBICACIÓN (no rompe la estructura visual) --}}
+            <form class="d-flex w-100 align-items-center" style="background:#efefef; padding:8px; border-radius:6px;" method="GET" action="{{ route('mantocrono.propiedad') }}">
+                @csrf
 
-        <div class=" d-flex flex-column justify-content-center align-items-center text-center ">
-            <h1>CRONOGRAMA DE CALIBRACION</h1>
-            <form class="d-flex m-2" style="background-color: rgb(239, 239, 239); width: 100%" method="GET"
-                action="{{ route('cronocali.propiedad') }}">
-                @csrf {{-- token o seguridad  --}}
-                {{-- <input type="text" id="equipo" name="nombre_equipo" class="news-input" list="equipos-list"   value="{{ old('nombre') }}" required> --}}
-                <input class="form-control m-2" class="form-control" id="propiedad" style="width: 400px" type="text" name="search"  placeholder="Buscar..." value="{{ request('search') }}"      list="propiedad-list"   value="{{ old('propiedad') }}" required>
-                    <datalist style="font-size: 10%" id="propiedad-list">
-                        @foreach ($propiedades as $prop)
-                            <option value="{{ $prop->nombreempresa}}" data-id="{{ $prop->id }} "></option>
+                {{-- FILTRO: Ubicación (llena por PHP y reforzado por JS) --}}
+                <div class="ms-3 d-flex align-items-center">
+                    <label for="filter-ubicacion" class="me-2 mb-0"><strong>Filtrar Ubicación:</strong></label>
+                    <select id="filter-ubicacion" class="form-select form-select-sm" style="min-width:200px;">
+                        <option value="">Todas</option>
+                        @php
+                            // Generar lista única de ubicaciones (desde PHP para mejor rendimiento)
+                            $ubicaciones = [];
+                            foreach($hdvs as $h) {
+                                $u = trim((string)($h->ubifisica?->ubicacionfisica ?? ''));
+                                if($u !== '' && !in_array($u, $ubicaciones)) $ubicaciones[] = $u;
+                            }
+                            sort($ubicaciones);
+                        @endphp
+                        @foreach($ubicaciones as $u)
+                            <option value="{{ $u }}">{{ $u }}</option>
                         @endforeach
-                    </datalist>
+                    </select>
+                </div>
 
-                <button class="btn btn-primary m-2" type="submit"><i class="bi bi-search"></i></button> <a
-                    href="{{ route('cronocali.propiedad') }}" class="bi bi-arrow-repeat btn btn-primary m-2"></a>
 
-                {{-- <a href="{{ url('hojadevida/create') }}" class="btn btn-primary m-2">
-                Registrar Nueva hoja de vida
-            </a> --}}
+                {{-- FILTRO POR SERVICIO (coloca esto antes de la tabla) --}}
+                @php
+                // Generar lista única de servicios (desde PHP para mejor rendimiento)
+                $servicios = [];
+                foreach($hdvs as $h){
+                    $s = trim((string)($h->servicio?->nombreservicio ?? ''));
+                    if($s !== '' && !in_array($s, $servicios)) $servicios[] = $s;
+                }
+                sort($servicios);
+                @endphp
+
+                <div class="d-flex align-items-center mb-2">
+                    <label for="filter-servicio" class="me-2 mb-0"><strong>Filtrar por Servicio:</strong></label>
+                    <select id="filter-servicio" name="servicio" class="form-select form-select-sm" style="min-width:240px;">
+                        <option value="">Todos</option>
+                        @foreach($servicios as $s)
+                        <option value="{{ $s }}" {{ request('servicio') == $s ? 'selected' : '' }}>{{ $s }}</option>
+                        @endforeach
+                    </select>
+
+
+                </div>
             </form>
         </div>
+
+        {{-- Cabecera con logos y título (se respeta estructura) --}}
         <div>
             <div class="row p-0 m-0">
-                <div class="w-25  bg-black border border-light "><img src="{{ asset('IMG/logotipohancho.png') }}"
-                        height="100px" alt=""></div>
-                <div class="w-25 p-3 bg-primary fs-4 border border-light text-center text-white">CRONOGRAMA DE CALIBRACION
+                <div class="w-25 bg-primary border border-light">
+                    <img src="{{ asset('IMG/logotipohancho.png') }}" height="100px" alt="">
                 </div>
-                <div class="w-25 p-3 bg-primary border border-light text-center">
-                    <h5> version:</h5>
-                    <h5> codigo:</h5>
-                    <h5> proceso:</h5>
+                <div class="w-25 p-3 bg-primary border fs-4 border-light text-center text-white">
+                    CRONOGRAMA DE MANTENIMIENTO
+                    <div class="w-25 p-3 bg-primary">
+                        <h5> version:</h5>
+                        <h5> codigo:</h5>
+                        <h5> proceso:</h5>
+                    </div>
                 </div>
-                @if (request()->filled('search'))
-                    @if ($hdvs->count() > 0)
-                        {{-- Mostrar el título solo una vez --}}
-                        <div class="w-25 p-3 bg-primary border border-light text-center text-white">
-                            <h1 class="text-white">{{ $hdvs[0]->propiedad?->nombreempresa ?? '---' }}</h1>
-                        </div>
+                <div class="w-25 bg-primary border border-light">
+                    <img src="{{ asset('IMG/logotipohancho.png') }}" height="100px" alt="">
+                </div>
 
-                        {{-- Mostrar los resultados --}}
-                        @foreach ($hdvs as $hdv)
-                            {{-- <div class="card my-2">
-                                {{-- Muestra los datos que quieras del $hdv 
-                                <p>{{ $hdv->campo_ejemplo }}</p>
-                            </div> --}}
-                        @endforeach
-                    @else
-                        <p >No se encontraron resultados para "{{ request('search') }}"</p>
-                    @endif
-                @endif
+
             </div>
-            <table class="table  table-striped table-hover">
 
-                <thead class="table-dark">
-                    <tr>
-                        <th>ITEM</th>
+            {{-- inicio de pegado  --}}
 
-                        <th>UBICACACION</th>
-                        <th>EQUIPO</th>
-                        <th>MARCA</th>
-                        <th>MODELO</th>
-                        <th>SERIE</th>
-                        <th>FECHA CALIBRACION</th>
-                        <th>FECHA DE VENCIMIENTO</th>
-                        <th>ESTADO</th>
-                    
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($hdvs as $hdv)
-                        <tr>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->id }}</h6>
-                            </td>
 
-                            <td style="font-size: 8px">
-                                <h6 style="white-space: nowrap ">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
-                            </td>
-                            <td style="font-size:8px">
-                                <h6>{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px">
-                                <h6>{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</h6>
-                            </td>
 
-                            <td style="font-size: 8px; ">
-                                <h6>{{ $hdv->serie ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            <td style="font-size: 8px; ">
-                                <h6>{{ $hdv->fechaCali ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                            
-                            <td style="font-size: 8px; ">
-                                <h6>{{ $hdv->garantia ?? 'NO REGISTRA' }}</h6>
-                            </td>
-                 
 
-                            <!-- <td>{{ $hdv->enero }}</td>
-                        <td>{{ $hdv->febrero }}</td>
-                        <td>{{ $hdv->marzo }}</td>
-                        <td>{{ $hdv->abril }}</td>
-                        <td>{{ $hdv->mayo }}</td>
-                        <td>{{ $hdv->junio }}</td>
-                        <td>{{ $hdv->julio }}</td>
-                        <td>{{ $hdv->agosto }}</td>
-                        <td>{{ $hdv->septiembre }}</td>
-                        <td>{{ $hdv->octubre }}</td>
-                        <td>{{ $hdv->noviembre }}</td>
-                        <td>{{ $hdv->diciembre }}</td> -->
-                        </tr>
-                    @endforeach
-                </tbody>
 
-            </table>
+                {{-- TABLA CRONOGRAMA --}}
+                <div class="table-wrap" style="overflow-x:auto; margin-top:.5rem;">
+                    <table class="table table-striped table-hover crono" role="table">
+                        <thead class="table-dark">
+                            <tr>
+                                {{-- Numeración --}}
+                                <th>N°</th>
+
+                                {{-- columna SERVICIO --}}
+                                <th>SERVICIO</th>
+
+                                {{-- Columnas existentes --}}
+                                <th>UBICACIÓN</th>
+                                <th>EQUIPO</th>
+                                <th>MARCA</th>
+                                <th>MODELO</th>
+                                <th>SERIE</th>
+
+                                {{-- Meses abreviados --}}
+                                <th class="month-header" data-month="enero">ENE</th>
+                                <th class="month-header" data-month="febrero">FEB</th>
+                                <th class="month-header" data-month="marzo">MAR</th>
+                                <th class="month-header" data-month="abril">ABR</th>
+                                <th class="month-header" data-month="mayo">MAY</th>
+                                <th class="month-header" data-month="junio">JUN</th>
+                                <th class="month-header" data-month="julio">JUL</th>
+                                <th class="month-header" data-month="agosto">AGO</th>
+                                <th class="month-header" data-month="septiembre">SEP</th>
+                                <th class="month-header" data-month="octubre">OCT</th>
+                                <th class="month-header" data-month="noviembre">NOV</th>
+                                <th class="month-header" data-month="diciembre">DIC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+                            @endphp
+
+                            @foreach ($hdvs as $index => $hdv)
+                                <tr data-id="{{ $hdv->id }}" data-row-index="{{ $index }}">
+                                    {{-- Numeración consecutiva (N°) --}}
+                                    <td style="font-size: 8px"><h6 style="margin:0;">{{ $loop->iteration }}</h6></td>
+
+                                    {{-- celda SERVICIO con clase para filtrar (col-servicio) --}}
+                                    <td class="small col-servicio" style="font-size: 8px">
+                                        <h6 style="margin:0; white-space:nowrap">{{ $hdv->servicio?->nombreservicio ?? '---' }}</h6>
+                                    </td>
+
+                                    {{-- UBICACIÓN --}}
+                                    <td class="small col-ubic" style="font-size: 8px">
+                                        <h6 style="margin:0; white-space:nowrap">{{ $hdv->ubifisica?->ubicacionfisica ?? '---' }}</h6>
+                                    </td>
+
+                                    <td style="font-size:8px"><h6 style="margin:0;">{{ $hdv->equipo?->nombre_equipo ?? 'NO REGISTRA' }}</h6></td>
+                                    <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->marca?->nombre_marca ?? 'NO REGISTRA' }}</h6></td>
+                                    <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->modelo?->nombre_modelo ?? 'NO REGISTRA' }}</h6></td>
+                                    <td style="font-size: 8px"><h6 style="margin:0;">{{ $hdv->serie ?? 'NO REGISTRA' }}</h6></td>
+
+                                    {{-- Celdas de meses --}}
+                                    @foreach($meses as $mes)
+                                        @php $valor = $hdv->$mes; @endphp
+                                        <td class="month-cell" data-month="{{ $mes }}" data-value="{{ $valor ?? '' }}"
+                                            style="font-size:8px; border: 1px solid rgb(205,205,205); text-align:center;">
+                                            @if(trim($valor) === 'X')
+                                                <span class="mark" aria-hidden="true">&#10004;</span>
+                                            @else
+                                                <span style="display:inline-block; min-width:18px;">&nbsp;</span>
+                                            @endif
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                {{-- SCRIPT: filtrado cliente-side por SERVICIO y actualización del link al PDF --}}
+                <script>
+                (function(){
+                    // Normaliza texto (quita tildes, lower-case)
+                    function normalizeText(str) {
+                        if (!str) return '';
+                        try {
+                            return str.toString().normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim();
+                        } catch (e) {
+                            return str.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+                        }
+                    }
+
+                    const selectServ = document.getElementById('filter-servicio');
+                    const table = document.querySelector('table.crono');
+                    if (!selectServ || !table) return; // si no existe el select o la tabla, no hacemos nada
+
+                    const tbody = table.querySelector('tbody');
+
+                    // Actualiza href del/los enlaces PDF para incluir filtros actuales (search y servicio)
+                    function updatePdfLinks() {
+                        // encuentra enlaces posibles (top/bottom)
+                        const pdfIds = ['pdf-download','pdf-download-bottom'];
+                        pdfIds.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (!el) return;
+                            try {
+                                const base = el.href.split('?')[0];
+                                const params = new URLSearchParams(window.location.search);
+
+                                // tomar valor actual del select (no del querystring necesariamente)
+                                const servVal = selectServ.value ? selectServ.value.trim() : '';
+                                if (servVal) params.set('servicio', servVal);
+                                else params.delete('servicio');
+
+                                // mantener search si existe en URL (opcional)
+                                const searchInput = document.querySelector('input[name="search"]');
+                                if (searchInput && searchInput.value.trim()) params.set('search', searchInput.value.trim());
+
+                                el.href = base + (params.toString() ? ('?' + params.toString()) : '');
+                            } catch (e) {
+                                // ignore
+                            }
+                        });
+                    }
+
+                    function applyServiceFilter() {
+                        const raw = selectServ.value || '';
+                        const filter = normalizeText(raw);
+                        Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                            const servTd = row.querySelector('.col-servicio');
+                            const servText = servTd ? normalizeText(servTd.textContent || '') : '';
+                            // coincidencia por "contiene"
+                            if (!filter || servText.indexOf(filter) !== -1) {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+
+                        updatePdfLinks();
+                    }
+
+                    // aplicar al cambiar el select
+                    selectServ.addEventListener('change', applyServiceFilter);
+
+                    // aplicar al cargar (si viene seleccionado por querystring)
+                    window.addEventListener('load', function(){
+                        try {
+                            const qs = new URLSearchParams(window.location.search);
+                            const servicioQS = qs.get('servicio');
+                            if (servicioQS && selectServ) selectServ.value = servicioQS;
+                        } catch(e){ /* ignore */ }
+                        applyServiceFilter();
+                    });
+                })();
+                </script>
+
+
+
+            {{-- Fin pegado --}}
+
+                {{-- enlace PDF que se actualizará automáticamente con el filtro --}}
+                <a id="pdf-download" class="btn btn-outline-secondary btn-sm ms-3" href="{{ route('mantocrono.pdf_letter_landscape') }}" target="_blank" >
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF
+                </a>
+
         </div>
 
     </main>

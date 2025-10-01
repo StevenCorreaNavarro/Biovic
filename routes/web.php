@@ -70,6 +70,12 @@ Route::get('/hoja/hoja', function () {
 | Ej: crear hojas de vida desde UI (routes para create/store que usan un
 | middleware personalizado que verifica roles).
 */
+// Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
+//     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
+//     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
+//     Route::post('/hojadevida/store', [HojadevidaController::class, 'store'])->name('hojadevida.store');
+
+// });
 Route::middleware(['auth', 'role:Admin,Empleado'])->group(function () {
     Route::get('/hojadevida/creates', [HojadevidaController::class, 'creates'])->name('hojadevida.creates');
     Route::get('/hojadevida/create',  [HojadevidaController::class, 'create'])->name('hojadevida.create');
@@ -167,7 +173,6 @@ Route::middleware('auth')->group(function () {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ fin esta parte es para llenar equipos->modelo->marca
     Route::get('/hojadevida/{id}/show', [HojadevidaController::class, 'show'])->name('hojadevida.show');
 
-
     // Resource para empleados
     Route::resource('empleips', EmpleipsController::class);
 
@@ -178,11 +183,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/user/{user}', [HojadevidaController::class, 'updateuser'])->name('user.updateusers');
     Route::get('/user/{user}/edit', [HojadevidaController::class, 'edituser'])->name('user.editusers');
 
+
+
     // Listado principal de hojas de vida
     Route::get('hojadevida/listar', [HojadevidaController::class, 'listar'])->name('hojadevida.listar');
 
     /**
-     * prueba
      * Ruta nueva para la búsqueda desde la vista 'hoja_ver'
      * - Nombre principal: hojadevida.mostrarbusqueda (recomendado)
      * - Nombre adicional 'mostrarbusqueda' añadido por compatibilidad
@@ -235,6 +241,8 @@ Route::middleware('auth')->group(function () {
     Route::get('manto_crono/propiedadbuscar', [MantoCronoController::class, 'propiedadbuscar'])->name('mantocrono.propiedadbuscar');
     Route::get('manto_crono/propiedad', [MantoCronoController::class, 'propiedad'])->name('mantocrono.propiedad');
     Route::get('manto_crono/create', [MantoCronoController::class, 'create'])->name('mantocrono.create');
+
+    Route::get('Semaforo_crono_cal', [MantoCronoController::class, 'semaforo'])->name('mantocrono.semaforo');
 
     Route::get('alarma_calibracion', [MantoCronoController::class, 'listar_alarma'])->name('alarma');
     Route::get('inventario', [MantoCronoController::class, 'listar_inventario'])->name('inventario');
