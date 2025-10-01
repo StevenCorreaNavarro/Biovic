@@ -180,7 +180,7 @@
 } */
 .se{
     color:rgba(0, 0, 0, 0.234);
-} 
+}
 
 
 
@@ -232,7 +232,7 @@
         {{-- <form action="{{ url('/hojadevida') }}" method="POST"  enctype="multipart/form-data" class="row g-2 needs-validation  p-5" style=" border-radius:10px; " --}}
         <form action="{{ route('hojadevida.store') }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf {{-- LLave de seguridad obligatoria --}}
-            
+
 
             {{-- MDAL PARA ASEGURAR QUE GUARDA DATOS --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -315,7 +315,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
 
                     {{-- SEGUNDA PARTE --}}
                     {{-- SERIE --}}
@@ -623,7 +623,7 @@
                     <div class="col-md-3 position-relative">
                         <div class="form-group">
                             <label for=fechaAdquisicion> Fecha de Adquisicion </label>
-                            <input type="date" name="fechaAdquisicion" class="form-control se" 
+                            <input type="date" name="fechaAdquisicion" class="form-control se"
                                 value="{{ isset($hojadevida->fechaAdquisicion) ? $hojadevida->fechaAdquisicion : old('fechaAdquisicion') }}"
                                 id="fechaAdquisicion">
                         </div>
@@ -1223,7 +1223,7 @@
 
                 {{--  INICIO  FABRICANTE - PROVEEDOR  --}}
 
-                  
+
 
                 {{-- ----------------------------------------------------------------------------------------------------------- --}}
 

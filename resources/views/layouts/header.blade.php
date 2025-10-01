@@ -96,12 +96,14 @@
                                     {{-- <li><a class="dropdown-item" href="{{ asset('subir_soporte') }}">Subir soporte</a>
                                     </li> --}}
 
-                                    <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
-                                            vida</a></li>
+                                    {{-- <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Lista hojas de
+                                            vida</a></li> --}}
                                 @endif
                                 <li><a class="dropdown-item" href="{{ asset('verhojadevida') }}">Consultar hoja de
                                         vida</a>
                                 </li>
+
+
                             </ul>
                         </li>
                         {{-- <li> --}}
@@ -121,11 +123,7 @@
                                 <li><a class="dropdown-item" href="{{ asset('check_list/propiedad') }}">Lista de
                                         verificacion</a></li>
                                 <li><a class="dropdown-item" href="{{ asset('alarma_calibracion') }}">Alarmas</a></li>
-
-
-
-                                <li><a class="dropdown-item" href="{{ asset('inventario') }}">Inventario fisico</a>
-                                </li>
+                                <li><a class="dropdown-item" href="{{ asset('hojadevida/listar') }}">Inventario Fisico</a></li>
                             </ul>
                         </li>
                         {{-- </li> --}}
@@ -138,7 +136,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('adminlistaR.lista_registrada') }}">Panel de Administración</a>
                             </li>
-                            
+
                         @endif
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
