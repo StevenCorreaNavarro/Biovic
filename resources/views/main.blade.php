@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    {{-- @extends('layouts.header') --}}
+    @extends('layouts.header')
 
 
 
